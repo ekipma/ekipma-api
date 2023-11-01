@@ -4,7 +4,7 @@
 // - protoc             v4.24.3
 // source: protos/pay.proto
 
-package __
+package pb
 
 import (
 	context "context"

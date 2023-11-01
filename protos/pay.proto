@@ -3,7 +3,7 @@ package pay;
 
 import "google/protobuf/timestamp.proto";
 
-option go_package = "./";
+option go_package = "./go;pb";
 
 enum PayType {
   Unkown = 0;
