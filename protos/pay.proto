@@ -6,20 +6,22 @@ import "google/protobuf/timestamp.proto";
 option go_package = "./";
 
 enum PayType {
-  New = 0;
-  Repay = 1;
+  Unkown = 0;
+  New = 1;
+  Repay = 2;
 }
 
 enum PayUnit {
-  USD = 0;
-  IRTT = 1;
-  EUR = 2;
-  POND = 3;
+  Unknown = 0;
+  USD = 1;
+  IRTT = 2;
+  EUR = 3;
+  POND = 4;
 }
 
 message Pay {
   // gorm
-  int32 id = 1;
+  uint64 id = 1;
   google.protobuf.Timestamp createdAt = 2;
   google.protobuf.Timestamp updatedAt = 3;
   // rec
@@ -27,7 +29,7 @@ message Pay {
   string desc = 5;
   uint64 author = 6;
   uint64 assignee = 7;
-  repeated uint64 assignees = 8; // packed by default in proto3
+  repeated uint64 assignees = 8;
   uint64 group = 9;
   bool private = 10;
   // pay
@@ -35,4 +37,28 @@ message Pay {
   PayUnit unit = 12;
   PayType type = 13;
   bool rejected = 14;
+}
+
+service PayService {
+  rpc CreatePays(PayInput) returns (stream Pay) {}
+  rpc GetPays(PayQuery) returns (stream Pay) {}
+}
+
+message PayInput {
+  string title = 1;
+  string desc = 2;
+  uint64 author = 3;
+  repeated uint64 assignees = 4;
+  uint64 group = 5;
+  bool private = 6;
+  double total = 7;
+  PayUnit unit = 8;
+  PayType type = 9;
+}
+
+message PayQuery {}
+
+message PayStreamData {
+  int32 part = 1;
+  Pay buffer = 2;
 }
