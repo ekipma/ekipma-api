@@ -1,0 +1,38 @@
+syntax = "proto3";
+package pay;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "./";
+
+enum PayType {
+  New = 0;
+  Repay = 1;
+}
+
+enum PayUnit {
+  USD = 0;
+  IRTT = 1;
+  EUR = 2;
+  POND = 3;
+}
+
+message Pay {
+  // gorm
+  int32 id = 1;
+  google.protobuf.Timestamp createdAt = 2;
+  google.protobuf.Timestamp updatedAt = 3;
+  // rec
+  string title = 4;
+  string desc = 5;
+  uint64 author = 6;
+  uint64 assignee = 7;
+  repeated uint64 assignees = 8; // packed by default in proto3
+  uint64 group = 9;
+  bool private = 10;
+  // pay
+  double total = 11;
+  PayUnit unit = 12;
+  PayType type = 13;
+  bool rejected = 14;
+}
