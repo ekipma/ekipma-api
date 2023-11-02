@@ -36,7 +36,7 @@ func NewPayServiceClient(cc grpc.ClientConnInterface) PayServiceClient {
 }
 
 func (c *payServiceClient) CreatePays(ctx context.Context, in *PayInput, opts ...grpc.CallOption) (PayService_CreatePaysClient, error) {
-	stream, err := c.cc.NewStream(ctx, &PayService_ServiceDesc.Streams[0], "/pay.PayService/CreatePays", opts...)
+	stream, err := c.cc.NewStream(ctx, &PayService_ServiceDesc.Streams[0], "/ekipma.api.pay.PayService/CreatePays", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -68,7 +68,7 @@ func (x *payServiceCreatePaysClient) Recv() (*Pay, error) {
 }
 
 func (c *payServiceClient) GetPays(ctx context.Context, in *Empty, opts ...grpc.CallOption) (PayService_GetPaysClient, error) {
-	stream, err := c.cc.NewStream(ctx, &PayService_ServiceDesc.Streams[1], "/pay.PayService/GetPays", opts...)
+	stream, err := c.cc.NewStream(ctx, &PayService_ServiceDesc.Streams[1], "/ekipma.api.pay.PayService/GetPays", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -100,7 +100,7 @@ func (x *payServiceGetPaysClient) Recv() (*Pay, error) {
 }
 
 func (c *payServiceClient) GetRecentPays(ctx context.Context, in *RecentInput, opts ...grpc.CallOption) (PayService_GetRecentPaysClient, error) {
-	stream, err := c.cc.NewStream(ctx, &PayService_ServiceDesc.Streams[2], "/pay.PayService/GetRecentPays", opts...)
+	stream, err := c.cc.NewStream(ctx, &PayService_ServiceDesc.Streams[2], "/ekipma.api.pay.PayService/GetRecentPays", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -234,7 +234,7 @@ func (x *payServiceGetRecentPaysServer) Send(m *Pay) error {
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var PayService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "pay.PayService",
+	ServiceName: "ekipma.api.pay.PayService",
 	HandlerType: (*PayServiceServer)(nil),
 	Methods:     []grpc.MethodDesc{},
 	Streams: []grpc.StreamDesc{

@@ -1,6 +1,6 @@
 module github.com/ekipma/ekipma-api
 
-go 1.21.1
+go 1.20
 
 require (
 	google.golang.org/grpc v1.59.0

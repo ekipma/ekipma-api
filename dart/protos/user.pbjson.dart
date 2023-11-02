@@ -14,6 +14,7 @@ import 'dart:core' as $core;
 import 'dart:typed_data' as $typed_data;
 
 import '../google/protobuf/timestamp.pbjson.dart' as $0;
+import 'common.pbjson.dart' as $1;
 
 @$core.Deprecated('Use userRoleDescriptor instead')
 const UserRole$json = {
@@ -45,7 +46,7 @@ const User$json = {
     {'1': 'public', '3': 9, '4': 1, '5': 8, '10': 'public'},
     {'1': 'friends', '3': 10, '4': 3, '5': 4, '10': 'friends'},
     {'1': 'inviter', '3': 11, '4': 1, '5': 4, '10': 'inviter'},
-    {'1': 'role', '3': 12, '4': 1, '5': 14, '6': '.user.UserRole', '10': 'role'},
+    {'1': 'role', '3': 12, '4': 1, '5': 14, '6': '.ekipma.api.user.UserRole', '10': 'role'},
   ],
 };
 
@@ -56,17 +57,8 @@ final $typed_data.Uint8List userDescriptor = $convert.base64Decode(
     'b3RvYnVmLlRpbWVzdGFtcFIJdXBkYXRlZEF0EhYKBm1vYmlsZRgEIAEoCVIGbW9iaWxlEhIKBG'
     'NvZGUYBSABKAlSBGNvZGUSEgoEbmFtZRgGIAEoCVIEbmFtZRIUCgVlbWFpbBgHIAEoCVIFZW1h'
     'aWwSGgoIcGhvdG9VUkwYCCABKAlSCHBob3RvVVJMEhYKBnB1YmxpYxgJIAEoCFIGcHVibGljEh'
-    'gKB2ZyaWVuZHMYCiADKARSB2ZyaWVuZHMSGAoHaW52aXRlchgLIAEoBFIHaW52aXRlchIiCgRy'
-    'b2xlGAwgASgOMg4udXNlci5Vc2VyUm9sZVIEcm9sZQ==');
-
-@$core.Deprecated('Use emptyDescriptor instead')
-const Empty$json = {
-  '1': 'Empty',
-};
-
-/// Descriptor for `Empty`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List emptyDescriptor = $convert.base64Decode(
-    'CgVFbXB0eQ==');
+    'gKB2ZyaWVuZHMYCiADKARSB2ZyaWVuZHMSGAoHaW52aXRlchgLIAEoBFIHaW52aXRlchItCgRy'
+    'b2xlGAwgASgOMhkuZWtpcG1hLmFwaS51c2VyLlVzZXJSb2xlUgRyb2xl');
 
 @$core.Deprecated('Use registerInputDescriptor instead')
 const RegisterInput$json = {
@@ -117,14 +109,14 @@ const UserOutput$json = {
   '1': 'UserOutput',
   '2': [
     {'1': 'token', '3': 1, '4': 1, '5': 9, '10': 'token'},
-    {'1': 'user', '3': 2, '4': 1, '5': 11, '6': '.user.User', '10': 'user'},
+    {'1': 'user', '3': 2, '4': 1, '5': 11, '6': '.ekipma.api.user.User', '10': 'user'},
   ],
 };
 
 /// Descriptor for `UserOutput`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List userOutputDescriptor = $convert.base64Decode(
-    'CgpVc2VyT3V0cHV0EhQKBXRva2VuGAEgASgJUgV0b2tlbhIeCgR1c2VyGAIgASgLMgoudXNlci'
-    '5Vc2VyUgR1c2Vy');
+    'CgpVc2VyT3V0cHV0EhQKBXRva2VuGAEgASgJUgV0b2tlbhIpCgR1c2VyGAIgASgLMhUuZWtpcG'
+    '1hLmFwaS51c2VyLlVzZXJSBHVzZXI=');
 
 @$core.Deprecated('Use friendOutputDescriptor instead')
 const FriendOutput$json = {
@@ -145,29 +137,31 @@ final $typed_data.Uint8List friendOutputDescriptor = $convert.base64Decode(
 const $core.Map<$core.String, $core.dynamic> UserServiceBase$json = {
   '1': 'UserService',
   '2': [
-    {'1': 'RegisterUser', '2': '.user.RegisterInput', '3': '.user.UserOutput', '4': {}},
-    {'1': 'LoginUser', '2': '.user.LoginInput', '3': '.user.UserOutput', '4': {}},
-    {'1': 'AddFriend', '2': '.user.FriendInput', '3': '.user.User', '4': {}},
-    {'1': 'GetFriends', '2': '.user.Empty', '3': '.user.FriendOutput', '4': {}, '6': true},
+    {'1': 'RegisterUser', '2': '.ekipma.api.user.RegisterInput', '3': '.ekipma.api.user.UserOutput', '4': {}},
+    {'1': 'LoginUser', '2': '.ekipma.api.user.LoginInput', '3': '.ekipma.api.user.UserOutput', '4': {}},
+    {'1': 'AddFriend', '2': '.ekipma.api.user.FriendInput', '3': '.ekipma.api.user.User', '4': {}},
+    {'1': 'GetFriends', '2': '.ekipma.api.common.Empty', '3': '.ekipma.api.user.FriendOutput', '4': {}, '6': true},
   ],
 };
 
 @$core.Deprecated('Use userServiceDescriptor instead')
 const $core.Map<$core.String, $core.Map<$core.String, $core.dynamic>> UserServiceBase$messageJson = {
-  '.user.RegisterInput': RegisterInput$json,
-  '.user.UserOutput': UserOutput$json,
-  '.user.User': User$json,
+  '.ekipma.api.user.RegisterInput': RegisterInput$json,
+  '.ekipma.api.user.UserOutput': UserOutput$json,
+  '.ekipma.api.user.User': User$json,
   '.google.protobuf.Timestamp': $0.Timestamp$json,
-  '.user.LoginInput': LoginInput$json,
-  '.user.FriendInput': FriendInput$json,
-  '.user.Empty': Empty$json,
-  '.user.FriendOutput': FriendOutput$json,
+  '.ekipma.api.user.LoginInput': LoginInput$json,
+  '.ekipma.api.user.FriendInput': FriendInput$json,
+  '.ekipma.api.common.Empty': $1.Empty$json,
+  '.ekipma.api.user.FriendOutput': FriendOutput$json,
 };
 
 /// Descriptor for `UserService`. Decode as a `google.protobuf.ServiceDescriptorProto`.
 final $typed_data.Uint8List userServiceDescriptor = $convert.base64Decode(
-    'CgtVc2VyU2VydmljZRI3CgxSZWdpc3RlclVzZXISEy51c2VyLlJlZ2lzdGVySW5wdXQaEC51c2'
-    'VyLlVzZXJPdXRwdXQiABIxCglMb2dpblVzZXISEC51c2VyLkxvZ2luSW5wdXQaEC51c2VyLlVz'
-    'ZXJPdXRwdXQiABIsCglBZGRGcmllbmQSES51c2VyLkZyaWVuZElucHV0GgoudXNlci5Vc2VyIg'
-    'ASMQoKR2V0RnJpZW5kcxILLnVzZXIuRW1wdHkaEi51c2VyLkZyaWVuZE91dHB1dCIAMAE=');
+    'CgtVc2VyU2VydmljZRJNCgxSZWdpc3RlclVzZXISHi5la2lwbWEuYXBpLnVzZXIuUmVnaXN0ZX'
+    'JJbnB1dBobLmVraXBtYS5hcGkudXNlci5Vc2VyT3V0cHV0IgASRwoJTG9naW5Vc2VyEhsuZWtp'
+    'cG1hLmFwaS51c2VyLkxvZ2luSW5wdXQaGy5la2lwbWEuYXBpLnVzZXIuVXNlck91dHB1dCIAEk'
+    'IKCUFkZEZyaWVuZBIcLmVraXBtYS5hcGkudXNlci5GcmllbmRJbnB1dBoVLmVraXBtYS5hcGku'
+    'dXNlci5Vc2VyIgASSQoKR2V0RnJpZW5kcxIYLmVraXBtYS5hcGkuY29tbW9uLkVtcHR5Gh0uZW'
+    'tpcG1hLmFwaS51c2VyLkZyaWVuZE91dHB1dCIAMAE=');
 

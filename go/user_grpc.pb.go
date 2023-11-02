@@ -38,7 +38,7 @@ func NewUserServiceClient(cc grpc.ClientConnInterface) UserServiceClient {
 
 func (c *userServiceClient) RegisterUser(ctx context.Context, in *RegisterInput, opts ...grpc.CallOption) (*UserOutput, error) {
 	out := new(UserOutput)
-	err := c.cc.Invoke(ctx, "/user.UserService/RegisterUser", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/ekipma.api.user.UserService/RegisterUser", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -47,7 +47,7 @@ func (c *userServiceClient) RegisterUser(ctx context.Context, in *RegisterInput,
 
 func (c *userServiceClient) LoginUser(ctx context.Context, in *LoginInput, opts ...grpc.CallOption) (*UserOutput, error) {
 	out := new(UserOutput)
-	err := c.cc.Invoke(ctx, "/user.UserService/LoginUser", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/ekipma.api.user.UserService/LoginUser", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -56,7 +56,7 @@ func (c *userServiceClient) LoginUser(ctx context.Context, in *LoginInput, opts 
 
 func (c *userServiceClient) AddFriend(ctx context.Context, in *FriendInput, opts ...grpc.CallOption) (*User, error) {
 	out := new(User)
-	err := c.cc.Invoke(ctx, "/user.UserService/AddFriend", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/ekipma.api.user.UserService/AddFriend", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -64,7 +64,7 @@ func (c *userServiceClient) AddFriend(ctx context.Context, in *FriendInput, opts
 }
 
 func (c *userServiceClient) GetFriends(ctx context.Context, in *Empty, opts ...grpc.CallOption) (UserService_GetFriendsClient, error) {
-	stream, err := c.cc.NewStream(ctx, &UserService_ServiceDesc.Streams[0], "/user.UserService/GetFriends", opts...)
+	stream, err := c.cc.NewStream(ctx, &UserService_ServiceDesc.Streams[0], "/ekipma.api.user.UserService/GetFriends", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -145,7 +145,7 @@ func _UserService_RegisterUser_Handler(srv interface{}, ctx context.Context, dec
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/user.UserService/RegisterUser",
+		FullMethod: "/ekipma.api.user.UserService/RegisterUser",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UserServiceServer).RegisterUser(ctx, req.(*RegisterInput))
@@ -163,7 +163,7 @@ func _UserService_LoginUser_Handler(srv interface{}, ctx context.Context, dec fu
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/user.UserService/LoginUser",
+		FullMethod: "/ekipma.api.user.UserService/LoginUser",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UserServiceServer).LoginUser(ctx, req.(*LoginInput))
@@ -181,7 +181,7 @@ func _UserService_AddFriend_Handler(srv interface{}, ctx context.Context, dec fu
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/user.UserService/AddFriend",
+		FullMethod: "/ekipma.api.user.UserService/AddFriend",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UserServiceServer).AddFriend(ctx, req.(*FriendInput))
@@ -214,7 +214,7 @@ func (x *userServiceGetFriendsServer) Send(m *FriendOutput) error {
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var UserService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "user.UserService",
+	ServiceName: "ekipma.api.user.UserService",
 	HandlerType: (*UserServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

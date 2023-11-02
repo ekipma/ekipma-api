@@ -15,33 +15,34 @@ import 'dart:core' as $core;
 
 import 'package:protobuf/protobuf.dart' as $pb;
 
-import 'user.pb.dart' as $2;
+import 'common.pb.dart' as $1;
+import 'user.pb.dart' as $3;
 import 'user.pbjson.dart';
 
 export 'user.pb.dart';
 
 abstract class UserServiceBase extends $pb.GeneratedService {
-  $async.Future<$2.UserOutput> registerUser($pb.ServerContext ctx, $2.RegisterInput request);
-  $async.Future<$2.UserOutput> loginUser($pb.ServerContext ctx, $2.LoginInput request);
-  $async.Future<$2.User> addFriend($pb.ServerContext ctx, $2.FriendInput request);
-  $async.Future<$2.FriendOutput> getFriends($pb.ServerContext ctx, $2.Empty request);
+  $async.Future<$3.UserOutput> registerUser($pb.ServerContext ctx, $3.RegisterInput request);
+  $async.Future<$3.UserOutput> loginUser($pb.ServerContext ctx, $3.LoginInput request);
+  $async.Future<$3.User> addFriend($pb.ServerContext ctx, $3.FriendInput request);
+  $async.Future<$3.FriendOutput> getFriends($pb.ServerContext ctx, $1.Empty request);
 
   $pb.GeneratedMessage createRequest($core.String methodName) {
     switch (methodName) {
-      case 'RegisterUser': return $2.RegisterInput();
-      case 'LoginUser': return $2.LoginInput();
-      case 'AddFriend': return $2.FriendInput();
-      case 'GetFriends': return $2.Empty();
+      case 'RegisterUser': return $3.RegisterInput();
+      case 'LoginUser': return $3.LoginInput();
+      case 'AddFriend': return $3.FriendInput();
+      case 'GetFriends': return $1.Empty();
       default: throw $core.ArgumentError('Unknown method: $methodName');
     }
   }
 
   $async.Future<$pb.GeneratedMessage> handleCall($pb.ServerContext ctx, $core.String methodName, $pb.GeneratedMessage request) {
     switch (methodName) {
-      case 'RegisterUser': return this.registerUser(ctx, request as $2.RegisterInput);
-      case 'LoginUser': return this.loginUser(ctx, request as $2.LoginInput);
-      case 'AddFriend': return this.addFriend(ctx, request as $2.FriendInput);
-      case 'GetFriends': return this.getFriends(ctx, request as $2.Empty);
+      case 'RegisterUser': return this.registerUser(ctx, request as $3.RegisterInput);
+      case 'LoginUser': return this.loginUser(ctx, request as $3.LoginInput);
+      case 'AddFriend': return this.addFriend(ctx, request as $3.FriendInput);
+      case 'GetFriends': return this.getFriends(ctx, request as $1.Empty);
       default: throw $core.ArgumentError('Unknown method: $methodName');
     }
   }

@@ -1,6 +1,7 @@
 syntax = "proto3";
-package pay;
+package ekipma.api.pay;
 
+import "protos/common.proto";
 import "google/protobuf/timestamp.proto";
 
 option go_package = "./go;pb";
@@ -41,11 +42,9 @@ message Pay {
 
 service PayService {
   rpc CreatePays(PayInput) returns (stream Pay) {}
-  rpc GetPays(Empty) returns (stream Pay) {} // avoid amap
+  rpc GetPays(ekipma.api.common.Empty) returns (stream Pay) {} // avoid amap
   rpc GetRecentPays(RecentInput) returns (stream Pay) {}
 }
-
-message Empty {}
 
 message PayInput {
   string title = 1;

@@ -1,6 +1,7 @@
 syntax = "proto3";
-package user;
+package ekipma.api.user;
 
+import "protos/common.proto";
 import "google/protobuf/timestamp.proto";
 
 option go_package = "./go;pb";
@@ -33,10 +34,8 @@ service UserService {
   rpc RegisterUser(RegisterInput) returns (UserOutput) {}
   rpc LoginUser(LoginInput) returns (UserOutput) {}
   rpc AddFriend(FriendInput) returns (User) {}
-  rpc GetFriends(Empty) returns (stream FriendOutput) {}
+  rpc GetFriends(ekipma.api.common.Empty) returns (stream FriendOutput) {}
 }
-
-message Empty {}
 
 message RegisterInput {
   string mobile = 1;

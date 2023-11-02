@@ -1,0 +1,6 @@
+syntax = "proto3";
+package ekipma.api.common;
+
+option go_package = "./go;pb";
+
+message Empty {}

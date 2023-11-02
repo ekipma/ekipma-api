@@ -15,30 +15,31 @@ import 'dart:core' as $core;
 
 import 'package:protobuf/protobuf.dart' as $pb;
 
-import 'pay.pb.dart' as $1;
+import 'common.pb.dart' as $1;
+import 'pay.pb.dart' as $2;
 import 'pay.pbjson.dart';
 
 export 'pay.pb.dart';
 
 abstract class PayServiceBase extends $pb.GeneratedService {
-  $async.Future<$1.Pay> createPays($pb.ServerContext ctx, $1.PayInput request);
-  $async.Future<$1.Pay> getPays($pb.ServerContext ctx, $1.Empty request);
-  $async.Future<$1.Pay> getRecentPays($pb.ServerContext ctx, $1.RecentInput request);
+  $async.Future<$2.Pay> createPays($pb.ServerContext ctx, $2.PayInput request);
+  $async.Future<$2.Pay> getPays($pb.ServerContext ctx, $1.Empty request);
+  $async.Future<$2.Pay> getRecentPays($pb.ServerContext ctx, $2.RecentInput request);
 
   $pb.GeneratedMessage createRequest($core.String methodName) {
     switch (methodName) {
-      case 'CreatePays': return $1.PayInput();
+      case 'CreatePays': return $2.PayInput();
       case 'GetPays': return $1.Empty();
-      case 'GetRecentPays': return $1.RecentInput();
+      case 'GetRecentPays': return $2.RecentInput();
       default: throw $core.ArgumentError('Unknown method: $methodName');
     }
   }
 
   $async.Future<$pb.GeneratedMessage> handleCall($pb.ServerContext ctx, $core.String methodName, $pb.GeneratedMessage request) {
     switch (methodName) {
-      case 'CreatePays': return this.createPays(ctx, request as $1.PayInput);
+      case 'CreatePays': return this.createPays(ctx, request as $2.PayInput);
       case 'GetPays': return this.getPays(ctx, request as $1.Empty);
-      case 'GetRecentPays': return this.getRecentPays(ctx, request as $1.RecentInput);
+      case 'GetRecentPays': return this.getRecentPays(ctx, request as $2.RecentInput);
       default: throw $core.ArgumentError('Unknown method: $methodName');
     }
   }

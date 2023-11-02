@@ -14,6 +14,7 @@ import 'dart:core' as $core;
 import 'dart:typed_data' as $typed_data;
 
 import '../google/protobuf/timestamp.pbjson.dart' as $0;
+import 'common.pbjson.dart' as $1;
 
 @$core.Deprecated('Use payTypeDescriptor instead')
 const PayType$json = {
@@ -61,8 +62,8 @@ const Pay$json = {
     {'1': 'group', '3': 9, '4': 1, '5': 4, '10': 'group'},
     {'1': 'private', '3': 10, '4': 1, '5': 8, '10': 'private'},
     {'1': 'total', '3': 11, '4': 1, '5': 1, '10': 'total'},
-    {'1': 'unit', '3': 12, '4': 1, '5': 14, '6': '.pay.PayUnit', '10': 'unit'},
-    {'1': 'type', '3': 13, '4': 1, '5': 14, '6': '.pay.PayType', '10': 'type'},
+    {'1': 'unit', '3': 12, '4': 1, '5': 14, '6': '.ekipma.api.pay.PayUnit', '10': 'unit'},
+    {'1': 'type', '3': 13, '4': 1, '5': 14, '6': '.ekipma.api.pay.PayType', '10': 'type'},
     {'1': 'rejected', '3': 14, '4': 1, '5': 8, '10': 'rejected'},
   ],
 };
@@ -74,18 +75,10 @@ final $typed_data.Uint8List payDescriptor = $convert.base64Decode(
     'dG9idWYuVGltZXN0YW1wUgl1cGRhdGVkQXQSFAoFdGl0bGUYBCABKAlSBXRpdGxlEhIKBGRlc2'
     'MYBSABKAlSBGRlc2MSFgoGYXV0aG9yGAYgASgEUgZhdXRob3ISGgoIYXNzaWduZWUYByABKARS'
     'CGFzc2lnbmVlEhwKCWFzc2lnbmVlcxgIIAMoBFIJYXNzaWduZWVzEhQKBWdyb3VwGAkgASgEUg'
-    'Vncm91cBIYCgdwcml2YXRlGAogASgIUgdwcml2YXRlEhQKBXRvdGFsGAsgASgBUgV0b3RhbBIg'
-    'CgR1bml0GAwgASgOMgwucGF5LlBheVVuaXRSBHVuaXQSIAoEdHlwZRgNIAEoDjIMLnBheS5QYX'
-    'lUeXBlUgR0eXBlEhoKCHJlamVjdGVkGA4gASgIUghyZWplY3RlZA==');
-
-@$core.Deprecated('Use emptyDescriptor instead')
-const Empty$json = {
-  '1': 'Empty',
-};
-
-/// Descriptor for `Empty`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List emptyDescriptor = $convert.base64Decode(
-    'CgVFbXB0eQ==');
+    'Vncm91cBIYCgdwcml2YXRlGAogASgIUgdwcml2YXRlEhQKBXRvdGFsGAsgASgBUgV0b3RhbBIr'
+    'CgR1bml0GAwgASgOMhcuZWtpcG1hLmFwaS5wYXkuUGF5VW5pdFIEdW5pdBIrCgR0eXBlGA0gAS'
+    'gOMhcuZWtpcG1hLmFwaS5wYXkuUGF5VHlwZVIEdHlwZRIaCghyZWplY3RlZBgOIAEoCFIIcmVq'
+    'ZWN0ZWQ=');
 
 @$core.Deprecated('Use payInputDescriptor instead')
 const PayInput$json = {
@@ -98,8 +91,8 @@ const PayInput$json = {
     {'1': 'group', '3': 5, '4': 1, '5': 4, '10': 'group'},
     {'1': 'private', '3': 6, '4': 1, '5': 8, '10': 'private'},
     {'1': 'total', '3': 7, '4': 1, '5': 1, '10': 'total'},
-    {'1': 'unit', '3': 8, '4': 1, '5': 14, '6': '.pay.PayUnit', '10': 'unit'},
-    {'1': 'type', '3': 9, '4': 1, '5': 14, '6': '.pay.PayType', '10': 'type'},
+    {'1': 'unit', '3': 8, '4': 1, '5': 14, '6': '.ekipma.api.pay.PayUnit', '10': 'unit'},
+    {'1': 'type', '3': 9, '4': 1, '5': 14, '6': '.ekipma.api.pay.PayType', '10': 'type'},
   ],
 };
 
@@ -108,8 +101,8 @@ final $typed_data.Uint8List payInputDescriptor = $convert.base64Decode(
     'CghQYXlJbnB1dBIUCgV0aXRsZRgBIAEoCVIFdGl0bGUSEgoEZGVzYxgCIAEoCVIEZGVzYxIWCg'
     'ZhdXRob3IYAyABKARSBmF1dGhvchIcCglhc3NpZ25lZXMYBCADKARSCWFzc2lnbmVlcxIUCgVn'
     'cm91cBgFIAEoBFIFZ3JvdXASGAoHcHJpdmF0ZRgGIAEoCFIHcHJpdmF0ZRIUCgV0b3RhbBgHIA'
-    'EoAVIFdG90YWwSIAoEdW5pdBgIIAEoDjIMLnBheS5QYXlVbml0UgR1bml0EiAKBHR5cGUYCSAB'
-    'KA4yDC5wYXkuUGF5VHlwZVIEdHlwZQ==');
+    'EoAVIFdG90YWwSKwoEdW5pdBgIIAEoDjIXLmVraXBtYS5hcGkucGF5LlBheVVuaXRSBHVuaXQS'
+    'KwoEdHlwZRgJIAEoDjIXLmVraXBtYS5hcGkucGF5LlBheVR5cGVSBHR5cGU=');
 
 @$core.Deprecated('Use recentInputDescriptor instead')
 const RecentInput$json = {
@@ -126,24 +119,25 @@ final $typed_data.Uint8List recentInputDescriptor = $convert.base64Decode(
 const $core.Map<$core.String, $core.dynamic> PayServiceBase$json = {
   '1': 'PayService',
   '2': [
-    {'1': 'CreatePays', '2': '.pay.PayInput', '3': '.pay.Pay', '4': {}, '6': true},
-    {'1': 'GetPays', '2': '.pay.Empty', '3': '.pay.Pay', '4': {}, '6': true},
-    {'1': 'GetRecentPays', '2': '.pay.RecentInput', '3': '.pay.Pay', '4': {}, '6': true},
+    {'1': 'CreatePays', '2': '.ekipma.api.pay.PayInput', '3': '.ekipma.api.pay.Pay', '4': {}, '6': true},
+    {'1': 'GetPays', '2': '.ekipma.api.common.Empty', '3': '.ekipma.api.pay.Pay', '4': {}, '6': true},
+    {'1': 'GetRecentPays', '2': '.ekipma.api.pay.RecentInput', '3': '.ekipma.api.pay.Pay', '4': {}, '6': true},
   ],
 };
 
 @$core.Deprecated('Use payServiceDescriptor instead')
 const $core.Map<$core.String, $core.Map<$core.String, $core.dynamic>> PayServiceBase$messageJson = {
-  '.pay.PayInput': PayInput$json,
-  '.pay.Pay': Pay$json,
+  '.ekipma.api.pay.PayInput': PayInput$json,
+  '.ekipma.api.pay.Pay': Pay$json,
   '.google.protobuf.Timestamp': $0.Timestamp$json,
-  '.pay.Empty': Empty$json,
-  '.pay.RecentInput': RecentInput$json,
+  '.ekipma.api.common.Empty': $1.Empty$json,
+  '.ekipma.api.pay.RecentInput': RecentInput$json,
 };
 
 /// Descriptor for `PayService`. Decode as a `google.protobuf.ServiceDescriptorProto`.
 final $typed_data.Uint8List payServiceDescriptor = $convert.base64Decode(
-    'CgpQYXlTZXJ2aWNlEikKCkNyZWF0ZVBheXMSDS5wYXkuUGF5SW5wdXQaCC5wYXkuUGF5IgAwAR'
-    'IjCgdHZXRQYXlzEgoucGF5LkVtcHR5GggucGF5LlBheSIAMAESLwoNR2V0UmVjZW50UGF5cxIQ'
-    'LnBheS5SZWNlbnRJbnB1dBoILnBheS5QYXkiADAB');
+    'CgpQYXlTZXJ2aWNlEj8KCkNyZWF0ZVBheXMSGC5la2lwbWEuYXBpLnBheS5QYXlJbnB1dBoTLm'
+    'VraXBtYS5hcGkucGF5LlBheSIAMAESPAoHR2V0UGF5cxIYLmVraXBtYS5hcGkuY29tbW9uLkVt'
+    'cHR5GhMuZWtpcG1hLmFwaS5wYXkuUGF5IgAwARJFCg1HZXRSZWNlbnRQYXlzEhsuZWtpcG1hLm'
+    'FwaS5wYXkuUmVjZW50SW5wdXQaEy5la2lwbWEuYXBpLnBheS5QYXkiADAB');
 
