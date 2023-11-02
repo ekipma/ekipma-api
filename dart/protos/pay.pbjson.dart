@@ -78,6 +78,15 @@ final $typed_data.Uint8List payDescriptor = $convert.base64Decode(
     'CgR1bml0GAwgASgOMgwucGF5LlBheVVuaXRSBHVuaXQSIAoEdHlwZRgNIAEoDjIMLnBheS5QYX'
     'lUeXBlUgR0eXBlEhoKCHJlamVjdGVkGA4gASgIUghyZWplY3RlZA==');
 
+@$core.Deprecated('Use emptyDescriptor instead')
+const Empty$json = {
+  '1': 'Empty',
+};
+
+/// Descriptor for `Empty`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List emptyDescriptor = $convert.base64Decode(
+    'CgVFbXB0eQ==');
+
 @$core.Deprecated('Use payInputDescriptor instead')
 const PayInput$json = {
   '1': 'PayInput',
@@ -102,20 +111,24 @@ final $typed_data.Uint8List payInputDescriptor = $convert.base64Decode(
     'EoAVIFdG90YWwSIAoEdW5pdBgIIAEoDjIMLnBheS5QYXlVbml0UgR1bml0EiAKBHR5cGUYCSAB'
     'KA4yDC5wYXkuUGF5VHlwZVIEdHlwZQ==');
 
-@$core.Deprecated('Use payQueryDescriptor instead')
-const PayQuery$json = {
-  '1': 'PayQuery',
+@$core.Deprecated('Use recentInputDescriptor instead')
+const RecentInput$json = {
+  '1': 'RecentInput',
+  '2': [
+    {'1': 'last', '3': 1, '4': 1, '5': 4, '10': 'last'},
+  ],
 };
 
-/// Descriptor for `PayQuery`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List payQueryDescriptor = $convert.base64Decode(
-    'CghQYXlRdWVyeQ==');
+/// Descriptor for `RecentInput`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List recentInputDescriptor = $convert.base64Decode(
+    'CgtSZWNlbnRJbnB1dBISCgRsYXN0GAEgASgEUgRsYXN0');
 
 const $core.Map<$core.String, $core.dynamic> PayServiceBase$json = {
   '1': 'PayService',
   '2': [
     {'1': 'CreatePays', '2': '.pay.PayInput', '3': '.pay.Pay', '4': {}, '6': true},
-    {'1': 'GetPays', '2': '.pay.PayQuery', '3': '.pay.Pay', '4': {}, '6': true},
+    {'1': 'GetPays', '2': '.pay.Empty', '3': '.pay.Pay', '4': {}, '6': true},
+    {'1': 'GetRecentPays', '2': '.pay.RecentInput', '3': '.pay.Pay', '4': {}, '6': true},
   ],
 };
 
@@ -124,11 +137,13 @@ const $core.Map<$core.String, $core.Map<$core.String, $core.dynamic>> PayService
   '.pay.PayInput': PayInput$json,
   '.pay.Pay': Pay$json,
   '.google.protobuf.Timestamp': $0.Timestamp$json,
-  '.pay.PayQuery': PayQuery$json,
+  '.pay.Empty': Empty$json,
+  '.pay.RecentInput': RecentInput$json,
 };
 
 /// Descriptor for `PayService`. Decode as a `google.protobuf.ServiceDescriptorProto`.
 final $typed_data.Uint8List payServiceDescriptor = $convert.base64Decode(
     'CgpQYXlTZXJ2aWNlEikKCkNyZWF0ZVBheXMSDS5wYXkuUGF5SW5wdXQaCC5wYXkuUGF5IgAwAR'
-    'ImCgdHZXRQYXlzEg0ucGF5LlBheVF1ZXJ5GggucGF5LlBheSIAMAE=');
+    'IjCgdHZXRQYXlzEgoucGF5LkVtcHR5GggucGF5LlBheSIAMAESLwoNR2V0UmVjZW50UGF5cxIQ'
+    'LnBheS5SZWNlbnRJbnB1dBoILnBheS5QYXkiADAB');
 

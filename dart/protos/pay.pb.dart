@@ -253,6 +253,38 @@ class Pay extends $pb.GeneratedMessage {
   void clearRejected() => clearField(14);
 }
 
+class Empty extends $pb.GeneratedMessage {
+  factory Empty() => create();
+  Empty._() : super();
+  factory Empty.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory Empty.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Empty', package: const $pb.PackageName(_omitMessageNames ? '' : 'pay'), createEmptyInstance: create)
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  Empty clone() => Empty()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  Empty copyWith(void Function(Empty) updates) => super.copyWith((message) => updates(message as Empty)) as Empty;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static Empty create() => Empty._();
+  Empty createEmptyInstance() => create();
+  static $pb.PbList<Empty> createRepeated() => $pb.PbList<Empty>();
+  @$core.pragma('dart2js:noInline')
+  static Empty getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Empty>(create);
+  static Empty? _defaultInstance;
+}
+
 class PayInput extends $pb.GeneratedMessage {
   factory PayInput({
     $core.String? title,
@@ -409,13 +441,22 @@ class PayInput extends $pb.GeneratedMessage {
   void clearType() => clearField(9);
 }
 
-class PayQuery extends $pb.GeneratedMessage {
-  factory PayQuery() => create();
-  PayQuery._() : super();
-  factory PayQuery.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory PayQuery.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+class RecentInput extends $pb.GeneratedMessage {
+  factory RecentInput({
+    $fixnum.Int64? last,
+  }) {
+    final $result = create();
+    if (last != null) {
+      $result.last = last;
+    }
+    return $result;
+  }
+  RecentInput._() : super();
+  factory RecentInput.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory RecentInput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'PayQuery', package: const $pb.PackageName(_omitMessageNames ? '' : 'pay'), createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'RecentInput', package: const $pb.PackageName(_omitMessageNames ? '' : 'pay'), createEmptyInstance: create)
+    ..a<$fixnum.Int64>(1, _omitFieldNames ? '' : 'last', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
     ..hasRequiredFields = false
   ;
 
@@ -423,22 +464,31 @@ class PayQuery extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
   'Will be removed in next major version')
-  PayQuery clone() => PayQuery()..mergeFromMessage(this);
+  RecentInput clone() => RecentInput()..mergeFromMessage(this);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  PayQuery copyWith(void Function(PayQuery) updates) => super.copyWith((message) => updates(message as PayQuery)) as PayQuery;
+  RecentInput copyWith(void Function(RecentInput) updates) => super.copyWith((message) => updates(message as RecentInput)) as RecentInput;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
-  static PayQuery create() => PayQuery._();
-  PayQuery createEmptyInstance() => create();
-  static $pb.PbList<PayQuery> createRepeated() => $pb.PbList<PayQuery>();
+  static RecentInput create() => RecentInput._();
+  RecentInput createEmptyInstance() => create();
+  static $pb.PbList<RecentInput> createRepeated() => $pb.PbList<RecentInput>();
   @$core.pragma('dart2js:noInline')
-  static PayQuery getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<PayQuery>(create);
-  static PayQuery? _defaultInstance;
+  static RecentInput getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<RecentInput>(create);
+  static RecentInput? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $fixnum.Int64 get last => $_getI64(0);
+  @$pb.TagNumber(1)
+  set last($fixnum.Int64 v) { $_setInt64(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasLast() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearLast() => clearField(1);
 }
 
 class PayServiceApi {
@@ -448,8 +498,11 @@ class PayServiceApi {
   $async.Future<Pay> createPays($pb.ClientContext? ctx, PayInput request) =>
     _client.invoke<Pay>(ctx, 'PayService', 'CreatePays', request, Pay())
   ;
-  $async.Future<Pay> getPays($pb.ClientContext? ctx, PayQuery request) =>
+  $async.Future<Pay> getPays($pb.ClientContext? ctx, Empty request) =>
     _client.invoke<Pay>(ctx, 'PayService', 'GetPays', request, Pay())
+  ;
+  $async.Future<Pay> getRecentPays($pb.ClientContext? ctx, RecentInput request) =>
+    _client.invoke<Pay>(ctx, 'PayService', 'GetRecentPays', request, Pay())
   ;
 }
 

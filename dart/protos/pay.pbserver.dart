@@ -22,12 +22,14 @@ export 'pay.pb.dart';
 
 abstract class PayServiceBase extends $pb.GeneratedService {
   $async.Future<$1.Pay> createPays($pb.ServerContext ctx, $1.PayInput request);
-  $async.Future<$1.Pay> getPays($pb.ServerContext ctx, $1.PayQuery request);
+  $async.Future<$1.Pay> getPays($pb.ServerContext ctx, $1.Empty request);
+  $async.Future<$1.Pay> getRecentPays($pb.ServerContext ctx, $1.RecentInput request);
 
   $pb.GeneratedMessage createRequest($core.String methodName) {
     switch (methodName) {
       case 'CreatePays': return $1.PayInput();
-      case 'GetPays': return $1.PayQuery();
+      case 'GetPays': return $1.Empty();
+      case 'GetRecentPays': return $1.RecentInput();
       default: throw $core.ArgumentError('Unknown method: $methodName');
     }
   }
@@ -35,7 +37,8 @@ abstract class PayServiceBase extends $pb.GeneratedService {
   $async.Future<$pb.GeneratedMessage> handleCall($pb.ServerContext ctx, $core.String methodName, $pb.GeneratedMessage request) {
     switch (methodName) {
       case 'CreatePays': return this.createPays(ctx, request as $1.PayInput);
-      case 'GetPays': return this.getPays(ctx, request as $1.PayQuery);
+      case 'GetPays': return this.getPays(ctx, request as $1.Empty);
+      case 'GetRecentPays': return this.getRecentPays(ctx, request as $1.RecentInput);
       default: throw $core.ArgumentError('Unknown method: $methodName');
     }
   }

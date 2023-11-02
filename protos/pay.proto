@@ -41,8 +41,11 @@ message Pay {
 
 service PayService {
   rpc CreatePays(PayInput) returns (stream Pay) {}
-  rpc GetPays(PayQuery) returns (stream Pay) {}
+  rpc GetPays(Empty) returns (stream Pay) {} // avoid amap
+  rpc GetRecentPays(RecentInput) returns (stream Pay) {}
 }
+
+message Empty {}
 
 message PayInput {
   string title = 1;
@@ -56,4 +59,6 @@ message PayInput {
   PayType type = 9;
 }
 
-message PayQuery {}
+message RecentInput {
+  uint64 last = 1; // rid
+}

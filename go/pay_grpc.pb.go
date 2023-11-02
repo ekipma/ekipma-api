@@ -23,7 +23,8 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type PayServiceClient interface {
 	CreatePays(ctx context.Context, in *PayInput, opts ...grpc.CallOption) (PayService_CreatePaysClient, error)
-	GetPays(ctx context.Context, in *PayQuery, opts ...grpc.CallOption) (PayService_GetPaysClient, error)
+	GetPays(ctx context.Context, in *Empty, opts ...grpc.CallOption) (PayService_GetPaysClient, error)
+	GetRecentPays(ctx context.Context, in *RecentInput, opts ...grpc.CallOption) (PayService_GetRecentPaysClient, error)
 }
 
 type payServiceClient struct {
@@ -66,7 +67,7 @@ func (x *payServiceCreatePaysClient) Recv() (*Pay, error) {
 	return m, nil
 }
 
-func (c *payServiceClient) GetPays(ctx context.Context, in *PayQuery, opts ...grpc.CallOption) (PayService_GetPaysClient, error) {
+func (c *payServiceClient) GetPays(ctx context.Context, in *Empty, opts ...grpc.CallOption) (PayService_GetPaysClient, error) {
 	stream, err := c.cc.NewStream(ctx, &PayService_ServiceDesc.Streams[1], "/pay.PayService/GetPays", opts...)
 	if err != nil {
 		return nil, err
@@ -98,12 +99,45 @@ func (x *payServiceGetPaysClient) Recv() (*Pay, error) {
 	return m, nil
 }
 
+func (c *payServiceClient) GetRecentPays(ctx context.Context, in *RecentInput, opts ...grpc.CallOption) (PayService_GetRecentPaysClient, error) {
+	stream, err := c.cc.NewStream(ctx, &PayService_ServiceDesc.Streams[2], "/pay.PayService/GetRecentPays", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &payServiceGetRecentPaysClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type PayService_GetRecentPaysClient interface {
+	Recv() (*Pay, error)
+	grpc.ClientStream
+}
+
+type payServiceGetRecentPaysClient struct {
+	grpc.ClientStream
+}
+
+func (x *payServiceGetRecentPaysClient) Recv() (*Pay, error) {
+	m := new(Pay)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 // PayServiceServer is the server API for PayService service.
 // All implementations must embed UnimplementedPayServiceServer
 // for forward compatibility
 type PayServiceServer interface {
 	CreatePays(*PayInput, PayService_CreatePaysServer) error
-	GetPays(*PayQuery, PayService_GetPaysServer) error
+	GetPays(*Empty, PayService_GetPaysServer) error
+	GetRecentPays(*RecentInput, PayService_GetRecentPaysServer) error
 	mustEmbedUnimplementedPayServiceServer()
 }
 
@@ -114,8 +148,11 @@ type UnimplementedPayServiceServer struct {
 func (UnimplementedPayServiceServer) CreatePays(*PayInput, PayService_CreatePaysServer) error {
 	return status.Errorf(codes.Unimplemented, "method CreatePays not implemented")
 }
-func (UnimplementedPayServiceServer) GetPays(*PayQuery, PayService_GetPaysServer) error {
+func (UnimplementedPayServiceServer) GetPays(*Empty, PayService_GetPaysServer) error {
 	return status.Errorf(codes.Unimplemented, "method GetPays not implemented")
+}
+func (UnimplementedPayServiceServer) GetRecentPays(*RecentInput, PayService_GetRecentPaysServer) error {
+	return status.Errorf(codes.Unimplemented, "method GetRecentPays not implemented")
 }
 func (UnimplementedPayServiceServer) mustEmbedUnimplementedPayServiceServer() {}
 
@@ -152,7 +189,7 @@ func (x *payServiceCreatePaysServer) Send(m *Pay) error {
 }
 
 func _PayService_GetPays_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(PayQuery)
+	m := new(Empty)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
@@ -172,6 +209,27 @@ func (x *payServiceGetPaysServer) Send(m *Pay) error {
 	return x.ServerStream.SendMsg(m)
 }
 
+func _PayService_GetRecentPays_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(RecentInput)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(PayServiceServer).GetRecentPays(m, &payServiceGetRecentPaysServer{stream})
+}
+
+type PayService_GetRecentPaysServer interface {
+	Send(*Pay) error
+	grpc.ServerStream
+}
+
+type payServiceGetRecentPaysServer struct {
+	grpc.ServerStream
+}
+
+func (x *payServiceGetRecentPaysServer) Send(m *Pay) error {
+	return x.ServerStream.SendMsg(m)
+}
+
 // PayService_ServiceDesc is the grpc.ServiceDesc for PayService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -188,6 +246,11 @@ var PayService_ServiceDesc = grpc.ServiceDesc{
 		{
 			StreamName:    "GetPays",
 			Handler:       _PayService_GetPays_Handler,
+			ServerStreams: true,
+		},
+		{
+			StreamName:    "GetRecentPays",
+			Handler:       _PayService_GetRecentPays_Handler,
 			ServerStreams: true,
 		},
 	},

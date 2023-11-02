@@ -19,22 +19,24 @@ message User {
   google.protobuf.Timestamp updatedAt = 3;
   // user
   string mobile = 4;
-  string password = 5;
-  string code = 6;
-  string name = 7;
-  string email = 8;
-  string photoURL = 9;
-  bool public = 10;
-  repeated uint64 friends = 11;
-  uint64 inviter = 12;
-  UserRole role = 13;
+  string code = 5;
+  string name = 6;
+  string email = 7;
+  string photoURL = 8;
+  bool public = 9;
+  repeated uint64 friends = 10;
+  uint64 inviter = 11;
+  UserRole role = 12;
 }
 
 service UserService {
   rpc RegisterUser(RegisterInput) returns (UserOutput) {}
   rpc LoginUser(LoginInput) returns (UserOutput) {}
-  rpc AddFriend(FriendInput) returns (UserOutput) {}
+  rpc AddFriend(FriendInput) returns (User) {}
+  rpc GetFriends(Empty) returns (stream FriendOutput) {}
 }
+
+message Empty {}
 
 message RegisterInput {
   string mobile = 1;
@@ -49,10 +51,18 @@ message LoginInput {
   string password = 2;
 }
 
-message FriendInput { uint64 friend = 1; }
+message FriendInput {
+  uint64 friend = 1; // fid
+}
 
 message UserOutput {
   string token = 1;
   User user = 2;
-  repeated uint64 friends = 3;
+}
+
+message FriendOutput {
+  uint64 id = 1;
+  string name = 6;
+  string email = 7;
+  string photoURL = 8;
 }

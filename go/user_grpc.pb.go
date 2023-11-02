@@ -24,7 +24,8 @@ const _ = grpc.SupportPackageIsVersion7
 type UserServiceClient interface {
 	RegisterUser(ctx context.Context, in *RegisterInput, opts ...grpc.CallOption) (*UserOutput, error)
 	LoginUser(ctx context.Context, in *LoginInput, opts ...grpc.CallOption) (*UserOutput, error)
-	AddFriend(ctx context.Context, in *FriendInput, opts ...grpc.CallOption) (*UserOutput, error)
+	AddFriend(ctx context.Context, in *FriendInput, opts ...grpc.CallOption) (*User, error)
+	GetFriends(ctx context.Context, in *Empty, opts ...grpc.CallOption) (UserService_GetFriendsClient, error)
 }
 
 type userServiceClient struct {
@@ -53,13 +54,45 @@ func (c *userServiceClient) LoginUser(ctx context.Context, in *LoginInput, opts 
 	return out, nil
 }
 
-func (c *userServiceClient) AddFriend(ctx context.Context, in *FriendInput, opts ...grpc.CallOption) (*UserOutput, error) {
-	out := new(UserOutput)
+func (c *userServiceClient) AddFriend(ctx context.Context, in *FriendInput, opts ...grpc.CallOption) (*User, error) {
+	out := new(User)
 	err := c.cc.Invoke(ctx, "/user.UserService/AddFriend", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
+}
+
+func (c *userServiceClient) GetFriends(ctx context.Context, in *Empty, opts ...grpc.CallOption) (UserService_GetFriendsClient, error) {
+	stream, err := c.cc.NewStream(ctx, &UserService_ServiceDesc.Streams[0], "/user.UserService/GetFriends", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &userServiceGetFriendsClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type UserService_GetFriendsClient interface {
+	Recv() (*FriendOutput, error)
+	grpc.ClientStream
+}
+
+type userServiceGetFriendsClient struct {
+	grpc.ClientStream
+}
+
+func (x *userServiceGetFriendsClient) Recv() (*FriendOutput, error) {
+	m := new(FriendOutput)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
 }
 
 // UserServiceServer is the server API for UserService service.
@@ -68,7 +101,8 @@ func (c *userServiceClient) AddFriend(ctx context.Context, in *FriendInput, opts
 type UserServiceServer interface {
 	RegisterUser(context.Context, *RegisterInput) (*UserOutput, error)
 	LoginUser(context.Context, *LoginInput) (*UserOutput, error)
-	AddFriend(context.Context, *FriendInput) (*UserOutput, error)
+	AddFriend(context.Context, *FriendInput) (*User, error)
+	GetFriends(*Empty, UserService_GetFriendsServer) error
 	mustEmbedUnimplementedUserServiceServer()
 }
 
@@ -82,8 +116,11 @@ func (UnimplementedUserServiceServer) RegisterUser(context.Context, *RegisterInp
 func (UnimplementedUserServiceServer) LoginUser(context.Context, *LoginInput) (*UserOutput, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method LoginUser not implemented")
 }
-func (UnimplementedUserServiceServer) AddFriend(context.Context, *FriendInput) (*UserOutput, error) {
+func (UnimplementedUserServiceServer) AddFriend(context.Context, *FriendInput) (*User, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddFriend not implemented")
+}
+func (UnimplementedUserServiceServer) GetFriends(*Empty, UserService_GetFriendsServer) error {
+	return status.Errorf(codes.Unimplemented, "method GetFriends not implemented")
 }
 func (UnimplementedUserServiceServer) mustEmbedUnimplementedUserServiceServer() {}
 
@@ -152,6 +189,27 @@ func _UserService_AddFriend_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
+func _UserService_GetFriends_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(Empty)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(UserServiceServer).GetFriends(m, &userServiceGetFriendsServer{stream})
+}
+
+type UserService_GetFriendsServer interface {
+	Send(*FriendOutput) error
+	grpc.ServerStream
+}
+
+type userServiceGetFriendsServer struct {
+	grpc.ServerStream
+}
+
+func (x *userServiceGetFriendsServer) Send(m *FriendOutput) error {
+	return x.ServerStream.SendMsg(m)
+}
+
 // UserService_ServiceDesc is the grpc.ServiceDesc for UserService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -172,6 +230,12 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _UserService_AddFriend_Handler,
 		},
 	},
-	Streams:  []grpc.StreamDesc{},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "GetFriends",
+			Handler:       _UserService_GetFriends_Handler,
+			ServerStreams: true,
+		},
+	},
 	Metadata: "protos/user.proto",
 }

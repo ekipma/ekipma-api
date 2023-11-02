@@ -23,13 +23,15 @@ export 'user.pb.dart';
 abstract class UserServiceBase extends $pb.GeneratedService {
   $async.Future<$2.UserOutput> registerUser($pb.ServerContext ctx, $2.RegisterInput request);
   $async.Future<$2.UserOutput> loginUser($pb.ServerContext ctx, $2.LoginInput request);
-  $async.Future<$2.UserOutput> addFriend($pb.ServerContext ctx, $2.FriendInput request);
+  $async.Future<$2.User> addFriend($pb.ServerContext ctx, $2.FriendInput request);
+  $async.Future<$2.FriendOutput> getFriends($pb.ServerContext ctx, $2.Empty request);
 
   $pb.GeneratedMessage createRequest($core.String methodName) {
     switch (methodName) {
       case 'RegisterUser': return $2.RegisterInput();
       case 'LoginUser': return $2.LoginInput();
       case 'AddFriend': return $2.FriendInput();
+      case 'GetFriends': return $2.Empty();
       default: throw $core.ArgumentError('Unknown method: $methodName');
     }
   }
@@ -39,6 +41,7 @@ abstract class UserServiceBase extends $pb.GeneratedService {
       case 'RegisterUser': return this.registerUser(ctx, request as $2.RegisterInput);
       case 'LoginUser': return this.loginUser(ctx, request as $2.LoginInput);
       case 'AddFriend': return this.addFriend(ctx, request as $2.FriendInput);
+      case 'GetFriends': return this.getFriends(ctx, request as $2.Empty);
       default: throw $core.ArgumentError('Unknown method: $methodName');
     }
   }

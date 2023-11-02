@@ -26,7 +26,6 @@ class User extends $pb.GeneratedMessage {
     $0.Timestamp? createdAt,
     $0.Timestamp? updatedAt,
     $core.String? mobile,
-    $core.String? password,
     $core.String? code,
     $core.String? name,
     $core.String? email,
@@ -48,9 +47,6 @@ class User extends $pb.GeneratedMessage {
     }
     if (mobile != null) {
       $result.mobile = mobile;
-    }
-    if (password != null) {
-      $result.password = password;
     }
     if (code != null) {
       $result.code = code;
@@ -87,15 +83,14 @@ class User extends $pb.GeneratedMessage {
     ..aOM<$0.Timestamp>(2, _omitFieldNames ? '' : 'createdAt', protoName: 'createdAt', subBuilder: $0.Timestamp.create)
     ..aOM<$0.Timestamp>(3, _omitFieldNames ? '' : 'updatedAt', protoName: 'updatedAt', subBuilder: $0.Timestamp.create)
     ..aOS(4, _omitFieldNames ? '' : 'mobile')
-    ..aOS(5, _omitFieldNames ? '' : 'password')
-    ..aOS(6, _omitFieldNames ? '' : 'code')
-    ..aOS(7, _omitFieldNames ? '' : 'name')
-    ..aOS(8, _omitFieldNames ? '' : 'email')
-    ..aOS(9, _omitFieldNames ? '' : 'photoURL', protoName: 'photoURL')
-    ..aOB(10, _omitFieldNames ? '' : 'public')
-    ..p<$fixnum.Int64>(11, _omitFieldNames ? '' : 'friends', $pb.PbFieldType.KU6)
-    ..a<$fixnum.Int64>(12, _omitFieldNames ? '' : 'inviter', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
-    ..e<UserRole>(13, _omitFieldNames ? '' : 'role', $pb.PbFieldType.OE, defaultOrMaker: UserRole.Unkown, valueOf: UserRole.valueOf, enumValues: UserRole.values)
+    ..aOS(5, _omitFieldNames ? '' : 'code')
+    ..aOS(6, _omitFieldNames ? '' : 'name')
+    ..aOS(7, _omitFieldNames ? '' : 'email')
+    ..aOS(8, _omitFieldNames ? '' : 'photoURL', protoName: 'photoURL')
+    ..aOB(9, _omitFieldNames ? '' : 'public')
+    ..p<$fixnum.Int64>(10, _omitFieldNames ? '' : 'friends', $pb.PbFieldType.KU6)
+    ..a<$fixnum.Int64>(11, _omitFieldNames ? '' : 'inviter', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
+    ..e<UserRole>(12, _omitFieldNames ? '' : 'role', $pb.PbFieldType.OE, defaultOrMaker: UserRole.Unkown, valueOf: UserRole.valueOf, enumValues: UserRole.values)
     ..hasRequiredFields = false
   ;
 
@@ -163,79 +158,102 @@ class User extends $pb.GeneratedMessage {
   void clearMobile() => clearField(4);
 
   @$pb.TagNumber(5)
-  $core.String get password => $_getSZ(4);
+  $core.String get code => $_getSZ(4);
   @$pb.TagNumber(5)
-  set password($core.String v) { $_setString(4, v); }
+  set code($core.String v) { $_setString(4, v); }
   @$pb.TagNumber(5)
-  $core.bool hasPassword() => $_has(4);
+  $core.bool hasCode() => $_has(4);
   @$pb.TagNumber(5)
-  void clearPassword() => clearField(5);
+  void clearCode() => clearField(5);
 
   @$pb.TagNumber(6)
-  $core.String get code => $_getSZ(5);
+  $core.String get name => $_getSZ(5);
   @$pb.TagNumber(6)
-  set code($core.String v) { $_setString(5, v); }
+  set name($core.String v) { $_setString(5, v); }
   @$pb.TagNumber(6)
-  $core.bool hasCode() => $_has(5);
+  $core.bool hasName() => $_has(5);
   @$pb.TagNumber(6)
-  void clearCode() => clearField(6);
+  void clearName() => clearField(6);
 
   @$pb.TagNumber(7)
-  $core.String get name => $_getSZ(6);
+  $core.String get email => $_getSZ(6);
   @$pb.TagNumber(7)
-  set name($core.String v) { $_setString(6, v); }
+  set email($core.String v) { $_setString(6, v); }
   @$pb.TagNumber(7)
-  $core.bool hasName() => $_has(6);
+  $core.bool hasEmail() => $_has(6);
   @$pb.TagNumber(7)
-  void clearName() => clearField(7);
+  void clearEmail() => clearField(7);
 
   @$pb.TagNumber(8)
-  $core.String get email => $_getSZ(7);
+  $core.String get photoURL => $_getSZ(7);
   @$pb.TagNumber(8)
-  set email($core.String v) { $_setString(7, v); }
+  set photoURL($core.String v) { $_setString(7, v); }
   @$pb.TagNumber(8)
-  $core.bool hasEmail() => $_has(7);
+  $core.bool hasPhotoURL() => $_has(7);
   @$pb.TagNumber(8)
-  void clearEmail() => clearField(8);
+  void clearPhotoURL() => clearField(8);
 
   @$pb.TagNumber(9)
-  $core.String get photoURL => $_getSZ(8);
+  $core.bool get public => $_getBF(8);
   @$pb.TagNumber(9)
-  set photoURL($core.String v) { $_setString(8, v); }
+  set public($core.bool v) { $_setBool(8, v); }
   @$pb.TagNumber(9)
-  $core.bool hasPhotoURL() => $_has(8);
+  $core.bool hasPublic() => $_has(8);
   @$pb.TagNumber(9)
-  void clearPhotoURL() => clearField(9);
+  void clearPublic() => clearField(9);
 
   @$pb.TagNumber(10)
-  $core.bool get public => $_getBF(9);
-  @$pb.TagNumber(10)
-  set public($core.bool v) { $_setBool(9, v); }
-  @$pb.TagNumber(10)
-  $core.bool hasPublic() => $_has(9);
-  @$pb.TagNumber(10)
-  void clearPublic() => clearField(10);
+  $core.List<$fixnum.Int64> get friends => $_getList(9);
 
   @$pb.TagNumber(11)
-  $core.List<$fixnum.Int64> get friends => $_getList(10);
+  $fixnum.Int64 get inviter => $_getI64(10);
+  @$pb.TagNumber(11)
+  set inviter($fixnum.Int64 v) { $_setInt64(10, v); }
+  @$pb.TagNumber(11)
+  $core.bool hasInviter() => $_has(10);
+  @$pb.TagNumber(11)
+  void clearInviter() => clearField(11);
 
   @$pb.TagNumber(12)
-  $fixnum.Int64 get inviter => $_getI64(11);
+  UserRole get role => $_getN(11);
   @$pb.TagNumber(12)
-  set inviter($fixnum.Int64 v) { $_setInt64(11, v); }
+  set role(UserRole v) { setField(12, v); }
   @$pb.TagNumber(12)
-  $core.bool hasInviter() => $_has(11);
+  $core.bool hasRole() => $_has(11);
   @$pb.TagNumber(12)
-  void clearInviter() => clearField(12);
+  void clearRole() => clearField(12);
+}
 
-  @$pb.TagNumber(13)
-  UserRole get role => $_getN(12);
-  @$pb.TagNumber(13)
-  set role(UserRole v) { setField(13, v); }
-  @$pb.TagNumber(13)
-  $core.bool hasRole() => $_has(12);
-  @$pb.TagNumber(13)
-  void clearRole() => clearField(13);
+class Empty extends $pb.GeneratedMessage {
+  factory Empty() => create();
+  Empty._() : super();
+  factory Empty.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory Empty.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Empty', package: const $pb.PackageName(_omitMessageNames ? '' : 'user'), createEmptyInstance: create)
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  Empty clone() => Empty()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  Empty copyWith(void Function(Empty) updates) => super.copyWith((message) => updates(message as Empty)) as Empty;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static Empty create() => Empty._();
+  Empty createEmptyInstance() => create();
+  static $pb.PbList<Empty> createRepeated() => $pb.PbList<Empty>();
+  @$core.pragma('dart2js:noInline')
+  static Empty getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Empty>(create);
+  static Empty? _defaultInstance;
 }
 
 class RegisterInput extends $pb.GeneratedMessage {
@@ -462,7 +480,6 @@ class UserOutput extends $pb.GeneratedMessage {
   factory UserOutput({
     $core.String? token,
     User? user,
-    $core.Iterable<$fixnum.Int64>? friends,
   }) {
     final $result = create();
     if (token != null) {
@@ -470,9 +487,6 @@ class UserOutput extends $pb.GeneratedMessage {
     }
     if (user != null) {
       $result.user = user;
-    }
-    if (friends != null) {
-      $result.friends.addAll(friends);
     }
     return $result;
   }
@@ -483,7 +497,6 @@ class UserOutput extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'UserOutput', package: const $pb.PackageName(_omitMessageNames ? '' : 'user'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'token')
     ..aOM<User>(2, _omitFieldNames ? '' : 'user', subBuilder: User.create)
-    ..p<$fixnum.Int64>(3, _omitFieldNames ? '' : 'friends', $pb.PbFieldType.KU6)
     ..hasRequiredFields = false
   ;
 
@@ -527,9 +540,98 @@ class UserOutput extends $pb.GeneratedMessage {
   void clearUser() => clearField(2);
   @$pb.TagNumber(2)
   User ensureUser() => $_ensure(1);
+}
 
-  @$pb.TagNumber(3)
-  $core.List<$fixnum.Int64> get friends => $_getList(2);
+class FriendOutput extends $pb.GeneratedMessage {
+  factory FriendOutput({
+    $fixnum.Int64? id,
+    $core.String? name,
+    $core.String? email,
+    $core.String? photoURL,
+  }) {
+    final $result = create();
+    if (id != null) {
+      $result.id = id;
+    }
+    if (name != null) {
+      $result.name = name;
+    }
+    if (email != null) {
+      $result.email = email;
+    }
+    if (photoURL != null) {
+      $result.photoURL = photoURL;
+    }
+    return $result;
+  }
+  FriendOutput._() : super();
+  factory FriendOutput.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory FriendOutput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'FriendOutput', package: const $pb.PackageName(_omitMessageNames ? '' : 'user'), createEmptyInstance: create)
+    ..a<$fixnum.Int64>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
+    ..aOS(6, _omitFieldNames ? '' : 'name')
+    ..aOS(7, _omitFieldNames ? '' : 'email')
+    ..aOS(8, _omitFieldNames ? '' : 'photoURL', protoName: 'photoURL')
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  FriendOutput clone() => FriendOutput()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  FriendOutput copyWith(void Function(FriendOutput) updates) => super.copyWith((message) => updates(message as FriendOutput)) as FriendOutput;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static FriendOutput create() => FriendOutput._();
+  FriendOutput createEmptyInstance() => create();
+  static $pb.PbList<FriendOutput> createRepeated() => $pb.PbList<FriendOutput>();
+  @$core.pragma('dart2js:noInline')
+  static FriendOutput getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<FriendOutput>(create);
+  static FriendOutput? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $fixnum.Int64 get id => $_getI64(0);
+  @$pb.TagNumber(1)
+  set id($fixnum.Int64 v) { $_setInt64(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearId() => clearField(1);
+
+  @$pb.TagNumber(6)
+  $core.String get name => $_getSZ(1);
+  @$pb.TagNumber(6)
+  set name($core.String v) { $_setString(1, v); }
+  @$pb.TagNumber(6)
+  $core.bool hasName() => $_has(1);
+  @$pb.TagNumber(6)
+  void clearName() => clearField(6);
+
+  @$pb.TagNumber(7)
+  $core.String get email => $_getSZ(2);
+  @$pb.TagNumber(7)
+  set email($core.String v) { $_setString(2, v); }
+  @$pb.TagNumber(7)
+  $core.bool hasEmail() => $_has(2);
+  @$pb.TagNumber(7)
+  void clearEmail() => clearField(7);
+
+  @$pb.TagNumber(8)
+  $core.String get photoURL => $_getSZ(3);
+  @$pb.TagNumber(8)
+  set photoURL($core.String v) { $_setString(3, v); }
+  @$pb.TagNumber(8)
+  $core.bool hasPhotoURL() => $_has(3);
+  @$pb.TagNumber(8)
+  void clearPhotoURL() => clearField(8);
 }
 
 class UserServiceApi {
@@ -542,8 +644,11 @@ class UserServiceApi {
   $async.Future<UserOutput> loginUser($pb.ClientContext? ctx, LoginInput request) =>
     _client.invoke<UserOutput>(ctx, 'UserService', 'LoginUser', request, UserOutput())
   ;
-  $async.Future<UserOutput> addFriend($pb.ClientContext? ctx, FriendInput request) =>
-    _client.invoke<UserOutput>(ctx, 'UserService', 'AddFriend', request, UserOutput())
+  $async.Future<User> addFriend($pb.ClientContext? ctx, FriendInput request) =>
+    _client.invoke<User>(ctx, 'UserService', 'AddFriend', request, User())
+  ;
+  $async.Future<FriendOutput> getFriends($pb.ClientContext? ctx, Empty request) =>
+    _client.invoke<FriendOutput>(ctx, 'UserService', 'GetFriends', request, FriendOutput())
   ;
 }
 
