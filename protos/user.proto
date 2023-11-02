@@ -1,0 +1,58 @@
+syntax = "proto3";
+package user;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "./go;pb";
+
+enum UserRole {
+  Unkown = 0;
+  Normal = 1;
+  Opr = 2;
+  Admin = 3;
+}
+
+message User {
+  // gorm
+  uint64 id = 1;
+  google.protobuf.Timestamp createdAt = 2;
+  google.protobuf.Timestamp updatedAt = 3;
+  // user
+  string mobile = 4;
+  string password = 5;
+  string code = 6;
+  string name = 7;
+  string email = 8;
+  string photoURL = 9;
+  bool public = 10;
+  repeated uint64 friends = 11;
+  uint64 inviter = 12;
+  UserRole role = 13;
+}
+
+service UserService {
+  rpc RegisterUser(RegisterInput) returns (UserOutput) {}
+  rpc LoginUser(LoginInput) returns (UserOutput) {}
+  rpc AddFriend(FriendInput) returns (UserOutput) {}
+}
+
+message RegisterInput {
+  string mobile = 1;
+  string password = 2;
+  string name = 3;
+  uint64 inviter = 4;
+  string email = 5;
+}
+
+message LoginInput {
+  string mobile = 1;
+  string password = 2;
+}
+
+message FriendInput { uint64 friend = 1; }
+
+message UserOutput {
+  string token = 1;
+  User user = 2;
+  repeated uint64 friends = 3;
+}

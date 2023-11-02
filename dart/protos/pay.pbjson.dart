@@ -111,20 +111,6 @@ const PayQuery$json = {
 final $typed_data.Uint8List payQueryDescriptor = $convert.base64Decode(
     'CghQYXlRdWVyeQ==');
 
-@$core.Deprecated('Use payStreamDataDescriptor instead')
-const PayStreamData$json = {
-  '1': 'PayStreamData',
-  '2': [
-    {'1': 'part', '3': 1, '4': 1, '5': 5, '10': 'part'},
-    {'1': 'buffer', '3': 2, '4': 1, '5': 11, '6': '.pay.Pay', '10': 'buffer'},
-  ],
-};
-
-/// Descriptor for `PayStreamData`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List payStreamDataDescriptor = $convert.base64Decode(
-    'Cg1QYXlTdHJlYW1EYXRhEhIKBHBhcnQYASABKAVSBHBhcnQSIAoGYnVmZmVyGAIgASgLMggucG'
-    'F5LlBheVIGYnVmZmVy');
-
 const $core.Map<$core.String, $core.dynamic> PayServiceBase$json = {
   '1': 'PayService',
   '2': [

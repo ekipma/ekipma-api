@@ -57,8 +57,3 @@ message PayInput {
 }
 
 message PayQuery {}
-
-message PayStreamData {
-  int32 part = 1;
-  Pay buffer = 2;
-}
