@@ -9,14 +9,12 @@
 // ignore_for_file: non_constant_identifier_names, prefer_final_fields
 // ignore_for_file: unnecessary_import, unnecessary_this, unused_import
 
-import 'dart:async' as $async;
 import 'dart:core' as $core;
 
 import 'package:fixnum/fixnum.dart' as $fixnum;
 import 'package:protobuf/protobuf.dart' as $pb;
 
-import '../google/protobuf/timestamp.pb.dart' as $0;
-import 'common.pb.dart' as $1;
+import '../google/protobuf/timestamp.pb.dart' as $3;
 import 'pay.pbenum.dart';
 
 export 'pay.pbenum.dart';
@@ -24,8 +22,8 @@ export 'pay.pbenum.dart';
 class Pay extends $pb.GeneratedMessage {
   factory Pay({
     $fixnum.Int64? id,
-    $0.Timestamp? createdAt,
-    $0.Timestamp? updatedAt,
+    $3.Timestamp? createdAt,
+    $3.Timestamp? updatedAt,
     $core.String? title,
     $core.String? desc,
     $fixnum.Int64? author,
@@ -89,8 +87,8 @@ class Pay extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Pay', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.pay'), createEmptyInstance: create)
     ..a<$fixnum.Int64>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
-    ..aOM<$0.Timestamp>(2, _omitFieldNames ? '' : 'createdAt', protoName: 'createdAt', subBuilder: $0.Timestamp.create)
-    ..aOM<$0.Timestamp>(3, _omitFieldNames ? '' : 'updatedAt', protoName: 'updatedAt', subBuilder: $0.Timestamp.create)
+    ..aOM<$3.Timestamp>(2, _omitFieldNames ? '' : 'createdAt', protoName: 'createdAt', subBuilder: $3.Timestamp.create)
+    ..aOM<$3.Timestamp>(3, _omitFieldNames ? '' : 'updatedAt', protoName: 'updatedAt', subBuilder: $3.Timestamp.create)
     ..aOS(4, _omitFieldNames ? '' : 'title')
     ..aOS(5, _omitFieldNames ? '' : 'desc')
     ..a<$fixnum.Int64>(6, _omitFieldNames ? '' : 'author', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
@@ -137,26 +135,26 @@ class Pay extends $pb.GeneratedMessage {
   void clearId() => clearField(1);
 
   @$pb.TagNumber(2)
-  $0.Timestamp get createdAt => $_getN(1);
+  $3.Timestamp get createdAt => $_getN(1);
   @$pb.TagNumber(2)
-  set createdAt($0.Timestamp v) { setField(2, v); }
+  set createdAt($3.Timestamp v) { setField(2, v); }
   @$pb.TagNumber(2)
   $core.bool hasCreatedAt() => $_has(1);
   @$pb.TagNumber(2)
   void clearCreatedAt() => clearField(2);
   @$pb.TagNumber(2)
-  $0.Timestamp ensureCreatedAt() => $_ensure(1);
+  $3.Timestamp ensureCreatedAt() => $_ensure(1);
 
   @$pb.TagNumber(3)
-  $0.Timestamp get updatedAt => $_getN(2);
+  $3.Timestamp get updatedAt => $_getN(2);
   @$pb.TagNumber(3)
-  set updatedAt($0.Timestamp v) { setField(3, v); }
+  set updatedAt($3.Timestamp v) { setField(3, v); }
   @$pb.TagNumber(3)
   $core.bool hasUpdatedAt() => $_has(2);
   @$pb.TagNumber(3)
   void clearUpdatedAt() => clearField(3);
   @$pb.TagNumber(3)
-  $0.Timestamp ensureUpdatedAt() => $_ensure(2);
+  $3.Timestamp ensureUpdatedAt() => $_ensure(2);
 
   /// rec
   @$pb.TagNumber(4)
@@ -458,21 +456,6 @@ class RecentInput extends $pb.GeneratedMessage {
   $core.bool hasLast() => $_has(0);
   @$pb.TagNumber(1)
   void clearLast() => clearField(1);
-}
-
-class PayServiceApi {
-  $pb.RpcClient _client;
-  PayServiceApi(this._client);
-
-  $async.Future<Pay> createPays($pb.ClientContext? ctx, PayInput request) =>
-    _client.invoke<Pay>(ctx, 'PayService', 'CreatePays', request, Pay())
-  ;
-  $async.Future<Pay> getPays($pb.ClientContext? ctx, $1.Empty request) =>
-    _client.invoke<Pay>(ctx, 'PayService', 'GetPays', request, Pay())
-  ;
-  $async.Future<Pay> getRecentPays($pb.ClientContext? ctx, RecentInput request) =>
-    _client.invoke<Pay>(ctx, 'PayService', 'GetRecentPays', request, Pay())
-  ;
 }
 
 

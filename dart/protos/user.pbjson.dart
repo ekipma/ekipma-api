@@ -13,9 +13,6 @@ import 'dart:convert' as $convert;
 import 'dart:core' as $core;
 import 'dart:typed_data' as $typed_data;
 
-import '../google/protobuf/timestamp.pbjson.dart' as $0;
-import 'common.pbjson.dart' as $1;
-
 @$core.Deprecated('Use userRoleDescriptor instead')
 const UserRole$json = {
   '1': 'UserRole',
@@ -133,35 +130,4 @@ const FriendOutput$json = {
 final $typed_data.Uint8List friendOutputDescriptor = $convert.base64Decode(
     'CgxGcmllbmRPdXRwdXQSDgoCaWQYASABKARSAmlkEhIKBG5hbWUYBiABKAlSBG5hbWUSFAoFZW'
     '1haWwYByABKAlSBWVtYWlsEhoKCHBob3RvVVJMGAggASgJUghwaG90b1VSTA==');
-
-const $core.Map<$core.String, $core.dynamic> UserServiceBase$json = {
-  '1': 'UserService',
-  '2': [
-    {'1': 'RegisterUser', '2': '.ekipma.api.user.RegisterInput', '3': '.ekipma.api.user.UserOutput', '4': {}},
-    {'1': 'LoginUser', '2': '.ekipma.api.user.LoginInput', '3': '.ekipma.api.user.UserOutput', '4': {}},
-    {'1': 'AddFriend', '2': '.ekipma.api.user.FriendInput', '3': '.ekipma.api.user.User', '4': {}},
-    {'1': 'GetFriends', '2': '.ekipma.api.common.Empty', '3': '.ekipma.api.user.FriendOutput', '4': {}, '6': true},
-  ],
-};
-
-@$core.Deprecated('Use userServiceDescriptor instead')
-const $core.Map<$core.String, $core.Map<$core.String, $core.dynamic>> UserServiceBase$messageJson = {
-  '.ekipma.api.user.RegisterInput': RegisterInput$json,
-  '.ekipma.api.user.UserOutput': UserOutput$json,
-  '.ekipma.api.user.User': User$json,
-  '.google.protobuf.Timestamp': $0.Timestamp$json,
-  '.ekipma.api.user.LoginInput': LoginInput$json,
-  '.ekipma.api.user.FriendInput': FriendInput$json,
-  '.ekipma.api.common.Empty': $1.Empty$json,
-  '.ekipma.api.user.FriendOutput': FriendOutput$json,
-};
-
-/// Descriptor for `UserService`. Decode as a `google.protobuf.ServiceDescriptorProto`.
-final $typed_data.Uint8List userServiceDescriptor = $convert.base64Decode(
-    'CgtVc2VyU2VydmljZRJNCgxSZWdpc3RlclVzZXISHi5la2lwbWEuYXBpLnVzZXIuUmVnaXN0ZX'
-    'JJbnB1dBobLmVraXBtYS5hcGkudXNlci5Vc2VyT3V0cHV0IgASRwoJTG9naW5Vc2VyEhsuZWtp'
-    'cG1hLmFwaS51c2VyLkxvZ2luSW5wdXQaGy5la2lwbWEuYXBpLnVzZXIuVXNlck91dHB1dCIAEk'
-    'IKCUFkZEZyaWVuZBIcLmVraXBtYS5hcGkudXNlci5GcmllbmRJbnB1dBoVLmVraXBtYS5hcGku'
-    'dXNlci5Vc2VyIgASSQoKR2V0RnJpZW5kcxIYLmVraXBtYS5hcGkuY29tbW9uLkVtcHR5Gh0uZW'
-    'tpcG1hLmFwaS51c2VyLkZyaWVuZE91dHB1dCIAMAE=');
 

@@ -13,9 +13,6 @@ import 'dart:convert' as $convert;
 import 'dart:core' as $core;
 import 'dart:typed_data' as $typed_data;
 
-import '../google/protobuf/timestamp.pbjson.dart' as $0;
-import 'common.pbjson.dart' as $1;
-
 @$core.Deprecated('Use payTypeDescriptor instead')
 const PayType$json = {
   '1': 'PayType',
@@ -115,29 +112,4 @@ const RecentInput$json = {
 /// Descriptor for `RecentInput`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List recentInputDescriptor = $convert.base64Decode(
     'CgtSZWNlbnRJbnB1dBISCgRsYXN0GAEgASgEUgRsYXN0');
-
-const $core.Map<$core.String, $core.dynamic> PayServiceBase$json = {
-  '1': 'PayService',
-  '2': [
-    {'1': 'CreatePays', '2': '.ekipma.api.pay.PayInput', '3': '.ekipma.api.pay.Pay', '4': {}, '6': true},
-    {'1': 'GetPays', '2': '.ekipma.api.common.Empty', '3': '.ekipma.api.pay.Pay', '4': {}, '6': true},
-    {'1': 'GetRecentPays', '2': '.ekipma.api.pay.RecentInput', '3': '.ekipma.api.pay.Pay', '4': {}, '6': true},
-  ],
-};
-
-@$core.Deprecated('Use payServiceDescriptor instead')
-const $core.Map<$core.String, $core.Map<$core.String, $core.dynamic>> PayServiceBase$messageJson = {
-  '.ekipma.api.pay.PayInput': PayInput$json,
-  '.ekipma.api.pay.Pay': Pay$json,
-  '.google.protobuf.Timestamp': $0.Timestamp$json,
-  '.ekipma.api.common.Empty': $1.Empty$json,
-  '.ekipma.api.pay.RecentInput': RecentInput$json,
-};
-
-/// Descriptor for `PayService`. Decode as a `google.protobuf.ServiceDescriptorProto`.
-final $typed_data.Uint8List payServiceDescriptor = $convert.base64Decode(
-    'CgpQYXlTZXJ2aWNlEj8KCkNyZWF0ZVBheXMSGC5la2lwbWEuYXBpLnBheS5QYXlJbnB1dBoTLm'
-    'VraXBtYS5hcGkucGF5LlBheSIAMAESPAoHR2V0UGF5cxIYLmVraXBtYS5hcGkuY29tbW9uLkVt'
-    'cHR5GhMuZWtpcG1hLmFwaS5wYXkuUGF5IgAwARJFCg1HZXRSZWNlbnRQYXlzEhsuZWtpcG1hLm'
-    'FwaS5wYXkuUmVjZW50SW5wdXQaEy5la2lwbWEuYXBpLnBheS5QYXkiADAB');
 

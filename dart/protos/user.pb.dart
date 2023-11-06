@@ -9,14 +9,12 @@
 // ignore_for_file: non_constant_identifier_names, prefer_final_fields
 // ignore_for_file: unnecessary_import, unnecessary_this, unused_import
 
-import 'dart:async' as $async;
 import 'dart:core' as $core;
 
 import 'package:fixnum/fixnum.dart' as $fixnum;
 import 'package:protobuf/protobuf.dart' as $pb;
 
-import '../google/protobuf/timestamp.pb.dart' as $0;
-import 'common.pb.dart' as $1;
+import '../google/protobuf/timestamp.pb.dart' as $3;
 import 'user.pbenum.dart';
 
 export 'user.pbenum.dart';
@@ -24,8 +22,8 @@ export 'user.pbenum.dart';
 class User extends $pb.GeneratedMessage {
   factory User({
     $fixnum.Int64? id,
-    $0.Timestamp? createdAt,
-    $0.Timestamp? updatedAt,
+    $3.Timestamp? createdAt,
+    $3.Timestamp? updatedAt,
     $core.String? mobile,
     $core.String? code,
     $core.String? name,
@@ -81,8 +79,8 @@ class User extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'User', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.user'), createEmptyInstance: create)
     ..a<$fixnum.Int64>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
-    ..aOM<$0.Timestamp>(2, _omitFieldNames ? '' : 'createdAt', protoName: 'createdAt', subBuilder: $0.Timestamp.create)
-    ..aOM<$0.Timestamp>(3, _omitFieldNames ? '' : 'updatedAt', protoName: 'updatedAt', subBuilder: $0.Timestamp.create)
+    ..aOM<$3.Timestamp>(2, _omitFieldNames ? '' : 'createdAt', protoName: 'createdAt', subBuilder: $3.Timestamp.create)
+    ..aOM<$3.Timestamp>(3, _omitFieldNames ? '' : 'updatedAt', protoName: 'updatedAt', subBuilder: $3.Timestamp.create)
     ..aOS(4, _omitFieldNames ? '' : 'mobile')
     ..aOS(5, _omitFieldNames ? '' : 'code')
     ..aOS(6, _omitFieldNames ? '' : 'name')
@@ -127,26 +125,26 @@ class User extends $pb.GeneratedMessage {
   void clearId() => clearField(1);
 
   @$pb.TagNumber(2)
-  $0.Timestamp get createdAt => $_getN(1);
+  $3.Timestamp get createdAt => $_getN(1);
   @$pb.TagNumber(2)
-  set createdAt($0.Timestamp v) { setField(2, v); }
+  set createdAt($3.Timestamp v) { setField(2, v); }
   @$pb.TagNumber(2)
   $core.bool hasCreatedAt() => $_has(1);
   @$pb.TagNumber(2)
   void clearCreatedAt() => clearField(2);
   @$pb.TagNumber(2)
-  $0.Timestamp ensureCreatedAt() => $_ensure(1);
+  $3.Timestamp ensureCreatedAt() => $_ensure(1);
 
   @$pb.TagNumber(3)
-  $0.Timestamp get updatedAt => $_getN(2);
+  $3.Timestamp get updatedAt => $_getN(2);
   @$pb.TagNumber(3)
-  set updatedAt($0.Timestamp v) { setField(3, v); }
+  set updatedAt($3.Timestamp v) { setField(3, v); }
   @$pb.TagNumber(3)
   $core.bool hasUpdatedAt() => $_has(2);
   @$pb.TagNumber(3)
   void clearUpdatedAt() => clearField(3);
   @$pb.TagNumber(3)
-  $0.Timestamp ensureUpdatedAt() => $_ensure(2);
+  $3.Timestamp ensureUpdatedAt() => $_ensure(2);
 
   /// user
   @$pb.TagNumber(4)
@@ -601,24 +599,6 @@ class FriendOutput extends $pb.GeneratedMessage {
   $core.bool hasPhotoURL() => $_has(3);
   @$pb.TagNumber(8)
   void clearPhotoURL() => clearField(8);
-}
-
-class UserServiceApi {
-  $pb.RpcClient _client;
-  UserServiceApi(this._client);
-
-  $async.Future<UserOutput> registerUser($pb.ClientContext? ctx, RegisterInput request) =>
-    _client.invoke<UserOutput>(ctx, 'UserService', 'RegisterUser', request, UserOutput())
-  ;
-  $async.Future<UserOutput> loginUser($pb.ClientContext? ctx, LoginInput request) =>
-    _client.invoke<UserOutput>(ctx, 'UserService', 'LoginUser', request, UserOutput())
-  ;
-  $async.Future<User> addFriend($pb.ClientContext? ctx, FriendInput request) =>
-    _client.invoke<User>(ctx, 'UserService', 'AddFriend', request, User())
-  ;
-  $async.Future<FriendOutput> getFriends($pb.ClientContext? ctx, $1.Empty request) =>
-    _client.invoke<FriendOutput>(ctx, 'UserService', 'GetFriends', request, FriendOutput())
-  ;
 }
 
 
