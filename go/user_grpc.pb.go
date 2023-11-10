@@ -24,8 +24,8 @@ const _ = grpc.SupportPackageIsVersion7
 type UserServiceClient interface {
 	RegisterUser(ctx context.Context, in *RegisterInput, opts ...grpc.CallOption) (*UserOutput, error)
 	LoginUser(ctx context.Context, in *LoginInput, opts ...grpc.CallOption) (*UserOutput, error)
+	AddFriends(ctx context.Context, opts ...grpc.CallOption) (UserService_AddFriendsClient, error)
 	GetFriends(ctx context.Context, in *Empty, opts ...grpc.CallOption) (UserService_GetFriendsClient, error)
-	SyncContacts(ctx context.Context, in *ContactsInput, opts ...grpc.CallOption) (UserService_SyncContactsClient, error)
 }
 
 type userServiceClient struct {
@@ -54,8 +54,39 @@ func (c *userServiceClient) LoginUser(ctx context.Context, in *LoginInput, opts 
 	return out, nil
 }
 
+func (c *userServiceClient) AddFriends(ctx context.Context, opts ...grpc.CallOption) (UserService_AddFriendsClient, error) {
+	stream, err := c.cc.NewStream(ctx, &UserService_ServiceDesc.Streams[0], "/ekipma.api.user.UserService/AddFriends", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &userServiceAddFriendsClient{stream}
+	return x, nil
+}
+
+type UserService_AddFriendsClient interface {
+	Send(*FriendInput) error
+	Recv() (*FriendOutput, error)
+	grpc.ClientStream
+}
+
+type userServiceAddFriendsClient struct {
+	grpc.ClientStream
+}
+
+func (x *userServiceAddFriendsClient) Send(m *FriendInput) error {
+	return x.ClientStream.SendMsg(m)
+}
+
+func (x *userServiceAddFriendsClient) Recv() (*FriendOutput, error) {
+	m := new(FriendOutput)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 func (c *userServiceClient) GetFriends(ctx context.Context, in *Empty, opts ...grpc.CallOption) (UserService_GetFriendsClient, error) {
-	stream, err := c.cc.NewStream(ctx, &UserService_ServiceDesc.Streams[0], "/ekipma.api.user.UserService/GetFriends", opts...)
+	stream, err := c.cc.NewStream(ctx, &UserService_ServiceDesc.Streams[1], "/ekipma.api.user.UserService/GetFriends", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -86,46 +117,14 @@ func (x *userServiceGetFriendsClient) Recv() (*FriendOutput, error) {
 	return m, nil
 }
 
-func (c *userServiceClient) SyncContacts(ctx context.Context, in *ContactsInput, opts ...grpc.CallOption) (UserService_SyncContactsClient, error) {
-	stream, err := c.cc.NewStream(ctx, &UserService_ServiceDesc.Streams[1], "/ekipma.api.user.UserService/SyncContacts", opts...)
-	if err != nil {
-		return nil, err
-	}
-	x := &userServiceSyncContactsClient{stream}
-	if err := x.ClientStream.SendMsg(in); err != nil {
-		return nil, err
-	}
-	if err := x.ClientStream.CloseSend(); err != nil {
-		return nil, err
-	}
-	return x, nil
-}
-
-type UserService_SyncContactsClient interface {
-	Recv() (*FriendOutput, error)
-	grpc.ClientStream
-}
-
-type userServiceSyncContactsClient struct {
-	grpc.ClientStream
-}
-
-func (x *userServiceSyncContactsClient) Recv() (*FriendOutput, error) {
-	m := new(FriendOutput)
-	if err := x.ClientStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
-}
-
 // UserServiceServer is the server API for UserService service.
 // All implementations must embed UnimplementedUserServiceServer
 // for forward compatibility
 type UserServiceServer interface {
 	RegisterUser(context.Context, *RegisterInput) (*UserOutput, error)
 	LoginUser(context.Context, *LoginInput) (*UserOutput, error)
+	AddFriends(UserService_AddFriendsServer) error
 	GetFriends(*Empty, UserService_GetFriendsServer) error
-	SyncContacts(*ContactsInput, UserService_SyncContactsServer) error
 	mustEmbedUnimplementedUserServiceServer()
 }
 
@@ -139,11 +138,11 @@ func (UnimplementedUserServiceServer) RegisterUser(context.Context, *RegisterInp
 func (UnimplementedUserServiceServer) LoginUser(context.Context, *LoginInput) (*UserOutput, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method LoginUser not implemented")
 }
+func (UnimplementedUserServiceServer) AddFriends(UserService_AddFriendsServer) error {
+	return status.Errorf(codes.Unimplemented, "method AddFriends not implemented")
+}
 func (UnimplementedUserServiceServer) GetFriends(*Empty, UserService_GetFriendsServer) error {
 	return status.Errorf(codes.Unimplemented, "method GetFriends not implemented")
-}
-func (UnimplementedUserServiceServer) SyncContacts(*ContactsInput, UserService_SyncContactsServer) error {
-	return status.Errorf(codes.Unimplemented, "method SyncContacts not implemented")
 }
 func (UnimplementedUserServiceServer) mustEmbedUnimplementedUserServiceServer() {}
 
@@ -194,6 +193,32 @@ func _UserService_LoginUser_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
+func _UserService_AddFriends_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(UserServiceServer).AddFriends(&userServiceAddFriendsServer{stream})
+}
+
+type UserService_AddFriendsServer interface {
+	Send(*FriendOutput) error
+	Recv() (*FriendInput, error)
+	grpc.ServerStream
+}
+
+type userServiceAddFriendsServer struct {
+	grpc.ServerStream
+}
+
+func (x *userServiceAddFriendsServer) Send(m *FriendOutput) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func (x *userServiceAddFriendsServer) Recv() (*FriendInput, error) {
+	m := new(FriendInput)
+	if err := x.ServerStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 func _UserService_GetFriends_Handler(srv interface{}, stream grpc.ServerStream) error {
 	m := new(Empty)
 	if err := stream.RecvMsg(m); err != nil {
@@ -215,27 +240,6 @@ func (x *userServiceGetFriendsServer) Send(m *FriendOutput) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func _UserService_SyncContacts_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(ContactsInput)
-	if err := stream.RecvMsg(m); err != nil {
-		return err
-	}
-	return srv.(UserServiceServer).SyncContacts(m, &userServiceSyncContactsServer{stream})
-}
-
-type UserService_SyncContactsServer interface {
-	Send(*FriendOutput) error
-	grpc.ServerStream
-}
-
-type userServiceSyncContactsServer struct {
-	grpc.ServerStream
-}
-
-func (x *userServiceSyncContactsServer) Send(m *FriendOutput) error {
-	return x.ServerStream.SendMsg(m)
-}
-
 // UserService_ServiceDesc is the grpc.ServiceDesc for UserService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -254,13 +258,14 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 	},
 	Streams: []grpc.StreamDesc{
 		{
-			StreamName:    "GetFriends",
-			Handler:       _UserService_GetFriends_Handler,
+			StreamName:    "AddFriends",
+			Handler:       _UserService_AddFriends_Handler,
 			ServerStreams: true,
+			ClientStreams: true,
 		},
 		{
-			StreamName:    "SyncContacts",
-			Handler:       _UserService_SyncContacts_Handler,
+			StreamName:    "GetFriends",
+			Handler:       _UserService_GetFriends_Handler,
 			ServerStreams: true,
 		},
 	},

@@ -89,17 +89,17 @@ final $typed_data.Uint8List loginInputDescriptor = $convert.base64Decode(
     'CgpMb2dpbklucHV0EhYKBm1vYmlsZRgBIAEoCVIGbW9iaWxlEhoKCHBhc3N3b3JkGAIgASgJUg'
     'hwYXNzd29yZA==');
 
-@$core.Deprecated('Use contactsInputDescriptor instead')
-const ContactsInput$json = {
-  '1': 'ContactsInput',
+@$core.Deprecated('Use friendInputDescriptor instead')
+const FriendInput$json = {
+  '1': 'FriendInput',
   '2': [
-    {'1': 'mobiles', '3': 1, '4': 3, '5': 9, '10': 'mobiles'},
+    {'1': 'mobile', '3': 1, '4': 1, '5': 9, '10': 'mobile'},
   ],
 };
 
-/// Descriptor for `ContactsInput`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List contactsInputDescriptor = $convert.base64Decode(
-    'Cg1Db250YWN0c0lucHV0EhgKB21vYmlsZXMYASADKAlSB21vYmlsZXM=');
+/// Descriptor for `FriendInput`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List friendInputDescriptor = $convert.base64Decode(
+    'CgtGcmllbmRJbnB1dBIWCgZtb2JpbGUYASABKAlSBm1vYmlsZQ==');
 
 @$core.Deprecated('Use userOutputDescriptor instead')
 const UserOutput$json = {
