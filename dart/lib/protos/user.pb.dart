@@ -393,22 +393,22 @@ class LoginInput extends $pb.GeneratedMessage {
   void clearPassword() => clearField(2);
 }
 
-class FriendInput extends $pb.GeneratedMessage {
-  factory FriendInput({
-    $fixnum.Int64? friend,
+class ContactsInput extends $pb.GeneratedMessage {
+  factory ContactsInput({
+    $core.Iterable<$core.String>? mobiles,
   }) {
     final $result = create();
-    if (friend != null) {
-      $result.friend = friend;
+    if (mobiles != null) {
+      $result.mobiles.addAll(mobiles);
     }
     return $result;
   }
-  FriendInput._() : super();
-  factory FriendInput.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory FriendInput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  ContactsInput._() : super();
+  factory ContactsInput.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory ContactsInput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'FriendInput', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.user'), createEmptyInstance: create)
-    ..a<$fixnum.Int64>(1, _omitFieldNames ? '' : 'friend', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ContactsInput', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.user'), createEmptyInstance: create)
+    ..pPS(1, _omitFieldNames ? '' : 'mobiles')
     ..hasRequiredFields = false
   ;
 
@@ -416,31 +416,25 @@ class FriendInput extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
   'Will be removed in next major version')
-  FriendInput clone() => FriendInput()..mergeFromMessage(this);
+  ContactsInput clone() => ContactsInput()..mergeFromMessage(this);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  FriendInput copyWith(void Function(FriendInput) updates) => super.copyWith((message) => updates(message as FriendInput)) as FriendInput;
+  ContactsInput copyWith(void Function(ContactsInput) updates) => super.copyWith((message) => updates(message as ContactsInput)) as ContactsInput;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
-  static FriendInput create() => FriendInput._();
-  FriendInput createEmptyInstance() => create();
-  static $pb.PbList<FriendInput> createRepeated() => $pb.PbList<FriendInput>();
+  static ContactsInput create() => ContactsInput._();
+  ContactsInput createEmptyInstance() => create();
+  static $pb.PbList<ContactsInput> createRepeated() => $pb.PbList<ContactsInput>();
   @$core.pragma('dart2js:noInline')
-  static FriendInput getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<FriendInput>(create);
-  static FriendInput? _defaultInstance;
+  static ContactsInput getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<ContactsInput>(create);
+  static ContactsInput? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $fixnum.Int64 get friend => $_getI64(0);
-  @$pb.TagNumber(1)
-  set friend($fixnum.Int64 v) { $_setInt64(0, v); }
-  @$pb.TagNumber(1)
-  $core.bool hasFriend() => $_has(0);
-  @$pb.TagNumber(1)
-  void clearFriend() => clearField(1);
+  $core.List<$core.String> get mobiles => $_getList(0);
 }
 
 class UserOutput extends $pb.GeneratedMessage {

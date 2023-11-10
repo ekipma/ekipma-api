@@ -30,13 +30,13 @@ class UserServiceClient extends $grpc.Client {
       '/ekipma.api.user.UserService/LoginUser',
       ($2.LoginInput value) => value.writeToBuffer(),
       ($core.List<$core.int> value) => $2.UserOutput.fromBuffer(value));
-  static final _$addFriend = $grpc.ClientMethod<$2.FriendInput, $2.User>(
-      '/ekipma.api.user.UserService/AddFriend',
-      ($2.FriendInput value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) => $2.User.fromBuffer(value));
   static final _$getFriends = $grpc.ClientMethod<$1.Empty, $2.FriendOutput>(
       '/ekipma.api.user.UserService/GetFriends',
       ($1.Empty value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $2.FriendOutput.fromBuffer(value));
+  static final _$syncContacts = $grpc.ClientMethod<$2.ContactsInput, $2.FriendOutput>(
+      '/ekipma.api.user.UserService/SyncContacts',
+      ($2.ContactsInput value) => value.writeToBuffer(),
       ($core.List<$core.int> value) => $2.FriendOutput.fromBuffer(value));
 
   UserServiceClient($grpc.ClientChannel channel,
@@ -53,12 +53,12 @@ class UserServiceClient extends $grpc.Client {
     return $createUnaryCall(_$loginUser, request, options: options);
   }
 
-  $grpc.ResponseFuture<$2.User> addFriend($2.FriendInput request, {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$addFriend, request, options: options);
-  }
-
   $grpc.ResponseStream<$2.FriendOutput> getFriends($1.Empty request, {$grpc.CallOptions? options}) {
     return $createStreamingCall(_$getFriends, $async.Stream.fromIterable([request]), options: options);
+  }
+
+  $grpc.ResponseStream<$2.FriendOutput> syncContacts($2.ContactsInput request, {$grpc.CallOptions? options}) {
+    return $createStreamingCall(_$syncContacts, $async.Stream.fromIterable([request]), options: options);
   }
 }
 
@@ -81,19 +81,19 @@ abstract class UserServiceBase extends $grpc.Service {
         false,
         ($core.List<$core.int> value) => $2.LoginInput.fromBuffer(value),
         ($2.UserOutput value) => value.writeToBuffer()));
-    $addMethod($grpc.ServiceMethod<$2.FriendInput, $2.User>(
-        'AddFriend',
-        addFriend_Pre,
-        false,
-        false,
-        ($core.List<$core.int> value) => $2.FriendInput.fromBuffer(value),
-        ($2.User value) => value.writeToBuffer()));
     $addMethod($grpc.ServiceMethod<$1.Empty, $2.FriendOutput>(
         'GetFriends',
         getFriends_Pre,
         false,
         true,
         ($core.List<$core.int> value) => $1.Empty.fromBuffer(value),
+        ($2.FriendOutput value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$2.ContactsInput, $2.FriendOutput>(
+        'SyncContacts',
+        syncContacts_Pre,
+        false,
+        true,
+        ($core.List<$core.int> value) => $2.ContactsInput.fromBuffer(value),
         ($2.FriendOutput value) => value.writeToBuffer()));
   }
 
@@ -105,16 +105,16 @@ abstract class UserServiceBase extends $grpc.Service {
     return loginUser(call, await request);
   }
 
-  $async.Future<$2.User> addFriend_Pre($grpc.ServiceCall call, $async.Future<$2.FriendInput> request) async {
-    return addFriend(call, await request);
-  }
-
   $async.Stream<$2.FriendOutput> getFriends_Pre($grpc.ServiceCall call, $async.Future<$1.Empty> request) async* {
     yield* getFriends(call, await request);
   }
 
+  $async.Stream<$2.FriendOutput> syncContacts_Pre($grpc.ServiceCall call, $async.Future<$2.ContactsInput> request) async* {
+    yield* syncContacts(call, await request);
+  }
+
   $async.Future<$2.UserOutput> registerUser($grpc.ServiceCall call, $2.RegisterInput request);
   $async.Future<$2.UserOutput> loginUser($grpc.ServiceCall call, $2.LoginInput request);
-  $async.Future<$2.User> addFriend($grpc.ServiceCall call, $2.FriendInput request);
   $async.Stream<$2.FriendOutput> getFriends($grpc.ServiceCall call, $1.Empty request);
+  $async.Stream<$2.FriendOutput> syncContacts($grpc.ServiceCall call, $2.ContactsInput request);
 }
