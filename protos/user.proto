@@ -33,7 +33,7 @@ message User {
 service UserService {
   rpc RegisterUser(RegisterInput) returns (UserOutput) {}
   rpc LoginUser(LoginInput) returns (UserOutput) {}
-  rpc AddFriends(FriendsInput) returns (stream FriendOutput) {}
+  rpc AddFriends(stream FriendInput) returns (stream FriendOutput) {}
   rpc GetFriends(ekipma.api.common.Empty) returns (stream FriendOutput) {}
 }
 
@@ -50,8 +50,8 @@ message LoginInput {
   string password = 2;
 }
 
-message FriendsInput {
-  repeated string mobiles = 1; //
+message FriendInput {
+  string mobile = 1; //
 }
 
 message UserOutput {
