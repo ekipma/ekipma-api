@@ -45,8 +45,7 @@ service PayService {
   rpc GetPays(ekipma.api.common.Empty) returns (stream Pay) {} // avoid amap
   rpc GetRecentPays(RecentInput) returns (stream Pay) {}
   rpc UpdatePay(PayUpdateInput) returns (Pay) {}
-  rpc RemovePay(ekipma.api.common.IdInput)
-      returns (ekipma.api.common.BoolOutput) {}
+  rpc RemovePay(ekipma.api.common.IdInput) returns (ekipma.api.common.Empty) {}
 }
 
 message PayInput {

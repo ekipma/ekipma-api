@@ -26,7 +26,7 @@ type PayServiceClient interface {
 	GetPays(ctx context.Context, in *Empty, opts ...grpc.CallOption) (PayService_GetPaysClient, error)
 	GetRecentPays(ctx context.Context, in *RecentInput, opts ...grpc.CallOption) (PayService_GetRecentPaysClient, error)
 	UpdatePay(ctx context.Context, in *PayUpdateInput, opts ...grpc.CallOption) (*Pay, error)
-	RemovePay(ctx context.Context, in *IdInput, opts ...grpc.CallOption) (*BoolOutput, error)
+	RemovePay(ctx context.Context, in *IdInput, opts ...grpc.CallOption) (*Empty, error)
 }
 
 type payServiceClient struct {
@@ -142,8 +142,8 @@ func (c *payServiceClient) UpdatePay(ctx context.Context, in *PayUpdateInput, op
 	return out, nil
 }
 
-func (c *payServiceClient) RemovePay(ctx context.Context, in *IdInput, opts ...grpc.CallOption) (*BoolOutput, error) {
-	out := new(BoolOutput)
+func (c *payServiceClient) RemovePay(ctx context.Context, in *IdInput, opts ...grpc.CallOption) (*Empty, error) {
+	out := new(Empty)
 	err := c.cc.Invoke(ctx, "/ekipma.api.pay.PayService/RemovePay", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -159,7 +159,7 @@ type PayServiceServer interface {
 	GetPays(*Empty, PayService_GetPaysServer) error
 	GetRecentPays(*RecentInput, PayService_GetRecentPaysServer) error
 	UpdatePay(context.Context, *PayUpdateInput) (*Pay, error)
-	RemovePay(context.Context, *IdInput) (*BoolOutput, error)
+	RemovePay(context.Context, *IdInput) (*Empty, error)
 	mustEmbedUnimplementedPayServiceServer()
 }
 
@@ -179,7 +179,7 @@ func (UnimplementedPayServiceServer) GetRecentPays(*RecentInput, PayService_GetR
 func (UnimplementedPayServiceServer) UpdatePay(context.Context, *PayUpdateInput) (*Pay, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdatePay not implemented")
 }
-func (UnimplementedPayServiceServer) RemovePay(context.Context, *IdInput) (*BoolOutput, error) {
+func (UnimplementedPayServiceServer) RemovePay(context.Context, *IdInput) (*Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RemovePay not implemented")
 }
 func (UnimplementedPayServiceServer) mustEmbedUnimplementedPayServiceServer() {}

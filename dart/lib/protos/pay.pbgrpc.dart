@@ -38,10 +38,10 @@ class PayServiceClient extends $grpc.Client {
       '/ekipma.api.pay.PayService/UpdatePay',
       ($0.PayUpdateInput value) => value.writeToBuffer(),
       ($core.List<$core.int> value) => $0.Pay.fromBuffer(value));
-  static final _$removePay = $grpc.ClientMethod<$1.IdInput, $1.BoolOutput>(
+  static final _$removePay = $grpc.ClientMethod<$1.IdInput, $1.Empty>(
       '/ekipma.api.pay.PayService/RemovePay',
       ($1.IdInput value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) => $1.BoolOutput.fromBuffer(value));
+      ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
 
   PayServiceClient($grpc.ClientChannel channel,
       {$grpc.CallOptions? options,
@@ -65,7 +65,7 @@ class PayServiceClient extends $grpc.Client {
     return $createUnaryCall(_$updatePay, request, options: options);
   }
 
-  $grpc.ResponseFuture<$1.BoolOutput> removePay($1.IdInput request, {$grpc.CallOptions? options}) {
+  $grpc.ResponseFuture<$1.Empty> removePay($1.IdInput request, {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$removePay, request, options: options);
   }
 }
@@ -103,13 +103,13 @@ abstract class PayServiceBase extends $grpc.Service {
         false,
         ($core.List<$core.int> value) => $0.PayUpdateInput.fromBuffer(value),
         ($0.Pay value) => value.writeToBuffer()));
-    $addMethod($grpc.ServiceMethod<$1.IdInput, $1.BoolOutput>(
+    $addMethod($grpc.ServiceMethod<$1.IdInput, $1.Empty>(
         'RemovePay',
         removePay_Pre,
         false,
         false,
         ($core.List<$core.int> value) => $1.IdInput.fromBuffer(value),
-        ($1.BoolOutput value) => value.writeToBuffer()));
+        ($1.Empty value) => value.writeToBuffer()));
   }
 
   $async.Stream<$0.Pay> createPays_Pre($grpc.ServiceCall call, $async.Future<$0.PayInput> request) async* {
@@ -128,7 +128,7 @@ abstract class PayServiceBase extends $grpc.Service {
     return updatePay(call, await request);
   }
 
-  $async.Future<$1.BoolOutput> removePay_Pre($grpc.ServiceCall call, $async.Future<$1.IdInput> request) async {
+  $async.Future<$1.Empty> removePay_Pre($grpc.ServiceCall call, $async.Future<$1.IdInput> request) async {
     return removePay(call, await request);
   }
 
@@ -136,5 +136,5 @@ abstract class PayServiceBase extends $grpc.Service {
   $async.Stream<$0.Pay> getPays($grpc.ServiceCall call, $1.Empty request);
   $async.Stream<$0.Pay> getRecentPays($grpc.ServiceCall call, $0.RecentInput request);
   $async.Future<$0.Pay> updatePay($grpc.ServiceCall call, $0.PayUpdateInput request);
-  $async.Future<$1.BoolOutput> removePay($grpc.ServiceCall call, $1.IdInput request);
+  $async.Future<$1.Empty> removePay($grpc.ServiceCall call, $1.IdInput request);
 }

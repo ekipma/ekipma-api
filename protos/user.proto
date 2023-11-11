@@ -38,7 +38,7 @@ service UserService {
   rpc AddFriends(stream FriendInput) returns (stream FriendOutput) {}
   rpc GetFriends(ekipma.api.common.Empty) returns (stream FriendOutput) {}
   rpc RemoveFriend(ekipma.api.common.IdInput)
-      returns (ekipma.api.common.BoolOutput) {}
+      returns (ekipma.api.common.Empty) {}
 }
 
 message RegisterInput {

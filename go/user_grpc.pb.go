@@ -28,7 +28,7 @@ type UserServiceClient interface {
 	// friend
 	AddFriends(ctx context.Context, opts ...grpc.CallOption) (UserService_AddFriendsClient, error)
 	GetFriends(ctx context.Context, in *Empty, opts ...grpc.CallOption) (UserService_GetFriendsClient, error)
-	RemoveFriend(ctx context.Context, in *IdInput, opts ...grpc.CallOption) (*BoolOutput, error)
+	RemoveFriend(ctx context.Context, in *IdInput, opts ...grpc.CallOption) (*Empty, error)
 }
 
 type userServiceClient struct {
@@ -120,8 +120,8 @@ func (x *userServiceGetFriendsClient) Recv() (*FriendOutput, error) {
 	return m, nil
 }
 
-func (c *userServiceClient) RemoveFriend(ctx context.Context, in *IdInput, opts ...grpc.CallOption) (*BoolOutput, error) {
-	out := new(BoolOutput)
+func (c *userServiceClient) RemoveFriend(ctx context.Context, in *IdInput, opts ...grpc.CallOption) (*Empty, error) {
+	out := new(Empty)
 	err := c.cc.Invoke(ctx, "/ekipma.api.user.UserService/RemoveFriend", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -139,7 +139,7 @@ type UserServiceServer interface {
 	// friend
 	AddFriends(UserService_AddFriendsServer) error
 	GetFriends(*Empty, UserService_GetFriendsServer) error
-	RemoveFriend(context.Context, *IdInput) (*BoolOutput, error)
+	RemoveFriend(context.Context, *IdInput) (*Empty, error)
 	mustEmbedUnimplementedUserServiceServer()
 }
 
@@ -159,7 +159,7 @@ func (UnimplementedUserServiceServer) AddFriends(UserService_AddFriendsServer) e
 func (UnimplementedUserServiceServer) GetFriends(*Empty, UserService_GetFriendsServer) error {
 	return status.Errorf(codes.Unimplemented, "method GetFriends not implemented")
 }
-func (UnimplementedUserServiceServer) RemoveFriend(context.Context, *IdInput) (*BoolOutput, error) {
+func (UnimplementedUserServiceServer) RemoveFriend(context.Context, *IdInput) (*Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RemoveFriend not implemented")
 }
 func (UnimplementedUserServiceServer) mustEmbedUnimplementedUserServiceServer() {}
