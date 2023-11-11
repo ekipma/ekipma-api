@@ -44,6 +44,9 @@ service PayService {
   rpc CreatePays(PayInput) returns (stream Pay) {}
   rpc GetPays(ekipma.api.common.Empty) returns (stream Pay) {} // avoid amap
   rpc GetRecentPays(RecentInput) returns (stream Pay) {}
+  rpc UpdatePay(PayUpdateInput) returns (Pay) {}
+  rpc RemovePay(ekipma.api.common.IdInput)
+      returns (ekipma.api.common.BoolOutput) {}
 }
 
 message PayInput {
@@ -56,6 +59,11 @@ message PayInput {
   double total = 7;
   PayUnit unit = 8;
   PayType type = 9;
+}
+
+message PayUpdateInput {
+  string title = 1;
+  string desc = 2;
 }
 
 message RecentInput {

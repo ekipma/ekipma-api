@@ -38,6 +38,10 @@ class UserServiceClient extends $grpc.Client {
       '/ekipma.api.user.UserService/GetFriends',
       ($1.Empty value) => value.writeToBuffer(),
       ($core.List<$core.int> value) => $2.FriendOutput.fromBuffer(value));
+  static final _$removeFriend = $grpc.ClientMethod<$1.IdInput, $1.BoolOutput>(
+      '/ekipma.api.user.UserService/RemoveFriend',
+      ($1.IdInput value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $1.BoolOutput.fromBuffer(value));
 
   UserServiceClient($grpc.ClientChannel channel,
       {$grpc.CallOptions? options,
@@ -59,6 +63,10 @@ class UserServiceClient extends $grpc.Client {
 
   $grpc.ResponseStream<$2.FriendOutput> getFriends($1.Empty request, {$grpc.CallOptions? options}) {
     return $createStreamingCall(_$getFriends, $async.Stream.fromIterable([request]), options: options);
+  }
+
+  $grpc.ResponseFuture<$1.BoolOutput> removeFriend($1.IdInput request, {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$removeFriend, request, options: options);
   }
 }
 
@@ -95,6 +103,13 @@ abstract class UserServiceBase extends $grpc.Service {
         true,
         ($core.List<$core.int> value) => $1.Empty.fromBuffer(value),
         ($2.FriendOutput value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$1.IdInput, $1.BoolOutput>(
+        'RemoveFriend',
+        removeFriend_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) => $1.IdInput.fromBuffer(value),
+        ($1.BoolOutput value) => value.writeToBuffer()));
   }
 
   $async.Future<$2.UserOutput> registerUser_Pre($grpc.ServiceCall call, $async.Future<$2.RegisterInput> request) async {
@@ -109,8 +124,13 @@ abstract class UserServiceBase extends $grpc.Service {
     yield* getFriends(call, await request);
   }
 
+  $async.Future<$1.BoolOutput> removeFriend_Pre($grpc.ServiceCall call, $async.Future<$1.IdInput> request) async {
+    return removeFriend(call, await request);
+  }
+
   $async.Future<$2.UserOutput> registerUser($grpc.ServiceCall call, $2.RegisterInput request);
   $async.Future<$2.UserOutput> loginUser($grpc.ServiceCall call, $2.LoginInput request);
   $async.Stream<$2.FriendOutput> addFriends($grpc.ServiceCall call, $async.Stream<$2.FriendInput> request);
   $async.Stream<$2.FriendOutput> getFriends($grpc.ServiceCall call, $1.Empty request);
+  $async.Future<$1.BoolOutput> removeFriend($grpc.ServiceCall call, $1.IdInput request);
 }

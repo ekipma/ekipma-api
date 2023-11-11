@@ -22,10 +22,13 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type UserServiceClient interface {
+	// auth
 	RegisterUser(ctx context.Context, in *RegisterInput, opts ...grpc.CallOption) (*UserOutput, error)
 	LoginUser(ctx context.Context, in *LoginInput, opts ...grpc.CallOption) (*UserOutput, error)
+	// friend
 	AddFriends(ctx context.Context, opts ...grpc.CallOption) (UserService_AddFriendsClient, error)
 	GetFriends(ctx context.Context, in *Empty, opts ...grpc.CallOption) (UserService_GetFriendsClient, error)
+	RemoveFriend(ctx context.Context, in *IdInput, opts ...grpc.CallOption) (*BoolOutput, error)
 }
 
 type userServiceClient struct {
@@ -117,14 +120,26 @@ func (x *userServiceGetFriendsClient) Recv() (*FriendOutput, error) {
 	return m, nil
 }
 
+func (c *userServiceClient) RemoveFriend(ctx context.Context, in *IdInput, opts ...grpc.CallOption) (*BoolOutput, error) {
+	out := new(BoolOutput)
+	err := c.cc.Invoke(ctx, "/ekipma.api.user.UserService/RemoveFriend", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // UserServiceServer is the server API for UserService service.
 // All implementations must embed UnimplementedUserServiceServer
 // for forward compatibility
 type UserServiceServer interface {
+	// auth
 	RegisterUser(context.Context, *RegisterInput) (*UserOutput, error)
 	LoginUser(context.Context, *LoginInput) (*UserOutput, error)
+	// friend
 	AddFriends(UserService_AddFriendsServer) error
 	GetFriends(*Empty, UserService_GetFriendsServer) error
+	RemoveFriend(context.Context, *IdInput) (*BoolOutput, error)
 	mustEmbedUnimplementedUserServiceServer()
 }
 
@@ -143,6 +158,9 @@ func (UnimplementedUserServiceServer) AddFriends(UserService_AddFriendsServer) e
 }
 func (UnimplementedUserServiceServer) GetFriends(*Empty, UserService_GetFriendsServer) error {
 	return status.Errorf(codes.Unimplemented, "method GetFriends not implemented")
+}
+func (UnimplementedUserServiceServer) RemoveFriend(context.Context, *IdInput) (*BoolOutput, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RemoveFriend not implemented")
 }
 func (UnimplementedUserServiceServer) mustEmbedUnimplementedUserServiceServer() {}
 
@@ -240,6 +258,24 @@ func (x *userServiceGetFriendsServer) Send(m *FriendOutput) error {
 	return x.ServerStream.SendMsg(m)
 }
 
+func _UserService_RemoveFriend_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IdInput)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).RemoveFriend(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/ekipma.api.user.UserService/RemoveFriend",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).RemoveFriend(ctx, req.(*IdInput))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // UserService_ServiceDesc is the grpc.ServiceDesc for UserService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -254,6 +290,10 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "LoginUser",
 			Handler:    _UserService_LoginUser_Handler,
+		},
+		{
+			MethodName: "RemoveFriend",
+			Handler:    _UserService_RemoveFriend_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

@@ -25,6 +25,8 @@ type PayServiceClient interface {
 	CreatePays(ctx context.Context, in *PayInput, opts ...grpc.CallOption) (PayService_CreatePaysClient, error)
 	GetPays(ctx context.Context, in *Empty, opts ...grpc.CallOption) (PayService_GetPaysClient, error)
 	GetRecentPays(ctx context.Context, in *RecentInput, opts ...grpc.CallOption) (PayService_GetRecentPaysClient, error)
+	UpdatePay(ctx context.Context, in *PayUpdateInput, opts ...grpc.CallOption) (*Pay, error)
+	RemovePay(ctx context.Context, in *IdInput, opts ...grpc.CallOption) (*BoolOutput, error)
 }
 
 type payServiceClient struct {
@@ -131,6 +133,24 @@ func (x *payServiceGetRecentPaysClient) Recv() (*Pay, error) {
 	return m, nil
 }
 
+func (c *payServiceClient) UpdatePay(ctx context.Context, in *PayUpdateInput, opts ...grpc.CallOption) (*Pay, error) {
+	out := new(Pay)
+	err := c.cc.Invoke(ctx, "/ekipma.api.pay.PayService/UpdatePay", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *payServiceClient) RemovePay(ctx context.Context, in *IdInput, opts ...grpc.CallOption) (*BoolOutput, error) {
+	out := new(BoolOutput)
+	err := c.cc.Invoke(ctx, "/ekipma.api.pay.PayService/RemovePay", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // PayServiceServer is the server API for PayService service.
 // All implementations must embed UnimplementedPayServiceServer
 // for forward compatibility
@@ -138,6 +158,8 @@ type PayServiceServer interface {
 	CreatePays(*PayInput, PayService_CreatePaysServer) error
 	GetPays(*Empty, PayService_GetPaysServer) error
 	GetRecentPays(*RecentInput, PayService_GetRecentPaysServer) error
+	UpdatePay(context.Context, *PayUpdateInput) (*Pay, error)
+	RemovePay(context.Context, *IdInput) (*BoolOutput, error)
 	mustEmbedUnimplementedPayServiceServer()
 }
 
@@ -153,6 +175,12 @@ func (UnimplementedPayServiceServer) GetPays(*Empty, PayService_GetPaysServer) e
 }
 func (UnimplementedPayServiceServer) GetRecentPays(*RecentInput, PayService_GetRecentPaysServer) error {
 	return status.Errorf(codes.Unimplemented, "method GetRecentPays not implemented")
+}
+func (UnimplementedPayServiceServer) UpdatePay(context.Context, *PayUpdateInput) (*Pay, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdatePay not implemented")
+}
+func (UnimplementedPayServiceServer) RemovePay(context.Context, *IdInput) (*BoolOutput, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RemovePay not implemented")
 }
 func (UnimplementedPayServiceServer) mustEmbedUnimplementedPayServiceServer() {}
 
@@ -230,13 +258,58 @@ func (x *payServiceGetRecentPaysServer) Send(m *Pay) error {
 	return x.ServerStream.SendMsg(m)
 }
 
+func _PayService_UpdatePay_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PayUpdateInput)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PayServiceServer).UpdatePay(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/ekipma.api.pay.PayService/UpdatePay",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PayServiceServer).UpdatePay(ctx, req.(*PayUpdateInput))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PayService_RemovePay_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IdInput)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PayServiceServer).RemovePay(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/ekipma.api.pay.PayService/RemovePay",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PayServiceServer).RemovePay(ctx, req.(*IdInput))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // PayService_ServiceDesc is the grpc.ServiceDesc for PayService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var PayService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "ekipma.api.pay.PayService",
 	HandlerType: (*PayServiceServer)(nil),
-	Methods:     []grpc.MethodDesc{},
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "UpdatePay",
+			Handler:    _PayService_UpdatePay_Handler,
+		},
+		{
+			MethodName: "RemovePay",
+			Handler:    _PayService_RemovePay_Handler,
+		},
+	},
 	Streams: []grpc.StreamDesc{
 		{
 			StreamName:    "CreatePays",

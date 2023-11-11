@@ -58,14 +58,122 @@ func (*Empty) Descriptor() ([]byte, []int) {
 	return file_protos_common_proto_rawDescGZIP(), []int{0}
 }
 
+type IdInput struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Id int64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+}
+
+func (x *IdInput) Reset() {
+	*x = IdInput{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_protos_common_proto_msgTypes[1]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *IdInput) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*IdInput) ProtoMessage() {}
+
+func (x *IdInput) ProtoReflect() protoreflect.Message {
+	mi := &file_protos_common_proto_msgTypes[1]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use IdInput.ProtoReflect.Descriptor instead.
+func (*IdInput) Descriptor() ([]byte, []int) {
+	return file_protos_common_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *IdInput) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+type BoolOutput struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Success bool   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Message string `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+}
+
+func (x *BoolOutput) Reset() {
+	*x = BoolOutput{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_protos_common_proto_msgTypes[2]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *BoolOutput) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BoolOutput) ProtoMessage() {}
+
+func (x *BoolOutput) ProtoReflect() protoreflect.Message {
+	mi := &file_protos_common_proto_msgTypes[2]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BoolOutput.ProtoReflect.Descriptor instead.
+func (*BoolOutput) Descriptor() ([]byte, []int) {
+	return file_protos_common_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *BoolOutput) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *BoolOutput) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
 var File_protos_common_proto protoreflect.FileDescriptor
 
 var file_protos_common_proto_rawDesc = []byte{
 	0x0a, 0x13, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x73, 0x2f, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2e,
 	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x11, 0x65, 0x6b, 0x69, 0x70, 0x6d, 0x61, 0x2e, 0x61, 0x70,
 	0x69, 0x2e, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x22, 0x07, 0x0a, 0x05, 0x45, 0x6d, 0x70, 0x74,
-	0x79, 0x42, 0x09, 0x5a, 0x07, 0x2e, 0x2f, 0x67, 0x6f, 0x3b, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72,
-	0x6f, 0x74, 0x6f, 0x33,
+	0x79, 0x22, 0x19, 0x0a, 0x07, 0x49, 0x64, 0x49, 0x6e, 0x70, 0x75, 0x74, 0x12, 0x0e, 0x0a, 0x02,
+	0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x02, 0x69, 0x64, 0x22, 0x40, 0x0a, 0x0a,
+	0x42, 0x6f, 0x6f, 0x6c, 0x4f, 0x75, 0x74, 0x70, 0x75, 0x74, 0x12, 0x18, 0x0a, 0x07, 0x73, 0x75,
+	0x63, 0x63, 0x65, 0x73, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x07, 0x73, 0x75, 0x63,
+	0x63, 0x65, 0x73, 0x73, 0x12, 0x18, 0x0a, 0x07, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x18,
+	0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x42, 0x09,
+	0x5a, 0x07, 0x2e, 0x2f, 0x67, 0x6f, 0x3b, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f,
+	0x33,
 }
 
 var (
@@ -80,9 +188,11 @@ func file_protos_common_proto_rawDescGZIP() []byte {
 	return file_protos_common_proto_rawDescData
 }
 
-var file_protos_common_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
+var file_protos_common_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_protos_common_proto_goTypes = []interface{}{
-	(*Empty)(nil), // 0: ekipma.api.common.Empty
+	(*Empty)(nil),      // 0: ekipma.api.common.Empty
+	(*IdInput)(nil),    // 1: ekipma.api.common.IdInput
+	(*BoolOutput)(nil), // 2: ekipma.api.common.BoolOutput
 }
 var file_protos_common_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type
@@ -110,6 +220,30 @@ func file_protos_common_proto_init() {
 				return nil
 			}
 		}
+		file_protos_common_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*IdInput); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_protos_common_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*BoolOutput); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -117,7 +251,7 @@ func file_protos_common_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_protos_common_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   1,
+			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

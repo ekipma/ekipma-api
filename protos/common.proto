@@ -4,3 +4,10 @@ package ekipma.api.common;
 option go_package = "./go;pb";
 
 message Empty {}
+
+message IdInput { int64 id = 1; }
+
+message BoolOutput {
+  bool success = 1;
+  string message = 2;
+}

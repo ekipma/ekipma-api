@@ -101,6 +101,20 @@ final $typed_data.Uint8List payInputDescriptor = $convert.base64Decode(
     'EoAVIFdG90YWwSKwoEdW5pdBgIIAEoDjIXLmVraXBtYS5hcGkucGF5LlBheVVuaXRSBHVuaXQS'
     'KwoEdHlwZRgJIAEoDjIXLmVraXBtYS5hcGkucGF5LlBheVR5cGVSBHR5cGU=');
 
+@$core.Deprecated('Use payUpdateInputDescriptor instead')
+const PayUpdateInput$json = {
+  '1': 'PayUpdateInput',
+  '2': [
+    {'1': 'title', '3': 1, '4': 1, '5': 9, '10': 'title'},
+    {'1': 'desc', '3': 2, '4': 1, '5': 9, '10': 'desc'},
+  ],
+};
+
+/// Descriptor for `PayUpdateInput`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List payUpdateInputDescriptor = $convert.base64Decode(
+    'Cg5QYXlVcGRhdGVJbnB1dBIUCgV0aXRsZRgBIAEoCVIFdGl0bGUSEgoEZGVzYxgCIAEoCVIEZG'
+    'VzYw==');
+
 @$core.Deprecated('Use recentInputDescriptor instead')
 const RecentInput$json = {
   '1': 'RecentInput',

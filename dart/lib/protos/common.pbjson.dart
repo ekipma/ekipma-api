@@ -22,3 +22,29 @@ const Empty$json = {
 final $typed_data.Uint8List emptyDescriptor = $convert.base64Decode(
     'CgVFbXB0eQ==');
 
+@$core.Deprecated('Use idInputDescriptor instead')
+const IdInput$json = {
+  '1': 'IdInput',
+  '2': [
+    {'1': 'id', '3': 1, '4': 1, '5': 3, '10': 'id'},
+  ],
+};
+
+/// Descriptor for `IdInput`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List idInputDescriptor = $convert.base64Decode(
+    'CgdJZElucHV0Eg4KAmlkGAEgASgDUgJpZA==');
+
+@$core.Deprecated('Use boolOutputDescriptor instead')
+const BoolOutput$json = {
+  '1': 'BoolOutput',
+  '2': [
+    {'1': 'success', '3': 1, '4': 1, '5': 8, '10': 'success'},
+    {'1': 'message', '3': 2, '4': 1, '5': 9, '10': 'message'},
+  ],
+};
+
+/// Descriptor for `BoolOutput`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List boolOutputDescriptor = $convert.base64Decode(
+    'CgpCb29sT3V0cHV0EhgKB3N1Y2Nlc3MYASABKAhSB3N1Y2Nlc3MSGAoHbWVzc2FnZRgCIAEoCV'
+    'IHbWVzc2FnZQ==');
+
