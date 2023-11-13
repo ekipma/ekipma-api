@@ -22,6 +22,9 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type UserServiceClient interface {
+	// otp
+	SendOtp(ctx context.Context, in *OtpMobileInput, opts ...grpc.CallOption) (*Empty, error)
+	CheckOtp(ctx context.Context, in *OtpCodeInput, opts ...grpc.CallOption) (*OtpOutput, error)
 	// auth
 	RegisterUser(ctx context.Context, in *RegisterInput, opts ...grpc.CallOption) (*UserOutput, error)
 	LoginUser(ctx context.Context, in *LoginInput, opts ...grpc.CallOption) (*UserOutput, error)
@@ -37,6 +40,24 @@ type userServiceClient struct {
 
 func NewUserServiceClient(cc grpc.ClientConnInterface) UserServiceClient {
 	return &userServiceClient{cc}
+}
+
+func (c *userServiceClient) SendOtp(ctx context.Context, in *OtpMobileInput, opts ...grpc.CallOption) (*Empty, error) {
+	out := new(Empty)
+	err := c.cc.Invoke(ctx, "/ekipma.api.user.UserService/SendOtp", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userServiceClient) CheckOtp(ctx context.Context, in *OtpCodeInput, opts ...grpc.CallOption) (*OtpOutput, error) {
+	out := new(OtpOutput)
+	err := c.cc.Invoke(ctx, "/ekipma.api.user.UserService/CheckOtp", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *userServiceClient) RegisterUser(ctx context.Context, in *RegisterInput, opts ...grpc.CallOption) (*UserOutput, error) {
@@ -133,6 +154,9 @@ func (c *userServiceClient) RemoveFriend(ctx context.Context, in *IdInput, opts 
 // All implementations must embed UnimplementedUserServiceServer
 // for forward compatibility
 type UserServiceServer interface {
+	// otp
+	SendOtp(context.Context, *OtpMobileInput) (*Empty, error)
+	CheckOtp(context.Context, *OtpCodeInput) (*OtpOutput, error)
 	// auth
 	RegisterUser(context.Context, *RegisterInput) (*UserOutput, error)
 	LoginUser(context.Context, *LoginInput) (*UserOutput, error)
@@ -147,6 +171,12 @@ type UserServiceServer interface {
 type UnimplementedUserServiceServer struct {
 }
 
+func (UnimplementedUserServiceServer) SendOtp(context.Context, *OtpMobileInput) (*Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SendOtp not implemented")
+}
+func (UnimplementedUserServiceServer) CheckOtp(context.Context, *OtpCodeInput) (*OtpOutput, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CheckOtp not implemented")
+}
 func (UnimplementedUserServiceServer) RegisterUser(context.Context, *RegisterInput) (*UserOutput, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RegisterUser not implemented")
 }
@@ -173,6 +203,42 @@ type UnsafeUserServiceServer interface {
 
 func RegisterUserServiceServer(s grpc.ServiceRegistrar, srv UserServiceServer) {
 	s.RegisterService(&UserService_ServiceDesc, srv)
+}
+
+func _UserService_SendOtp_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(OtpMobileInput)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).SendOtp(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/ekipma.api.user.UserService/SendOtp",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).SendOtp(ctx, req.(*OtpMobileInput))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _UserService_CheckOtp_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(OtpCodeInput)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).CheckOtp(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/ekipma.api.user.UserService/CheckOtp",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).CheckOtp(ctx, req.(*OtpCodeInput))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _UserService_RegisterUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -283,6 +349,14 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "ekipma.api.user.UserService",
 	HandlerType: (*UserServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "SendOtp",
+			Handler:    _UserService_SendOtp_Handler,
+		},
+		{
+			MethodName: "CheckOtp",
+			Handler:    _UserService_CheckOtp_Handler,
+		},
 		{
 			MethodName: "RegisterUser",
 			Handler:    _UserService_RegisterUser_Handler,

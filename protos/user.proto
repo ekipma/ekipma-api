@@ -31,6 +31,9 @@ message User {
 }
 
 service UserService {
+  // otp
+  rpc SendOtp(OtpMobileInput) returns (ekipma.api.common.Empty) {}
+  rpc CheckOtp(OtpCodeInput) returns (OtpOutput) {}
   // auth
   rpc RegisterUser(RegisterInput) returns (UserOutput) {}
   rpc LoginUser(LoginInput) returns (UserOutput) {}
@@ -41,8 +44,22 @@ service UserService {
       returns (ekipma.api.common.Empty) {}
 }
 
+// otp
+message OtpMobileInput {
+  string mobile = 1; // used for sms
+}
+
+message OtpCodeInput {
+  string code = 1; // validation
+}
+
+message OtpOutput {
+  string otpToken = 1; // salt mobile
+}
+
+// auth
 message RegisterInput {
-  string mobile = 1;
+  string otpToken = 1; // has mobile
   string password = 2;
   string name = 3;
   uint64 inviter = 4;
@@ -54,13 +71,14 @@ message LoginInput {
   string password = 2;
 }
 
-message FriendInput {
-  string mobile = 1; //
-}
-
 message UserOutput {
   string token = 1;
   User user = 2;
+}
+
+// friend
+message FriendInput {
+  string mobile = 1; //
 }
 
 message FriendOutput {

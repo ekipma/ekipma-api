@@ -223,17 +223,169 @@ class User extends $pb.GeneratedMessage {
   void clearRole() => clearField(12);
 }
 
+/// otp
+class OtpMobileInput extends $pb.GeneratedMessage {
+  factory OtpMobileInput({
+    $core.String? mobile,
+  }) {
+    final $result = create();
+    if (mobile != null) {
+      $result.mobile = mobile;
+    }
+    return $result;
+  }
+  OtpMobileInput._() : super();
+  factory OtpMobileInput.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory OtpMobileInput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'OtpMobileInput', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.user'), createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'mobile')
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  OtpMobileInput clone() => OtpMobileInput()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  OtpMobileInput copyWith(void Function(OtpMobileInput) updates) => super.copyWith((message) => updates(message as OtpMobileInput)) as OtpMobileInput;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static OtpMobileInput create() => OtpMobileInput._();
+  OtpMobileInput createEmptyInstance() => create();
+  static $pb.PbList<OtpMobileInput> createRepeated() => $pb.PbList<OtpMobileInput>();
+  @$core.pragma('dart2js:noInline')
+  static OtpMobileInput getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<OtpMobileInput>(create);
+  static OtpMobileInput? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get mobile => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set mobile($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasMobile() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearMobile() => clearField(1);
+}
+
+class OtpCodeInput extends $pb.GeneratedMessage {
+  factory OtpCodeInput({
+    $core.String? code,
+  }) {
+    final $result = create();
+    if (code != null) {
+      $result.code = code;
+    }
+    return $result;
+  }
+  OtpCodeInput._() : super();
+  factory OtpCodeInput.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory OtpCodeInput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'OtpCodeInput', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.user'), createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'code')
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  OtpCodeInput clone() => OtpCodeInput()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  OtpCodeInput copyWith(void Function(OtpCodeInput) updates) => super.copyWith((message) => updates(message as OtpCodeInput)) as OtpCodeInput;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static OtpCodeInput create() => OtpCodeInput._();
+  OtpCodeInput createEmptyInstance() => create();
+  static $pb.PbList<OtpCodeInput> createRepeated() => $pb.PbList<OtpCodeInput>();
+  @$core.pragma('dart2js:noInline')
+  static OtpCodeInput getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<OtpCodeInput>(create);
+  static OtpCodeInput? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get code => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set code($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasCode() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearCode() => clearField(1);
+}
+
+class OtpOutput extends $pb.GeneratedMessage {
+  factory OtpOutput({
+    $core.String? otpToken,
+  }) {
+    final $result = create();
+    if (otpToken != null) {
+      $result.otpToken = otpToken;
+    }
+    return $result;
+  }
+  OtpOutput._() : super();
+  factory OtpOutput.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory OtpOutput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'OtpOutput', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.user'), createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'otpToken', protoName: 'otpToken')
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  OtpOutput clone() => OtpOutput()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  OtpOutput copyWith(void Function(OtpOutput) updates) => super.copyWith((message) => updates(message as OtpOutput)) as OtpOutput;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static OtpOutput create() => OtpOutput._();
+  OtpOutput createEmptyInstance() => create();
+  static $pb.PbList<OtpOutput> createRepeated() => $pb.PbList<OtpOutput>();
+  @$core.pragma('dart2js:noInline')
+  static OtpOutput getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<OtpOutput>(create);
+  static OtpOutput? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get otpToken => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set otpToken($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasOtpToken() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearOtpToken() => clearField(1);
+}
+
+/// auth
 class RegisterInput extends $pb.GeneratedMessage {
   factory RegisterInput({
-    $core.String? mobile,
+    $core.String? otpToken,
     $core.String? password,
     $core.String? name,
     $fixnum.Int64? inviter,
     $core.String? email,
   }) {
     final $result = create();
-    if (mobile != null) {
-      $result.mobile = mobile;
+    if (otpToken != null) {
+      $result.otpToken = otpToken;
     }
     if (password != null) {
       $result.password = password;
@@ -254,7 +406,7 @@ class RegisterInput extends $pb.GeneratedMessage {
   factory RegisterInput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'RegisterInput', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.user'), createEmptyInstance: create)
-    ..aOS(1, _omitFieldNames ? '' : 'mobile')
+    ..aOS(1, _omitFieldNames ? '' : 'otpToken', protoName: 'otpToken')
     ..aOS(2, _omitFieldNames ? '' : 'password')
     ..aOS(3, _omitFieldNames ? '' : 'name')
     ..a<$fixnum.Int64>(4, _omitFieldNames ? '' : 'inviter', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
@@ -284,13 +436,13 @@ class RegisterInput extends $pb.GeneratedMessage {
   static RegisterInput? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.String get mobile => $_getSZ(0);
+  $core.String get otpToken => $_getSZ(0);
   @$pb.TagNumber(1)
-  set mobile($core.String v) { $_setString(0, v); }
+  set otpToken($core.String v) { $_setString(0, v); }
   @$pb.TagNumber(1)
-  $core.bool hasMobile() => $_has(0);
+  $core.bool hasOtpToken() => $_has(0);
   @$pb.TagNumber(1)
-  void clearMobile() => clearField(1);
+  void clearOtpToken() => clearField(1);
 
   @$pb.TagNumber(2)
   $core.String get password => $_getSZ(1);
@@ -393,56 +545,6 @@ class LoginInput extends $pb.GeneratedMessage {
   void clearPassword() => clearField(2);
 }
 
-class FriendInput extends $pb.GeneratedMessage {
-  factory FriendInput({
-    $core.String? mobile,
-  }) {
-    final $result = create();
-    if (mobile != null) {
-      $result.mobile = mobile;
-    }
-    return $result;
-  }
-  FriendInput._() : super();
-  factory FriendInput.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory FriendInput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'FriendInput', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.user'), createEmptyInstance: create)
-    ..aOS(1, _omitFieldNames ? '' : 'mobile')
-    ..hasRequiredFields = false
-  ;
-
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
-  FriendInput clone() => FriendInput()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  FriendInput copyWith(void Function(FriendInput) updates) => super.copyWith((message) => updates(message as FriendInput)) as FriendInput;
-
-  $pb.BuilderInfo get info_ => _i;
-
-  @$core.pragma('dart2js:noInline')
-  static FriendInput create() => FriendInput._();
-  FriendInput createEmptyInstance() => create();
-  static $pb.PbList<FriendInput> createRepeated() => $pb.PbList<FriendInput>();
-  @$core.pragma('dart2js:noInline')
-  static FriendInput getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<FriendInput>(create);
-  static FriendInput? _defaultInstance;
-
-  @$pb.TagNumber(1)
-  $core.String get mobile => $_getSZ(0);
-  @$pb.TagNumber(1)
-  set mobile($core.String v) { $_setString(0, v); }
-  @$pb.TagNumber(1)
-  $core.bool hasMobile() => $_has(0);
-  @$pb.TagNumber(1)
-  void clearMobile() => clearField(1);
-}
-
 class UserOutput extends $pb.GeneratedMessage {
   factory UserOutput({
     $core.String? token,
@@ -507,6 +609,57 @@ class UserOutput extends $pb.GeneratedMessage {
   void clearUser() => clearField(2);
   @$pb.TagNumber(2)
   User ensureUser() => $_ensure(1);
+}
+
+/// friend
+class FriendInput extends $pb.GeneratedMessage {
+  factory FriendInput({
+    $core.String? mobile,
+  }) {
+    final $result = create();
+    if (mobile != null) {
+      $result.mobile = mobile;
+    }
+    return $result;
+  }
+  FriendInput._() : super();
+  factory FriendInput.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory FriendInput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'FriendInput', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.user'), createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'mobile')
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  FriendInput clone() => FriendInput()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  FriendInput copyWith(void Function(FriendInput) updates) => super.copyWith((message) => updates(message as FriendInput)) as FriendInput;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static FriendInput create() => FriendInput._();
+  FriendInput createEmptyInstance() => create();
+  static $pb.PbList<FriendInput> createRepeated() => $pb.PbList<FriendInput>();
+  @$core.pragma('dart2js:noInline')
+  static FriendInput getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<FriendInput>(create);
+  static FriendInput? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get mobile => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set mobile($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasMobile() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearMobile() => clearField(1);
 }
 
 class FriendOutput extends $pb.GeneratedMessage {

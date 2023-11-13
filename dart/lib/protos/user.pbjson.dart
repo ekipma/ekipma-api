@@ -57,11 +57,47 @@ final $typed_data.Uint8List userDescriptor = $convert.base64Decode(
     'gKB2ZyaWVuZHMYCiADKARSB2ZyaWVuZHMSGAoHaW52aXRlchgLIAEoBFIHaW52aXRlchItCgRy'
     'b2xlGAwgASgOMhkuZWtpcG1hLmFwaS51c2VyLlVzZXJSb2xlUgRyb2xl');
 
+@$core.Deprecated('Use otpMobileInputDescriptor instead')
+const OtpMobileInput$json = {
+  '1': 'OtpMobileInput',
+  '2': [
+    {'1': 'mobile', '3': 1, '4': 1, '5': 9, '10': 'mobile'},
+  ],
+};
+
+/// Descriptor for `OtpMobileInput`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List otpMobileInputDescriptor = $convert.base64Decode(
+    'Cg5PdHBNb2JpbGVJbnB1dBIWCgZtb2JpbGUYASABKAlSBm1vYmlsZQ==');
+
+@$core.Deprecated('Use otpCodeInputDescriptor instead')
+const OtpCodeInput$json = {
+  '1': 'OtpCodeInput',
+  '2': [
+    {'1': 'code', '3': 1, '4': 1, '5': 9, '10': 'code'},
+  ],
+};
+
+/// Descriptor for `OtpCodeInput`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List otpCodeInputDescriptor = $convert.base64Decode(
+    'CgxPdHBDb2RlSW5wdXQSEgoEY29kZRgBIAEoCVIEY29kZQ==');
+
+@$core.Deprecated('Use otpOutputDescriptor instead')
+const OtpOutput$json = {
+  '1': 'OtpOutput',
+  '2': [
+    {'1': 'otpToken', '3': 1, '4': 1, '5': 9, '10': 'otpToken'},
+  ],
+};
+
+/// Descriptor for `OtpOutput`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List otpOutputDescriptor = $convert.base64Decode(
+    'CglPdHBPdXRwdXQSGgoIb3RwVG9rZW4YASABKAlSCG90cFRva2Vu');
+
 @$core.Deprecated('Use registerInputDescriptor instead')
 const RegisterInput$json = {
   '1': 'RegisterInput',
   '2': [
-    {'1': 'mobile', '3': 1, '4': 1, '5': 9, '10': 'mobile'},
+    {'1': 'otpToken', '3': 1, '4': 1, '5': 9, '10': 'otpToken'},
     {'1': 'password', '3': 2, '4': 1, '5': 9, '10': 'password'},
     {'1': 'name', '3': 3, '4': 1, '5': 9, '10': 'name'},
     {'1': 'inviter', '3': 4, '4': 1, '5': 4, '10': 'inviter'},
@@ -71,9 +107,9 @@ const RegisterInput$json = {
 
 /// Descriptor for `RegisterInput`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List registerInputDescriptor = $convert.base64Decode(
-    'Cg1SZWdpc3RlcklucHV0EhYKBm1vYmlsZRgBIAEoCVIGbW9iaWxlEhoKCHBhc3N3b3JkGAIgAS'
-    'gJUghwYXNzd29yZBISCgRuYW1lGAMgASgJUgRuYW1lEhgKB2ludml0ZXIYBCABKARSB2ludml0'
-    'ZXISFAoFZW1haWwYBSABKAlSBWVtYWls');
+    'Cg1SZWdpc3RlcklucHV0EhoKCG90cFRva2VuGAEgASgJUghvdHBUb2tlbhIaCghwYXNzd29yZB'
+    'gCIAEoCVIIcGFzc3dvcmQSEgoEbmFtZRgDIAEoCVIEbmFtZRIYCgdpbnZpdGVyGAQgASgEUgdp'
+    'bnZpdGVyEhQKBWVtYWlsGAUgASgJUgVlbWFpbA==');
 
 @$core.Deprecated('Use loginInputDescriptor instead')
 const LoginInput$json = {
@@ -89,18 +125,6 @@ final $typed_data.Uint8List loginInputDescriptor = $convert.base64Decode(
     'CgpMb2dpbklucHV0EhYKBm1vYmlsZRgBIAEoCVIGbW9iaWxlEhoKCHBhc3N3b3JkGAIgASgJUg'
     'hwYXNzd29yZA==');
 
-@$core.Deprecated('Use friendInputDescriptor instead')
-const FriendInput$json = {
-  '1': 'FriendInput',
-  '2': [
-    {'1': 'mobile', '3': 1, '4': 1, '5': 9, '10': 'mobile'},
-  ],
-};
-
-/// Descriptor for `FriendInput`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List friendInputDescriptor = $convert.base64Decode(
-    'CgtGcmllbmRJbnB1dBIWCgZtb2JpbGUYASABKAlSBm1vYmlsZQ==');
-
 @$core.Deprecated('Use userOutputDescriptor instead')
 const UserOutput$json = {
   '1': 'UserOutput',
@@ -114,6 +138,18 @@ const UserOutput$json = {
 final $typed_data.Uint8List userOutputDescriptor = $convert.base64Decode(
     'CgpVc2VyT3V0cHV0EhQKBXRva2VuGAEgASgJUgV0b2tlbhIpCgR1c2VyGAIgASgLMhUuZWtpcG'
     '1hLmFwaS51c2VyLlVzZXJSBHVzZXI=');
+
+@$core.Deprecated('Use friendInputDescriptor instead')
+const FriendInput$json = {
+  '1': 'FriendInput',
+  '2': [
+    {'1': 'mobile', '3': 1, '4': 1, '5': 9, '10': 'mobile'},
+  ],
+};
+
+/// Descriptor for `FriendInput`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List friendInputDescriptor = $convert.base64Decode(
+    'CgtGcmllbmRJbnB1dBIWCgZtb2JpbGUYASABKAlSBm1vYmlsZQ==');
 
 @$core.Deprecated('Use friendOutputDescriptor instead')
 const FriendOutput$json = {

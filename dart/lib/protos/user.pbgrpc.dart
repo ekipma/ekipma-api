@@ -22,6 +22,14 @@ export 'user.pb.dart';
 
 @$pb.GrpcServiceName('ekipma.api.user.UserService')
 class UserServiceClient extends $grpc.Client {
+  static final _$sendOtp = $grpc.ClientMethod<$2.OtpMobileInput, $1.Empty>(
+      '/ekipma.api.user.UserService/SendOtp',
+      ($2.OtpMobileInput value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
+  static final _$checkOtp = $grpc.ClientMethod<$2.OtpCodeInput, $2.OtpOutput>(
+      '/ekipma.api.user.UserService/CheckOtp',
+      ($2.OtpCodeInput value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $2.OtpOutput.fromBuffer(value));
   static final _$registerUser = $grpc.ClientMethod<$2.RegisterInput, $2.UserOutput>(
       '/ekipma.api.user.UserService/RegisterUser',
       ($2.RegisterInput value) => value.writeToBuffer(),
@@ -49,6 +57,14 @@ class UserServiceClient extends $grpc.Client {
       : super(channel, options: options,
         interceptors: interceptors);
 
+  $grpc.ResponseFuture<$1.Empty> sendOtp($2.OtpMobileInput request, {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$sendOtp, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$2.OtpOutput> checkOtp($2.OtpCodeInput request, {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$checkOtp, request, options: options);
+  }
+
   $grpc.ResponseFuture<$2.UserOutput> registerUser($2.RegisterInput request, {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$registerUser, request, options: options);
   }
@@ -75,6 +91,20 @@ abstract class UserServiceBase extends $grpc.Service {
   $core.String get $name => 'ekipma.api.user.UserService';
 
   UserServiceBase() {
+    $addMethod($grpc.ServiceMethod<$2.OtpMobileInput, $1.Empty>(
+        'SendOtp',
+        sendOtp_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) => $2.OtpMobileInput.fromBuffer(value),
+        ($1.Empty value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$2.OtpCodeInput, $2.OtpOutput>(
+        'CheckOtp',
+        checkOtp_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) => $2.OtpCodeInput.fromBuffer(value),
+        ($2.OtpOutput value) => value.writeToBuffer()));
     $addMethod($grpc.ServiceMethod<$2.RegisterInput, $2.UserOutput>(
         'RegisterUser',
         registerUser_Pre,
@@ -112,6 +142,14 @@ abstract class UserServiceBase extends $grpc.Service {
         ($1.Empty value) => value.writeToBuffer()));
   }
 
+  $async.Future<$1.Empty> sendOtp_Pre($grpc.ServiceCall call, $async.Future<$2.OtpMobileInput> request) async {
+    return sendOtp(call, await request);
+  }
+
+  $async.Future<$2.OtpOutput> checkOtp_Pre($grpc.ServiceCall call, $async.Future<$2.OtpCodeInput> request) async {
+    return checkOtp(call, await request);
+  }
+
   $async.Future<$2.UserOutput> registerUser_Pre($grpc.ServiceCall call, $async.Future<$2.RegisterInput> request) async {
     return registerUser(call, await request);
   }
@@ -128,6 +166,8 @@ abstract class UserServiceBase extends $grpc.Service {
     return removeFriend(call, await request);
   }
 
+  $async.Future<$1.Empty> sendOtp($grpc.ServiceCall call, $2.OtpMobileInput request);
+  $async.Future<$2.OtpOutput> checkOtp($grpc.ServiceCall call, $2.OtpCodeInput request);
   $async.Future<$2.UserOutput> registerUser($grpc.ServiceCall call, $2.RegisterInput request);
   $async.Future<$2.UserOutput> loginUser($grpc.ServiceCall call, $2.LoginInput request);
   $async.Stream<$2.FriendOutput> addFriends($grpc.ServiceCall call, $async.Stream<$2.FriendInput> request);
