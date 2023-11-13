@@ -276,9 +276,13 @@ class OtpMobileInput extends $pb.GeneratedMessage {
 
 class OtpCodeInput extends $pb.GeneratedMessage {
   factory OtpCodeInput({
+    $core.String? mobile,
     $core.String? code,
   }) {
     final $result = create();
+    if (mobile != null) {
+      $result.mobile = mobile;
+    }
     if (code != null) {
       $result.code = code;
     }
@@ -289,7 +293,8 @@ class OtpCodeInput extends $pb.GeneratedMessage {
   factory OtpCodeInput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'OtpCodeInput', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.user'), createEmptyInstance: create)
-    ..aOS(1, _omitFieldNames ? '' : 'code')
+    ..aOS(1, _omitFieldNames ? '' : 'mobile')
+    ..aOS(2, _omitFieldNames ? '' : 'code')
     ..hasRequiredFields = false
   ;
 
@@ -315,13 +320,22 @@ class OtpCodeInput extends $pb.GeneratedMessage {
   static OtpCodeInput? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.String get code => $_getSZ(0);
+  $core.String get mobile => $_getSZ(0);
   @$pb.TagNumber(1)
-  set code($core.String v) { $_setString(0, v); }
+  set mobile($core.String v) { $_setString(0, v); }
   @$pb.TagNumber(1)
-  $core.bool hasCode() => $_has(0);
+  $core.bool hasMobile() => $_has(0);
   @$pb.TagNumber(1)
-  void clearCode() => clearField(1);
+  void clearMobile() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get code => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set code($core.String v) { $_setString(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasCode() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearCode() => clearField(2);
 }
 
 class OtpOutput extends $pb.GeneratedMessage {

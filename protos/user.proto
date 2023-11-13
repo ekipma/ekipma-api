@@ -50,7 +50,8 @@ message OtpMobileInput {
 }
 
 message OtpCodeInput {
-  string code = 1; // validation
+  string mobile = 1;
+  string code = 2; // validation
 }
 
 message OtpOutput {
