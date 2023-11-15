@@ -17,26 +17,28 @@ done
 
 if [ -z "$vesion" ]
 then
-    echo "No version supplied"
+    echo "! No version supplied"
     exit 1
 fi
 
 if [ -z "$message" ]
 then
-    echo "No commit message supplied"
+    echo "! No commit message supplied"
     exit 1
 fi
 
+echo "> Commit everything"
 git add .
 git commit -m"$message"
 
 if [ -z "$tag" ]
 then
-    echo "No tag name supplied"
+    echo "! No tag name supplied"
     git tag $version
 else
     git tag $version -m"$tag"
 fi
 
+echo "> Pushing everything"
 git push origin main
 git push origin $version
