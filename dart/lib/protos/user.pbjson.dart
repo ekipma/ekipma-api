@@ -62,12 +62,14 @@ const OtpMobileInput$json = {
   '1': 'OtpMobileInput',
   '2': [
     {'1': 'mobile', '3': 1, '4': 1, '5': 9, '10': 'mobile'},
+    {'1': 'isRegister', '3': 2, '4': 1, '5': 8, '10': 'isRegister'},
   ],
 };
 
 /// Descriptor for `OtpMobileInput`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List otpMobileInputDescriptor = $convert.base64Decode(
-    'Cg5PdHBNb2JpbGVJbnB1dBIWCgZtb2JpbGUYASABKAlSBm1vYmlsZQ==');
+    'Cg5PdHBNb2JpbGVJbnB1dBIWCgZtb2JpbGUYASABKAlSBm1vYmlsZRIeCgppc1JlZ2lzdGVyGA'
+    'IgASgIUgppc1JlZ2lzdGVy');
 
 @$core.Deprecated('Use otpCodeInputDescriptor instead')
 const OtpCodeInput$json = {
