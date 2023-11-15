@@ -9,13 +9,13 @@ protoc protos/*.proto \
 while getopts v:m:t: flag
 do
     case "${flag}" in
-        v) vesion=${OPTARG};;
+        v) version=${OPTARG};;
         m) message=${OPTARG};;
         t) tag=${OPTARG};;
     esac
 done
 
-if [ -z "$vesion" ]
+if [ -z "$version" ]
 then
     echo "! No version supplied"
     exit 1
