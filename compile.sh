@@ -6,24 +6,37 @@ protoc protos/*.proto \
 --dart_out=grpc:dart/lib \
 --proto_path=.
 
-NVER="0.0.0"
+while getopts v:m:t: flag
+do
+    case "${flag}" in
+        v) vesion=${OPTARG};;
+        m) message=${OPTARG};;
+        t) tag=${OPTARG};;
+    esac
+done
 
-if [ -z "$1" ]
+if [ -z "$vesion" ]
+then
+    echo "No version supplied"
+    exit 1
+fi
+
+if [ -z "$message" ]
 then
     echo "No commit message supplied"
-    return 1
+    exit 1
 fi
 
 git add .
-git commit -m"$1"
+git commit -m"$message"
 
-if [ -z "$2" ]
+if [ -z "$tag" ]
 then
     echo "No tag name supplied"
-    git tag $NVER
+    git tag $version
 else
-    git tag $NVER -m"$2"
+    git tag $version -m"$tag"
 fi
 
 git push origin main
-git push origin $NVER
+git push origin $version
