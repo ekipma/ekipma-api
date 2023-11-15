@@ -35,6 +35,7 @@ class Pay extends $pb.GeneratedMessage {
     PayUnit? unit,
     PayType? type,
     $core.bool? rejected,
+    $core.bool? hidden,
   }) {
     final $result = create();
     if (id != null) {
@@ -79,6 +80,9 @@ class Pay extends $pb.GeneratedMessage {
     if (rejected != null) {
       $result.rejected = rejected;
     }
+    if (hidden != null) {
+      $result.hidden = hidden;
+    }
     return $result;
   }
   Pay._() : super();
@@ -100,6 +104,7 @@ class Pay extends $pb.GeneratedMessage {
     ..e<PayUnit>(12, _omitFieldNames ? '' : 'unit', $pb.PbFieldType.OE, defaultOrMaker: PayUnit.Unknown, valueOf: PayUnit.valueOf, enumValues: PayUnit.values)
     ..e<PayType>(13, _omitFieldNames ? '' : 'type', $pb.PbFieldType.OE, defaultOrMaker: PayType.Unkown, valueOf: PayType.valueOf, enumValues: PayType.values)
     ..aOB(14, _omitFieldNames ? '' : 'rejected')
+    ..aOB(15, _omitFieldNames ? '' : 'hidden')
     ..hasRequiredFields = false
   ;
 
@@ -250,6 +255,15 @@ class Pay extends $pb.GeneratedMessage {
   $core.bool hasRejected() => $_has(13);
   @$pb.TagNumber(14)
   void clearRejected() => clearField(14);
+
+  @$pb.TagNumber(15)
+  $core.bool get hidden => $_getBF(14);
+  @$pb.TagNumber(15)
+  set hidden($core.bool v) { $_setBool(14, v); }
+  @$pb.TagNumber(15)
+  $core.bool hasHidden() => $_has(14);
+  @$pb.TagNumber(15)
+  void clearHidden() => clearField(15);
 }
 
 class PayInput extends $pb.GeneratedMessage {

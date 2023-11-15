@@ -62,6 +62,7 @@ const Pay$json = {
     {'1': 'unit', '3': 12, '4': 1, '5': 14, '6': '.ekipma.api.pay.PayUnit', '10': 'unit'},
     {'1': 'type', '3': 13, '4': 1, '5': 14, '6': '.ekipma.api.pay.PayType', '10': 'type'},
     {'1': 'rejected', '3': 14, '4': 1, '5': 8, '10': 'rejected'},
+    {'1': 'hidden', '3': 15, '4': 1, '5': 8, '10': 'hidden'},
   ],
 };
 
@@ -75,7 +76,7 @@ final $typed_data.Uint8List payDescriptor = $convert.base64Decode(
     'Vncm91cBIYCgdwcml2YXRlGAogASgIUgdwcml2YXRlEhQKBXRvdGFsGAsgASgBUgV0b3RhbBIr'
     'CgR1bml0GAwgASgOMhcuZWtpcG1hLmFwaS5wYXkuUGF5VW5pdFIEdW5pdBIrCgR0eXBlGA0gAS'
     'gOMhcuZWtpcG1hLmFwaS5wYXkuUGF5VHlwZVIEdHlwZRIaCghyZWplY3RlZBgOIAEoCFIIcmVq'
-    'ZWN0ZWQ=');
+    'ZWN0ZWQSFgoGaGlkZGVuGA8gASgIUgZoaWRkZW4=');
 
 @$core.Deprecated('Use payInputDescriptor instead')
 const PayInput$json = {

@@ -38,6 +38,7 @@ message Pay {
   PayUnit unit = 12;
   PayType type = 13;
   bool rejected = 14;
+  bool hidden = 15;
 }
 
 service PayService {

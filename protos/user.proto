@@ -46,8 +46,8 @@ service UserService {
 
 // otp
 message OtpMobileInput {
-  string mobile = 1;   // used for sms
-  bool isRegister = 2; // if it is for register
+  string mobile = 1; // used for sms
+  bool register = 2; // if it is for register
 }
 
 message OtpCodeInput {

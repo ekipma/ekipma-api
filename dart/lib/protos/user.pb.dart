@@ -227,14 +227,14 @@ class User extends $pb.GeneratedMessage {
 class OtpMobileInput extends $pb.GeneratedMessage {
   factory OtpMobileInput({
     $core.String? mobile,
-    $core.bool? isRegister,
+    $core.bool? register,
   }) {
     final $result = create();
     if (mobile != null) {
       $result.mobile = mobile;
     }
-    if (isRegister != null) {
-      $result.isRegister = isRegister;
+    if (register != null) {
+      $result.register = register;
     }
     return $result;
   }
@@ -244,7 +244,7 @@ class OtpMobileInput extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'OtpMobileInput', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.user'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'mobile')
-    ..aOB(2, _omitFieldNames ? '' : 'isRegister', protoName: 'isRegister')
+    ..aOB(2, _omitFieldNames ? '' : 'register')
     ..hasRequiredFields = false
   ;
 
@@ -279,13 +279,13 @@ class OtpMobileInput extends $pb.GeneratedMessage {
   void clearMobile() => clearField(1);
 
   @$pb.TagNumber(2)
-  $core.bool get isRegister => $_getBF(1);
+  $core.bool get register => $_getBF(1);
   @$pb.TagNumber(2)
-  set isRegister($core.bool v) { $_setBool(1, v); }
+  set register($core.bool v) { $_setBool(1, v); }
   @$pb.TagNumber(2)
-  $core.bool hasIsRegister() => $_has(1);
+  $core.bool hasRegister() => $_has(1);
   @$pb.TagNumber(2)
-  void clearIsRegister() => clearField(2);
+  void clearRegister() => clearField(2);
 }
 
 class OtpCodeInput extends $pb.GeneratedMessage {
