@@ -26,25 +26,42 @@ final $typed_data.Uint8List emptyDescriptor = $convert.base64Decode(
 const IdInput$json = {
   '1': 'IdInput',
   '2': [
-    {'1': 'id', '3': 1, '4': 1, '5': 3, '10': 'id'},
+    {'1': 'id', '3': 1, '4': 1, '5': 4, '10': 'id'},
   ],
 };
 
 /// Descriptor for `IdInput`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List idInputDescriptor = $convert.base64Decode(
-    'CgdJZElucHV0Eg4KAmlkGAEgASgDUgJpZA==');
+    'CgdJZElucHV0Eg4KAmlkGAEgASgEUgJpZA==');
 
-@$core.Deprecated('Use boolOutputDescriptor instead')
-const BoolOutput$json = {
-  '1': 'BoolOutput',
+@$core.Deprecated('Use messagesDescriptor instead')
+const Messages$json = {
+  '1': 'Messages',
   '2': [
-    {'1': 'success', '3': 1, '4': 1, '5': 8, '10': 'success'},
-    {'1': 'message', '3': 2, '4': 1, '5': 9, '10': 'message'},
+    {'1': 'error', '3': 1, '4': 1, '5': 9, '9': 0, '10': 'error', '17': true},
+    {'1': 'message', '3': 2, '4': 1, '5': 9, '9': 1, '10': 'message', '17': true},
+  ],
+  '8': [
+    {'1': '_error'},
+    {'1': '_message'},
   ],
 };
 
-/// Descriptor for `BoolOutput`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List boolOutputDescriptor = $convert.base64Decode(
-    'CgpCb29sT3V0cHV0EhgKB3N1Y2Nlc3MYASABKAhSB3N1Y2Nlc3MSGAoHbWVzc2FnZRgCIAEoCV'
-    'IHbWVzc2FnZQ==');
+/// Descriptor for `Messages`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List messagesDescriptor = $convert.base64Decode(
+    'CghNZXNzYWdlcxIZCgVlcnJvchgBIAEoCUgAUgVlcnJvcogBARIdCgdtZXNzYWdlGAIgASgJSA'
+    'FSB21lc3NhZ2WIAQFCCAoGX2Vycm9yQgoKCF9tZXNzYWdl');
+
+@$core.Deprecated('Use chunkDescriptor instead')
+const Chunk$json = {
+  '1': 'Chunk',
+  '2': [
+    {'1': 'len', '3': 1, '4': 1, '5': 13, '10': 'len'},
+    {'1': 'part', '3': 2, '4': 1, '5': 13, '10': 'part'},
+  ],
+};
+
+/// Descriptor for `Chunk`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List chunkDescriptor = $convert.base64Decode(
+    'CgVDaHVuaxIQCgNsZW4YASABKA1SA2xlbhISCgRwYXJ0GAIgASgNUgRwYXJ0');
 

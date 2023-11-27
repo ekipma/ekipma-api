@@ -21,24 +21,25 @@ enum PayUnit {
 }
 
 message Pay {
+  ekipma.api.common.Chunk chunk = 1;
   // gorm
-  uint64 id = 1;
-  google.protobuf.Timestamp createdAt = 2;
-  google.protobuf.Timestamp updatedAt = 3;
+  uint64 id = 2;
+  google.protobuf.Timestamp createdAt = 3;
+  google.protobuf.Timestamp updatedAt = 4;
   // rec
-  string title = 4;
-  string desc = 5;
-  uint64 author = 6;
-  uint64 assignee = 7;
-  repeated uint64 assignees = 8;
-  uint64 group = 9;
-  bool private = 10;
+  string title = 5;
+  string desc = 6;
+  uint64 author = 7;
+  uint64 assignee = 8;
+  repeated uint64 assignees = 9;
+  uint64 group = 10;
+  bool private = 11;
   // pay
-  double total = 11;
-  PayUnit unit = 12;
-  PayType type = 13;
-  bool rejected = 14;
-  bool hidden = 15;
+  double total = 12;
+  PayUnit unit = 13;
+  PayType type = 14;
+  bool rejected = 15;
+  bool hidden = 16;
 }
 
 service PayService {

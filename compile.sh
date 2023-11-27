@@ -2,6 +2,7 @@
 
 set -e # exit immediately if any command exits with a non-zero exit code
 
+echo "> Compile proto files"
 protoc protos/*.proto \
 --go_out=./ --go_opt=paths=import \
 --go-grpc_out=./ --go-grpc_opt=paths=import \
@@ -41,6 +42,6 @@ else
     git tag $version -m"$tag"
 fi
 
-echo "> Pushing everything"
+echo "> Push everything"
 git push origin main
 git push origin $version

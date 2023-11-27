@@ -15,6 +15,7 @@ import 'package:fixnum/fixnum.dart' as $fixnum;
 import 'package:protobuf/protobuf.dart' as $pb;
 
 import '../google/protobuf/timestamp.pb.dart' as $3;
+import 'common.pb.dart' as $1;
 import 'user.pbenum.dart';
 
 export 'user.pbenum.dart';
@@ -573,8 +574,8 @@ class LoginInput extends $pb.GeneratedMessage {
   void clearPassword() => clearField(2);
 }
 
-class UserOutput extends $pb.GeneratedMessage {
-  factory UserOutput({
+class AuthOutput extends $pb.GeneratedMessage {
+  factory AuthOutput({
     $core.String? token,
     User? user,
   }) {
@@ -587,11 +588,11 @@ class UserOutput extends $pb.GeneratedMessage {
     }
     return $result;
   }
-  UserOutput._() : super();
-  factory UserOutput.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory UserOutput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  AuthOutput._() : super();
+  factory AuthOutput.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory AuthOutput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'UserOutput', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.user'), createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'AuthOutput', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.user'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'token')
     ..aOM<User>(2, _omitFieldNames ? '' : 'user', subBuilder: User.create)
     ..hasRequiredFields = false
@@ -601,22 +602,22 @@ class UserOutput extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
   'Will be removed in next major version')
-  UserOutput clone() => UserOutput()..mergeFromMessage(this);
+  AuthOutput clone() => AuthOutput()..mergeFromMessage(this);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  UserOutput copyWith(void Function(UserOutput) updates) => super.copyWith((message) => updates(message as UserOutput)) as UserOutput;
+  AuthOutput copyWith(void Function(AuthOutput) updates) => super.copyWith((message) => updates(message as AuthOutput)) as AuthOutput;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
-  static UserOutput create() => UserOutput._();
-  UserOutput createEmptyInstance() => create();
-  static $pb.PbList<UserOutput> createRepeated() => $pb.PbList<UserOutput>();
+  static AuthOutput create() => AuthOutput._();
+  AuthOutput createEmptyInstance() => create();
+  static $pb.PbList<AuthOutput> createRepeated() => $pb.PbList<AuthOutput>();
   @$core.pragma('dart2js:noInline')
-  static UserOutput getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<UserOutput>(create);
-  static UserOutput? _defaultInstance;
+  static AuthOutput getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<AuthOutput>(create);
+  static AuthOutput? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get token => $_getSZ(0);
@@ -642,9 +643,13 @@ class UserOutput extends $pb.GeneratedMessage {
 /// friend
 class FriendInput extends $pb.GeneratedMessage {
   factory FriendInput({
+    $1.Chunk? chunk,
     $core.String? mobile,
   }) {
     final $result = create();
+    if (chunk != null) {
+      $result.chunk = chunk;
+    }
     if (mobile != null) {
       $result.mobile = mobile;
     }
@@ -655,7 +660,8 @@ class FriendInput extends $pb.GeneratedMessage {
   factory FriendInput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'FriendInput', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.user'), createEmptyInstance: create)
-    ..aOS(1, _omitFieldNames ? '' : 'mobile')
+    ..aOM<$1.Chunk>(1, _omitFieldNames ? '' : 'chunk', subBuilder: $1.Chunk.create)
+    ..aOS(2, _omitFieldNames ? '' : 'mobile')
     ..hasRequiredFields = false
   ;
 
@@ -681,23 +687,38 @@ class FriendInput extends $pb.GeneratedMessage {
   static FriendInput? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.String get mobile => $_getSZ(0);
+  $1.Chunk get chunk => $_getN(0);
   @$pb.TagNumber(1)
-  set mobile($core.String v) { $_setString(0, v); }
+  set chunk($1.Chunk v) { setField(1, v); }
   @$pb.TagNumber(1)
-  $core.bool hasMobile() => $_has(0);
+  $core.bool hasChunk() => $_has(0);
   @$pb.TagNumber(1)
-  void clearMobile() => clearField(1);
+  void clearChunk() => clearField(1);
+  @$pb.TagNumber(1)
+  $1.Chunk ensureChunk() => $_ensure(0);
+
+  @$pb.TagNumber(2)
+  $core.String get mobile => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set mobile($core.String v) { $_setString(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasMobile() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearMobile() => clearField(2);
 }
 
 class FriendOutput extends $pb.GeneratedMessage {
   factory FriendOutput({
+    $1.Chunk? chunk,
     $fixnum.Int64? id,
     $core.String? name,
     $core.String? email,
     $core.String? photoURL,
   }) {
     final $result = create();
+    if (chunk != null) {
+      $result.chunk = chunk;
+    }
     if (id != null) {
       $result.id = id;
     }
@@ -717,10 +738,11 @@ class FriendOutput extends $pb.GeneratedMessage {
   factory FriendOutput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'FriendOutput', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.user'), createEmptyInstance: create)
-    ..a<$fixnum.Int64>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
-    ..aOS(6, _omitFieldNames ? '' : 'name')
-    ..aOS(7, _omitFieldNames ? '' : 'email')
-    ..aOS(8, _omitFieldNames ? '' : 'photoURL', protoName: 'photoURL')
+    ..aOM<$1.Chunk>(1, _omitFieldNames ? '' : 'chunk', subBuilder: $1.Chunk.create)
+    ..a<$fixnum.Int64>(2, _omitFieldNames ? '' : 'id', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
+    ..aOS(3, _omitFieldNames ? '' : 'name')
+    ..aOS(4, _omitFieldNames ? '' : 'email')
+    ..aOS(5, _omitFieldNames ? '' : 'photoURL', protoName: 'photoURL')
     ..hasRequiredFields = false
   ;
 
@@ -746,40 +768,51 @@ class FriendOutput extends $pb.GeneratedMessage {
   static FriendOutput? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $fixnum.Int64 get id => $_getI64(0);
+  $1.Chunk get chunk => $_getN(0);
   @$pb.TagNumber(1)
-  set id($fixnum.Int64 v) { $_setInt64(0, v); }
+  set chunk($1.Chunk v) { setField(1, v); }
   @$pb.TagNumber(1)
-  $core.bool hasId() => $_has(0);
+  $core.bool hasChunk() => $_has(0);
   @$pb.TagNumber(1)
-  void clearId() => clearField(1);
+  void clearChunk() => clearField(1);
+  @$pb.TagNumber(1)
+  $1.Chunk ensureChunk() => $_ensure(0);
 
-  @$pb.TagNumber(6)
-  $core.String get name => $_getSZ(1);
-  @$pb.TagNumber(6)
-  set name($core.String v) { $_setString(1, v); }
-  @$pb.TagNumber(6)
-  $core.bool hasName() => $_has(1);
-  @$pb.TagNumber(6)
-  void clearName() => clearField(6);
+  @$pb.TagNumber(2)
+  $fixnum.Int64 get id => $_getI64(1);
+  @$pb.TagNumber(2)
+  set id($fixnum.Int64 v) { $_setInt64(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasId() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearId() => clearField(2);
 
-  @$pb.TagNumber(7)
-  $core.String get email => $_getSZ(2);
-  @$pb.TagNumber(7)
-  set email($core.String v) { $_setString(2, v); }
-  @$pb.TagNumber(7)
-  $core.bool hasEmail() => $_has(2);
-  @$pb.TagNumber(7)
-  void clearEmail() => clearField(7);
+  @$pb.TagNumber(3)
+  $core.String get name => $_getSZ(2);
+  @$pb.TagNumber(3)
+  set name($core.String v) { $_setString(2, v); }
+  @$pb.TagNumber(3)
+  $core.bool hasName() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearName() => clearField(3);
 
-  @$pb.TagNumber(8)
-  $core.String get photoURL => $_getSZ(3);
-  @$pb.TagNumber(8)
-  set photoURL($core.String v) { $_setString(3, v); }
-  @$pb.TagNumber(8)
-  $core.bool hasPhotoURL() => $_has(3);
-  @$pb.TagNumber(8)
-  void clearPhotoURL() => clearField(8);
+  @$pb.TagNumber(4)
+  $core.String get email => $_getSZ(3);
+  @$pb.TagNumber(4)
+  set email($core.String v) { $_setString(3, v); }
+  @$pb.TagNumber(4)
+  $core.bool hasEmail() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearEmail() => clearField(4);
+
+  @$pb.TagNumber(5)
+  $core.String get photoURL => $_getSZ(4);
+  @$pb.TagNumber(5)
+  set photoURL($core.String v) { $_setString(4, v); }
+  @$pb.TagNumber(5)
+  $core.bool hasPhotoURL() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearPhotoURL() => clearField(5);
 }
 
 

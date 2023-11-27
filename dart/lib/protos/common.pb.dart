@@ -61,7 +61,7 @@ class IdInput extends $pb.GeneratedMessage {
   factory IdInput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'IdInput', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.common'), createEmptyInstance: create)
-    ..aInt64(1, _omitFieldNames ? '' : 'id')
+    ..a<$fixnum.Int64>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
     ..hasRequiredFields = false
   ;
 
@@ -96,26 +96,26 @@ class IdInput extends $pb.GeneratedMessage {
   void clearId() => clearField(1);
 }
 
-class BoolOutput extends $pb.GeneratedMessage {
-  factory BoolOutput({
-    $core.bool? success,
+class Messages extends $pb.GeneratedMessage {
+  factory Messages({
+    $core.String? error,
     $core.String? message,
   }) {
     final $result = create();
-    if (success != null) {
-      $result.success = success;
+    if (error != null) {
+      $result.error = error;
     }
     if (message != null) {
       $result.message = message;
     }
     return $result;
   }
-  BoolOutput._() : super();
-  factory BoolOutput.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory BoolOutput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  Messages._() : super();
+  factory Messages.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory Messages.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'BoolOutput', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.common'), createEmptyInstance: create)
-    ..aOB(1, _omitFieldNames ? '' : 'success')
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Messages', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.common'), createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'error')
     ..aOS(2, _omitFieldNames ? '' : 'message')
     ..hasRequiredFields = false
   ;
@@ -124,31 +124,31 @@ class BoolOutput extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
   'Will be removed in next major version')
-  BoolOutput clone() => BoolOutput()..mergeFromMessage(this);
+  Messages clone() => Messages()..mergeFromMessage(this);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  BoolOutput copyWith(void Function(BoolOutput) updates) => super.copyWith((message) => updates(message as BoolOutput)) as BoolOutput;
+  Messages copyWith(void Function(Messages) updates) => super.copyWith((message) => updates(message as Messages)) as Messages;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
-  static BoolOutput create() => BoolOutput._();
-  BoolOutput createEmptyInstance() => create();
-  static $pb.PbList<BoolOutput> createRepeated() => $pb.PbList<BoolOutput>();
+  static Messages create() => Messages._();
+  Messages createEmptyInstance() => create();
+  static $pb.PbList<Messages> createRepeated() => $pb.PbList<Messages>();
   @$core.pragma('dart2js:noInline')
-  static BoolOutput getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<BoolOutput>(create);
-  static BoolOutput? _defaultInstance;
+  static Messages getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Messages>(create);
+  static Messages? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.bool get success => $_getBF(0);
+  $core.String get error => $_getSZ(0);
   @$pb.TagNumber(1)
-  set success($core.bool v) { $_setBool(0, v); }
+  set error($core.String v) { $_setString(0, v); }
   @$pb.TagNumber(1)
-  $core.bool hasSuccess() => $_has(0);
+  $core.bool hasError() => $_has(0);
   @$pb.TagNumber(1)
-  void clearSuccess() => clearField(1);
+  void clearError() => clearField(1);
 
   @$pb.TagNumber(2)
   $core.String get message => $_getSZ(1);
@@ -158,6 +158,70 @@ class BoolOutput extends $pb.GeneratedMessage {
   $core.bool hasMessage() => $_has(1);
   @$pb.TagNumber(2)
   void clearMessage() => clearField(2);
+}
+
+class Chunk extends $pb.GeneratedMessage {
+  factory Chunk({
+    $core.int? len,
+    $core.int? part,
+  }) {
+    final $result = create();
+    if (len != null) {
+      $result.len = len;
+    }
+    if (part != null) {
+      $result.part = part;
+    }
+    return $result;
+  }
+  Chunk._() : super();
+  factory Chunk.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory Chunk.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Chunk', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.common'), createEmptyInstance: create)
+    ..a<$core.int>(1, _omitFieldNames ? '' : 'len', $pb.PbFieldType.OU3)
+    ..a<$core.int>(2, _omitFieldNames ? '' : 'part', $pb.PbFieldType.OU3)
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  Chunk clone() => Chunk()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  Chunk copyWith(void Function(Chunk) updates) => super.copyWith((message) => updates(message as Chunk)) as Chunk;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static Chunk create() => Chunk._();
+  Chunk createEmptyInstance() => create();
+  static $pb.PbList<Chunk> createRepeated() => $pb.PbList<Chunk>();
+  @$core.pragma('dart2js:noInline')
+  static Chunk getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Chunk>(create);
+  static Chunk? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.int get len => $_getIZ(0);
+  @$pb.TagNumber(1)
+  set len($core.int v) { $_setUnsignedInt32(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasLen() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearLen() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.int get part => $_getIZ(1);
+  @$pb.TagNumber(2)
+  set part($core.int v) { $_setUnsignedInt32(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasPart() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearPart() => clearField(2);
 }
 
 

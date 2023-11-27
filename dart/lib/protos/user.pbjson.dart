@@ -129,45 +129,49 @@ final $typed_data.Uint8List loginInputDescriptor = $convert.base64Decode(
     'CgpMb2dpbklucHV0EhYKBm1vYmlsZRgBIAEoCVIGbW9iaWxlEhoKCHBhc3N3b3JkGAIgASgJUg'
     'hwYXNzd29yZA==');
 
-@$core.Deprecated('Use userOutputDescriptor instead')
-const UserOutput$json = {
-  '1': 'UserOutput',
+@$core.Deprecated('Use authOutputDescriptor instead')
+const AuthOutput$json = {
+  '1': 'AuthOutput',
   '2': [
     {'1': 'token', '3': 1, '4': 1, '5': 9, '10': 'token'},
     {'1': 'user', '3': 2, '4': 1, '5': 11, '6': '.ekipma.api.user.User', '10': 'user'},
   ],
 };
 
-/// Descriptor for `UserOutput`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List userOutputDescriptor = $convert.base64Decode(
-    'CgpVc2VyT3V0cHV0EhQKBXRva2VuGAEgASgJUgV0b2tlbhIpCgR1c2VyGAIgASgLMhUuZWtpcG'
+/// Descriptor for `AuthOutput`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List authOutputDescriptor = $convert.base64Decode(
+    'CgpBdXRoT3V0cHV0EhQKBXRva2VuGAEgASgJUgV0b2tlbhIpCgR1c2VyGAIgASgLMhUuZWtpcG'
     '1hLmFwaS51c2VyLlVzZXJSBHVzZXI=');
 
 @$core.Deprecated('Use friendInputDescriptor instead')
 const FriendInput$json = {
   '1': 'FriendInput',
   '2': [
-    {'1': 'mobile', '3': 1, '4': 1, '5': 9, '10': 'mobile'},
+    {'1': 'chunk', '3': 1, '4': 1, '5': 11, '6': '.ekipma.api.common.Chunk', '10': 'chunk'},
+    {'1': 'mobile', '3': 2, '4': 1, '5': 9, '10': 'mobile'},
   ],
 };
 
 /// Descriptor for `FriendInput`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List friendInputDescriptor = $convert.base64Decode(
-    'CgtGcmllbmRJbnB1dBIWCgZtb2JpbGUYASABKAlSBm1vYmlsZQ==');
+    'CgtGcmllbmRJbnB1dBIuCgVjaHVuaxgBIAEoCzIYLmVraXBtYS5hcGkuY29tbW9uLkNodW5rUg'
+    'VjaHVuaxIWCgZtb2JpbGUYAiABKAlSBm1vYmlsZQ==');
 
 @$core.Deprecated('Use friendOutputDescriptor instead')
 const FriendOutput$json = {
   '1': 'FriendOutput',
   '2': [
-    {'1': 'id', '3': 1, '4': 1, '5': 4, '10': 'id'},
-    {'1': 'name', '3': 6, '4': 1, '5': 9, '10': 'name'},
-    {'1': 'email', '3': 7, '4': 1, '5': 9, '10': 'email'},
-    {'1': 'photoURL', '3': 8, '4': 1, '5': 9, '10': 'photoURL'},
+    {'1': 'chunk', '3': 1, '4': 1, '5': 11, '6': '.ekipma.api.common.Chunk', '10': 'chunk'},
+    {'1': 'id', '3': 2, '4': 1, '5': 4, '10': 'id'},
+    {'1': 'name', '3': 3, '4': 1, '5': 9, '10': 'name'},
+    {'1': 'email', '3': 4, '4': 1, '5': 9, '10': 'email'},
+    {'1': 'photoURL', '3': 5, '4': 1, '5': 9, '10': 'photoURL'},
   ],
 };
 
 /// Descriptor for `FriendOutput`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List friendOutputDescriptor = $convert.base64Decode(
-    'CgxGcmllbmRPdXRwdXQSDgoCaWQYASABKARSAmlkEhIKBG5hbWUYBiABKAlSBG5hbWUSFAoFZW'
-    '1haWwYByABKAlSBWVtYWlsEhoKCHBob3RvVVJMGAggASgJUghwaG90b1VSTA==');
+    'CgxGcmllbmRPdXRwdXQSLgoFY2h1bmsYASABKAsyGC5la2lwbWEuYXBpLmNvbW1vbi5DaHVua1'
+    'IFY2h1bmsSDgoCaWQYAiABKARSAmlkEhIKBG5hbWUYAyABKAlSBG5hbWUSFAoFZW1haWwYBCAB'
+    'KAlSBWVtYWlsEhoKCHBob3RvVVJMGAUgASgJUghwaG90b1VSTA==');
 

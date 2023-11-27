@@ -5,9 +5,14 @@ option go_package = "./go;pb";
 
 message Empty {}
 
-message IdInput { int64 id = 1; }
+message IdInput { uint64 id = 1; }
 
-message BoolOutput {
-  bool success = 1;
-  string message = 2;
+message Messages {
+  optional string error = 1;
+  optional string message = 2;
+}
+
+message Chunk {
+  uint32 len = 1;
+  uint32 part = 2;
 }

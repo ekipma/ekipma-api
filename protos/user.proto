@@ -35,8 +35,8 @@ service UserService {
   rpc SendOtp(OtpMobileInput) returns (ekipma.api.common.Empty) {}
   rpc CheckOtp(OtpCodeInput) returns (OtpOutput) {}
   // auth
-  rpc RegisterUser(RegisterInput) returns (UserOutput) {}
-  rpc LoginUser(LoginInput) returns (UserOutput) {}
+  rpc RegisterUser(RegisterInput) returns (AuthOutput) {}
+  rpc LoginUser(LoginInput) returns (AuthOutput) {}
   // friend
   rpc AddFriends(stream FriendInput) returns (stream FriendOutput) {}
   rpc GetFriends(ekipma.api.common.Empty) returns (stream FriendOutput) {}
@@ -73,19 +73,21 @@ message LoginInput {
   string password = 2;
 }
 
-message UserOutput {
+message AuthOutput {
   string token = 1;
   User user = 2;
 }
 
 // friend
 message FriendInput {
-  string mobile = 1; //
+  ekipma.api.common.Chunk chunk = 1;
+  string mobile = 2;
 }
 
 message FriendOutput {
-  uint64 id = 1;
-  string name = 6;
-  string email = 7;
-  string photoURL = 8;
+  ekipma.api.common.Chunk chunk = 1;
+  uint64 id = 2;
+  string name = 3;
+  string email = 4;
+  string photoURL = 5;
 }

@@ -48,35 +48,37 @@ final $typed_data.Uint8List payUnitDescriptor = $convert.base64Decode(
 const Pay$json = {
   '1': 'Pay',
   '2': [
-    {'1': 'id', '3': 1, '4': 1, '5': 4, '10': 'id'},
-    {'1': 'createdAt', '3': 2, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'createdAt'},
-    {'1': 'updatedAt', '3': 3, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'updatedAt'},
-    {'1': 'title', '3': 4, '4': 1, '5': 9, '10': 'title'},
-    {'1': 'desc', '3': 5, '4': 1, '5': 9, '10': 'desc'},
-    {'1': 'author', '3': 6, '4': 1, '5': 4, '10': 'author'},
-    {'1': 'assignee', '3': 7, '4': 1, '5': 4, '10': 'assignee'},
-    {'1': 'assignees', '3': 8, '4': 3, '5': 4, '10': 'assignees'},
-    {'1': 'group', '3': 9, '4': 1, '5': 4, '10': 'group'},
-    {'1': 'private', '3': 10, '4': 1, '5': 8, '10': 'private'},
-    {'1': 'total', '3': 11, '4': 1, '5': 1, '10': 'total'},
-    {'1': 'unit', '3': 12, '4': 1, '5': 14, '6': '.ekipma.api.pay.PayUnit', '10': 'unit'},
-    {'1': 'type', '3': 13, '4': 1, '5': 14, '6': '.ekipma.api.pay.PayType', '10': 'type'},
-    {'1': 'rejected', '3': 14, '4': 1, '5': 8, '10': 'rejected'},
-    {'1': 'hidden', '3': 15, '4': 1, '5': 8, '10': 'hidden'},
+    {'1': 'chunk', '3': 1, '4': 1, '5': 11, '6': '.ekipma.api.common.Chunk', '10': 'chunk'},
+    {'1': 'id', '3': 2, '4': 1, '5': 4, '10': 'id'},
+    {'1': 'createdAt', '3': 3, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'createdAt'},
+    {'1': 'updatedAt', '3': 4, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'updatedAt'},
+    {'1': 'title', '3': 5, '4': 1, '5': 9, '10': 'title'},
+    {'1': 'desc', '3': 6, '4': 1, '5': 9, '10': 'desc'},
+    {'1': 'author', '3': 7, '4': 1, '5': 4, '10': 'author'},
+    {'1': 'assignee', '3': 8, '4': 1, '5': 4, '10': 'assignee'},
+    {'1': 'assignees', '3': 9, '4': 3, '5': 4, '10': 'assignees'},
+    {'1': 'group', '3': 10, '4': 1, '5': 4, '10': 'group'},
+    {'1': 'private', '3': 11, '4': 1, '5': 8, '10': 'private'},
+    {'1': 'total', '3': 12, '4': 1, '5': 1, '10': 'total'},
+    {'1': 'unit', '3': 13, '4': 1, '5': 14, '6': '.ekipma.api.pay.PayUnit', '10': 'unit'},
+    {'1': 'type', '3': 14, '4': 1, '5': 14, '6': '.ekipma.api.pay.PayType', '10': 'type'},
+    {'1': 'rejected', '3': 15, '4': 1, '5': 8, '10': 'rejected'},
+    {'1': 'hidden', '3': 16, '4': 1, '5': 8, '10': 'hidden'},
   ],
 };
 
 /// Descriptor for `Pay`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List payDescriptor = $convert.base64Decode(
-    'CgNQYXkSDgoCaWQYASABKARSAmlkEjgKCWNyZWF0ZWRBdBgCIAEoCzIaLmdvb2dsZS5wcm90b2'
-    'J1Zi5UaW1lc3RhbXBSCWNyZWF0ZWRBdBI4Cgl1cGRhdGVkQXQYAyABKAsyGi5nb29nbGUucHJv'
-    'dG9idWYuVGltZXN0YW1wUgl1cGRhdGVkQXQSFAoFdGl0bGUYBCABKAlSBXRpdGxlEhIKBGRlc2'
-    'MYBSABKAlSBGRlc2MSFgoGYXV0aG9yGAYgASgEUgZhdXRob3ISGgoIYXNzaWduZWUYByABKARS'
-    'CGFzc2lnbmVlEhwKCWFzc2lnbmVlcxgIIAMoBFIJYXNzaWduZWVzEhQKBWdyb3VwGAkgASgEUg'
-    'Vncm91cBIYCgdwcml2YXRlGAogASgIUgdwcml2YXRlEhQKBXRvdGFsGAsgASgBUgV0b3RhbBIr'
-    'CgR1bml0GAwgASgOMhcuZWtpcG1hLmFwaS5wYXkuUGF5VW5pdFIEdW5pdBIrCgR0eXBlGA0gAS'
-    'gOMhcuZWtpcG1hLmFwaS5wYXkuUGF5VHlwZVIEdHlwZRIaCghyZWplY3RlZBgOIAEoCFIIcmVq'
-    'ZWN0ZWQSFgoGaGlkZGVuGA8gASgIUgZoaWRkZW4=');
+    'CgNQYXkSLgoFY2h1bmsYASABKAsyGC5la2lwbWEuYXBpLmNvbW1vbi5DaHVua1IFY2h1bmsSDg'
+    'oCaWQYAiABKARSAmlkEjgKCWNyZWF0ZWRBdBgDIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1l'
+    'c3RhbXBSCWNyZWF0ZWRBdBI4Cgl1cGRhdGVkQXQYBCABKAsyGi5nb29nbGUucHJvdG9idWYuVG'
+    'ltZXN0YW1wUgl1cGRhdGVkQXQSFAoFdGl0bGUYBSABKAlSBXRpdGxlEhIKBGRlc2MYBiABKAlS'
+    'BGRlc2MSFgoGYXV0aG9yGAcgASgEUgZhdXRob3ISGgoIYXNzaWduZWUYCCABKARSCGFzc2lnbm'
+    'VlEhwKCWFzc2lnbmVlcxgJIAMoBFIJYXNzaWduZWVzEhQKBWdyb3VwGAogASgEUgVncm91cBIY'
+    'Cgdwcml2YXRlGAsgASgIUgdwcml2YXRlEhQKBXRvdGFsGAwgASgBUgV0b3RhbBIrCgR1bml0GA'
+    '0gASgOMhcuZWtpcG1hLmFwaS5wYXkuUGF5VW5pdFIEdW5pdBIrCgR0eXBlGA4gASgOMhcuZWtp'
+    'cG1hLmFwaS5wYXkuUGF5VHlwZVIEdHlwZRIaCghyZWplY3RlZBgPIAEoCFIIcmVqZWN0ZWQSFg'
+    'oGaGlkZGVuGBAgASgIUgZoaWRkZW4=');
 
 @$core.Deprecated('Use payInputDescriptor instead')
 const PayInput$json = {
