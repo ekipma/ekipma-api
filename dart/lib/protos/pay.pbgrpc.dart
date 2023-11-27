@@ -30,18 +30,26 @@ class PayServiceClient extends $grpc.Client {
       '/ekipma.api.pay.PayService/GetPays',
       ($1.Empty value) => value.writeToBuffer(),
       ($core.List<$core.int> value) => $0.Pay.fromBuffer(value));
-  static final _$getRecentPays = $grpc.ClientMethod<$0.RecentInput, $0.Pay>(
+  static final _$getRecentPays = $grpc.ClientMethod<$1.IdInput, $0.Pay>(
       '/ekipma.api.pay.PayService/GetRecentPays',
-      ($0.RecentInput value) => value.writeToBuffer(),
+      ($1.IdInput value) => value.writeToBuffer(),
       ($core.List<$core.int> value) => $0.Pay.fromBuffer(value));
   static final _$updatePay = $grpc.ClientMethod<$0.PayUpdateInput, $0.Pay>(
       '/ekipma.api.pay.PayService/UpdatePay',
       ($0.PayUpdateInput value) => value.writeToBuffer(),
       ($core.List<$core.int> value) => $0.Pay.fromBuffer(value));
-  static final _$removePay = $grpc.ClientMethod<$1.IdInput, $1.Empty>(
-      '/ekipma.api.pay.PayService/RemovePay',
+  static final _$hidePay = $grpc.ClientMethod<$1.IdInput, $1.Empty>(
+      '/ekipma.api.pay.PayService/HidePay',
       ($1.IdInput value) => value.writeToBuffer(),
       ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
+  static final _$checkPayIntegrity = $grpc.ClientMethod<$1.Empty, $0.PayIntegrity>(
+      '/ekipma.api.pay.PayService/CheckPayIntegrity',
+      ($1.Empty value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $0.PayIntegrity.fromBuffer(value));
+  static final _$getLostPays = $grpc.ClientMethod<$0.PayIntegrity, $0.Pay>(
+      '/ekipma.api.pay.PayService/GetLostPays',
+      ($0.PayIntegrity value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $0.Pay.fromBuffer(value));
 
   PayServiceClient($grpc.ClientChannel channel,
       {$grpc.CallOptions? options,
@@ -57,7 +65,7 @@ class PayServiceClient extends $grpc.Client {
     return $createStreamingCall(_$getPays, $async.Stream.fromIterable([request]), options: options);
   }
 
-  $grpc.ResponseStream<$0.Pay> getRecentPays($0.RecentInput request, {$grpc.CallOptions? options}) {
+  $grpc.ResponseStream<$0.Pay> getRecentPays($1.IdInput request, {$grpc.CallOptions? options}) {
     return $createStreamingCall(_$getRecentPays, $async.Stream.fromIterable([request]), options: options);
   }
 
@@ -65,8 +73,16 @@ class PayServiceClient extends $grpc.Client {
     return $createUnaryCall(_$updatePay, request, options: options);
   }
 
-  $grpc.ResponseFuture<$1.Empty> removePay($1.IdInput request, {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$removePay, request, options: options);
+  $grpc.ResponseFuture<$1.Empty> hidePay($1.IdInput request, {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$hidePay, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$0.PayIntegrity> checkPayIntegrity($1.Empty request, {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$checkPayIntegrity, request, options: options);
+  }
+
+  $grpc.ResponseStream<$0.Pay> getLostPays($0.PayIntegrity request, {$grpc.CallOptions? options}) {
+    return $createStreamingCall(_$getLostPays, $async.Stream.fromIterable([request]), options: options);
   }
 }
 
@@ -89,12 +105,12 @@ abstract class PayServiceBase extends $grpc.Service {
         true,
         ($core.List<$core.int> value) => $1.Empty.fromBuffer(value),
         ($0.Pay value) => value.writeToBuffer()));
-    $addMethod($grpc.ServiceMethod<$0.RecentInput, $0.Pay>(
+    $addMethod($grpc.ServiceMethod<$1.IdInput, $0.Pay>(
         'GetRecentPays',
         getRecentPays_Pre,
         false,
         true,
-        ($core.List<$core.int> value) => $0.RecentInput.fromBuffer(value),
+        ($core.List<$core.int> value) => $1.IdInput.fromBuffer(value),
         ($0.Pay value) => value.writeToBuffer()));
     $addMethod($grpc.ServiceMethod<$0.PayUpdateInput, $0.Pay>(
         'UpdatePay',
@@ -104,12 +120,26 @@ abstract class PayServiceBase extends $grpc.Service {
         ($core.List<$core.int> value) => $0.PayUpdateInput.fromBuffer(value),
         ($0.Pay value) => value.writeToBuffer()));
     $addMethod($grpc.ServiceMethod<$1.IdInput, $1.Empty>(
-        'RemovePay',
-        removePay_Pre,
+        'HidePay',
+        hidePay_Pre,
         false,
         false,
         ($core.List<$core.int> value) => $1.IdInput.fromBuffer(value),
         ($1.Empty value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$1.Empty, $0.PayIntegrity>(
+        'CheckPayIntegrity',
+        checkPayIntegrity_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) => $1.Empty.fromBuffer(value),
+        ($0.PayIntegrity value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.PayIntegrity, $0.Pay>(
+        'GetLostPays',
+        getLostPays_Pre,
+        false,
+        true,
+        ($core.List<$core.int> value) => $0.PayIntegrity.fromBuffer(value),
+        ($0.Pay value) => value.writeToBuffer()));
   }
 
   $async.Stream<$0.Pay> createPays_Pre($grpc.ServiceCall call, $async.Future<$0.PayInput> request) async* {
@@ -120,7 +150,7 @@ abstract class PayServiceBase extends $grpc.Service {
     yield* getPays(call, await request);
   }
 
-  $async.Stream<$0.Pay> getRecentPays_Pre($grpc.ServiceCall call, $async.Future<$0.RecentInput> request) async* {
+  $async.Stream<$0.Pay> getRecentPays_Pre($grpc.ServiceCall call, $async.Future<$1.IdInput> request) async* {
     yield* getRecentPays(call, await request);
   }
 
@@ -128,13 +158,23 @@ abstract class PayServiceBase extends $grpc.Service {
     return updatePay(call, await request);
   }
 
-  $async.Future<$1.Empty> removePay_Pre($grpc.ServiceCall call, $async.Future<$1.IdInput> request) async {
-    return removePay(call, await request);
+  $async.Future<$1.Empty> hidePay_Pre($grpc.ServiceCall call, $async.Future<$1.IdInput> request) async {
+    return hidePay(call, await request);
+  }
+
+  $async.Future<$0.PayIntegrity> checkPayIntegrity_Pre($grpc.ServiceCall call, $async.Future<$1.Empty> request) async {
+    return checkPayIntegrity(call, await request);
+  }
+
+  $async.Stream<$0.Pay> getLostPays_Pre($grpc.ServiceCall call, $async.Future<$0.PayIntegrity> request) async* {
+    yield* getLostPays(call, await request);
   }
 
   $async.Stream<$0.Pay> createPays($grpc.ServiceCall call, $0.PayInput request);
   $async.Stream<$0.Pay> getPays($grpc.ServiceCall call, $1.Empty request);
-  $async.Stream<$0.Pay> getRecentPays($grpc.ServiceCall call, $0.RecentInput request);
+  $async.Stream<$0.Pay> getRecentPays($grpc.ServiceCall call, $1.IdInput request);
   $async.Future<$0.Pay> updatePay($grpc.ServiceCall call, $0.PayUpdateInput request);
-  $async.Future<$1.Empty> removePay($grpc.ServiceCall call, $1.IdInput request);
+  $async.Future<$1.Empty> hidePay($grpc.ServiceCall call, $1.IdInput request);
+  $async.Future<$0.PayIntegrity> checkPayIntegrity($grpc.ServiceCall call, $1.Empty request);
+  $async.Stream<$0.Pay> getLostPays($grpc.ServiceCall call, $0.PayIntegrity request);
 }

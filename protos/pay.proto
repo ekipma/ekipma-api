@@ -45,9 +45,12 @@ message Pay {
 service PayService {
   rpc CreatePays(PayInput) returns (stream Pay) {}
   rpc GetPays(ekipma.api.common.Empty) returns (stream Pay) {} // avoid amap
-  rpc GetRecentPays(RecentInput) returns (stream Pay) {}
+  rpc GetRecentPays(ekipma.api.common.IdInput) returns (stream Pay) {}
   rpc UpdatePay(PayUpdateInput) returns (Pay) {}
-  rpc RemovePay(ekipma.api.common.IdInput) returns (ekipma.api.common.Empty) {}
+  rpc HidePay(ekipma.api.common.IdInput) returns (ekipma.api.common.Empty) {}
+  // integrity - probably a button in mobile client settings
+  rpc CheckPayIntegrity(ekipma.api.common.Empty) returns (PayIntegrity) {}
+  rpc GetLostPays(PayIntegrity) returns (stream Pay) {}
 }
 
 message PayInput {
@@ -67,6 +70,6 @@ message PayUpdateInput {
   string desc = 2;
 }
 
-message RecentInput {
-  uint64 last = 1; // rid
+message PayIntegrity {
+  repeated uint64 ids = 1; // id of lost pays
 }

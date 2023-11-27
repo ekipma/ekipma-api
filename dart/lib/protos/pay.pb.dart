@@ -503,22 +503,22 @@ class PayUpdateInput extends $pb.GeneratedMessage {
   void clearDesc() => clearField(2);
 }
 
-class RecentInput extends $pb.GeneratedMessage {
-  factory RecentInput({
-    $fixnum.Int64? last,
+class PayIntegrity extends $pb.GeneratedMessage {
+  factory PayIntegrity({
+    $core.Iterable<$fixnum.Int64>? ids,
   }) {
     final $result = create();
-    if (last != null) {
-      $result.last = last;
+    if (ids != null) {
+      $result.ids.addAll(ids);
     }
     return $result;
   }
-  RecentInput._() : super();
-  factory RecentInput.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory RecentInput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  PayIntegrity._() : super();
+  factory PayIntegrity.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory PayIntegrity.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'RecentInput', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.pay'), createEmptyInstance: create)
-    ..a<$fixnum.Int64>(1, _omitFieldNames ? '' : 'last', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'PayIntegrity', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.pay'), createEmptyInstance: create)
+    ..p<$fixnum.Int64>(1, _omitFieldNames ? '' : 'ids', $pb.PbFieldType.KU6)
     ..hasRequiredFields = false
   ;
 
@@ -526,31 +526,25 @@ class RecentInput extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
   'Will be removed in next major version')
-  RecentInput clone() => RecentInput()..mergeFromMessage(this);
+  PayIntegrity clone() => PayIntegrity()..mergeFromMessage(this);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  RecentInput copyWith(void Function(RecentInput) updates) => super.copyWith((message) => updates(message as RecentInput)) as RecentInput;
+  PayIntegrity copyWith(void Function(PayIntegrity) updates) => super.copyWith((message) => updates(message as PayIntegrity)) as PayIntegrity;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
-  static RecentInput create() => RecentInput._();
-  RecentInput createEmptyInstance() => create();
-  static $pb.PbList<RecentInput> createRepeated() => $pb.PbList<RecentInput>();
+  static PayIntegrity create() => PayIntegrity._();
+  PayIntegrity createEmptyInstance() => create();
+  static $pb.PbList<PayIntegrity> createRepeated() => $pb.PbList<PayIntegrity>();
   @$core.pragma('dart2js:noInline')
-  static RecentInput getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<RecentInput>(create);
-  static RecentInput? _defaultInstance;
+  static PayIntegrity getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<PayIntegrity>(create);
+  static PayIntegrity? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $fixnum.Int64 get last => $_getI64(0);
-  @$pb.TagNumber(1)
-  set last($fixnum.Int64 v) { $_setInt64(0, v); }
-  @$pb.TagNumber(1)
-  $core.bool hasLast() => $_has(0);
-  @$pb.TagNumber(1)
-  void clearLast() => clearField(1);
+  $core.List<$fixnum.Int64> get ids => $_getList(0);
 }
 
 

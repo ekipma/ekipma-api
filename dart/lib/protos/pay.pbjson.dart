@@ -118,15 +118,15 @@ final $typed_data.Uint8List payUpdateInputDescriptor = $convert.base64Decode(
     'Cg5QYXlVcGRhdGVJbnB1dBIUCgV0aXRsZRgBIAEoCVIFdGl0bGUSEgoEZGVzYxgCIAEoCVIEZG'
     'VzYw==');
 
-@$core.Deprecated('Use recentInputDescriptor instead')
-const RecentInput$json = {
-  '1': 'RecentInput',
+@$core.Deprecated('Use payIntegrityDescriptor instead')
+const PayIntegrity$json = {
+  '1': 'PayIntegrity',
   '2': [
-    {'1': 'last', '3': 1, '4': 1, '5': 4, '10': 'last'},
+    {'1': 'ids', '3': 1, '4': 3, '5': 4, '10': 'ids'},
   ],
 };
 
-/// Descriptor for `RecentInput`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List recentInputDescriptor = $convert.base64Decode(
-    'CgtSZWNlbnRJbnB1dBISCgRsYXN0GAEgASgEUgRsYXN0');
+/// Descriptor for `PayIntegrity`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List payIntegrityDescriptor = $convert.base64Decode(
+    'CgxQYXlJbnRlZ3JpdHkSEAoDaWRzGAEgAygEUgNpZHM=');
 
