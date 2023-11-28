@@ -6,6 +6,12 @@ import "google/protobuf/timestamp.proto";
 
 option go_package = "./go;pb";
 
+message Location {
+  string name = 1;
+  double lat = 2;
+  double long = 3;
+}
+
 message Plan {
   ekipma.api.common.Chunk chunk = 1;
   // gorm
@@ -22,7 +28,8 @@ message Plan {
   bool private = 11;
   // plan
   google.protobuf.Timestamp dueAt = 12; // due date
-  bool norify = 13;
+  Location location = 13;
+  bool norify = 14;
 }
 
 service PlanService {
@@ -43,5 +50,6 @@ message PlanInput {
   bool private = 6;
   // plan
   google.protobuf.Timestamp dueAt = 7;
-  bool notify = 8;
+  Location location = 8;
+  bool notify = 9;
 }

@@ -13,6 +13,21 @@ import 'dart:convert' as $convert;
 import 'dart:core' as $core;
 import 'dart:typed_data' as $typed_data;
 
+@$core.Deprecated('Use locationDescriptor instead')
+const Location$json = {
+  '1': 'Location',
+  '2': [
+    {'1': 'name', '3': 1, '4': 1, '5': 9, '10': 'name'},
+    {'1': 'lat', '3': 2, '4': 1, '5': 1, '10': 'lat'},
+    {'1': 'long', '3': 3, '4': 1, '5': 1, '10': 'long'},
+  ],
+};
+
+/// Descriptor for `Location`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List locationDescriptor = $convert.base64Decode(
+    'CghMb2NhdGlvbhISCgRuYW1lGAEgASgJUgRuYW1lEhAKA2xhdBgCIAEoAVIDbGF0EhIKBGxvbm'
+    'cYAyABKAFSBGxvbmc=');
+
 @$core.Deprecated('Use planDescriptor instead')
 const Plan$json = {
   '1': 'Plan',
@@ -29,7 +44,8 @@ const Plan$json = {
     {'1': 'group', '3': 10, '4': 1, '5': 4, '10': 'group'},
     {'1': 'private', '3': 11, '4': 1, '5': 8, '10': 'private'},
     {'1': 'dueAt', '3': 12, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'dueAt'},
-    {'1': 'norify', '3': 13, '4': 1, '5': 8, '10': 'norify'},
+    {'1': 'location', '3': 13, '4': 1, '5': 11, '6': '.ekipma.api.plan.Location', '10': 'location'},
+    {'1': 'norify', '3': 14, '4': 1, '5': 8, '10': 'norify'},
   ],
 };
 
@@ -42,7 +58,8 @@ final $typed_data.Uint8List planDescriptor = $convert.base64Decode(
     'UgRkZXNjEhYKBmF1dGhvchgHIAEoBFIGYXV0aG9yEhoKCGFzc2lnbmVlGAggASgEUghhc3NpZ2'
     '5lZRIcCglhc3NpZ25lZXMYCSADKARSCWFzc2lnbmVlcxIUCgVncm91cBgKIAEoBFIFZ3JvdXAS'
     'GAoHcHJpdmF0ZRgLIAEoCFIHcHJpdmF0ZRIwCgVkdWVBdBgMIAEoCzIaLmdvb2dsZS5wcm90b2'
-    'J1Zi5UaW1lc3RhbXBSBWR1ZUF0EhYKBm5vcmlmeRgNIAEoCFIGbm9yaWZ5');
+    'J1Zi5UaW1lc3RhbXBSBWR1ZUF0EjUKCGxvY2F0aW9uGA0gASgLMhkuZWtpcG1hLmFwaS5wbGFu'
+    'LkxvY2F0aW9uUghsb2NhdGlvbhIWCgZub3JpZnkYDiABKAhSBm5vcmlmeQ==');
 
 @$core.Deprecated('Use planInputDescriptor instead')
 const PlanInput$json = {
@@ -55,7 +72,8 @@ const PlanInput$json = {
     {'1': 'group', '3': 5, '4': 1, '5': 4, '10': 'group'},
     {'1': 'private', '3': 6, '4': 1, '5': 8, '10': 'private'},
     {'1': 'dueAt', '3': 7, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'dueAt'},
-    {'1': 'notify', '3': 8, '4': 1, '5': 8, '10': 'notify'},
+    {'1': 'location', '3': 8, '4': 1, '5': 11, '6': '.ekipma.api.plan.Location', '10': 'location'},
+    {'1': 'notify', '3': 9, '4': 1, '5': 8, '10': 'notify'},
   ],
 };
 
@@ -64,6 +82,7 @@ final $typed_data.Uint8List planInputDescriptor = $convert.base64Decode(
     'CglQbGFuSW5wdXQSFAoFdGl0bGUYASABKAlSBXRpdGxlEhIKBGRlc2MYAiABKAlSBGRlc2MSFg'
     'oGYXV0aG9yGAMgASgEUgZhdXRob3ISHAoJYXNzaWduZWVzGAQgAygEUglhc3NpZ25lZXMSFAoF'
     'Z3JvdXAYBSABKARSBWdyb3VwEhgKB3ByaXZhdGUYBiABKAhSB3ByaXZhdGUSMAoFZHVlQXQYBy'
-    'ABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wUgVkdWVBdBIWCgZub3RpZnkYCCABKAhS'
-    'Bm5vdGlmeQ==');
+    'ABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wUgVkdWVBdBI1Cghsb2NhdGlvbhgIIAEo'
+    'CzIZLmVraXBtYS5hcGkucGxhbi5Mb2NhdGlvblIIbG9jYXRpb24SFgoGbm90aWZ5GAkgASgIUg'
+    'Zub3RpZnk=');
 

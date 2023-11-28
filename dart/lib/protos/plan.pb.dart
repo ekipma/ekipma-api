@@ -17,6 +17,84 @@ import 'package:protobuf/protobuf.dart' as $pb;
 import '../google/protobuf/timestamp.pb.dart' as $5;
 import 'common.pb.dart' as $1;
 
+class Location extends $pb.GeneratedMessage {
+  factory Location({
+    $core.String? name,
+    $core.double? lat,
+    $core.double? long,
+  }) {
+    final $result = create();
+    if (name != null) {
+      $result.name = name;
+    }
+    if (lat != null) {
+      $result.lat = lat;
+    }
+    if (long != null) {
+      $result.long = long;
+    }
+    return $result;
+  }
+  Location._() : super();
+  factory Location.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory Location.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Location', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.plan'), createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'name')
+    ..a<$core.double>(2, _omitFieldNames ? '' : 'lat', $pb.PbFieldType.OD)
+    ..a<$core.double>(3, _omitFieldNames ? '' : 'long', $pb.PbFieldType.OD)
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  Location clone() => Location()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  Location copyWith(void Function(Location) updates) => super.copyWith((message) => updates(message as Location)) as Location;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static Location create() => Location._();
+  Location createEmptyInstance() => create();
+  static $pb.PbList<Location> createRepeated() => $pb.PbList<Location>();
+  @$core.pragma('dart2js:noInline')
+  static Location getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Location>(create);
+  static Location? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get name => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set name($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasName() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearName() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.double get lat => $_getN(1);
+  @$pb.TagNumber(2)
+  set lat($core.double v) { $_setDouble(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasLat() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearLat() => clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.double get long => $_getN(2);
+  @$pb.TagNumber(3)
+  set long($core.double v) { $_setDouble(2, v); }
+  @$pb.TagNumber(3)
+  $core.bool hasLong() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearLong() => clearField(3);
+}
+
 class Plan extends $pb.GeneratedMessage {
   factory Plan({
     $1.Chunk? chunk,
@@ -31,6 +109,7 @@ class Plan extends $pb.GeneratedMessage {
     $fixnum.Int64? group,
     $core.bool? private,
     $5.Timestamp? dueAt,
+    Location? location,
     $core.bool? norify,
   }) {
     final $result = create();
@@ -70,6 +149,9 @@ class Plan extends $pb.GeneratedMessage {
     if (dueAt != null) {
       $result.dueAt = dueAt;
     }
+    if (location != null) {
+      $result.location = location;
+    }
     if (norify != null) {
       $result.norify = norify;
     }
@@ -92,7 +174,8 @@ class Plan extends $pb.GeneratedMessage {
     ..a<$fixnum.Int64>(10, _omitFieldNames ? '' : 'group', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
     ..aOB(11, _omitFieldNames ? '' : 'private')
     ..aOM<$5.Timestamp>(12, _omitFieldNames ? '' : 'dueAt', protoName: 'dueAt', subBuilder: $5.Timestamp.create)
-    ..aOB(13, _omitFieldNames ? '' : 'norify')
+    ..aOM<Location>(13, _omitFieldNames ? '' : 'location', subBuilder: Location.create)
+    ..aOB(14, _omitFieldNames ? '' : 'norify')
     ..hasRequiredFields = false
   ;
 
@@ -231,13 +314,24 @@ class Plan extends $pb.GeneratedMessage {
   $5.Timestamp ensureDueAt() => $_ensure(11);
 
   @$pb.TagNumber(13)
-  $core.bool get norify => $_getBF(12);
+  Location get location => $_getN(12);
   @$pb.TagNumber(13)
-  set norify($core.bool v) { $_setBool(12, v); }
+  set location(Location v) { setField(13, v); }
   @$pb.TagNumber(13)
-  $core.bool hasNorify() => $_has(12);
+  $core.bool hasLocation() => $_has(12);
   @$pb.TagNumber(13)
-  void clearNorify() => clearField(13);
+  void clearLocation() => clearField(13);
+  @$pb.TagNumber(13)
+  Location ensureLocation() => $_ensure(12);
+
+  @$pb.TagNumber(14)
+  $core.bool get norify => $_getBF(13);
+  @$pb.TagNumber(14)
+  set norify($core.bool v) { $_setBool(13, v); }
+  @$pb.TagNumber(14)
+  $core.bool hasNorify() => $_has(13);
+  @$pb.TagNumber(14)
+  void clearNorify() => clearField(14);
 }
 
 class PlanInput extends $pb.GeneratedMessage {
@@ -249,6 +343,7 @@ class PlanInput extends $pb.GeneratedMessage {
     $fixnum.Int64? group,
     $core.bool? private,
     $5.Timestamp? dueAt,
+    Location? location,
     $core.bool? notify,
   }) {
     final $result = create();
@@ -273,6 +368,9 @@ class PlanInput extends $pb.GeneratedMessage {
     if (dueAt != null) {
       $result.dueAt = dueAt;
     }
+    if (location != null) {
+      $result.location = location;
+    }
     if (notify != null) {
       $result.notify = notify;
     }
@@ -290,7 +388,8 @@ class PlanInput extends $pb.GeneratedMessage {
     ..a<$fixnum.Int64>(5, _omitFieldNames ? '' : 'group', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
     ..aOB(6, _omitFieldNames ? '' : 'private')
     ..aOM<$5.Timestamp>(7, _omitFieldNames ? '' : 'dueAt', protoName: 'dueAt', subBuilder: $5.Timestamp.create)
-    ..aOB(8, _omitFieldNames ? '' : 'notify')
+    ..aOM<Location>(8, _omitFieldNames ? '' : 'location', subBuilder: Location.create)
+    ..aOB(9, _omitFieldNames ? '' : 'notify')
     ..hasRequiredFields = false
   ;
 
@@ -376,13 +475,24 @@ class PlanInput extends $pb.GeneratedMessage {
   $5.Timestamp ensureDueAt() => $_ensure(6);
 
   @$pb.TagNumber(8)
-  $core.bool get notify => $_getBF(7);
+  Location get location => $_getN(7);
   @$pb.TagNumber(8)
-  set notify($core.bool v) { $_setBool(7, v); }
+  set location(Location v) { setField(8, v); }
   @$pb.TagNumber(8)
-  $core.bool hasNotify() => $_has(7);
+  $core.bool hasLocation() => $_has(7);
   @$pb.TagNumber(8)
-  void clearNotify() => clearField(8);
+  void clearLocation() => clearField(8);
+  @$pb.TagNumber(8)
+  Location ensureLocation() => $_ensure(7);
+
+  @$pb.TagNumber(9)
+  $core.bool get notify => $_getBF(8);
+  @$pb.TagNumber(9)
+  set notify($core.bool v) { $_setBool(8, v); }
+  @$pb.TagNumber(9)
+  $core.bool hasNotify() => $_has(8);
+  @$pb.TagNumber(9)
+  void clearNotify() => clearField(9);
 }
 
 
