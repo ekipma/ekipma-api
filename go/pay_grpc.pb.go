@@ -23,13 +23,11 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type PayServiceClient interface {
 	CreatePays(ctx context.Context, in *PayInput, opts ...grpc.CallOption) (PayService_CreatePaysClient, error)
-	GetPays(ctx context.Context, in *Empty, opts ...grpc.CallOption) (PayService_GetPaysClient, error)
-	GetRecentPays(ctx context.Context, in *IdInput, opts ...grpc.CallOption) (PayService_GetRecentPaysClient, error)
-	UpdatePay(ctx context.Context, in *PayUpdateInput, opts ...grpc.CallOption) (*Pay, error)
-	HidePay(ctx context.Context, in *IdInput, opts ...grpc.CallOption) (*Empty, error)
+	RecentPays(ctx context.Context, in *Last, opts ...grpc.CallOption) (PayService_RecentPaysClient, error)
+	DeletePay(ctx context.Context, in *Last, opts ...grpc.CallOption) (*Empty, error)
 	// integrity - probably a button in mobile client settings
-	CheckPayIntegrity(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*PayIntegrity, error)
-	GetLostPays(ctx context.Context, in *PayIntegrity, opts ...grpc.CallOption) (PayService_GetLostPaysClient, error)
+	PayIds(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Integrity, error)
+	LostPays(ctx context.Context, in *Integrity, opts ...grpc.CallOption) (PayService_LostPaysClient, error)
 }
 
 type payServiceClient struct {
@@ -72,12 +70,12 @@ func (x *payServiceCreatePaysClient) Recv() (*Pay, error) {
 	return m, nil
 }
 
-func (c *payServiceClient) GetPays(ctx context.Context, in *Empty, opts ...grpc.CallOption) (PayService_GetPaysClient, error) {
-	stream, err := c.cc.NewStream(ctx, &PayService_ServiceDesc.Streams[1], "/ekipma.api.pay.PayService/GetPays", opts...)
+func (c *payServiceClient) RecentPays(ctx context.Context, in *Last, opts ...grpc.CallOption) (PayService_RecentPaysClient, error) {
+	stream, err := c.cc.NewStream(ctx, &PayService_ServiceDesc.Streams[1], "/ekipma.api.pay.PayService/RecentPays", opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &payServiceGetPaysClient{stream}
+	x := &payServiceRecentPaysClient{stream}
 	if err := x.ClientStream.SendMsg(in); err != nil {
 		return nil, err
 	}
@@ -87,16 +85,16 @@ func (c *payServiceClient) GetPays(ctx context.Context, in *Empty, opts ...grpc.
 	return x, nil
 }
 
-type PayService_GetPaysClient interface {
+type PayService_RecentPaysClient interface {
 	Recv() (*Pay, error)
 	grpc.ClientStream
 }
 
-type payServiceGetPaysClient struct {
+type payServiceRecentPaysClient struct {
 	grpc.ClientStream
 }
 
-func (x *payServiceGetPaysClient) Recv() (*Pay, error) {
+func (x *payServiceRecentPaysClient) Recv() (*Pay, error) {
 	m := new(Pay)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
@@ -104,71 +102,30 @@ func (x *payServiceGetPaysClient) Recv() (*Pay, error) {
 	return m, nil
 }
 
-func (c *payServiceClient) GetRecentPays(ctx context.Context, in *IdInput, opts ...grpc.CallOption) (PayService_GetRecentPaysClient, error) {
-	stream, err := c.cc.NewStream(ctx, &PayService_ServiceDesc.Streams[2], "/ekipma.api.pay.PayService/GetRecentPays", opts...)
-	if err != nil {
-		return nil, err
-	}
-	x := &payServiceGetRecentPaysClient{stream}
-	if err := x.ClientStream.SendMsg(in); err != nil {
-		return nil, err
-	}
-	if err := x.ClientStream.CloseSend(); err != nil {
-		return nil, err
-	}
-	return x, nil
-}
-
-type PayService_GetRecentPaysClient interface {
-	Recv() (*Pay, error)
-	grpc.ClientStream
-}
-
-type payServiceGetRecentPaysClient struct {
-	grpc.ClientStream
-}
-
-func (x *payServiceGetRecentPaysClient) Recv() (*Pay, error) {
-	m := new(Pay)
-	if err := x.ClientStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
-}
-
-func (c *payServiceClient) UpdatePay(ctx context.Context, in *PayUpdateInput, opts ...grpc.CallOption) (*Pay, error) {
-	out := new(Pay)
-	err := c.cc.Invoke(ctx, "/ekipma.api.pay.PayService/UpdatePay", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *payServiceClient) HidePay(ctx context.Context, in *IdInput, opts ...grpc.CallOption) (*Empty, error) {
+func (c *payServiceClient) DeletePay(ctx context.Context, in *Last, opts ...grpc.CallOption) (*Empty, error) {
 	out := new(Empty)
-	err := c.cc.Invoke(ctx, "/ekipma.api.pay.PayService/HidePay", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/ekipma.api.pay.PayService/DeletePay", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *payServiceClient) CheckPayIntegrity(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*PayIntegrity, error) {
-	out := new(PayIntegrity)
-	err := c.cc.Invoke(ctx, "/ekipma.api.pay.PayService/CheckPayIntegrity", in, out, opts...)
+func (c *payServiceClient) PayIds(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Integrity, error) {
+	out := new(Integrity)
+	err := c.cc.Invoke(ctx, "/ekipma.api.pay.PayService/PayIds", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *payServiceClient) GetLostPays(ctx context.Context, in *PayIntegrity, opts ...grpc.CallOption) (PayService_GetLostPaysClient, error) {
-	stream, err := c.cc.NewStream(ctx, &PayService_ServiceDesc.Streams[3], "/ekipma.api.pay.PayService/GetLostPays", opts...)
+func (c *payServiceClient) LostPays(ctx context.Context, in *Integrity, opts ...grpc.CallOption) (PayService_LostPaysClient, error) {
+	stream, err := c.cc.NewStream(ctx, &PayService_ServiceDesc.Streams[2], "/ekipma.api.pay.PayService/LostPays", opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &payServiceGetLostPaysClient{stream}
+	x := &payServiceLostPaysClient{stream}
 	if err := x.ClientStream.SendMsg(in); err != nil {
 		return nil, err
 	}
@@ -178,16 +135,16 @@ func (c *payServiceClient) GetLostPays(ctx context.Context, in *PayIntegrity, op
 	return x, nil
 }
 
-type PayService_GetLostPaysClient interface {
+type PayService_LostPaysClient interface {
 	Recv() (*Pay, error)
 	grpc.ClientStream
 }
 
-type payServiceGetLostPaysClient struct {
+type payServiceLostPaysClient struct {
 	grpc.ClientStream
 }
 
-func (x *payServiceGetLostPaysClient) Recv() (*Pay, error) {
+func (x *payServiceLostPaysClient) Recv() (*Pay, error) {
 	m := new(Pay)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
@@ -200,13 +157,11 @@ func (x *payServiceGetLostPaysClient) Recv() (*Pay, error) {
 // for forward compatibility
 type PayServiceServer interface {
 	CreatePays(*PayInput, PayService_CreatePaysServer) error
-	GetPays(*Empty, PayService_GetPaysServer) error
-	GetRecentPays(*IdInput, PayService_GetRecentPaysServer) error
-	UpdatePay(context.Context, *PayUpdateInput) (*Pay, error)
-	HidePay(context.Context, *IdInput) (*Empty, error)
+	RecentPays(*Last, PayService_RecentPaysServer) error
+	DeletePay(context.Context, *Last) (*Empty, error)
 	// integrity - probably a button in mobile client settings
-	CheckPayIntegrity(context.Context, *Empty) (*PayIntegrity, error)
-	GetLostPays(*PayIntegrity, PayService_GetLostPaysServer) error
+	PayIds(context.Context, *Empty) (*Integrity, error)
+	LostPays(*Integrity, PayService_LostPaysServer) error
 	mustEmbedUnimplementedPayServiceServer()
 }
 
@@ -217,23 +172,17 @@ type UnimplementedPayServiceServer struct {
 func (UnimplementedPayServiceServer) CreatePays(*PayInput, PayService_CreatePaysServer) error {
 	return status.Errorf(codes.Unimplemented, "method CreatePays not implemented")
 }
-func (UnimplementedPayServiceServer) GetPays(*Empty, PayService_GetPaysServer) error {
-	return status.Errorf(codes.Unimplemented, "method GetPays not implemented")
+func (UnimplementedPayServiceServer) RecentPays(*Last, PayService_RecentPaysServer) error {
+	return status.Errorf(codes.Unimplemented, "method RecentPays not implemented")
 }
-func (UnimplementedPayServiceServer) GetRecentPays(*IdInput, PayService_GetRecentPaysServer) error {
-	return status.Errorf(codes.Unimplemented, "method GetRecentPays not implemented")
+func (UnimplementedPayServiceServer) DeletePay(context.Context, *Last) (*Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeletePay not implemented")
 }
-func (UnimplementedPayServiceServer) UpdatePay(context.Context, *PayUpdateInput) (*Pay, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdatePay not implemented")
+func (UnimplementedPayServiceServer) PayIds(context.Context, *Empty) (*Integrity, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PayIds not implemented")
 }
-func (UnimplementedPayServiceServer) HidePay(context.Context, *IdInput) (*Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method HidePay not implemented")
-}
-func (UnimplementedPayServiceServer) CheckPayIntegrity(context.Context, *Empty) (*PayIntegrity, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CheckPayIntegrity not implemented")
-}
-func (UnimplementedPayServiceServer) GetLostPays(*PayIntegrity, PayService_GetLostPaysServer) error {
-	return status.Errorf(codes.Unimplemented, "method GetLostPays not implemented")
+func (UnimplementedPayServiceServer) LostPays(*Integrity, PayService_LostPaysServer) error {
+	return status.Errorf(codes.Unimplemented, "method LostPays not implemented")
 }
 func (UnimplementedPayServiceServer) mustEmbedUnimplementedPayServiceServer() {}
 
@@ -269,120 +218,81 @@ func (x *payServiceCreatePaysServer) Send(m *Pay) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func _PayService_GetPays_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(Empty)
+func _PayService_RecentPays_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(Last)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(PayServiceServer).GetPays(m, &payServiceGetPaysServer{stream})
+	return srv.(PayServiceServer).RecentPays(m, &payServiceRecentPaysServer{stream})
 }
 
-type PayService_GetPaysServer interface {
+type PayService_RecentPaysServer interface {
 	Send(*Pay) error
 	grpc.ServerStream
 }
 
-type payServiceGetPaysServer struct {
+type payServiceRecentPaysServer struct {
 	grpc.ServerStream
 }
 
-func (x *payServiceGetPaysServer) Send(m *Pay) error {
+func (x *payServiceRecentPaysServer) Send(m *Pay) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func _PayService_GetRecentPays_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(IdInput)
-	if err := stream.RecvMsg(m); err != nil {
-		return err
-	}
-	return srv.(PayServiceServer).GetRecentPays(m, &payServiceGetRecentPaysServer{stream})
-}
-
-type PayService_GetRecentPaysServer interface {
-	Send(*Pay) error
-	grpc.ServerStream
-}
-
-type payServiceGetRecentPaysServer struct {
-	grpc.ServerStream
-}
-
-func (x *payServiceGetRecentPaysServer) Send(m *Pay) error {
-	return x.ServerStream.SendMsg(m)
-}
-
-func _PayService_UpdatePay_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PayUpdateInput)
+func _PayService_DeletePay_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Last)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PayServiceServer).UpdatePay(ctx, in)
+		return srv.(PayServiceServer).DeletePay(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/ekipma.api.pay.PayService/UpdatePay",
+		FullMethod: "/ekipma.api.pay.PayService/DeletePay",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PayServiceServer).UpdatePay(ctx, req.(*PayUpdateInput))
+		return srv.(PayServiceServer).DeletePay(ctx, req.(*Last))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PayService_HidePay_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(IdInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PayServiceServer).HidePay(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/ekipma.api.pay.PayService/HidePay",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PayServiceServer).HidePay(ctx, req.(*IdInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _PayService_CheckPayIntegrity_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _PayService_PayIds_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PayServiceServer).CheckPayIntegrity(ctx, in)
+		return srv.(PayServiceServer).PayIds(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/ekipma.api.pay.PayService/CheckPayIntegrity",
+		FullMethod: "/ekipma.api.pay.PayService/PayIds",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PayServiceServer).CheckPayIntegrity(ctx, req.(*Empty))
+		return srv.(PayServiceServer).PayIds(ctx, req.(*Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PayService_GetLostPays_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(PayIntegrity)
+func _PayService_LostPays_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(Integrity)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(PayServiceServer).GetLostPays(m, &payServiceGetLostPaysServer{stream})
+	return srv.(PayServiceServer).LostPays(m, &payServiceLostPaysServer{stream})
 }
 
-type PayService_GetLostPaysServer interface {
+type PayService_LostPaysServer interface {
 	Send(*Pay) error
 	grpc.ServerStream
 }
 
-type payServiceGetLostPaysServer struct {
+type payServiceLostPaysServer struct {
 	grpc.ServerStream
 }
 
-func (x *payServiceGetLostPaysServer) Send(m *Pay) error {
+func (x *payServiceLostPaysServer) Send(m *Pay) error {
 	return x.ServerStream.SendMsg(m)
 }
 
@@ -394,16 +304,12 @@ var PayService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*PayServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "UpdatePay",
-			Handler:    _PayService_UpdatePay_Handler,
+			MethodName: "DeletePay",
+			Handler:    _PayService_DeletePay_Handler,
 		},
 		{
-			MethodName: "HidePay",
-			Handler:    _PayService_HidePay_Handler,
-		},
-		{
-			MethodName: "CheckPayIntegrity",
-			Handler:    _PayService_CheckPayIntegrity_Handler,
+			MethodName: "PayIds",
+			Handler:    _PayService_PayIds_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
@@ -413,18 +319,13 @@ var PayService_ServiceDesc = grpc.ServiceDesc{
 			ServerStreams: true,
 		},
 		{
-			StreamName:    "GetPays",
-			Handler:       _PayService_GetPays_Handler,
+			StreamName:    "RecentPays",
+			Handler:       _PayService_RecentPays_Handler,
 			ServerStreams: true,
 		},
 		{
-			StreamName:    "GetRecentPays",
-			Handler:       _PayService_GetRecentPays_Handler,
-			ServerStreams: true,
-		},
-		{
-			StreamName:    "GetLostPays",
-			Handler:       _PayService_GetLostPays_Handler,
+			StreamName:    "LostPays",
+			Handler:       _PayService_LostPays_Handler,
 			ServerStreams: true,
 		},
 	},

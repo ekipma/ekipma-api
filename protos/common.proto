@@ -1,11 +1,11 @@
 syntax = "proto3";
 package ekipma.api.common;
 
+import "google/protobuf/timestamp.proto";
+
 option go_package = "./go;pb";
 
 message Empty {}
-
-message IdInput { uint64 id = 1; }
 
 message Messages {
   optional string error = 1;
@@ -15,4 +15,27 @@ message Messages {
 message Chunk {
   uint32 len = 1;
   uint32 part = 2;
+}
+
+message IdInput { uint64 id = 1; }
+message Last { uint64 id = 1; }
+
+message Integrity {
+  repeated uint64 ids = 1; // id of lost items
+}
+
+message Gorm {
+  uint64 id = 1;
+  google.protobuf.Timestamp createdAt = 2;
+  google.protobuf.Timestamp updatedAt = 3;
+}
+
+message Rec {
+  string title = 1;
+  string desc = 2;
+  uint64 author = 3;
+  uint64 assignee = 4;
+  repeated uint64 assignees = 5;
+  uint64 group = 6;
+  bool private = 7;
 }

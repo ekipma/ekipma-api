@@ -35,22 +35,19 @@ message Pay {
   uint64 group = 10;
   bool private = 11;
   // pay
-  double total = 12;
-  PayUnit unit = 13;
-  PayType type = 14;
-  bool rejected = 15;
-  bool hidden = 16;
+  double total = 13;
+  PayUnit unit = 14;
+  PayType type = 15;
+  bool rejected = 16;
 }
 
 service PayService {
   rpc CreatePays(PayInput) returns (stream Pay) {}
-  rpc GetPays(ekipma.api.common.Empty) returns (stream Pay) {} // avoid amap
-  rpc GetRecentPays(ekipma.api.common.IdInput) returns (stream Pay) {}
-  rpc UpdatePay(PayUpdateInput) returns (Pay) {}
-  rpc HidePay(ekipma.api.common.IdInput) returns (ekipma.api.common.Empty) {}
+  rpc RecentPays(ekipma.api.common.Last) returns (stream Pay) {}
+  rpc DeletePay(ekipma.api.common.Last) returns (ekipma.api.common.Empty) {}
   // integrity - probably a button in mobile client settings
-  rpc CheckPayIntegrity(ekipma.api.common.Empty) returns (PayIntegrity) {}
-  rpc GetLostPays(PayIntegrity) returns (stream Pay) {}
+  rpc PayIds(ekipma.api.common.Empty) returns (ekipma.api.common.Integrity) {}
+  rpc LostPays(ekipma.api.common.Integrity) returns (stream Pay) {}
 }
 
 message PayInput {
@@ -60,16 +57,8 @@ message PayInput {
   repeated uint64 assignees = 4;
   uint64 group = 5;
   bool private = 6;
+  // pay
   double total = 7;
   PayUnit unit = 8;
   PayType type = 9;
-}
-
-message PayUpdateInput {
-  string title = 1;
-  string desc = 2;
-}
-
-message PayIntegrity {
-  repeated uint64 ids = 1; // id of lost pays
 }

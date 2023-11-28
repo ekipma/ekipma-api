@@ -1,0 +1,47 @@
+syntax = "proto3";
+package ekipma.api.plan;
+
+import "protos/common.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "./go;pb";
+
+message Plan {
+  ekipma.api.common.Chunk chunk = 1;
+  // gorm
+  uint64 id = 2;
+  google.protobuf.Timestamp createdAt = 3;
+  google.protobuf.Timestamp updatedAt = 4;
+  // rec
+  string title = 5;
+  string desc = 6;
+  uint64 author = 7;
+  uint64 assignee = 8;
+  repeated uint64 assignees = 9;
+  uint64 group = 10;
+  bool private = 11;
+  // plan
+  google.protobuf.Timestamp dueAt = 12; // due date
+  bool norify = 13;
+}
+
+service PlanService {
+  rpc CreatePlans(PlanInput) returns (stream Plan) {}
+  rpc RecentPlans(ekipma.api.common.Last) returns (stream Plan) {}
+  rpc DeletePlan(ekipma.api.common.Last) returns (ekipma.api.common.Empty) {}
+  // integrity - probably a button in mobile client settings
+  rpc PlanIds(ekipma.api.common.Empty) returns (ekipma.api.common.Integrity) {}
+  rpc LostPlans(ekipma.api.common.Integrity) returns (stream Plan) {}
+}
+
+message PlanInput {
+  string title = 1;
+  string desc = 2;
+  uint64 author = 3;
+  repeated uint64 assignees = 4;
+  uint64 group = 5;
+  bool private = 6;
+  // plan
+  google.protobuf.Timestamp dueAt = 7;
+  bool notify = 8;
+}

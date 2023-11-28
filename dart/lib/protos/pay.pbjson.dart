@@ -59,11 +59,10 @@ const Pay$json = {
     {'1': 'assignees', '3': 9, '4': 3, '5': 4, '10': 'assignees'},
     {'1': 'group', '3': 10, '4': 1, '5': 4, '10': 'group'},
     {'1': 'private', '3': 11, '4': 1, '5': 8, '10': 'private'},
-    {'1': 'total', '3': 12, '4': 1, '5': 1, '10': 'total'},
-    {'1': 'unit', '3': 13, '4': 1, '5': 14, '6': '.ekipma.api.pay.PayUnit', '10': 'unit'},
-    {'1': 'type', '3': 14, '4': 1, '5': 14, '6': '.ekipma.api.pay.PayType', '10': 'type'},
-    {'1': 'rejected', '3': 15, '4': 1, '5': 8, '10': 'rejected'},
-    {'1': 'hidden', '3': 16, '4': 1, '5': 8, '10': 'hidden'},
+    {'1': 'total', '3': 13, '4': 1, '5': 1, '10': 'total'},
+    {'1': 'unit', '3': 14, '4': 1, '5': 14, '6': '.ekipma.api.pay.PayUnit', '10': 'unit'},
+    {'1': 'type', '3': 15, '4': 1, '5': 14, '6': '.ekipma.api.pay.PayType', '10': 'type'},
+    {'1': 'rejected', '3': 16, '4': 1, '5': 8, '10': 'rejected'},
   ],
 };
 
@@ -75,10 +74,9 @@ final $typed_data.Uint8List payDescriptor = $convert.base64Decode(
     'ltZXN0YW1wUgl1cGRhdGVkQXQSFAoFdGl0bGUYBSABKAlSBXRpdGxlEhIKBGRlc2MYBiABKAlS'
     'BGRlc2MSFgoGYXV0aG9yGAcgASgEUgZhdXRob3ISGgoIYXNzaWduZWUYCCABKARSCGFzc2lnbm'
     'VlEhwKCWFzc2lnbmVlcxgJIAMoBFIJYXNzaWduZWVzEhQKBWdyb3VwGAogASgEUgVncm91cBIY'
-    'Cgdwcml2YXRlGAsgASgIUgdwcml2YXRlEhQKBXRvdGFsGAwgASgBUgV0b3RhbBIrCgR1bml0GA'
-    '0gASgOMhcuZWtpcG1hLmFwaS5wYXkuUGF5VW5pdFIEdW5pdBIrCgR0eXBlGA4gASgOMhcuZWtp'
-    'cG1hLmFwaS5wYXkuUGF5VHlwZVIEdHlwZRIaCghyZWplY3RlZBgPIAEoCFIIcmVqZWN0ZWQSFg'
-    'oGaGlkZGVuGBAgASgIUgZoaWRkZW4=');
+    'Cgdwcml2YXRlGAsgASgIUgdwcml2YXRlEhQKBXRvdGFsGA0gASgBUgV0b3RhbBIrCgR1bml0GA'
+    '4gASgOMhcuZWtpcG1hLmFwaS5wYXkuUGF5VW5pdFIEdW5pdBIrCgR0eXBlGA8gASgOMhcuZWtp'
+    'cG1hLmFwaS5wYXkuUGF5VHlwZVIEdHlwZRIaCghyZWplY3RlZBgQIAEoCFIIcmVqZWN0ZWQ=');
 
 @$core.Deprecated('Use payInputDescriptor instead')
 const PayInput$json = {
@@ -103,30 +101,4 @@ final $typed_data.Uint8List payInputDescriptor = $convert.base64Decode(
     'cm91cBgFIAEoBFIFZ3JvdXASGAoHcHJpdmF0ZRgGIAEoCFIHcHJpdmF0ZRIUCgV0b3RhbBgHIA'
     'EoAVIFdG90YWwSKwoEdW5pdBgIIAEoDjIXLmVraXBtYS5hcGkucGF5LlBheVVuaXRSBHVuaXQS'
     'KwoEdHlwZRgJIAEoDjIXLmVraXBtYS5hcGkucGF5LlBheVR5cGVSBHR5cGU=');
-
-@$core.Deprecated('Use payUpdateInputDescriptor instead')
-const PayUpdateInput$json = {
-  '1': 'PayUpdateInput',
-  '2': [
-    {'1': 'title', '3': 1, '4': 1, '5': 9, '10': 'title'},
-    {'1': 'desc', '3': 2, '4': 1, '5': 9, '10': 'desc'},
-  ],
-};
-
-/// Descriptor for `PayUpdateInput`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List payUpdateInputDescriptor = $convert.base64Decode(
-    'Cg5QYXlVcGRhdGVJbnB1dBIUCgV0aXRsZRgBIAEoCVIFdGl0bGUSEgoEZGVzYxgCIAEoCVIEZG'
-    'VzYw==');
-
-@$core.Deprecated('Use payIntegrityDescriptor instead')
-const PayIntegrity$json = {
-  '1': 'PayIntegrity',
-  '2': [
-    {'1': 'ids', '3': 1, '4': 3, '5': 4, '10': 'ids'},
-  ],
-};
-
-/// Descriptor for `PayIntegrity`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List payIntegrityDescriptor = $convert.base64Decode(
-    'CgxQYXlJbnRlZ3JpdHkSEAoDaWRzGAEgAygEUgNpZHM=');
 

@@ -14,6 +14,8 @@ import 'dart:core' as $core;
 import 'package:fixnum/fixnum.dart' as $fixnum;
 import 'package:protobuf/protobuf.dart' as $pb;
 
+import '../google/protobuf/timestamp.pb.dart' as $5;
+
 class Empty extends $pb.GeneratedMessage {
   factory Empty() => create();
   Empty._() : super();
@@ -44,56 +46,6 @@ class Empty extends $pb.GeneratedMessage {
   @$core.pragma('dart2js:noInline')
   static Empty getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Empty>(create);
   static Empty? _defaultInstance;
-}
-
-class IdInput extends $pb.GeneratedMessage {
-  factory IdInput({
-    $fixnum.Int64? id,
-  }) {
-    final $result = create();
-    if (id != null) {
-      $result.id = id;
-    }
-    return $result;
-  }
-  IdInput._() : super();
-  factory IdInput.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory IdInput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'IdInput', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.common'), createEmptyInstance: create)
-    ..a<$fixnum.Int64>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
-    ..hasRequiredFields = false
-  ;
-
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
-  IdInput clone() => IdInput()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  IdInput copyWith(void Function(IdInput) updates) => super.copyWith((message) => updates(message as IdInput)) as IdInput;
-
-  $pb.BuilderInfo get info_ => _i;
-
-  @$core.pragma('dart2js:noInline')
-  static IdInput create() => IdInput._();
-  IdInput createEmptyInstance() => create();
-  static $pb.PbList<IdInput> createRepeated() => $pb.PbList<IdInput>();
-  @$core.pragma('dart2js:noInline')
-  static IdInput getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<IdInput>(create);
-  static IdInput? _defaultInstance;
-
-  @$pb.TagNumber(1)
-  $fixnum.Int64 get id => $_getI64(0);
-  @$pb.TagNumber(1)
-  set id($fixnum.Int64 v) { $_setInt64(0, v); }
-  @$pb.TagNumber(1)
-  $core.bool hasId() => $_has(0);
-  @$pb.TagNumber(1)
-  void clearId() => clearField(1);
 }
 
 class Messages extends $pb.GeneratedMessage {
@@ -222,6 +174,360 @@ class Chunk extends $pb.GeneratedMessage {
   $core.bool hasPart() => $_has(1);
   @$pb.TagNumber(2)
   void clearPart() => clearField(2);
+}
+
+class IdInput extends $pb.GeneratedMessage {
+  factory IdInput({
+    $fixnum.Int64? id,
+  }) {
+    final $result = create();
+    if (id != null) {
+      $result.id = id;
+    }
+    return $result;
+  }
+  IdInput._() : super();
+  factory IdInput.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory IdInput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'IdInput', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.common'), createEmptyInstance: create)
+    ..a<$fixnum.Int64>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  IdInput clone() => IdInput()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  IdInput copyWith(void Function(IdInput) updates) => super.copyWith((message) => updates(message as IdInput)) as IdInput;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static IdInput create() => IdInput._();
+  IdInput createEmptyInstance() => create();
+  static $pb.PbList<IdInput> createRepeated() => $pb.PbList<IdInput>();
+  @$core.pragma('dart2js:noInline')
+  static IdInput getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<IdInput>(create);
+  static IdInput? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $fixnum.Int64 get id => $_getI64(0);
+  @$pb.TagNumber(1)
+  set id($fixnum.Int64 v) { $_setInt64(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearId() => clearField(1);
+}
+
+class Last extends $pb.GeneratedMessage {
+  factory Last({
+    $fixnum.Int64? id,
+  }) {
+    final $result = create();
+    if (id != null) {
+      $result.id = id;
+    }
+    return $result;
+  }
+  Last._() : super();
+  factory Last.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory Last.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Last', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.common'), createEmptyInstance: create)
+    ..a<$fixnum.Int64>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  Last clone() => Last()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  Last copyWith(void Function(Last) updates) => super.copyWith((message) => updates(message as Last)) as Last;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static Last create() => Last._();
+  Last createEmptyInstance() => create();
+  static $pb.PbList<Last> createRepeated() => $pb.PbList<Last>();
+  @$core.pragma('dart2js:noInline')
+  static Last getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Last>(create);
+  static Last? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $fixnum.Int64 get id => $_getI64(0);
+  @$pb.TagNumber(1)
+  set id($fixnum.Int64 v) { $_setInt64(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearId() => clearField(1);
+}
+
+class Integrity extends $pb.GeneratedMessage {
+  factory Integrity({
+    $core.Iterable<$fixnum.Int64>? ids,
+  }) {
+    final $result = create();
+    if (ids != null) {
+      $result.ids.addAll(ids);
+    }
+    return $result;
+  }
+  Integrity._() : super();
+  factory Integrity.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory Integrity.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Integrity', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.common'), createEmptyInstance: create)
+    ..p<$fixnum.Int64>(1, _omitFieldNames ? '' : 'ids', $pb.PbFieldType.KU6)
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  Integrity clone() => Integrity()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  Integrity copyWith(void Function(Integrity) updates) => super.copyWith((message) => updates(message as Integrity)) as Integrity;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static Integrity create() => Integrity._();
+  Integrity createEmptyInstance() => create();
+  static $pb.PbList<Integrity> createRepeated() => $pb.PbList<Integrity>();
+  @$core.pragma('dart2js:noInline')
+  static Integrity getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Integrity>(create);
+  static Integrity? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.List<$fixnum.Int64> get ids => $_getList(0);
+}
+
+class Gorm extends $pb.GeneratedMessage {
+  factory Gorm({
+    $fixnum.Int64? id,
+    $5.Timestamp? createdAt,
+    $5.Timestamp? updatedAt,
+  }) {
+    final $result = create();
+    if (id != null) {
+      $result.id = id;
+    }
+    if (createdAt != null) {
+      $result.createdAt = createdAt;
+    }
+    if (updatedAt != null) {
+      $result.updatedAt = updatedAt;
+    }
+    return $result;
+  }
+  Gorm._() : super();
+  factory Gorm.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory Gorm.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Gorm', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.common'), createEmptyInstance: create)
+    ..a<$fixnum.Int64>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
+    ..aOM<$5.Timestamp>(2, _omitFieldNames ? '' : 'createdAt', protoName: 'createdAt', subBuilder: $5.Timestamp.create)
+    ..aOM<$5.Timestamp>(3, _omitFieldNames ? '' : 'updatedAt', protoName: 'updatedAt', subBuilder: $5.Timestamp.create)
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  Gorm clone() => Gorm()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  Gorm copyWith(void Function(Gorm) updates) => super.copyWith((message) => updates(message as Gorm)) as Gorm;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static Gorm create() => Gorm._();
+  Gorm createEmptyInstance() => create();
+  static $pb.PbList<Gorm> createRepeated() => $pb.PbList<Gorm>();
+  @$core.pragma('dart2js:noInline')
+  static Gorm getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Gorm>(create);
+  static Gorm? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $fixnum.Int64 get id => $_getI64(0);
+  @$pb.TagNumber(1)
+  set id($fixnum.Int64 v) { $_setInt64(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearId() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $5.Timestamp get createdAt => $_getN(1);
+  @$pb.TagNumber(2)
+  set createdAt($5.Timestamp v) { setField(2, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasCreatedAt() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearCreatedAt() => clearField(2);
+  @$pb.TagNumber(2)
+  $5.Timestamp ensureCreatedAt() => $_ensure(1);
+
+  @$pb.TagNumber(3)
+  $5.Timestamp get updatedAt => $_getN(2);
+  @$pb.TagNumber(3)
+  set updatedAt($5.Timestamp v) { setField(3, v); }
+  @$pb.TagNumber(3)
+  $core.bool hasUpdatedAt() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearUpdatedAt() => clearField(3);
+  @$pb.TagNumber(3)
+  $5.Timestamp ensureUpdatedAt() => $_ensure(2);
+}
+
+class Rec extends $pb.GeneratedMessage {
+  factory Rec({
+    $core.String? title,
+    $core.String? desc,
+    $fixnum.Int64? author,
+    $fixnum.Int64? assignee,
+    $core.Iterable<$fixnum.Int64>? assignees,
+    $fixnum.Int64? group,
+    $core.bool? private,
+  }) {
+    final $result = create();
+    if (title != null) {
+      $result.title = title;
+    }
+    if (desc != null) {
+      $result.desc = desc;
+    }
+    if (author != null) {
+      $result.author = author;
+    }
+    if (assignee != null) {
+      $result.assignee = assignee;
+    }
+    if (assignees != null) {
+      $result.assignees.addAll(assignees);
+    }
+    if (group != null) {
+      $result.group = group;
+    }
+    if (private != null) {
+      $result.private = private;
+    }
+    return $result;
+  }
+  Rec._() : super();
+  factory Rec.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory Rec.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Rec', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.common'), createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'title')
+    ..aOS(2, _omitFieldNames ? '' : 'desc')
+    ..a<$fixnum.Int64>(3, _omitFieldNames ? '' : 'author', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
+    ..a<$fixnum.Int64>(4, _omitFieldNames ? '' : 'assignee', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
+    ..p<$fixnum.Int64>(5, _omitFieldNames ? '' : 'assignees', $pb.PbFieldType.KU6)
+    ..a<$fixnum.Int64>(6, _omitFieldNames ? '' : 'group', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
+    ..aOB(7, _omitFieldNames ? '' : 'private')
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  Rec clone() => Rec()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  Rec copyWith(void Function(Rec) updates) => super.copyWith((message) => updates(message as Rec)) as Rec;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static Rec create() => Rec._();
+  Rec createEmptyInstance() => create();
+  static $pb.PbList<Rec> createRepeated() => $pb.PbList<Rec>();
+  @$core.pragma('dart2js:noInline')
+  static Rec getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Rec>(create);
+  static Rec? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get title => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set title($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasTitle() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearTitle() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get desc => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set desc($core.String v) { $_setString(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasDesc() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearDesc() => clearField(2);
+
+  @$pb.TagNumber(3)
+  $fixnum.Int64 get author => $_getI64(2);
+  @$pb.TagNumber(3)
+  set author($fixnum.Int64 v) { $_setInt64(2, v); }
+  @$pb.TagNumber(3)
+  $core.bool hasAuthor() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearAuthor() => clearField(3);
+
+  @$pb.TagNumber(4)
+  $fixnum.Int64 get assignee => $_getI64(3);
+  @$pb.TagNumber(4)
+  set assignee($fixnum.Int64 v) { $_setInt64(3, v); }
+  @$pb.TagNumber(4)
+  $core.bool hasAssignee() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearAssignee() => clearField(4);
+
+  @$pb.TagNumber(5)
+  $core.List<$fixnum.Int64> get assignees => $_getList(4);
+
+  @$pb.TagNumber(6)
+  $fixnum.Int64 get group => $_getI64(5);
+  @$pb.TagNumber(6)
+  set group($fixnum.Int64 v) { $_setInt64(5, v); }
+  @$pb.TagNumber(6)
+  $core.bool hasGroup() => $_has(5);
+  @$pb.TagNumber(6)
+  void clearGroup() => clearField(6);
+
+  @$pb.TagNumber(7)
+  $core.bool get private => $_getBF(6);
+  @$pb.TagNumber(7)
+  set private($core.bool v) { $_setBool(6, v); }
+  @$pb.TagNumber(7)
+  $core.bool hasPrivate() => $_has(6);
+  @$pb.TagNumber(7)
+  void clearPrivate() => clearField(7);
 }
 
 

@@ -42,6 +42,7 @@ service UserService {
   rpc GetFriends(ekipma.api.common.Empty) returns (stream FriendOutput) {}
   rpc RemoveFriend(ekipma.api.common.IdInput)
       returns (ekipma.api.common.Empty) {}
+  // NOTICE no methods for integrity - it can be checked client-side
 }
 
 // otp

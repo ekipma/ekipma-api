@@ -1,6 +1,6 @@
 //
 //  Generated code. Do not modify.
-//  source: protos/pay.proto
+//  source: protos/turn.proto
 //
 // @dart = 2.12
 
@@ -16,12 +16,9 @@ import 'package:protobuf/protobuf.dart' as $pb;
 
 import '../google/protobuf/timestamp.pb.dart' as $5;
 import 'common.pb.dart' as $1;
-import 'pay.pbenum.dart';
 
-export 'pay.pbenum.dart';
-
-class Pay extends $pb.GeneratedMessage {
-  factory Pay({
+class Turn extends $pb.GeneratedMessage {
+  factory Turn({
     $1.Chunk? chunk,
     $fixnum.Int64? id,
     $5.Timestamp? createdAt,
@@ -33,10 +30,8 @@ class Pay extends $pb.GeneratedMessage {
     $core.Iterable<$fixnum.Int64>? assignees,
     $fixnum.Int64? group,
     $core.bool? private,
-    $core.double? total,
-    PayUnit? unit,
-    PayType? type,
-    $core.bool? rejected,
+    $core.int? iter,
+    $core.int? peroid,
   }) {
     final $result = create();
     if (chunk != null) {
@@ -72,25 +67,19 @@ class Pay extends $pb.GeneratedMessage {
     if (private != null) {
       $result.private = private;
     }
-    if (total != null) {
-      $result.total = total;
+    if (iter != null) {
+      $result.iter = iter;
     }
-    if (unit != null) {
-      $result.unit = unit;
-    }
-    if (type != null) {
-      $result.type = type;
-    }
-    if (rejected != null) {
-      $result.rejected = rejected;
+    if (peroid != null) {
+      $result.peroid = peroid;
     }
     return $result;
   }
-  Pay._() : super();
-  factory Pay.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory Pay.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  Turn._() : super();
+  factory Turn.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory Turn.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Pay', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.pay'), createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Turn', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.turn'), createEmptyInstance: create)
     ..aOM<$1.Chunk>(1, _omitFieldNames ? '' : 'chunk', subBuilder: $1.Chunk.create)
     ..a<$fixnum.Int64>(2, _omitFieldNames ? '' : 'id', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
     ..aOM<$5.Timestamp>(3, _omitFieldNames ? '' : 'createdAt', protoName: 'createdAt', subBuilder: $5.Timestamp.create)
@@ -102,10 +91,8 @@ class Pay extends $pb.GeneratedMessage {
     ..p<$fixnum.Int64>(9, _omitFieldNames ? '' : 'assignees', $pb.PbFieldType.KU6)
     ..a<$fixnum.Int64>(10, _omitFieldNames ? '' : 'group', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
     ..aOB(11, _omitFieldNames ? '' : 'private')
-    ..a<$core.double>(13, _omitFieldNames ? '' : 'total', $pb.PbFieldType.OD)
-    ..e<PayUnit>(14, _omitFieldNames ? '' : 'unit', $pb.PbFieldType.OE, defaultOrMaker: PayUnit.Unknown, valueOf: PayUnit.valueOf, enumValues: PayUnit.values)
-    ..e<PayType>(15, _omitFieldNames ? '' : 'type', $pb.PbFieldType.OE, defaultOrMaker: PayType.Unkown, valueOf: PayType.valueOf, enumValues: PayType.values)
-    ..aOB(16, _omitFieldNames ? '' : 'rejected')
+    ..a<$core.int>(12, _omitFieldNames ? '' : 'iter', $pb.PbFieldType.OU3)
+    ..a<$core.int>(13, _omitFieldNames ? '' : 'peroid', $pb.PbFieldType.OU3)
     ..hasRequiredFields = false
   ;
 
@@ -113,22 +100,22 @@ class Pay extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
   'Will be removed in next major version')
-  Pay clone() => Pay()..mergeFromMessage(this);
+  Turn clone() => Turn()..mergeFromMessage(this);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  Pay copyWith(void Function(Pay) updates) => super.copyWith((message) => updates(message as Pay)) as Pay;
+  Turn copyWith(void Function(Turn) updates) => super.copyWith((message) => updates(message as Turn)) as Turn;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
-  static Pay create() => Pay._();
-  Pay createEmptyInstance() => create();
-  static $pb.PbList<Pay> createRepeated() => $pb.PbList<Pay>();
+  static Turn create() => Turn._();
+  Turn createEmptyInstance() => create();
+  static $pb.PbList<Turn> createRepeated() => $pb.PbList<Turn>();
   @$core.pragma('dart2js:noInline')
-  static Pay getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Pay>(create);
-  static Pay? _defaultInstance;
+  static Turn getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Turn>(create);
+  static Turn? _defaultInstance;
 
   @$pb.TagNumber(1)
   $1.Chunk get chunk => $_getN(0);
@@ -231,55 +218,35 @@ class Pay extends $pb.GeneratedMessage {
   @$pb.TagNumber(11)
   void clearPrivate() => clearField(11);
 
-  /// pay
-  @$pb.TagNumber(13)
-  $core.double get total => $_getN(11);
-  @$pb.TagNumber(13)
-  set total($core.double v) { $_setDouble(11, v); }
-  @$pb.TagNumber(13)
-  $core.bool hasTotal() => $_has(11);
-  @$pb.TagNumber(13)
-  void clearTotal() => clearField(13);
+  /// turn
+  @$pb.TagNumber(12)
+  $core.int get iter => $_getIZ(11);
+  @$pb.TagNumber(12)
+  set iter($core.int v) { $_setUnsignedInt32(11, v); }
+  @$pb.TagNumber(12)
+  $core.bool hasIter() => $_has(11);
+  @$pb.TagNumber(12)
+  void clearIter() => clearField(12);
 
-  @$pb.TagNumber(14)
-  PayUnit get unit => $_getN(12);
-  @$pb.TagNumber(14)
-  set unit(PayUnit v) { setField(14, v); }
-  @$pb.TagNumber(14)
-  $core.bool hasUnit() => $_has(12);
-  @$pb.TagNumber(14)
-  void clearUnit() => clearField(14);
-
-  @$pb.TagNumber(15)
-  PayType get type => $_getN(13);
-  @$pb.TagNumber(15)
-  set type(PayType v) { setField(15, v); }
-  @$pb.TagNumber(15)
-  $core.bool hasType() => $_has(13);
-  @$pb.TagNumber(15)
-  void clearType() => clearField(15);
-
-  @$pb.TagNumber(16)
-  $core.bool get rejected => $_getBF(14);
-  @$pb.TagNumber(16)
-  set rejected($core.bool v) { $_setBool(14, v); }
-  @$pb.TagNumber(16)
-  $core.bool hasRejected() => $_has(14);
-  @$pb.TagNumber(16)
-  void clearRejected() => clearField(16);
+  @$pb.TagNumber(13)
+  $core.int get peroid => $_getIZ(12);
+  @$pb.TagNumber(13)
+  set peroid($core.int v) { $_setUnsignedInt32(12, v); }
+  @$pb.TagNumber(13)
+  $core.bool hasPeroid() => $_has(12);
+  @$pb.TagNumber(13)
+  void clearPeroid() => clearField(13);
 }
 
-class PayInput extends $pb.GeneratedMessage {
-  factory PayInput({
+class TurnInput extends $pb.GeneratedMessage {
+  factory TurnInput({
     $core.String? title,
     $core.String? desc,
     $fixnum.Int64? author,
     $core.Iterable<$fixnum.Int64>? assignees,
     $fixnum.Int64? group,
     $core.bool? private,
-    $core.double? total,
-    PayUnit? unit,
-    PayType? type,
+    $core.int? period,
   }) {
     final $result = create();
     if (title != null) {
@@ -300,31 +267,23 @@ class PayInput extends $pb.GeneratedMessage {
     if (private != null) {
       $result.private = private;
     }
-    if (total != null) {
-      $result.total = total;
-    }
-    if (unit != null) {
-      $result.unit = unit;
-    }
-    if (type != null) {
-      $result.type = type;
+    if (period != null) {
+      $result.period = period;
     }
     return $result;
   }
-  PayInput._() : super();
-  factory PayInput.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory PayInput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  TurnInput._() : super();
+  factory TurnInput.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory TurnInput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'PayInput', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.pay'), createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'TurnInput', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.turn'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'title')
     ..aOS(2, _omitFieldNames ? '' : 'desc')
     ..a<$fixnum.Int64>(3, _omitFieldNames ? '' : 'author', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
     ..p<$fixnum.Int64>(4, _omitFieldNames ? '' : 'assignees', $pb.PbFieldType.KU6)
     ..a<$fixnum.Int64>(5, _omitFieldNames ? '' : 'group', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
     ..aOB(6, _omitFieldNames ? '' : 'private')
-    ..a<$core.double>(7, _omitFieldNames ? '' : 'total', $pb.PbFieldType.OD)
-    ..e<PayUnit>(8, _omitFieldNames ? '' : 'unit', $pb.PbFieldType.OE, defaultOrMaker: PayUnit.Unknown, valueOf: PayUnit.valueOf, enumValues: PayUnit.values)
-    ..e<PayType>(9, _omitFieldNames ? '' : 'type', $pb.PbFieldType.OE, defaultOrMaker: PayType.Unkown, valueOf: PayType.valueOf, enumValues: PayType.values)
+    ..a<$core.int>(7, _omitFieldNames ? '' : 'period', $pb.PbFieldType.OU3)
     ..hasRequiredFields = false
   ;
 
@@ -332,22 +291,22 @@ class PayInput extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
   'Will be removed in next major version')
-  PayInput clone() => PayInput()..mergeFromMessage(this);
+  TurnInput clone() => TurnInput()..mergeFromMessage(this);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  PayInput copyWith(void Function(PayInput) updates) => super.copyWith((message) => updates(message as PayInput)) as PayInput;
+  TurnInput copyWith(void Function(TurnInput) updates) => super.copyWith((message) => updates(message as TurnInput)) as TurnInput;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
-  static PayInput create() => PayInput._();
-  PayInput createEmptyInstance() => create();
-  static $pb.PbList<PayInput> createRepeated() => $pb.PbList<PayInput>();
+  static TurnInput create() => TurnInput._();
+  TurnInput createEmptyInstance() => create();
+  static $pb.PbList<TurnInput> createRepeated() => $pb.PbList<TurnInput>();
   @$core.pragma('dart2js:noInline')
-  static PayInput getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<PayInput>(create);
-  static PayInput? _defaultInstance;
+  static TurnInput getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<TurnInput>(create);
+  static TurnInput? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get title => $_getSZ(0);
@@ -397,33 +356,15 @@ class PayInput extends $pb.GeneratedMessage {
   @$pb.TagNumber(6)
   void clearPrivate() => clearField(6);
 
-  /// pay
+  /// turn
   @$pb.TagNumber(7)
-  $core.double get total => $_getN(6);
+  $core.int get period => $_getIZ(6);
   @$pb.TagNumber(7)
-  set total($core.double v) { $_setDouble(6, v); }
+  set period($core.int v) { $_setUnsignedInt32(6, v); }
   @$pb.TagNumber(7)
-  $core.bool hasTotal() => $_has(6);
+  $core.bool hasPeriod() => $_has(6);
   @$pb.TagNumber(7)
-  void clearTotal() => clearField(7);
-
-  @$pb.TagNumber(8)
-  PayUnit get unit => $_getN(7);
-  @$pb.TagNumber(8)
-  set unit(PayUnit v) { setField(8, v); }
-  @$pb.TagNumber(8)
-  $core.bool hasUnit() => $_has(7);
-  @$pb.TagNumber(8)
-  void clearUnit() => clearField(8);
-
-  @$pb.TagNumber(9)
-  PayType get type => $_getN(8);
-  @$pb.TagNumber(9)
-  set type(PayType v) { setField(9, v); }
-  @$pb.TagNumber(9)
-  $core.bool hasType() => $_has(8);
-  @$pb.TagNumber(9)
-  void clearType() => clearField(9);
+  void clearPeriod() => clearField(7);
 }
 
 

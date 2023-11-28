@@ -14,7 +14,7 @@ import 'dart:core' as $core;
 import 'package:fixnum/fixnum.dart' as $fixnum;
 import 'package:protobuf/protobuf.dart' as $pb;
 
-import '../google/protobuf/timestamp.pb.dart' as $3;
+import '../google/protobuf/timestamp.pb.dart' as $5;
 import 'common.pb.dart' as $1;
 import 'user.pbenum.dart';
 
@@ -23,8 +23,8 @@ export 'user.pbenum.dart';
 class User extends $pb.GeneratedMessage {
   factory User({
     $fixnum.Int64? id,
-    $3.Timestamp? createdAt,
-    $3.Timestamp? updatedAt,
+    $5.Timestamp? createdAt,
+    $5.Timestamp? updatedAt,
     $core.String? mobile,
     $core.String? code,
     $core.String? name,
@@ -80,8 +80,8 @@ class User extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'User', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.user'), createEmptyInstance: create)
     ..a<$fixnum.Int64>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
-    ..aOM<$3.Timestamp>(2, _omitFieldNames ? '' : 'createdAt', protoName: 'createdAt', subBuilder: $3.Timestamp.create)
-    ..aOM<$3.Timestamp>(3, _omitFieldNames ? '' : 'updatedAt', protoName: 'updatedAt', subBuilder: $3.Timestamp.create)
+    ..aOM<$5.Timestamp>(2, _omitFieldNames ? '' : 'createdAt', protoName: 'createdAt', subBuilder: $5.Timestamp.create)
+    ..aOM<$5.Timestamp>(3, _omitFieldNames ? '' : 'updatedAt', protoName: 'updatedAt', subBuilder: $5.Timestamp.create)
     ..aOS(4, _omitFieldNames ? '' : 'mobile')
     ..aOS(5, _omitFieldNames ? '' : 'code')
     ..aOS(6, _omitFieldNames ? '' : 'name')
@@ -126,26 +126,26 @@ class User extends $pb.GeneratedMessage {
   void clearId() => clearField(1);
 
   @$pb.TagNumber(2)
-  $3.Timestamp get createdAt => $_getN(1);
+  $5.Timestamp get createdAt => $_getN(1);
   @$pb.TagNumber(2)
-  set createdAt($3.Timestamp v) { setField(2, v); }
+  set createdAt($5.Timestamp v) { setField(2, v); }
   @$pb.TagNumber(2)
   $core.bool hasCreatedAt() => $_has(1);
   @$pb.TagNumber(2)
   void clearCreatedAt() => clearField(2);
   @$pb.TagNumber(2)
-  $3.Timestamp ensureCreatedAt() => $_ensure(1);
+  $5.Timestamp ensureCreatedAt() => $_ensure(1);
 
   @$pb.TagNumber(3)
-  $3.Timestamp get updatedAt => $_getN(2);
+  $5.Timestamp get updatedAt => $_getN(2);
   @$pb.TagNumber(3)
-  set updatedAt($3.Timestamp v) { setField(3, v); }
+  set updatedAt($5.Timestamp v) { setField(3, v); }
   @$pb.TagNumber(3)
   $core.bool hasUpdatedAt() => $_has(2);
   @$pb.TagNumber(3)
   void clearUpdatedAt() => clearField(3);
   @$pb.TagNumber(3)
-  $3.Timestamp ensureUpdatedAt() => $_ensure(2);
+  $5.Timestamp ensureUpdatedAt() => $_ensure(2);
 
   /// user
   @$pb.TagNumber(4)
