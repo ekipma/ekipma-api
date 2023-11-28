@@ -22,7 +22,7 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type PlanServiceClient interface {
-	CreatePlans(ctx context.Context, in *PlanInput, opts ...grpc.CallOption) (PlanService_CreatePlansClient, error)
+	CreatePlan(ctx context.Context, in *PlanInput, opts ...grpc.CallOption) (*Plan, error)
 	RecentPlans(ctx context.Context, in *Last, opts ...grpc.CallOption) (PlanService_RecentPlansClient, error)
 	DeletePlan(ctx context.Context, in *Last, opts ...grpc.CallOption) (*Empty, error)
 	// integrity - probably a button in mobile client settings
@@ -38,40 +38,17 @@ func NewPlanServiceClient(cc grpc.ClientConnInterface) PlanServiceClient {
 	return &planServiceClient{cc}
 }
 
-func (c *planServiceClient) CreatePlans(ctx context.Context, in *PlanInput, opts ...grpc.CallOption) (PlanService_CreatePlansClient, error) {
-	stream, err := c.cc.NewStream(ctx, &PlanService_ServiceDesc.Streams[0], "/ekipma.api.plan.PlanService/CreatePlans", opts...)
+func (c *planServiceClient) CreatePlan(ctx context.Context, in *PlanInput, opts ...grpc.CallOption) (*Plan, error) {
+	out := new(Plan)
+	err := c.cc.Invoke(ctx, "/ekipma.api.plan.PlanService/CreatePlan", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &planServiceCreatePlansClient{stream}
-	if err := x.ClientStream.SendMsg(in); err != nil {
-		return nil, err
-	}
-	if err := x.ClientStream.CloseSend(); err != nil {
-		return nil, err
-	}
-	return x, nil
-}
-
-type PlanService_CreatePlansClient interface {
-	Recv() (*Plan, error)
-	grpc.ClientStream
-}
-
-type planServiceCreatePlansClient struct {
-	grpc.ClientStream
-}
-
-func (x *planServiceCreatePlansClient) Recv() (*Plan, error) {
-	m := new(Plan)
-	if err := x.ClientStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
+	return out, nil
 }
 
 func (c *planServiceClient) RecentPlans(ctx context.Context, in *Last, opts ...grpc.CallOption) (PlanService_RecentPlansClient, error) {
-	stream, err := c.cc.NewStream(ctx, &PlanService_ServiceDesc.Streams[1], "/ekipma.api.plan.PlanService/RecentPlans", opts...)
+	stream, err := c.cc.NewStream(ctx, &PlanService_ServiceDesc.Streams[0], "/ekipma.api.plan.PlanService/RecentPlans", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -121,7 +98,7 @@ func (c *planServiceClient) PlanIds(ctx context.Context, in *Empty, opts ...grpc
 }
 
 func (c *planServiceClient) LostPlans(ctx context.Context, in *Integrity, opts ...grpc.CallOption) (PlanService_LostPlansClient, error) {
-	stream, err := c.cc.NewStream(ctx, &PlanService_ServiceDesc.Streams[2], "/ekipma.api.plan.PlanService/LostPlans", opts...)
+	stream, err := c.cc.NewStream(ctx, &PlanService_ServiceDesc.Streams[1], "/ekipma.api.plan.PlanService/LostPlans", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -156,7 +133,7 @@ func (x *planServiceLostPlansClient) Recv() (*Plan, error) {
 // All implementations must embed UnimplementedPlanServiceServer
 // for forward compatibility
 type PlanServiceServer interface {
-	CreatePlans(*PlanInput, PlanService_CreatePlansServer) error
+	CreatePlan(context.Context, *PlanInput) (*Plan, error)
 	RecentPlans(*Last, PlanService_RecentPlansServer) error
 	DeletePlan(context.Context, *Last) (*Empty, error)
 	// integrity - probably a button in mobile client settings
@@ -169,8 +146,8 @@ type PlanServiceServer interface {
 type UnimplementedPlanServiceServer struct {
 }
 
-func (UnimplementedPlanServiceServer) CreatePlans(*PlanInput, PlanService_CreatePlansServer) error {
-	return status.Errorf(codes.Unimplemented, "method CreatePlans not implemented")
+func (UnimplementedPlanServiceServer) CreatePlan(context.Context, *PlanInput) (*Plan, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreatePlan not implemented")
 }
 func (UnimplementedPlanServiceServer) RecentPlans(*Last, PlanService_RecentPlansServer) error {
 	return status.Errorf(codes.Unimplemented, "method RecentPlans not implemented")
@@ -197,25 +174,22 @@ func RegisterPlanServiceServer(s grpc.ServiceRegistrar, srv PlanServiceServer) {
 	s.RegisterService(&PlanService_ServiceDesc, srv)
 }
 
-func _PlanService_CreatePlans_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(PlanInput)
-	if err := stream.RecvMsg(m); err != nil {
-		return err
+func _PlanService_CreatePlan_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PlanInput)
+	if err := dec(in); err != nil {
+		return nil, err
 	}
-	return srv.(PlanServiceServer).CreatePlans(m, &planServiceCreatePlansServer{stream})
-}
-
-type PlanService_CreatePlansServer interface {
-	Send(*Plan) error
-	grpc.ServerStream
-}
-
-type planServiceCreatePlansServer struct {
-	grpc.ServerStream
-}
-
-func (x *planServiceCreatePlansServer) Send(m *Plan) error {
-	return x.ServerStream.SendMsg(m)
+	if interceptor == nil {
+		return srv.(PlanServiceServer).CreatePlan(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/ekipma.api.plan.PlanService/CreatePlan",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PlanServiceServer).CreatePlan(ctx, req.(*PlanInput))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _PlanService_RecentPlans_Handler(srv interface{}, stream grpc.ServerStream) error {
@@ -304,6 +278,10 @@ var PlanService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*PlanServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
+			MethodName: "CreatePlan",
+			Handler:    _PlanService_CreatePlan_Handler,
+		},
+		{
 			MethodName: "DeletePlan",
 			Handler:    _PlanService_DeletePlan_Handler,
 		},
@@ -313,11 +291,6 @@ var PlanService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams: []grpc.StreamDesc{
-		{
-			StreamName:    "CreatePlans",
-			Handler:       _PlanService_CreatePlans_Handler,
-			ServerStreams: true,
-		},
 		{
 			StreamName:    "RecentPlans",
 			Handler:       _PlanService_RecentPlans_Handler,

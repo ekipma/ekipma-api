@@ -22,7 +22,7 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type TurnServiceClient interface {
-	CreateTurns(ctx context.Context, in *TurnInput, opts ...grpc.CallOption) (TurnService_CreateTurnsClient, error)
+	CreateTurn(ctx context.Context, in *TurnInput, opts ...grpc.CallOption) (*Turn, error)
 	RecentTurns(ctx context.Context, in *Last, opts ...grpc.CallOption) (TurnService_RecentTurnsClient, error)
 	SubmitTurn(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Turn, error)
 	DeleteTurn(ctx context.Context, in *Last, opts ...grpc.CallOption) (*Empty, error)
@@ -39,40 +39,17 @@ func NewTurnServiceClient(cc grpc.ClientConnInterface) TurnServiceClient {
 	return &turnServiceClient{cc}
 }
 
-func (c *turnServiceClient) CreateTurns(ctx context.Context, in *TurnInput, opts ...grpc.CallOption) (TurnService_CreateTurnsClient, error) {
-	stream, err := c.cc.NewStream(ctx, &TurnService_ServiceDesc.Streams[0], "/ekipma.api.turn.TurnService/CreateTurns", opts...)
+func (c *turnServiceClient) CreateTurn(ctx context.Context, in *TurnInput, opts ...grpc.CallOption) (*Turn, error) {
+	out := new(Turn)
+	err := c.cc.Invoke(ctx, "/ekipma.api.turn.TurnService/CreateTurn", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &turnServiceCreateTurnsClient{stream}
-	if err := x.ClientStream.SendMsg(in); err != nil {
-		return nil, err
-	}
-	if err := x.ClientStream.CloseSend(); err != nil {
-		return nil, err
-	}
-	return x, nil
-}
-
-type TurnService_CreateTurnsClient interface {
-	Recv() (*Turn, error)
-	grpc.ClientStream
-}
-
-type turnServiceCreateTurnsClient struct {
-	grpc.ClientStream
-}
-
-func (x *turnServiceCreateTurnsClient) Recv() (*Turn, error) {
-	m := new(Turn)
-	if err := x.ClientStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
+	return out, nil
 }
 
 func (c *turnServiceClient) RecentTurns(ctx context.Context, in *Last, opts ...grpc.CallOption) (TurnService_RecentTurnsClient, error) {
-	stream, err := c.cc.NewStream(ctx, &TurnService_ServiceDesc.Streams[1], "/ekipma.api.turn.TurnService/RecentTurns", opts...)
+	stream, err := c.cc.NewStream(ctx, &TurnService_ServiceDesc.Streams[0], "/ekipma.api.turn.TurnService/RecentTurns", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -131,7 +108,7 @@ func (c *turnServiceClient) TurnIds(ctx context.Context, in *Empty, opts ...grpc
 }
 
 func (c *turnServiceClient) LostTurns(ctx context.Context, in *Integrity, opts ...grpc.CallOption) (TurnService_LostTurnsClient, error) {
-	stream, err := c.cc.NewStream(ctx, &TurnService_ServiceDesc.Streams[2], "/ekipma.api.turn.TurnService/LostTurns", opts...)
+	stream, err := c.cc.NewStream(ctx, &TurnService_ServiceDesc.Streams[1], "/ekipma.api.turn.TurnService/LostTurns", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -166,7 +143,7 @@ func (x *turnServiceLostTurnsClient) Recv() (*Turn, error) {
 // All implementations must embed UnimplementedTurnServiceServer
 // for forward compatibility
 type TurnServiceServer interface {
-	CreateTurns(*TurnInput, TurnService_CreateTurnsServer) error
+	CreateTurn(context.Context, *TurnInput) (*Turn, error)
 	RecentTurns(*Last, TurnService_RecentTurnsServer) error
 	SubmitTurn(context.Context, *Empty) (*Turn, error)
 	DeleteTurn(context.Context, *Last) (*Empty, error)
@@ -180,8 +157,8 @@ type TurnServiceServer interface {
 type UnimplementedTurnServiceServer struct {
 }
 
-func (UnimplementedTurnServiceServer) CreateTurns(*TurnInput, TurnService_CreateTurnsServer) error {
-	return status.Errorf(codes.Unimplemented, "method CreateTurns not implemented")
+func (UnimplementedTurnServiceServer) CreateTurn(context.Context, *TurnInput) (*Turn, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateTurn not implemented")
 }
 func (UnimplementedTurnServiceServer) RecentTurns(*Last, TurnService_RecentTurnsServer) error {
 	return status.Errorf(codes.Unimplemented, "method RecentTurns not implemented")
@@ -211,25 +188,22 @@ func RegisterTurnServiceServer(s grpc.ServiceRegistrar, srv TurnServiceServer) {
 	s.RegisterService(&TurnService_ServiceDesc, srv)
 }
 
-func _TurnService_CreateTurns_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(TurnInput)
-	if err := stream.RecvMsg(m); err != nil {
-		return err
+func _TurnService_CreateTurn_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TurnInput)
+	if err := dec(in); err != nil {
+		return nil, err
 	}
-	return srv.(TurnServiceServer).CreateTurns(m, &turnServiceCreateTurnsServer{stream})
-}
-
-type TurnService_CreateTurnsServer interface {
-	Send(*Turn) error
-	grpc.ServerStream
-}
-
-type turnServiceCreateTurnsServer struct {
-	grpc.ServerStream
-}
-
-func (x *turnServiceCreateTurnsServer) Send(m *Turn) error {
-	return x.ServerStream.SendMsg(m)
+	if interceptor == nil {
+		return srv.(TurnServiceServer).CreateTurn(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/ekipma.api.turn.TurnService/CreateTurn",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TurnServiceServer).CreateTurn(ctx, req.(*TurnInput))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _TurnService_RecentTurns_Handler(srv interface{}, stream grpc.ServerStream) error {
@@ -336,6 +310,10 @@ var TurnService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*TurnServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
+			MethodName: "CreateTurn",
+			Handler:    _TurnService_CreateTurn_Handler,
+		},
+		{
 			MethodName: "SubmitTurn",
 			Handler:    _TurnService_SubmitTurn_Handler,
 		},
@@ -349,11 +327,6 @@ var TurnService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams: []grpc.StreamDesc{
-		{
-			StreamName:    "CreateTurns",
-			Handler:       _TurnService_CreateTurns_Handler,
-			ServerStreams: true,
-		},
 		{
 			StreamName:    "RecentTurns",
 			Handler:       _TurnService_RecentTurns_Handler,

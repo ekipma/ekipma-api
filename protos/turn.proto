@@ -26,7 +26,7 @@ message Turn {
 }
 
 service TurnService {
-  rpc CreateTurns(TurnInput) returns (stream Turn) {}
+  rpc CreateTurn(TurnInput) returns (Turn) {}
   rpc RecentTurns(ekipma.api.common.Last) returns (stream Turn) {}
   rpc SubmitTurn(ekipma.api.common.Empty) returns (Turn) {}
   rpc DeleteTurn(ekipma.api.common.Last) returns (ekipma.api.common.Empty) {}

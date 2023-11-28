@@ -33,7 +33,7 @@ message Plan {
 }
 
 service PlanService {
-  rpc CreatePlans(PlanInput) returns (stream Plan) {}
+  rpc CreatePlan(PlanInput) returns (Plan) {}
   rpc RecentPlans(ekipma.api.common.Last) returns (stream Plan) {}
   rpc DeletePlan(ekipma.api.common.Last) returns (ekipma.api.common.Empty) {}
   // integrity - probably a button in mobile client settings
