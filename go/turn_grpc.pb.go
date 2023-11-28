@@ -24,7 +24,7 @@ const _ = grpc.SupportPackageIsVersion7
 type TurnServiceClient interface {
 	CreateTurn(ctx context.Context, in *TurnInput, opts ...grpc.CallOption) (*Turn, error)
 	RecentTurns(ctx context.Context, in *Last, opts ...grpc.CallOption) (TurnService_RecentTurnsClient, error)
-	SubmitTurn(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Turn, error)
+	SubmitTurn(ctx context.Context, in *IdInput, opts ...grpc.CallOption) (*Turn, error)
 	DeleteTurn(ctx context.Context, in *Last, opts ...grpc.CallOption) (*Empty, error)
 	// integrity - probably a button in mobile client settings
 	TurnIds(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Integrity, error)
@@ -80,7 +80,7 @@ func (x *turnServiceRecentTurnsClient) Recv() (*Turn, error) {
 	return m, nil
 }
 
-func (c *turnServiceClient) SubmitTurn(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Turn, error) {
+func (c *turnServiceClient) SubmitTurn(ctx context.Context, in *IdInput, opts ...grpc.CallOption) (*Turn, error) {
 	out := new(Turn)
 	err := c.cc.Invoke(ctx, "/ekipma.api.turn.TurnService/SubmitTurn", in, out, opts...)
 	if err != nil {
@@ -145,7 +145,7 @@ func (x *turnServiceLostTurnsClient) Recv() (*Turn, error) {
 type TurnServiceServer interface {
 	CreateTurn(context.Context, *TurnInput) (*Turn, error)
 	RecentTurns(*Last, TurnService_RecentTurnsServer) error
-	SubmitTurn(context.Context, *Empty) (*Turn, error)
+	SubmitTurn(context.Context, *IdInput) (*Turn, error)
 	DeleteTurn(context.Context, *Last) (*Empty, error)
 	// integrity - probably a button in mobile client settings
 	TurnIds(context.Context, *Empty) (*Integrity, error)
@@ -163,7 +163,7 @@ func (UnimplementedTurnServiceServer) CreateTurn(context.Context, *TurnInput) (*
 func (UnimplementedTurnServiceServer) RecentTurns(*Last, TurnService_RecentTurnsServer) error {
 	return status.Errorf(codes.Unimplemented, "method RecentTurns not implemented")
 }
-func (UnimplementedTurnServiceServer) SubmitTurn(context.Context, *Empty) (*Turn, error) {
+func (UnimplementedTurnServiceServer) SubmitTurn(context.Context, *IdInput) (*Turn, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SubmitTurn not implemented")
 }
 func (UnimplementedTurnServiceServer) DeleteTurn(context.Context, *Last) (*Empty, error) {
@@ -228,7 +228,7 @@ func (x *turnServiceRecentTurnsServer) Send(m *Turn) error {
 }
 
 func _TurnService_SubmitTurn_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Empty)
+	in := new(IdInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -240,7 +240,7 @@ func _TurnService_SubmitTurn_Handler(srv interface{}, ctx context.Context, dec f
 		FullMethod: "/ekipma.api.turn.TurnService/SubmitTurn",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TurnServiceServer).SubmitTurn(ctx, req.(*Empty))
+		return srv.(TurnServiceServer).SubmitTurn(ctx, req.(*IdInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }

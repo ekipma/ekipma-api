@@ -28,7 +28,7 @@ message Turn {
 service TurnService {
   rpc CreateTurn(TurnInput) returns (Turn) {}
   rpc RecentTurns(ekipma.api.common.Last) returns (stream Turn) {}
-  rpc SubmitTurn(ekipma.api.common.Empty) returns (Turn) {}
+  rpc SubmitTurn(ekipma.api.common.IdInput) returns (Turn) {}
   rpc DeleteTurn(ekipma.api.common.Last) returns (ekipma.api.common.Empty) {}
   // integrity - probably a button in mobile client settings
   rpc TurnIds(ekipma.api.common.Empty) returns (ekipma.api.common.Integrity) {}

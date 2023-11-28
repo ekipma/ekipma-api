@@ -37,8 +37,10 @@ git commit -m"$message"
 if [ -z "$tag" ]
 then
     echo "! No tag name supplied"
+    echo "> Create tag : $version"
     git tag $version
 else
+    echo "> Create tag : $version $tag"
     git tag $version -m"$tag"
 fi
 
