@@ -29,7 +29,7 @@ message Plan {
   // plan
   google.protobuf.Timestamp dueAt = 12; // due date
   Location location = 13;
-  bool norify = 14;
+  bool notify = 14;
 }
 
 service PlanService {

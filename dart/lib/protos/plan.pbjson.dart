@@ -45,7 +45,7 @@ const Plan$json = {
     {'1': 'private', '3': 11, '4': 1, '5': 8, '10': 'private'},
     {'1': 'dueAt', '3': 12, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'dueAt'},
     {'1': 'location', '3': 13, '4': 1, '5': 11, '6': '.ekipma.api.plan.Location', '10': 'location'},
-    {'1': 'norify', '3': 14, '4': 1, '5': 8, '10': 'norify'},
+    {'1': 'notify', '3': 14, '4': 1, '5': 8, '10': 'notify'},
   ],
 };
 
@@ -59,7 +59,7 @@ final $typed_data.Uint8List planDescriptor = $convert.base64Decode(
     '5lZRIcCglhc3NpZ25lZXMYCSADKARSCWFzc2lnbmVlcxIUCgVncm91cBgKIAEoBFIFZ3JvdXAS'
     'GAoHcHJpdmF0ZRgLIAEoCFIHcHJpdmF0ZRIwCgVkdWVBdBgMIAEoCzIaLmdvb2dsZS5wcm90b2'
     'J1Zi5UaW1lc3RhbXBSBWR1ZUF0EjUKCGxvY2F0aW9uGA0gASgLMhkuZWtpcG1hLmFwaS5wbGFu'
-    'LkxvY2F0aW9uUghsb2NhdGlvbhIWCgZub3JpZnkYDiABKAhSBm5vcmlmeQ==');
+    'LkxvY2F0aW9uUghsb2NhdGlvbhIWCgZub3RpZnkYDiABKAhSBm5vdGlmeQ==');
 
 @$core.Deprecated('Use planInputDescriptor instead')
 const PlanInput$json = {

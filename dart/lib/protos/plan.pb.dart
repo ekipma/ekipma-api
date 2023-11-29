@@ -110,7 +110,7 @@ class Plan extends $pb.GeneratedMessage {
     $core.bool? private,
     $5.Timestamp? dueAt,
     Location? location,
-    $core.bool? norify,
+    $core.bool? notify,
   }) {
     final $result = create();
     if (chunk != null) {
@@ -152,8 +152,8 @@ class Plan extends $pb.GeneratedMessage {
     if (location != null) {
       $result.location = location;
     }
-    if (norify != null) {
-      $result.norify = norify;
+    if (notify != null) {
+      $result.notify = notify;
     }
     return $result;
   }
@@ -175,7 +175,7 @@ class Plan extends $pb.GeneratedMessage {
     ..aOB(11, _omitFieldNames ? '' : 'private')
     ..aOM<$5.Timestamp>(12, _omitFieldNames ? '' : 'dueAt', protoName: 'dueAt', subBuilder: $5.Timestamp.create)
     ..aOM<Location>(13, _omitFieldNames ? '' : 'location', subBuilder: Location.create)
-    ..aOB(14, _omitFieldNames ? '' : 'norify')
+    ..aOB(14, _omitFieldNames ? '' : 'notify')
     ..hasRequiredFields = false
   ;
 
@@ -325,13 +325,13 @@ class Plan extends $pb.GeneratedMessage {
   Location ensureLocation() => $_ensure(12);
 
   @$pb.TagNumber(14)
-  $core.bool get norify => $_getBF(13);
+  $core.bool get notify => $_getBF(13);
   @$pb.TagNumber(14)
-  set norify($core.bool v) { $_setBool(13, v); }
+  set notify($core.bool v) { $_setBool(13, v); }
   @$pb.TagNumber(14)
-  $core.bool hasNorify() => $_has(13);
+  $core.bool hasNotify() => $_has(13);
   @$pb.TagNumber(14)
-  void clearNorify() => clearField(14);
+  void clearNotify() => clearField(14);
 }
 
 class PlanInput extends $pb.GeneratedMessage {
