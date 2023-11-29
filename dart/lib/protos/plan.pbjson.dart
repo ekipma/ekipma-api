@@ -18,15 +18,15 @@ const Location$json = {
   '1': 'Location',
   '2': [
     {'1': 'name', '3': 1, '4': 1, '5': 9, '10': 'name'},
-    {'1': 'lat', '3': 2, '4': 1, '5': 1, '10': 'lat'},
-    {'1': 'long', '3': 3, '4': 1, '5': 1, '10': 'long'},
+    {'1': 'lat', '3': 2, '4': 1, '5': 9, '10': 'lat'},
+    {'1': 'long', '3': 3, '4': 1, '5': 9, '10': 'long'},
   ],
 };
 
 /// Descriptor for `Location`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List locationDescriptor = $convert.base64Decode(
-    'CghMb2NhdGlvbhISCgRuYW1lGAEgASgJUgRuYW1lEhAKA2xhdBgCIAEoAVIDbGF0EhIKBGxvbm'
-    'cYAyABKAFSBGxvbmc=');
+    'CghMb2NhdGlvbhISCgRuYW1lGAEgASgJUgRuYW1lEhAKA2xhdBgCIAEoCVIDbGF0EhIKBGxvbm'
+    'cYAyABKAlSBGxvbmc=');
 
 @$core.Deprecated('Use planDescriptor instead')
 const Plan$json = {

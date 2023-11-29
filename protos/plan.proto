@@ -8,8 +8,8 @@ option go_package = "./go;pb";
 
 message Location {
   string name = 1;
-  double lat = 2;
-  double long = 3;
+  string lat = 2;
+  string long = 3;
 }
 
 message Plan {

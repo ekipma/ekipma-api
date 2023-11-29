@@ -20,8 +20,8 @@ import 'common.pb.dart' as $1;
 class Location extends $pb.GeneratedMessage {
   factory Location({
     $core.String? name,
-    $core.double? lat,
-    $core.double? long,
+    $core.String? lat,
+    $core.String? long,
   }) {
     final $result = create();
     if (name != null) {
@@ -41,8 +41,8 @@ class Location extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Location', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.plan'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'name')
-    ..a<$core.double>(2, _omitFieldNames ? '' : 'lat', $pb.PbFieldType.OD)
-    ..a<$core.double>(3, _omitFieldNames ? '' : 'long', $pb.PbFieldType.OD)
+    ..aOS(2, _omitFieldNames ? '' : 'lat')
+    ..aOS(3, _omitFieldNames ? '' : 'long')
     ..hasRequiredFields = false
   ;
 
@@ -77,18 +77,18 @@ class Location extends $pb.GeneratedMessage {
   void clearName() => clearField(1);
 
   @$pb.TagNumber(2)
-  $core.double get lat => $_getN(1);
+  $core.String get lat => $_getSZ(1);
   @$pb.TagNumber(2)
-  set lat($core.double v) { $_setDouble(1, v); }
+  set lat($core.String v) { $_setString(1, v); }
   @$pb.TagNumber(2)
   $core.bool hasLat() => $_has(1);
   @$pb.TagNumber(2)
   void clearLat() => clearField(2);
 
   @$pb.TagNumber(3)
-  $core.double get long => $_getN(2);
+  $core.String get long => $_getSZ(2);
   @$pb.TagNumber(3)
-  set long($core.double v) { $_setDouble(2, v); }
+  set long($core.String v) { $_setString(2, v); }
   @$pb.TagNumber(3)
   $core.bool hasLong() => $_has(2);
   @$pb.TagNumber(3)
