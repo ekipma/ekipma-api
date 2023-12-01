@@ -20,23 +20,33 @@ enum WalletType {
 }
 
 message User {
+  ekipma.api.common.Chunk chunk = 1;
   // gorm
-  uint64 id = 1;
-  google.protobuf.Timestamp createdAt = 2;
-  google.protobuf.Timestamp updatedAt = 3;
+  uint64 id = 2;
+  google.protobuf.Timestamp createdAt = 3;
+  google.protobuf.Timestamp updatedAt = 4;
   // user
-  string mobile = 4;
-  string code = 5;
-  string name = 6;
-  string email = 7;
-  string photoURL = 8;
-  bool public = 9;
-  repeated uint64 friends = 10;
-  uint64 inviter = 11;
-  UserRole role = 12;
-  google.protobuf.Timestamp premiumTill = 13;
-  string wAddr = 14;
-  WalletType wType = 15;
+  string mobile = 5;
+  string code = 6;
+  string name = 7;
+  string email = 8;
+  string photoURL = 9;
+  bool public = 10;
+  repeated uint64 friends = 11;
+  uint64 inviter = 12;
+  UserRole role = 13;
+  google.protobuf.Timestamp premiumTill = 14;
+  string wAddr = 15;
+  WalletType wType = 16;
+}
+
+message Friend {
+  ekipma.api.common.Chunk chunk = 1;
+  uint64 id = 2;
+  string name = 3;
+  string email = 4;
+  string photoURL = 5;
+  google.protobuf.Timestamp premiumTill = 6;
 }
 
 service UserService {
@@ -47,8 +57,8 @@ service UserService {
   rpc RegisterUser(RegisterInput) returns (AuthOutput) {}
   rpc LoginUser(LoginInput) returns (AuthOutput) {}
   // friend
-  rpc AddFriends(stream FriendInput) returns (stream FriendOutput) {}
-  rpc GetFriends(ekipma.api.common.Empty) returns (stream FriendOutput) {}
+  rpc AddFriends(stream FriendInput) returns (stream Friend) {}
+  rpc GetFriends(ekipma.api.common.Empty) returns (stream Friend) {}
   rpc RemoveFriend(ekipma.api.common.IdInput)
       returns (ekipma.api.common.Empty) {}
   // NOTICE no methods for integrity - it can be checked client-side
@@ -96,14 +106,6 @@ message AuthOutput {
 message FriendInput {
   ekipma.api.common.Chunk chunk = 1;
   string mobile = 2;
-}
-
-message FriendOutput {
-  ekipma.api.common.Chunk chunk = 1;
-  uint64 id = 2;
-  string name = 3;
-  string email = 4;
-  string photoURL = 5;
 }
 
 // premium

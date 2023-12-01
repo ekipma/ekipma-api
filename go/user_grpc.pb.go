@@ -93,7 +93,7 @@ func (c *userServiceClient) AddFriends(ctx context.Context, opts ...grpc.CallOpt
 
 type UserService_AddFriendsClient interface {
 	Send(*FriendInput) error
-	Recv() (*FriendOutput, error)
+	Recv() (*Friend, error)
 	grpc.ClientStream
 }
 
@@ -105,8 +105,8 @@ func (x *userServiceAddFriendsClient) Send(m *FriendInput) error {
 	return x.ClientStream.SendMsg(m)
 }
 
-func (x *userServiceAddFriendsClient) Recv() (*FriendOutput, error) {
-	m := new(FriendOutput)
+func (x *userServiceAddFriendsClient) Recv() (*Friend, error) {
+	m := new(Friend)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
@@ -129,7 +129,7 @@ func (c *userServiceClient) GetFriends(ctx context.Context, in *Empty, opts ...g
 }
 
 type UserService_GetFriendsClient interface {
-	Recv() (*FriendOutput, error)
+	Recv() (*Friend, error)
 	grpc.ClientStream
 }
 
@@ -137,8 +137,8 @@ type userServiceGetFriendsClient struct {
 	grpc.ClientStream
 }
 
-func (x *userServiceGetFriendsClient) Recv() (*FriendOutput, error) {
-	m := new(FriendOutput)
+func (x *userServiceGetFriendsClient) Recv() (*Friend, error) {
+	m := new(Friend)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
@@ -314,7 +314,7 @@ func _UserService_AddFriends_Handler(srv interface{}, stream grpc.ServerStream) 
 }
 
 type UserService_AddFriendsServer interface {
-	Send(*FriendOutput) error
+	Send(*Friend) error
 	Recv() (*FriendInput, error)
 	grpc.ServerStream
 }
@@ -323,7 +323,7 @@ type userServiceAddFriendsServer struct {
 	grpc.ServerStream
 }
 
-func (x *userServiceAddFriendsServer) Send(m *FriendOutput) error {
+func (x *userServiceAddFriendsServer) Send(m *Friend) error {
 	return x.ServerStream.SendMsg(m)
 }
 
@@ -344,7 +344,7 @@ func _UserService_GetFriends_Handler(srv interface{}, stream grpc.ServerStream) 
 }
 
 type UserService_GetFriendsServer interface {
-	Send(*FriendOutput) error
+	Send(*Friend) error
 	grpc.ServerStream
 }
 
@@ -352,7 +352,7 @@ type userServiceGetFriendsServer struct {
 	grpc.ServerStream
 }
 
-func (x *userServiceGetFriendsServer) Send(m *FriendOutput) error {
+func (x *userServiceGetFriendsServer) Send(m *Friend) error {
 	return x.ServerStream.SendMsg(m)
 }
 
