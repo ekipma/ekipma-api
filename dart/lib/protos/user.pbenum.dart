@@ -32,5 +32,22 @@ class UserRole extends $pb.ProtobufEnum {
   const UserRole._($core.int v, $core.String n) : super(v, n);
 }
 
+class WalletType extends $pb.ProtobufEnum {
+  static const WalletType BTC = WalletType._(0, _omitEnumNames ? '' : 'BTC');
+  static const WalletType XNO = WalletType._(1, _omitEnumNames ? '' : 'XNO');
+  static const WalletType TRX = WalletType._(2, _omitEnumNames ? '' : 'TRX');
+
+  static const $core.List<WalletType> values = <WalletType> [
+    BTC,
+    XNO,
+    TRX,
+  ];
+
+  static final $core.Map<$core.int, WalletType> _byValue = $pb.ProtobufEnum.initByValue(values);
+  static WalletType? valueOf($core.int value) => _byValue[value];
+
+  const WalletType._($core.int v, $core.String n) : super(v, n);
+}
+
 
 const _omitEnumNames = $core.bool.fromEnvironment('protobuf.omit_enum_names');

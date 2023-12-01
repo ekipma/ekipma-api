@@ -28,6 +28,20 @@ const UserRole$json = {
 final $typed_data.Uint8List userRoleDescriptor = $convert.base64Decode(
     'CghVc2VyUm9sZRIKCgZVbmtvd24QABIKCgZOb3JtYWwQARIHCgNPcHIQAhIJCgVBZG1pbhAD');
 
+@$core.Deprecated('Use walletTypeDescriptor instead')
+const WalletType$json = {
+  '1': 'WalletType',
+  '2': [
+    {'1': 'BTC', '2': 0},
+    {'1': 'XNO', '2': 1},
+    {'1': 'TRX', '2': 2},
+  ],
+};
+
+/// Descriptor for `WalletType`. Decode as a `google.protobuf.EnumDescriptorProto`.
+final $typed_data.Uint8List walletTypeDescriptor = $convert.base64Decode(
+    'CgpXYWxsZXRUeXBlEgcKA0JUQxAAEgcKA1hOTxABEgcKA1RSWBAC');
+
 @$core.Deprecated('Use userDescriptor instead')
 const User$json = {
   '1': 'User',
@@ -44,6 +58,9 @@ const User$json = {
     {'1': 'friends', '3': 10, '4': 3, '5': 4, '10': 'friends'},
     {'1': 'inviter', '3': 11, '4': 1, '5': 4, '10': 'inviter'},
     {'1': 'role', '3': 12, '4': 1, '5': 14, '6': '.ekipma.api.user.UserRole', '10': 'role'},
+    {'1': 'premiumTill', '3': 13, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'premiumTill'},
+    {'1': 'wAddr', '3': 14, '4': 1, '5': 9, '10': 'wAddr'},
+    {'1': 'wType', '3': 15, '4': 1, '5': 14, '6': '.ekipma.api.user.WalletType', '10': 'wType'},
   ],
 };
 
@@ -55,7 +72,10 @@ final $typed_data.Uint8List userDescriptor = $convert.base64Decode(
     'NvZGUYBSABKAlSBGNvZGUSEgoEbmFtZRgGIAEoCVIEbmFtZRIUCgVlbWFpbBgHIAEoCVIFZW1h'
     'aWwSGgoIcGhvdG9VUkwYCCABKAlSCHBob3RvVVJMEhYKBnB1YmxpYxgJIAEoCFIGcHVibGljEh'
     'gKB2ZyaWVuZHMYCiADKARSB2ZyaWVuZHMSGAoHaW52aXRlchgLIAEoBFIHaW52aXRlchItCgRy'
-    'b2xlGAwgASgOMhkuZWtpcG1hLmFwaS51c2VyLlVzZXJSb2xlUgRyb2xl');
+    'b2xlGAwgASgOMhkuZWtpcG1hLmFwaS51c2VyLlVzZXJSb2xlUgRyb2xlEjwKC3ByZW1pdW1UaW'
+    'xsGA0gASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcFILcHJlbWl1bVRpbGwSFAoFd0Fk'
+    'ZHIYDiABKAlSBXdBZGRyEjEKBXdUeXBlGA8gASgOMhsuZWtpcG1hLmFwaS51c2VyLldhbGxldF'
+    'R5cGVSBXdUeXBl');
 
 @$core.Deprecated('Use otpMobileInputDescriptor instead')
 const OtpMobileInput$json = {
@@ -174,4 +194,44 @@ final $typed_data.Uint8List friendOutputDescriptor = $convert.base64Decode(
     'CgxGcmllbmRPdXRwdXQSLgoFY2h1bmsYASABKAsyGC5la2lwbWEuYXBpLmNvbW1vbi5DaHVua1'
     'IFY2h1bmsSDgoCaWQYAiABKARSAmlkEhIKBG5hbWUYAyABKAlSBG5hbWUSFAoFZW1haWwYBCAB'
     'KAlSBWVtYWlsEhoKCHBob3RvVVJMGAUgASgJUghwaG90b1VSTA==');
+
+@$core.Deprecated('Use walletInputDescriptor instead')
+const WalletInput$json = {
+  '1': 'WalletInput',
+  '2': [
+    {'1': 'wAddr', '3': 1, '4': 1, '5': 9, '10': 'wAddr'},
+    {'1': 'wType', '3': 2, '4': 1, '5': 14, '6': '.ekipma.api.user.WalletType', '10': 'wType'},
+  ],
+};
+
+/// Descriptor for `WalletInput`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List walletInputDescriptor = $convert.base64Decode(
+    'CgtXYWxsZXRJbnB1dBIUCgV3QWRkchgBIAEoCVIFd0FkZHISMQoFd1R5cGUYAiABKA4yGy5la2'
+    'lwbWEuYXBpLnVzZXIuV2FsbGV0VHlwZVIFd1R5cGU=');
+
+@$core.Deprecated('Use walletOutputDescriptor instead')
+const WalletOutput$json = {
+  '1': 'WalletOutput',
+  '2': [
+    {'1': 'user', '3': 1, '4': 1, '5': 11, '6': '.ekipma.api.user.User', '10': 'user'},
+    {'1': 'wAddr', '3': 2, '4': 1, '5': 9, '10': 'wAddr'},
+  ],
+};
+
+/// Descriptor for `WalletOutput`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List walletOutputDescriptor = $convert.base64Decode(
+    'CgxXYWxsZXRPdXRwdXQSKQoEdXNlchgBIAEoCzIVLmVraXBtYS5hcGkudXNlci5Vc2VyUgR1c2'
+    'VyEhQKBXdBZGRyGAIgASgJUgV3QWRkcg==');
+
+@$core.Deprecated('Use blockInputDescriptor instead')
+const BlockInput$json = {
+  '1': 'BlockInput',
+  '2': [
+    {'1': 'hash', '3': 1, '4': 1, '5': 9, '10': 'hash'},
+  ],
+};
+
+/// Descriptor for `BlockInput`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List blockInputDescriptor = $convert.base64Decode(
+    'CgpCbG9ja0lucHV0EhIKBGhhc2gYASABKAlSBGhhc2g=');
 

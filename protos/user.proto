@@ -13,6 +13,12 @@ enum UserRole {
   Admin = 3;
 }
 
+enum WalletType {
+  BTC = 0;
+  XNO = 1;
+  TRX = 2;
+}
+
 message User {
   // gorm
   uint64 id = 1;
@@ -28,6 +34,9 @@ message User {
   repeated uint64 friends = 10;
   uint64 inviter = 11;
   UserRole role = 12;
+  google.protobuf.Timestamp premiumTill = 13;
+  string wAddr = 14;
+  WalletType wType = 15;
 }
 
 service UserService {
@@ -43,6 +52,10 @@ service UserService {
   rpc RemoveFriend(ekipma.api.common.IdInput)
       returns (ekipma.api.common.Empty) {}
   // NOTICE no methods for integrity - it can be checked client-side
+  // premium
+  rpc CheckAndSetWallet(WalletInput) returns (WalletOutput) {
+  } // updates user's wallets and sends my wallet to them
+  rpc CheckPremium(BlockInput) returns (User) {}
 }
 
 // otp
@@ -91,4 +104,19 @@ message FriendOutput {
   string name = 3;
   string email = 4;
   string photoURL = 5;
+}
+
+// premium
+message WalletInput {
+  string wAddr = 1;
+  WalletType wType = 2;
+}
+
+message WalletOutput {
+  User user = 1;    // updated user with new wallet
+  string wAddr = 2; // send my wallet address
+}
+
+message BlockInput {
+  string hash = 1; // type is matched with user.wType
 }

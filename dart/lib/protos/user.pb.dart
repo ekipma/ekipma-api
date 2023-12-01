@@ -34,6 +34,9 @@ class User extends $pb.GeneratedMessage {
     $core.Iterable<$fixnum.Int64>? friends,
     $fixnum.Int64? inviter,
     UserRole? role,
+    $5.Timestamp? premiumTill,
+    $core.String? wAddr,
+    WalletType? wType,
   }) {
     final $result = create();
     if (id != null) {
@@ -72,6 +75,15 @@ class User extends $pb.GeneratedMessage {
     if (role != null) {
       $result.role = role;
     }
+    if (premiumTill != null) {
+      $result.premiumTill = premiumTill;
+    }
+    if (wAddr != null) {
+      $result.wAddr = wAddr;
+    }
+    if (wType != null) {
+      $result.wType = wType;
+    }
     return $result;
   }
   User._() : super();
@@ -91,6 +103,9 @@ class User extends $pb.GeneratedMessage {
     ..p<$fixnum.Int64>(10, _omitFieldNames ? '' : 'friends', $pb.PbFieldType.KU6)
     ..a<$fixnum.Int64>(11, _omitFieldNames ? '' : 'inviter', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
     ..e<UserRole>(12, _omitFieldNames ? '' : 'role', $pb.PbFieldType.OE, defaultOrMaker: UserRole.Unkown, valueOf: UserRole.valueOf, enumValues: UserRole.values)
+    ..aOM<$5.Timestamp>(13, _omitFieldNames ? '' : 'premiumTill', protoName: 'premiumTill', subBuilder: $5.Timestamp.create)
+    ..aOS(14, _omitFieldNames ? '' : 'wAddr', protoName: 'wAddr')
+    ..e<WalletType>(15, _omitFieldNames ? '' : 'wType', $pb.PbFieldType.OE, protoName: 'wType', defaultOrMaker: WalletType.BTC, valueOf: WalletType.valueOf, enumValues: WalletType.values)
     ..hasRequiredFields = false
   ;
 
@@ -222,6 +237,35 @@ class User extends $pb.GeneratedMessage {
   $core.bool hasRole() => $_has(11);
   @$pb.TagNumber(12)
   void clearRole() => clearField(12);
+
+  @$pb.TagNumber(13)
+  $5.Timestamp get premiumTill => $_getN(12);
+  @$pb.TagNumber(13)
+  set premiumTill($5.Timestamp v) { setField(13, v); }
+  @$pb.TagNumber(13)
+  $core.bool hasPremiumTill() => $_has(12);
+  @$pb.TagNumber(13)
+  void clearPremiumTill() => clearField(13);
+  @$pb.TagNumber(13)
+  $5.Timestamp ensurePremiumTill() => $_ensure(12);
+
+  @$pb.TagNumber(14)
+  $core.String get wAddr => $_getSZ(13);
+  @$pb.TagNumber(14)
+  set wAddr($core.String v) { $_setString(13, v); }
+  @$pb.TagNumber(14)
+  $core.bool hasWAddr() => $_has(13);
+  @$pb.TagNumber(14)
+  void clearWAddr() => clearField(14);
+
+  @$pb.TagNumber(15)
+  WalletType get wType => $_getN(14);
+  @$pb.TagNumber(15)
+  set wType(WalletType v) { setField(15, v); }
+  @$pb.TagNumber(15)
+  $core.bool hasWType() => $_has(14);
+  @$pb.TagNumber(15)
+  void clearWType() => clearField(15);
 }
 
 /// otp
@@ -813,6 +857,187 @@ class FriendOutput extends $pb.GeneratedMessage {
   $core.bool hasPhotoURL() => $_has(4);
   @$pb.TagNumber(5)
   void clearPhotoURL() => clearField(5);
+}
+
+/// premium
+class WalletInput extends $pb.GeneratedMessage {
+  factory WalletInput({
+    $core.String? wAddr,
+    WalletType? wType,
+  }) {
+    final $result = create();
+    if (wAddr != null) {
+      $result.wAddr = wAddr;
+    }
+    if (wType != null) {
+      $result.wType = wType;
+    }
+    return $result;
+  }
+  WalletInput._() : super();
+  factory WalletInput.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory WalletInput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'WalletInput', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.user'), createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'wAddr', protoName: 'wAddr')
+    ..e<WalletType>(2, _omitFieldNames ? '' : 'wType', $pb.PbFieldType.OE, protoName: 'wType', defaultOrMaker: WalletType.BTC, valueOf: WalletType.valueOf, enumValues: WalletType.values)
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  WalletInput clone() => WalletInput()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  WalletInput copyWith(void Function(WalletInput) updates) => super.copyWith((message) => updates(message as WalletInput)) as WalletInput;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static WalletInput create() => WalletInput._();
+  WalletInput createEmptyInstance() => create();
+  static $pb.PbList<WalletInput> createRepeated() => $pb.PbList<WalletInput>();
+  @$core.pragma('dart2js:noInline')
+  static WalletInput getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<WalletInput>(create);
+  static WalletInput? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get wAddr => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set wAddr($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasWAddr() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearWAddr() => clearField(1);
+
+  @$pb.TagNumber(2)
+  WalletType get wType => $_getN(1);
+  @$pb.TagNumber(2)
+  set wType(WalletType v) { setField(2, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasWType() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearWType() => clearField(2);
+}
+
+class WalletOutput extends $pb.GeneratedMessage {
+  factory WalletOutput({
+    User? user,
+    $core.String? wAddr,
+  }) {
+    final $result = create();
+    if (user != null) {
+      $result.user = user;
+    }
+    if (wAddr != null) {
+      $result.wAddr = wAddr;
+    }
+    return $result;
+  }
+  WalletOutput._() : super();
+  factory WalletOutput.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory WalletOutput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'WalletOutput', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.user'), createEmptyInstance: create)
+    ..aOM<User>(1, _omitFieldNames ? '' : 'user', subBuilder: User.create)
+    ..aOS(2, _omitFieldNames ? '' : 'wAddr', protoName: 'wAddr')
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  WalletOutput clone() => WalletOutput()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  WalletOutput copyWith(void Function(WalletOutput) updates) => super.copyWith((message) => updates(message as WalletOutput)) as WalletOutput;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static WalletOutput create() => WalletOutput._();
+  WalletOutput createEmptyInstance() => create();
+  static $pb.PbList<WalletOutput> createRepeated() => $pb.PbList<WalletOutput>();
+  @$core.pragma('dart2js:noInline')
+  static WalletOutput getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<WalletOutput>(create);
+  static WalletOutput? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  User get user => $_getN(0);
+  @$pb.TagNumber(1)
+  set user(User v) { setField(1, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasUser() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearUser() => clearField(1);
+  @$pb.TagNumber(1)
+  User ensureUser() => $_ensure(0);
+
+  @$pb.TagNumber(2)
+  $core.String get wAddr => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set wAddr($core.String v) { $_setString(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasWAddr() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearWAddr() => clearField(2);
+}
+
+class BlockInput extends $pb.GeneratedMessage {
+  factory BlockInput({
+    $core.String? hash,
+  }) {
+    final $result = create();
+    if (hash != null) {
+      $result.hash = hash;
+    }
+    return $result;
+  }
+  BlockInput._() : super();
+  factory BlockInput.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory BlockInput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'BlockInput', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.user'), createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'hash')
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  BlockInput clone() => BlockInput()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  BlockInput copyWith(void Function(BlockInput) updates) => super.copyWith((message) => updates(message as BlockInput)) as BlockInput;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static BlockInput create() => BlockInput._();
+  BlockInput createEmptyInstance() => create();
+  static $pb.PbList<BlockInput> createRepeated() => $pb.PbList<BlockInput>();
+  @$core.pragma('dart2js:noInline')
+  static BlockInput getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<BlockInput>(create);
+  static BlockInput? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get hash => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set hash($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasHash() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearHash() => clearField(1);
 }
 
 
