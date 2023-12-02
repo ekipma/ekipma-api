@@ -65,7 +65,7 @@ service UserService {
   // premium
   rpc CheckAndSetWallet(WalletInput) returns (WalletOutput) {
   } // updates user's wallets and sends my wallet to them
-  rpc CheckPremium(BlockInput) returns (User) {}
+  rpc CheckPremium(ekipma.api.common.Empty) returns (User) {}
 }
 
 // otp
@@ -115,10 +115,6 @@ message WalletInput {
 }
 
 message WalletOutput {
-  User user = 1;    // updated user with new wallet
-  string wAddr = 2; // send my wallet address
-}
-
-message BlockInput {
-  string hash = 1; // type is matched with user.wType
+  User user = 1;    // updated user with his new wallet
+  string wAddr = 2; // send my related wallet address
 }

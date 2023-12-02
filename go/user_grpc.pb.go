@@ -35,7 +35,7 @@ type UserServiceClient interface {
 	// NOTICE no methods for integrity - it can be checked client-side
 	// premium
 	CheckAndSetWallet(ctx context.Context, in *WalletInput, opts ...grpc.CallOption) (*WalletOutput, error)
-	CheckPremium(ctx context.Context, in *BlockInput, opts ...grpc.CallOption) (*User, error)
+	CheckPremium(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*User, error)
 }
 
 type userServiceClient struct {
@@ -163,7 +163,7 @@ func (c *userServiceClient) CheckAndSetWallet(ctx context.Context, in *WalletInp
 	return out, nil
 }
 
-func (c *userServiceClient) CheckPremium(ctx context.Context, in *BlockInput, opts ...grpc.CallOption) (*User, error) {
+func (c *userServiceClient) CheckPremium(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*User, error) {
 	out := new(User)
 	err := c.cc.Invoke(ctx, "/ekipma.api.user.UserService/CheckPremium", in, out, opts...)
 	if err != nil {
@@ -189,7 +189,7 @@ type UserServiceServer interface {
 	// NOTICE no methods for integrity - it can be checked client-side
 	// premium
 	CheckAndSetWallet(context.Context, *WalletInput) (*WalletOutput, error)
-	CheckPremium(context.Context, *BlockInput) (*User, error)
+	CheckPremium(context.Context, *Empty) (*User, error)
 	mustEmbedUnimplementedUserServiceServer()
 }
 
@@ -221,7 +221,7 @@ func (UnimplementedUserServiceServer) RemoveFriend(context.Context, *IdInput) (*
 func (UnimplementedUserServiceServer) CheckAndSetWallet(context.Context, *WalletInput) (*WalletOutput, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CheckAndSetWallet not implemented")
 }
-func (UnimplementedUserServiceServer) CheckPremium(context.Context, *BlockInput) (*User, error) {
+func (UnimplementedUserServiceServer) CheckPremium(context.Context, *Empty) (*User, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CheckPremium not implemented")
 }
 func (UnimplementedUserServiceServer) mustEmbedUnimplementedUserServiceServer() {}
@@ -393,7 +393,7 @@ func _UserService_CheckAndSetWallet_Handler(srv interface{}, ctx context.Context
 }
 
 func _UserService_CheckPremium_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(BlockInput)
+	in := new(Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -405,7 +405,7 @@ func _UserService_CheckPremium_Handler(srv interface{}, ctx context.Context, dec
 		FullMethod: "/ekipma.api.user.UserService/CheckPremium",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServiceServer).CheckPremium(ctx, req.(*BlockInput))
+		return srv.(UserServiceServer).CheckPremium(ctx, req.(*Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }

@@ -54,9 +54,9 @@ class UserServiceClient extends $grpc.Client {
       '/ekipma.api.user.UserService/CheckAndSetWallet',
       ($4.WalletInput value) => value.writeToBuffer(),
       ($core.List<$core.int> value) => $4.WalletOutput.fromBuffer(value));
-  static final _$checkPremium = $grpc.ClientMethod<$4.BlockInput, $4.User>(
+  static final _$checkPremium = $grpc.ClientMethod<$1.Empty, $4.User>(
       '/ekipma.api.user.UserService/CheckPremium',
-      ($4.BlockInput value) => value.writeToBuffer(),
+      ($1.Empty value) => value.writeToBuffer(),
       ($core.List<$core.int> value) => $4.User.fromBuffer(value));
 
   UserServiceClient($grpc.ClientChannel channel,
@@ -97,7 +97,7 @@ class UserServiceClient extends $grpc.Client {
     return $createUnaryCall(_$checkAndSetWallet, request, options: options);
   }
 
-  $grpc.ResponseFuture<$4.User> checkPremium($4.BlockInput request, {$grpc.CallOptions? options}) {
+  $grpc.ResponseFuture<$4.User> checkPremium($1.Empty request, {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$checkPremium, request, options: options);
   }
 }
@@ -163,12 +163,12 @@ abstract class UserServiceBase extends $grpc.Service {
         false,
         ($core.List<$core.int> value) => $4.WalletInput.fromBuffer(value),
         ($4.WalletOutput value) => value.writeToBuffer()));
-    $addMethod($grpc.ServiceMethod<$4.BlockInput, $4.User>(
+    $addMethod($grpc.ServiceMethod<$1.Empty, $4.User>(
         'CheckPremium',
         checkPremium_Pre,
         false,
         false,
-        ($core.List<$core.int> value) => $4.BlockInput.fromBuffer(value),
+        ($core.List<$core.int> value) => $1.Empty.fromBuffer(value),
         ($4.User value) => value.writeToBuffer()));
   }
 
@@ -200,7 +200,7 @@ abstract class UserServiceBase extends $grpc.Service {
     return checkAndSetWallet(call, await request);
   }
 
-  $async.Future<$4.User> checkPremium_Pre($grpc.ServiceCall call, $async.Future<$4.BlockInput> request) async {
+  $async.Future<$4.User> checkPremium_Pre($grpc.ServiceCall call, $async.Future<$1.Empty> request) async {
     return checkPremium(call, await request);
   }
 
@@ -212,5 +212,5 @@ abstract class UserServiceBase extends $grpc.Service {
   $async.Stream<$4.Friend> getFriends($grpc.ServiceCall call, $1.Empty request);
   $async.Future<$1.Empty> removeFriend($grpc.ServiceCall call, $1.IdInput request);
   $async.Future<$4.WalletOutput> checkAndSetWallet($grpc.ServiceCall call, $4.WalletInput request);
-  $async.Future<$4.User> checkPremium($grpc.ServiceCall call, $4.BlockInput request);
+  $async.Future<$4.User> checkPremium($grpc.ServiceCall call, $1.Empty request);
 }

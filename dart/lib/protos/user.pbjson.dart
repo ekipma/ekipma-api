@@ -227,15 +227,3 @@ final $typed_data.Uint8List walletOutputDescriptor = $convert.base64Decode(
     'CgxXYWxsZXRPdXRwdXQSKQoEdXNlchgBIAEoCzIVLmVraXBtYS5hcGkudXNlci5Vc2VyUgR1c2'
     'VyEhQKBXdBZGRyGAIgASgJUgV3QWRkcg==');
 
-@$core.Deprecated('Use blockInputDescriptor instead')
-const BlockInput$json = {
-  '1': 'BlockInput',
-  '2': [
-    {'1': 'hash', '3': 1, '4': 1, '5': 9, '10': 'hash'},
-  ],
-};
-
-/// Descriptor for `BlockInput`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List blockInputDescriptor = $convert.base64Decode(
-    'CgpCbG9ja0lucHV0EhIKBGhhc2gYASABKAlSBGhhc2g=');
-
