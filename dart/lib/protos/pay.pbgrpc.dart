@@ -30,9 +30,9 @@ class PayServiceClient extends $grpc.Client {
       '/ekipma.api.pay.PayService/RecentPays',
       ($1.Last value) => value.writeToBuffer(),
       ($core.List<$core.int> value) => $0.Pay.fromBuffer(value));
-  static final _$deletePay = $grpc.ClientMethod<$1.Last, $1.Empty>(
+  static final _$deletePay = $grpc.ClientMethod<$1.IdInput, $1.Empty>(
       '/ekipma.api.pay.PayService/DeletePay',
-      ($1.Last value) => value.writeToBuffer(),
+      ($1.IdInput value) => value.writeToBuffer(),
       ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
   static final _$payIds = $grpc.ClientMethod<$1.Empty, $1.Integrity>(
       '/ekipma.api.pay.PayService/PayIds',
@@ -57,7 +57,7 @@ class PayServiceClient extends $grpc.Client {
     return $createStreamingCall(_$recentPays, $async.Stream.fromIterable([request]), options: options);
   }
 
-  $grpc.ResponseFuture<$1.Empty> deletePay($1.Last request, {$grpc.CallOptions? options}) {
+  $grpc.ResponseFuture<$1.Empty> deletePay($1.IdInput request, {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$deletePay, request, options: options);
   }
 
@@ -89,12 +89,12 @@ abstract class PayServiceBase extends $grpc.Service {
         true,
         ($core.List<$core.int> value) => $1.Last.fromBuffer(value),
         ($0.Pay value) => value.writeToBuffer()));
-    $addMethod($grpc.ServiceMethod<$1.Last, $1.Empty>(
+    $addMethod($grpc.ServiceMethod<$1.IdInput, $1.Empty>(
         'DeletePay',
         deletePay_Pre,
         false,
         false,
-        ($core.List<$core.int> value) => $1.Last.fromBuffer(value),
+        ($core.List<$core.int> value) => $1.IdInput.fromBuffer(value),
         ($1.Empty value) => value.writeToBuffer()));
     $addMethod($grpc.ServiceMethod<$1.Empty, $1.Integrity>(
         'PayIds',
@@ -120,7 +120,7 @@ abstract class PayServiceBase extends $grpc.Service {
     yield* recentPays(call, await request);
   }
 
-  $async.Future<$1.Empty> deletePay_Pre($grpc.ServiceCall call, $async.Future<$1.Last> request) async {
+  $async.Future<$1.Empty> deletePay_Pre($grpc.ServiceCall call, $async.Future<$1.IdInput> request) async {
     return deletePay(call, await request);
   }
 
@@ -134,7 +134,7 @@ abstract class PayServiceBase extends $grpc.Service {
 
   $async.Stream<$0.Pay> createPays($grpc.ServiceCall call, $0.PayInput request);
   $async.Stream<$0.Pay> recentPays($grpc.ServiceCall call, $1.Last request);
-  $async.Future<$1.Empty> deletePay($grpc.ServiceCall call, $1.Last request);
+  $async.Future<$1.Empty> deletePay($grpc.ServiceCall call, $1.IdInput request);
   $async.Future<$1.Integrity> payIds($grpc.ServiceCall call, $1.Empty request);
   $async.Stream<$0.Pay> lostPays($grpc.ServiceCall call, $1.Integrity request);
 }

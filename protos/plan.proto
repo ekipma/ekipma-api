@@ -6,10 +6,25 @@ import "google/protobuf/timestamp.proto";
 
 option go_package = "./go;pb";
 
+service PlanService {
+  rpc CreatePlan(PlanInput) returns (Plan) {
+    // create a plan with a due date
+    // [there is a job to clean plans due more than 5 days ago]
+    // [! a user can't have more than 100 plans at once -- maintain issue]
+  }
+  rpc RecentPlans(ekipma.api.common.Empty) returns (stream Plan);
+  rpc DeletePlan(ekipma.api.common.Last) returns (ekipma.api.common.Empty);
+}
+
 message Location {
   string name = 1;
   string lat = 2;
   string long = 3;
+}
+
+enum Sound {
+  NONE = 0;
+  YAMETE = 1;
 }
 
 message Plan {
@@ -30,21 +45,12 @@ message Plan {
   google.protobuf.Timestamp dueAt = 12; // due date
   Location location = 13;
   bool notify = 14;
-}
-
-service PlanService {
-  rpc CreatePlan(PlanInput) returns (Plan) {}
-  rpc RecentPlans(ekipma.api.common.Last) returns (stream Plan) {}
-  rpc DeletePlan(ekipma.api.common.Last) returns (ekipma.api.common.Empty) {}
-  // integrity - probably a button in mobile client settings
-  rpc PlanIds(ekipma.api.common.Empty) returns (ekipma.api.common.Integrity) {}
-  rpc LostPlans(ekipma.api.common.Integrity) returns (stream Plan) {}
+  Sound sound = 15;
 }
 
 message PlanInput {
   string title = 1;
   string desc = 2;
-  uint64 author = 3;
   repeated uint64 assignees = 4;
   uint64 group = 5;
   bool private = 6;
@@ -52,4 +58,5 @@ message PlanInput {
   google.protobuf.Timestamp dueAt = 7;
   Location location = 8;
   bool notify = 9;
+  Sound sound = 10;
 }

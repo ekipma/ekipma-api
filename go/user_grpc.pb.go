@@ -24,7 +24,7 @@ const _ = grpc.SupportPackageIsVersion7
 type UserServiceClient interface {
 	// otp
 	SendOtp(ctx context.Context, in *OtpMobileInput, opts ...grpc.CallOption) (*Empty, error)
-	CheckOtp(ctx context.Context, in *OtpCodeInput, opts ...grpc.CallOption) (*OtpOutput, error)
+	VerifyOtp(ctx context.Context, in *OtpCodeInput, opts ...grpc.CallOption) (*OtpOutput, error)
 	// auth
 	RegisterUser(ctx context.Context, in *RegisterInput, opts ...grpc.CallOption) (*AuthOutput, error)
 	LoginUser(ctx context.Context, in *LoginInput, opts ...grpc.CallOption) (*AuthOutput, error)
@@ -32,10 +32,9 @@ type UserServiceClient interface {
 	AddFriends(ctx context.Context, opts ...grpc.CallOption) (UserService_AddFriendsClient, error)
 	GetFriends(ctx context.Context, in *Empty, opts ...grpc.CallOption) (UserService_GetFriendsClient, error)
 	RemoveFriend(ctx context.Context, in *IdInput, opts ...grpc.CallOption) (*Empty, error)
-	// NOTICE no methods for integrity - it can be checked client-side
 	// premium
-	CheckAndSetWallet(ctx context.Context, in *WalletInput, opts ...grpc.CallOption) (*WalletOutput, error)
-	CheckPremium(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*User, error)
+	UpdateWallet(ctx context.Context, in *Wallet, opts ...grpc.CallOption) (*WalletOutput, error)
+	CheckPremium(ctx context.Context, in *Wallet, opts ...grpc.CallOption) (*User, error)
 }
 
 type userServiceClient struct {
@@ -55,9 +54,9 @@ func (c *userServiceClient) SendOtp(ctx context.Context, in *OtpMobileInput, opt
 	return out, nil
 }
 
-func (c *userServiceClient) CheckOtp(ctx context.Context, in *OtpCodeInput, opts ...grpc.CallOption) (*OtpOutput, error) {
+func (c *userServiceClient) VerifyOtp(ctx context.Context, in *OtpCodeInput, opts ...grpc.CallOption) (*OtpOutput, error) {
 	out := new(OtpOutput)
-	err := c.cc.Invoke(ctx, "/ekipma.api.user.UserService/CheckOtp", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/ekipma.api.user.UserService/VerifyOtp", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -93,7 +92,7 @@ func (c *userServiceClient) AddFriends(ctx context.Context, opts ...grpc.CallOpt
 
 type UserService_AddFriendsClient interface {
 	Send(*FriendInput) error
-	Recv() (*Friend, error)
+	Recv() (*FriendOutput, error)
 	grpc.ClientStream
 }
 
@@ -105,8 +104,8 @@ func (x *userServiceAddFriendsClient) Send(m *FriendInput) error {
 	return x.ClientStream.SendMsg(m)
 }
 
-func (x *userServiceAddFriendsClient) Recv() (*Friend, error) {
-	m := new(Friend)
+func (x *userServiceAddFriendsClient) Recv() (*FriendOutput, error) {
+	m := new(FriendOutput)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
@@ -129,7 +128,7 @@ func (c *userServiceClient) GetFriends(ctx context.Context, in *Empty, opts ...g
 }
 
 type UserService_GetFriendsClient interface {
-	Recv() (*Friend, error)
+	Recv() (*FriendOutput, error)
 	grpc.ClientStream
 }
 
@@ -137,8 +136,8 @@ type userServiceGetFriendsClient struct {
 	grpc.ClientStream
 }
 
-func (x *userServiceGetFriendsClient) Recv() (*Friend, error) {
-	m := new(Friend)
+func (x *userServiceGetFriendsClient) Recv() (*FriendOutput, error) {
+	m := new(FriendOutput)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
@@ -154,16 +153,16 @@ func (c *userServiceClient) RemoveFriend(ctx context.Context, in *IdInput, opts 
 	return out, nil
 }
 
-func (c *userServiceClient) CheckAndSetWallet(ctx context.Context, in *WalletInput, opts ...grpc.CallOption) (*WalletOutput, error) {
+func (c *userServiceClient) UpdateWallet(ctx context.Context, in *Wallet, opts ...grpc.CallOption) (*WalletOutput, error) {
 	out := new(WalletOutput)
-	err := c.cc.Invoke(ctx, "/ekipma.api.user.UserService/CheckAndSetWallet", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/ekipma.api.user.UserService/UpdateWallet", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *userServiceClient) CheckPremium(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*User, error) {
+func (c *userServiceClient) CheckPremium(ctx context.Context, in *Wallet, opts ...grpc.CallOption) (*User, error) {
 	out := new(User)
 	err := c.cc.Invoke(ctx, "/ekipma.api.user.UserService/CheckPremium", in, out, opts...)
 	if err != nil {
@@ -178,7 +177,7 @@ func (c *userServiceClient) CheckPremium(ctx context.Context, in *Empty, opts ..
 type UserServiceServer interface {
 	// otp
 	SendOtp(context.Context, *OtpMobileInput) (*Empty, error)
-	CheckOtp(context.Context, *OtpCodeInput) (*OtpOutput, error)
+	VerifyOtp(context.Context, *OtpCodeInput) (*OtpOutput, error)
 	// auth
 	RegisterUser(context.Context, *RegisterInput) (*AuthOutput, error)
 	LoginUser(context.Context, *LoginInput) (*AuthOutput, error)
@@ -186,10 +185,9 @@ type UserServiceServer interface {
 	AddFriends(UserService_AddFriendsServer) error
 	GetFriends(*Empty, UserService_GetFriendsServer) error
 	RemoveFriend(context.Context, *IdInput) (*Empty, error)
-	// NOTICE no methods for integrity - it can be checked client-side
 	// premium
-	CheckAndSetWallet(context.Context, *WalletInput) (*WalletOutput, error)
-	CheckPremium(context.Context, *Empty) (*User, error)
+	UpdateWallet(context.Context, *Wallet) (*WalletOutput, error)
+	CheckPremium(context.Context, *Wallet) (*User, error)
 	mustEmbedUnimplementedUserServiceServer()
 }
 
@@ -200,8 +198,8 @@ type UnimplementedUserServiceServer struct {
 func (UnimplementedUserServiceServer) SendOtp(context.Context, *OtpMobileInput) (*Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SendOtp not implemented")
 }
-func (UnimplementedUserServiceServer) CheckOtp(context.Context, *OtpCodeInput) (*OtpOutput, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CheckOtp not implemented")
+func (UnimplementedUserServiceServer) VerifyOtp(context.Context, *OtpCodeInput) (*OtpOutput, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method VerifyOtp not implemented")
 }
 func (UnimplementedUserServiceServer) RegisterUser(context.Context, *RegisterInput) (*AuthOutput, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RegisterUser not implemented")
@@ -218,10 +216,10 @@ func (UnimplementedUserServiceServer) GetFriends(*Empty, UserService_GetFriendsS
 func (UnimplementedUserServiceServer) RemoveFriend(context.Context, *IdInput) (*Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RemoveFriend not implemented")
 }
-func (UnimplementedUserServiceServer) CheckAndSetWallet(context.Context, *WalletInput) (*WalletOutput, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CheckAndSetWallet not implemented")
+func (UnimplementedUserServiceServer) UpdateWallet(context.Context, *Wallet) (*WalletOutput, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateWallet not implemented")
 }
-func (UnimplementedUserServiceServer) CheckPremium(context.Context, *Empty) (*User, error) {
+func (UnimplementedUserServiceServer) CheckPremium(context.Context, *Wallet) (*User, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CheckPremium not implemented")
 }
 func (UnimplementedUserServiceServer) mustEmbedUnimplementedUserServiceServer() {}
@@ -255,20 +253,20 @@ func _UserService_SendOtp_Handler(srv interface{}, ctx context.Context, dec func
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UserService_CheckOtp_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _UserService_VerifyOtp_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(OtpCodeInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserServiceServer).CheckOtp(ctx, in)
+		return srv.(UserServiceServer).VerifyOtp(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/ekipma.api.user.UserService/CheckOtp",
+		FullMethod: "/ekipma.api.user.UserService/VerifyOtp",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServiceServer).CheckOtp(ctx, req.(*OtpCodeInput))
+		return srv.(UserServiceServer).VerifyOtp(ctx, req.(*OtpCodeInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -314,7 +312,7 @@ func _UserService_AddFriends_Handler(srv interface{}, stream grpc.ServerStream) 
 }
 
 type UserService_AddFriendsServer interface {
-	Send(*Friend) error
+	Send(*FriendOutput) error
 	Recv() (*FriendInput, error)
 	grpc.ServerStream
 }
@@ -323,7 +321,7 @@ type userServiceAddFriendsServer struct {
 	grpc.ServerStream
 }
 
-func (x *userServiceAddFriendsServer) Send(m *Friend) error {
+func (x *userServiceAddFriendsServer) Send(m *FriendOutput) error {
 	return x.ServerStream.SendMsg(m)
 }
 
@@ -344,7 +342,7 @@ func _UserService_GetFriends_Handler(srv interface{}, stream grpc.ServerStream) 
 }
 
 type UserService_GetFriendsServer interface {
-	Send(*Friend) error
+	Send(*FriendOutput) error
 	grpc.ServerStream
 }
 
@@ -352,7 +350,7 @@ type userServiceGetFriendsServer struct {
 	grpc.ServerStream
 }
 
-func (x *userServiceGetFriendsServer) Send(m *Friend) error {
+func (x *userServiceGetFriendsServer) Send(m *FriendOutput) error {
 	return x.ServerStream.SendMsg(m)
 }
 
@@ -374,26 +372,26 @@ func _UserService_RemoveFriend_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UserService_CheckAndSetWallet_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(WalletInput)
+func _UserService_UpdateWallet_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Wallet)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserServiceServer).CheckAndSetWallet(ctx, in)
+		return srv.(UserServiceServer).UpdateWallet(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/ekipma.api.user.UserService/CheckAndSetWallet",
+		FullMethod: "/ekipma.api.user.UserService/UpdateWallet",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServiceServer).CheckAndSetWallet(ctx, req.(*WalletInput))
+		return srv.(UserServiceServer).UpdateWallet(ctx, req.(*Wallet))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _UserService_CheckPremium_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Empty)
+	in := new(Wallet)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -405,7 +403,7 @@ func _UserService_CheckPremium_Handler(srv interface{}, ctx context.Context, dec
 		FullMethod: "/ekipma.api.user.UserService/CheckPremium",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServiceServer).CheckPremium(ctx, req.(*Empty))
+		return srv.(UserServiceServer).CheckPremium(ctx, req.(*Wallet))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -422,8 +420,8 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _UserService_SendOtp_Handler,
 		},
 		{
-			MethodName: "CheckOtp",
-			Handler:    _UserService_CheckOtp_Handler,
+			MethodName: "VerifyOtp",
+			Handler:    _UserService_VerifyOtp_Handler,
 		},
 		{
 			MethodName: "RegisterUser",
@@ -438,8 +436,8 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _UserService_RemoveFriend_Handler,
 		},
 		{
-			MethodName: "CheckAndSetWallet",
-			Handler:    _UserService_CheckAndSetWallet_Handler,
+			MethodName: "UpdateWallet",
+			Handler:    _UserService_UpdateWallet_Handler,
 		},
 		{
 			MethodName: "CheckPremium",

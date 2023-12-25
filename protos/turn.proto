@@ -6,6 +6,15 @@ import "google/protobuf/timestamp.proto";
 
 option go_package = "./go;pb";
 
+service TurnService {
+  rpc CreateTurn(TurnInput) returns (Turn) {}
+  rpc RecentTurns(ekipma.api.common.Last) returns (stream Turn);
+  rpc SubmitTurn(ekipma.api.common.IdInput) returns (Turn) {
+    // changes assignee to next person in the assignees list
+  }
+  rpc DeleteTurn(ekipma.api.common.Last) returns (ekipma.api.common.Empty);
+}
+
 message Turn {
   ekipma.api.common.Chunk chunk = 1;
   // gorm
@@ -23,16 +32,6 @@ message Turn {
   // turn
   uint32 iter = 12;   // increasing
   uint32 peroid = 13; // in hours
-}
-
-service TurnService {
-  rpc CreateTurn(TurnInput) returns (Turn) {}
-  rpc RecentTurns(ekipma.api.common.Last) returns (stream Turn) {}
-  rpc SubmitTurn(ekipma.api.common.IdInput) returns (Turn) {}
-  rpc DeleteTurn(ekipma.api.common.Last) returns (ekipma.api.common.Empty) {}
-  // integrity - probably a button in mobile client settings
-  rpc TurnIds(ekipma.api.common.Empty) returns (ekipma.api.common.Integrity) {}
-  rpc LostTurns(ekipma.api.common.Integrity) returns (stream Turn) {}
 }
 
 message TurnInput {

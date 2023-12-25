@@ -23,11 +23,8 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type PlanServiceClient interface {
 	CreatePlan(ctx context.Context, in *PlanInput, opts ...grpc.CallOption) (*Plan, error)
-	RecentPlans(ctx context.Context, in *Last, opts ...grpc.CallOption) (PlanService_RecentPlansClient, error)
+	RecentPlans(ctx context.Context, in *Empty, opts ...grpc.CallOption) (PlanService_RecentPlansClient, error)
 	DeletePlan(ctx context.Context, in *Last, opts ...grpc.CallOption) (*Empty, error)
-	// integrity - probably a button in mobile client settings
-	PlanIds(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Integrity, error)
-	LostPlans(ctx context.Context, in *Integrity, opts ...grpc.CallOption) (PlanService_LostPlansClient, error)
 }
 
 type planServiceClient struct {
@@ -47,7 +44,7 @@ func (c *planServiceClient) CreatePlan(ctx context.Context, in *PlanInput, opts 
 	return out, nil
 }
 
-func (c *planServiceClient) RecentPlans(ctx context.Context, in *Last, opts ...grpc.CallOption) (PlanService_RecentPlansClient, error) {
+func (c *planServiceClient) RecentPlans(ctx context.Context, in *Empty, opts ...grpc.CallOption) (PlanService_RecentPlansClient, error) {
 	stream, err := c.cc.NewStream(ctx, &PlanService_ServiceDesc.Streams[0], "/ekipma.api.plan.PlanService/RecentPlans", opts...)
 	if err != nil {
 		return nil, err
@@ -88,57 +85,13 @@ func (c *planServiceClient) DeletePlan(ctx context.Context, in *Last, opts ...gr
 	return out, nil
 }
 
-func (c *planServiceClient) PlanIds(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Integrity, error) {
-	out := new(Integrity)
-	err := c.cc.Invoke(ctx, "/ekipma.api.plan.PlanService/PlanIds", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *planServiceClient) LostPlans(ctx context.Context, in *Integrity, opts ...grpc.CallOption) (PlanService_LostPlansClient, error) {
-	stream, err := c.cc.NewStream(ctx, &PlanService_ServiceDesc.Streams[1], "/ekipma.api.plan.PlanService/LostPlans", opts...)
-	if err != nil {
-		return nil, err
-	}
-	x := &planServiceLostPlansClient{stream}
-	if err := x.ClientStream.SendMsg(in); err != nil {
-		return nil, err
-	}
-	if err := x.ClientStream.CloseSend(); err != nil {
-		return nil, err
-	}
-	return x, nil
-}
-
-type PlanService_LostPlansClient interface {
-	Recv() (*Plan, error)
-	grpc.ClientStream
-}
-
-type planServiceLostPlansClient struct {
-	grpc.ClientStream
-}
-
-func (x *planServiceLostPlansClient) Recv() (*Plan, error) {
-	m := new(Plan)
-	if err := x.ClientStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
-}
-
 // PlanServiceServer is the server API for PlanService service.
 // All implementations must embed UnimplementedPlanServiceServer
 // for forward compatibility
 type PlanServiceServer interface {
 	CreatePlan(context.Context, *PlanInput) (*Plan, error)
-	RecentPlans(*Last, PlanService_RecentPlansServer) error
+	RecentPlans(*Empty, PlanService_RecentPlansServer) error
 	DeletePlan(context.Context, *Last) (*Empty, error)
-	// integrity - probably a button in mobile client settings
-	PlanIds(context.Context, *Empty) (*Integrity, error)
-	LostPlans(*Integrity, PlanService_LostPlansServer) error
 	mustEmbedUnimplementedPlanServiceServer()
 }
 
@@ -149,17 +102,11 @@ type UnimplementedPlanServiceServer struct {
 func (UnimplementedPlanServiceServer) CreatePlan(context.Context, *PlanInput) (*Plan, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreatePlan not implemented")
 }
-func (UnimplementedPlanServiceServer) RecentPlans(*Last, PlanService_RecentPlansServer) error {
+func (UnimplementedPlanServiceServer) RecentPlans(*Empty, PlanService_RecentPlansServer) error {
 	return status.Errorf(codes.Unimplemented, "method RecentPlans not implemented")
 }
 func (UnimplementedPlanServiceServer) DeletePlan(context.Context, *Last) (*Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeletePlan not implemented")
-}
-func (UnimplementedPlanServiceServer) PlanIds(context.Context, *Empty) (*Integrity, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method PlanIds not implemented")
-}
-func (UnimplementedPlanServiceServer) LostPlans(*Integrity, PlanService_LostPlansServer) error {
-	return status.Errorf(codes.Unimplemented, "method LostPlans not implemented")
 }
 func (UnimplementedPlanServiceServer) mustEmbedUnimplementedPlanServiceServer() {}
 
@@ -193,7 +140,7 @@ func _PlanService_CreatePlan_Handler(srv interface{}, ctx context.Context, dec f
 }
 
 func _PlanService_RecentPlans_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(Last)
+	m := new(Empty)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
@@ -231,45 +178,6 @@ func _PlanService_DeletePlan_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PlanService_PlanIds_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Empty)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PlanServiceServer).PlanIds(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/ekipma.api.plan.PlanService/PlanIds",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PlanServiceServer).PlanIds(ctx, req.(*Empty))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _PlanService_LostPlans_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(Integrity)
-	if err := stream.RecvMsg(m); err != nil {
-		return err
-	}
-	return srv.(PlanServiceServer).LostPlans(m, &planServiceLostPlansServer{stream})
-}
-
-type PlanService_LostPlansServer interface {
-	Send(*Plan) error
-	grpc.ServerStream
-}
-
-type planServiceLostPlansServer struct {
-	grpc.ServerStream
-}
-
-func (x *planServiceLostPlansServer) Send(m *Plan) error {
-	return x.ServerStream.SendMsg(m)
-}
-
 // PlanService_ServiceDesc is the grpc.ServiceDesc for PlanService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -285,20 +193,11 @@ var PlanService_ServiceDesc = grpc.ServiceDesc{
 			MethodName: "DeletePlan",
 			Handler:    _PlanService_DeletePlan_Handler,
 		},
-		{
-			MethodName: "PlanIds",
-			Handler:    _PlanService_PlanIds_Handler,
-		},
 	},
 	Streams: []grpc.StreamDesc{
 		{
 			StreamName:    "RecentPlans",
 			Handler:       _PlanService_RecentPlans_Handler,
-			ServerStreams: true,
-		},
-		{
-			StreamName:    "LostPlans",
-			Handler:       _PlanService_LostPlans_Handler,
 			ServerStreams: true,
 		},
 	},

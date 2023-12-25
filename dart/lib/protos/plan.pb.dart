@@ -14,8 +14,11 @@ import 'dart:core' as $core;
 import 'package:fixnum/fixnum.dart' as $fixnum;
 import 'package:protobuf/protobuf.dart' as $pb;
 
-import '../google/protobuf/timestamp.pb.dart' as $5;
+import '../google/protobuf/timestamp.pb.dart' as $6;
 import 'common.pb.dart' as $1;
+import 'plan.pbenum.dart';
+
+export 'plan.pbenum.dart';
 
 class Location extends $pb.GeneratedMessage {
   factory Location({
@@ -99,8 +102,8 @@ class Plan extends $pb.GeneratedMessage {
   factory Plan({
     $1.Chunk? chunk,
     $fixnum.Int64? id,
-    $5.Timestamp? createdAt,
-    $5.Timestamp? updatedAt,
+    $6.Timestamp? createdAt,
+    $6.Timestamp? updatedAt,
     $core.String? title,
     $core.String? desc,
     $fixnum.Int64? author,
@@ -108,9 +111,10 @@ class Plan extends $pb.GeneratedMessage {
     $core.Iterable<$fixnum.Int64>? assignees,
     $fixnum.Int64? group,
     $core.bool? private,
-    $5.Timestamp? dueAt,
+    $6.Timestamp? dueAt,
     Location? location,
     $core.bool? notify,
+    Sound? sound,
   }) {
     final $result = create();
     if (chunk != null) {
@@ -155,6 +159,9 @@ class Plan extends $pb.GeneratedMessage {
     if (notify != null) {
       $result.notify = notify;
     }
+    if (sound != null) {
+      $result.sound = sound;
+    }
     return $result;
   }
   Plan._() : super();
@@ -164,8 +171,8 @@ class Plan extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Plan', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.plan'), createEmptyInstance: create)
     ..aOM<$1.Chunk>(1, _omitFieldNames ? '' : 'chunk', subBuilder: $1.Chunk.create)
     ..a<$fixnum.Int64>(2, _omitFieldNames ? '' : 'id', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
-    ..aOM<$5.Timestamp>(3, _omitFieldNames ? '' : 'createdAt', protoName: 'createdAt', subBuilder: $5.Timestamp.create)
-    ..aOM<$5.Timestamp>(4, _omitFieldNames ? '' : 'updatedAt', protoName: 'updatedAt', subBuilder: $5.Timestamp.create)
+    ..aOM<$6.Timestamp>(3, _omitFieldNames ? '' : 'createdAt', protoName: 'createdAt', subBuilder: $6.Timestamp.create)
+    ..aOM<$6.Timestamp>(4, _omitFieldNames ? '' : 'updatedAt', protoName: 'updatedAt', subBuilder: $6.Timestamp.create)
     ..aOS(5, _omitFieldNames ? '' : 'title')
     ..aOS(6, _omitFieldNames ? '' : 'desc')
     ..a<$fixnum.Int64>(7, _omitFieldNames ? '' : 'author', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
@@ -173,9 +180,10 @@ class Plan extends $pb.GeneratedMessage {
     ..p<$fixnum.Int64>(9, _omitFieldNames ? '' : 'assignees', $pb.PbFieldType.KU6)
     ..a<$fixnum.Int64>(10, _omitFieldNames ? '' : 'group', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
     ..aOB(11, _omitFieldNames ? '' : 'private')
-    ..aOM<$5.Timestamp>(12, _omitFieldNames ? '' : 'dueAt', protoName: 'dueAt', subBuilder: $5.Timestamp.create)
+    ..aOM<$6.Timestamp>(12, _omitFieldNames ? '' : 'dueAt', protoName: 'dueAt', subBuilder: $6.Timestamp.create)
     ..aOM<Location>(13, _omitFieldNames ? '' : 'location', subBuilder: Location.create)
     ..aOB(14, _omitFieldNames ? '' : 'notify')
+    ..e<Sound>(15, _omitFieldNames ? '' : 'sound', $pb.PbFieldType.OE, defaultOrMaker: Sound.NONE, valueOf: Sound.valueOf, enumValues: Sound.values)
     ..hasRequiredFields = false
   ;
 
@@ -222,26 +230,26 @@ class Plan extends $pb.GeneratedMessage {
   void clearId() => clearField(2);
 
   @$pb.TagNumber(3)
-  $5.Timestamp get createdAt => $_getN(2);
+  $6.Timestamp get createdAt => $_getN(2);
   @$pb.TagNumber(3)
-  set createdAt($5.Timestamp v) { setField(3, v); }
+  set createdAt($6.Timestamp v) { setField(3, v); }
   @$pb.TagNumber(3)
   $core.bool hasCreatedAt() => $_has(2);
   @$pb.TagNumber(3)
   void clearCreatedAt() => clearField(3);
   @$pb.TagNumber(3)
-  $5.Timestamp ensureCreatedAt() => $_ensure(2);
+  $6.Timestamp ensureCreatedAt() => $_ensure(2);
 
   @$pb.TagNumber(4)
-  $5.Timestamp get updatedAt => $_getN(3);
+  $6.Timestamp get updatedAt => $_getN(3);
   @$pb.TagNumber(4)
-  set updatedAt($5.Timestamp v) { setField(4, v); }
+  set updatedAt($6.Timestamp v) { setField(4, v); }
   @$pb.TagNumber(4)
   $core.bool hasUpdatedAt() => $_has(3);
   @$pb.TagNumber(4)
   void clearUpdatedAt() => clearField(4);
   @$pb.TagNumber(4)
-  $5.Timestamp ensureUpdatedAt() => $_ensure(3);
+  $6.Timestamp ensureUpdatedAt() => $_ensure(3);
 
   /// rec
   @$pb.TagNumber(5)
@@ -303,15 +311,15 @@ class Plan extends $pb.GeneratedMessage {
 
   /// plan
   @$pb.TagNumber(12)
-  $5.Timestamp get dueAt => $_getN(11);
+  $6.Timestamp get dueAt => $_getN(11);
   @$pb.TagNumber(12)
-  set dueAt($5.Timestamp v) { setField(12, v); }
+  set dueAt($6.Timestamp v) { setField(12, v); }
   @$pb.TagNumber(12)
   $core.bool hasDueAt() => $_has(11);
   @$pb.TagNumber(12)
   void clearDueAt() => clearField(12);
   @$pb.TagNumber(12)
-  $5.Timestamp ensureDueAt() => $_ensure(11);
+  $6.Timestamp ensureDueAt() => $_ensure(11);
 
   @$pb.TagNumber(13)
   Location get location => $_getN(12);
@@ -332,19 +340,28 @@ class Plan extends $pb.GeneratedMessage {
   $core.bool hasNotify() => $_has(13);
   @$pb.TagNumber(14)
   void clearNotify() => clearField(14);
+
+  @$pb.TagNumber(15)
+  Sound get sound => $_getN(14);
+  @$pb.TagNumber(15)
+  set sound(Sound v) { setField(15, v); }
+  @$pb.TagNumber(15)
+  $core.bool hasSound() => $_has(14);
+  @$pb.TagNumber(15)
+  void clearSound() => clearField(15);
 }
 
 class PlanInput extends $pb.GeneratedMessage {
   factory PlanInput({
     $core.String? title,
     $core.String? desc,
-    $fixnum.Int64? author,
     $core.Iterable<$fixnum.Int64>? assignees,
     $fixnum.Int64? group,
     $core.bool? private,
-    $5.Timestamp? dueAt,
+    $6.Timestamp? dueAt,
     Location? location,
     $core.bool? notify,
+    Sound? sound,
   }) {
     final $result = create();
     if (title != null) {
@@ -352,9 +369,6 @@ class PlanInput extends $pb.GeneratedMessage {
     }
     if (desc != null) {
       $result.desc = desc;
-    }
-    if (author != null) {
-      $result.author = author;
     }
     if (assignees != null) {
       $result.assignees.addAll(assignees);
@@ -374,6 +388,9 @@ class PlanInput extends $pb.GeneratedMessage {
     if (notify != null) {
       $result.notify = notify;
     }
+    if (sound != null) {
+      $result.sound = sound;
+    }
     return $result;
   }
   PlanInput._() : super();
@@ -383,13 +400,13 @@ class PlanInput extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'PlanInput', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.plan'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'title')
     ..aOS(2, _omitFieldNames ? '' : 'desc')
-    ..a<$fixnum.Int64>(3, _omitFieldNames ? '' : 'author', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
     ..p<$fixnum.Int64>(4, _omitFieldNames ? '' : 'assignees', $pb.PbFieldType.KU6)
     ..a<$fixnum.Int64>(5, _omitFieldNames ? '' : 'group', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
     ..aOB(6, _omitFieldNames ? '' : 'private')
-    ..aOM<$5.Timestamp>(7, _omitFieldNames ? '' : 'dueAt', protoName: 'dueAt', subBuilder: $5.Timestamp.create)
+    ..aOM<$6.Timestamp>(7, _omitFieldNames ? '' : 'dueAt', protoName: 'dueAt', subBuilder: $6.Timestamp.create)
     ..aOM<Location>(8, _omitFieldNames ? '' : 'location', subBuilder: Location.create)
     ..aOB(9, _omitFieldNames ? '' : 'notify')
+    ..e<Sound>(10, _omitFieldNames ? '' : 'sound', $pb.PbFieldType.OE, defaultOrMaker: Sound.NONE, valueOf: Sound.valueOf, enumValues: Sound.values)
     ..hasRequiredFields = false
   ;
 
@@ -432,67 +449,67 @@ class PlanInput extends $pb.GeneratedMessage {
   @$pb.TagNumber(2)
   void clearDesc() => clearField(2);
 
-  @$pb.TagNumber(3)
-  $fixnum.Int64 get author => $_getI64(2);
-  @$pb.TagNumber(3)
-  set author($fixnum.Int64 v) { $_setInt64(2, v); }
-  @$pb.TagNumber(3)
-  $core.bool hasAuthor() => $_has(2);
-  @$pb.TagNumber(3)
-  void clearAuthor() => clearField(3);
-
   @$pb.TagNumber(4)
-  $core.List<$fixnum.Int64> get assignees => $_getList(3);
+  $core.List<$fixnum.Int64> get assignees => $_getList(2);
 
   @$pb.TagNumber(5)
-  $fixnum.Int64 get group => $_getI64(4);
+  $fixnum.Int64 get group => $_getI64(3);
   @$pb.TagNumber(5)
-  set group($fixnum.Int64 v) { $_setInt64(4, v); }
+  set group($fixnum.Int64 v) { $_setInt64(3, v); }
   @$pb.TagNumber(5)
-  $core.bool hasGroup() => $_has(4);
+  $core.bool hasGroup() => $_has(3);
   @$pb.TagNumber(5)
   void clearGroup() => clearField(5);
 
   @$pb.TagNumber(6)
-  $core.bool get private => $_getBF(5);
+  $core.bool get private => $_getBF(4);
   @$pb.TagNumber(6)
-  set private($core.bool v) { $_setBool(5, v); }
+  set private($core.bool v) { $_setBool(4, v); }
   @$pb.TagNumber(6)
-  $core.bool hasPrivate() => $_has(5);
+  $core.bool hasPrivate() => $_has(4);
   @$pb.TagNumber(6)
   void clearPrivate() => clearField(6);
 
   /// plan
   @$pb.TagNumber(7)
-  $5.Timestamp get dueAt => $_getN(6);
+  $6.Timestamp get dueAt => $_getN(5);
   @$pb.TagNumber(7)
-  set dueAt($5.Timestamp v) { setField(7, v); }
+  set dueAt($6.Timestamp v) { setField(7, v); }
   @$pb.TagNumber(7)
-  $core.bool hasDueAt() => $_has(6);
+  $core.bool hasDueAt() => $_has(5);
   @$pb.TagNumber(7)
   void clearDueAt() => clearField(7);
   @$pb.TagNumber(7)
-  $5.Timestamp ensureDueAt() => $_ensure(6);
+  $6.Timestamp ensureDueAt() => $_ensure(5);
 
   @$pb.TagNumber(8)
-  Location get location => $_getN(7);
+  Location get location => $_getN(6);
   @$pb.TagNumber(8)
   set location(Location v) { setField(8, v); }
   @$pb.TagNumber(8)
-  $core.bool hasLocation() => $_has(7);
+  $core.bool hasLocation() => $_has(6);
   @$pb.TagNumber(8)
   void clearLocation() => clearField(8);
   @$pb.TagNumber(8)
-  Location ensureLocation() => $_ensure(7);
+  Location ensureLocation() => $_ensure(6);
 
   @$pb.TagNumber(9)
-  $core.bool get notify => $_getBF(8);
+  $core.bool get notify => $_getBF(7);
   @$pb.TagNumber(9)
-  set notify($core.bool v) { $_setBool(8, v); }
+  set notify($core.bool v) { $_setBool(7, v); }
   @$pb.TagNumber(9)
-  $core.bool hasNotify() => $_has(8);
+  $core.bool hasNotify() => $_has(7);
   @$pb.TagNumber(9)
   void clearNotify() => clearField(9);
+
+  @$pb.TagNumber(10)
+  Sound get sound => $_getN(8);
+  @$pb.TagNumber(10)
+  set sound(Sound v) { setField(10, v); }
+  @$pb.TagNumber(10)
+  $core.bool hasSound() => $_has(8);
+  @$pb.TagNumber(10)
+  void clearSound() => clearField(10);
 }
 
 

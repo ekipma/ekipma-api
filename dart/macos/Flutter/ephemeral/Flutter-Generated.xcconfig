@@ -1,6 +1,6 @@
 // This is a generated file; do not edit or check into version control.
 FLUTTER_ROOT=/home/hayyaun/dev/flutter
-FLUTTER_APPLICATION_PATH=/mnt/Main/Documents/Projects/organizations/ekipma/ekipma-api/dart/ekipma_api
+FLUTTER_APPLICATION_PATH=/mnt/Main/Documents/Projects/organizations/ekipma/ekipma-api/dart
 COCOAPODS_PARALLEL_CODE_SIGN=true
 FLUTTER_BUILD_DIR=build
 FLUTTER_BUILD_NAME=0.0.1

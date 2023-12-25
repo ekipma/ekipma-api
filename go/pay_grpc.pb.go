@@ -24,7 +24,7 @@ const _ = grpc.SupportPackageIsVersion7
 type PayServiceClient interface {
 	CreatePays(ctx context.Context, in *PayInput, opts ...grpc.CallOption) (PayService_CreatePaysClient, error)
 	RecentPays(ctx context.Context, in *Last, opts ...grpc.CallOption) (PayService_RecentPaysClient, error)
-	DeletePay(ctx context.Context, in *Last, opts ...grpc.CallOption) (*Empty, error)
+	DeletePay(ctx context.Context, in *IdInput, opts ...grpc.CallOption) (*Empty, error)
 	// integrity - probably a button in mobile client settings
 	PayIds(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Integrity, error)
 	LostPays(ctx context.Context, in *Integrity, opts ...grpc.CallOption) (PayService_LostPaysClient, error)
@@ -102,7 +102,7 @@ func (x *payServiceRecentPaysClient) Recv() (*Pay, error) {
 	return m, nil
 }
 
-func (c *payServiceClient) DeletePay(ctx context.Context, in *Last, opts ...grpc.CallOption) (*Empty, error) {
+func (c *payServiceClient) DeletePay(ctx context.Context, in *IdInput, opts ...grpc.CallOption) (*Empty, error) {
 	out := new(Empty)
 	err := c.cc.Invoke(ctx, "/ekipma.api.pay.PayService/DeletePay", in, out, opts...)
 	if err != nil {
@@ -158,7 +158,7 @@ func (x *payServiceLostPaysClient) Recv() (*Pay, error) {
 type PayServiceServer interface {
 	CreatePays(*PayInput, PayService_CreatePaysServer) error
 	RecentPays(*Last, PayService_RecentPaysServer) error
-	DeletePay(context.Context, *Last) (*Empty, error)
+	DeletePay(context.Context, *IdInput) (*Empty, error)
 	// integrity - probably a button in mobile client settings
 	PayIds(context.Context, *Empty) (*Integrity, error)
 	LostPays(*Integrity, PayService_LostPaysServer) error
@@ -175,7 +175,7 @@ func (UnimplementedPayServiceServer) CreatePays(*PayInput, PayService_CreatePays
 func (UnimplementedPayServiceServer) RecentPays(*Last, PayService_RecentPaysServer) error {
 	return status.Errorf(codes.Unimplemented, "method RecentPays not implemented")
 }
-func (UnimplementedPayServiceServer) DeletePay(context.Context, *Last) (*Empty, error) {
+func (UnimplementedPayServiceServer) DeletePay(context.Context, *IdInput) (*Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeletePay not implemented")
 }
 func (UnimplementedPayServiceServer) PayIds(context.Context, *Empty) (*Integrity, error) {
@@ -240,7 +240,7 @@ func (x *payServiceRecentPaysServer) Send(m *Pay) error {
 }
 
 func _PayService_DeletePay_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Last)
+	in := new(IdInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -252,7 +252,7 @@ func _PayService_DeletePay_Handler(srv interface{}, ctx context.Context, dec fun
 		FullMethod: "/ekipma.api.pay.PayService/DeletePay",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PayServiceServer).DeletePay(ctx, req.(*Last))
+		return srv.(PayServiceServer).DeletePay(ctx, req.(*IdInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }

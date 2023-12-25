@@ -13,6 +13,19 @@ import 'dart:convert' as $convert;
 import 'dart:core' as $core;
 import 'dart:typed_data' as $typed_data;
 
+@$core.Deprecated('Use soundDescriptor instead')
+const Sound$json = {
+  '1': 'Sound',
+  '2': [
+    {'1': 'NONE', '2': 0},
+    {'1': 'YAMETE', '2': 1},
+  ],
+};
+
+/// Descriptor for `Sound`. Decode as a `google.protobuf.EnumDescriptorProto`.
+final $typed_data.Uint8List soundDescriptor = $convert.base64Decode(
+    'CgVTb3VuZBIICgROT05FEAASCgoGWUFNRVRFEAE=');
+
 @$core.Deprecated('Use locationDescriptor instead')
 const Location$json = {
   '1': 'Location',
@@ -46,6 +59,7 @@ const Plan$json = {
     {'1': 'dueAt', '3': 12, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'dueAt'},
     {'1': 'location', '3': 13, '4': 1, '5': 11, '6': '.ekipma.api.plan.Location', '10': 'location'},
     {'1': 'notify', '3': 14, '4': 1, '5': 8, '10': 'notify'},
+    {'1': 'sound', '3': 15, '4': 1, '5': 14, '6': '.ekipma.api.plan.Sound', '10': 'sound'},
   ],
 };
 
@@ -59,7 +73,8 @@ final $typed_data.Uint8List planDescriptor = $convert.base64Decode(
     '5lZRIcCglhc3NpZ25lZXMYCSADKARSCWFzc2lnbmVlcxIUCgVncm91cBgKIAEoBFIFZ3JvdXAS'
     'GAoHcHJpdmF0ZRgLIAEoCFIHcHJpdmF0ZRIwCgVkdWVBdBgMIAEoCzIaLmdvb2dsZS5wcm90b2'
     'J1Zi5UaW1lc3RhbXBSBWR1ZUF0EjUKCGxvY2F0aW9uGA0gASgLMhkuZWtpcG1hLmFwaS5wbGFu'
-    'LkxvY2F0aW9uUghsb2NhdGlvbhIWCgZub3RpZnkYDiABKAhSBm5vdGlmeQ==');
+    'LkxvY2F0aW9uUghsb2NhdGlvbhIWCgZub3RpZnkYDiABKAhSBm5vdGlmeRIsCgVzb3VuZBgPIA'
+    'EoDjIWLmVraXBtYS5hcGkucGxhbi5Tb3VuZFIFc291bmQ=');
 
 @$core.Deprecated('Use planInputDescriptor instead')
 const PlanInput$json = {
@@ -67,22 +82,22 @@ const PlanInput$json = {
   '2': [
     {'1': 'title', '3': 1, '4': 1, '5': 9, '10': 'title'},
     {'1': 'desc', '3': 2, '4': 1, '5': 9, '10': 'desc'},
-    {'1': 'author', '3': 3, '4': 1, '5': 4, '10': 'author'},
     {'1': 'assignees', '3': 4, '4': 3, '5': 4, '10': 'assignees'},
     {'1': 'group', '3': 5, '4': 1, '5': 4, '10': 'group'},
     {'1': 'private', '3': 6, '4': 1, '5': 8, '10': 'private'},
     {'1': 'dueAt', '3': 7, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'dueAt'},
     {'1': 'location', '3': 8, '4': 1, '5': 11, '6': '.ekipma.api.plan.Location', '10': 'location'},
     {'1': 'notify', '3': 9, '4': 1, '5': 8, '10': 'notify'},
+    {'1': 'sound', '3': 10, '4': 1, '5': 14, '6': '.ekipma.api.plan.Sound', '10': 'sound'},
   ],
 };
 
 /// Descriptor for `PlanInput`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List planInputDescriptor = $convert.base64Decode(
-    'CglQbGFuSW5wdXQSFAoFdGl0bGUYASABKAlSBXRpdGxlEhIKBGRlc2MYAiABKAlSBGRlc2MSFg'
-    'oGYXV0aG9yGAMgASgEUgZhdXRob3ISHAoJYXNzaWduZWVzGAQgAygEUglhc3NpZ25lZXMSFAoF'
-    'Z3JvdXAYBSABKARSBWdyb3VwEhgKB3ByaXZhdGUYBiABKAhSB3ByaXZhdGUSMAoFZHVlQXQYBy'
-    'ABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wUgVkdWVBdBI1Cghsb2NhdGlvbhgIIAEo'
-    'CzIZLmVraXBtYS5hcGkucGxhbi5Mb2NhdGlvblIIbG9jYXRpb24SFgoGbm90aWZ5GAkgASgIUg'
-    'Zub3RpZnk=');
+    'CglQbGFuSW5wdXQSFAoFdGl0bGUYASABKAlSBXRpdGxlEhIKBGRlc2MYAiABKAlSBGRlc2MSHA'
+    'oJYXNzaWduZWVzGAQgAygEUglhc3NpZ25lZXMSFAoFZ3JvdXAYBSABKARSBWdyb3VwEhgKB3By'
+    'aXZhdGUYBiABKAhSB3ByaXZhdGUSMAoFZHVlQXQYByABKAsyGi5nb29nbGUucHJvdG9idWYuVG'
+    'ltZXN0YW1wUgVkdWVBdBI1Cghsb2NhdGlvbhgIIAEoCzIZLmVraXBtYS5hcGkucGxhbi5Mb2Nh'
+    'dGlvblIIbG9jYXRpb24SFgoGbm90aWZ5GAkgASgIUgZub3RpZnkSLAoFc291bmQYCiABKA4yFi'
+    '5la2lwbWEuYXBpLnBsYW4uU291bmRSBXNvdW5k');
 

@@ -1,0 +1,95 @@
+syntax = "proto3";
+package ekipma.api.record;
+
+import "protos/pay.proto";
+import "protos/plan.proto";
+import "protos/common.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "./go;pb";
+
+service RecordService {
+  rpc CreateRecords(Record) returns (stream Record) {
+    // if -- Pay
+    // for each assignee of pay-input an author<->assignee record would be made
+    // if `author` field is defined transaction is reversed
+    // if -- turn | plan
+    // create only one record.
+    // turn: if `assignee` field is not defined turn is assigned to `author`
+    // plan: has no `assignee` field
+  }
+  rpc RecentRecords(ekipma.api.common.Last) returns (stream Record) {
+    // get a list of recent records after the last item
+    // if -- turn | plan
+    // use ID = 0 to receive all.
+    // check "assignees | author" instead of "assignee | author"
+  }
+  rpc DeleteRecord(ekipma.api.common.IdInput) returns (ekipma.api.common.Empty);
+
+  // -- pay --
+  // integrity - probably a button in mobile client settings
+  rpc PayIds(ekipma.api.common.Empty) returns (ekipma.api.common.Integrity) {
+    // get a list of all pay ids related to the user
+    // send the list to the client to be matched
+    // for the missing list of pay ids from pay ids sent to the client
+    // the lost-pays method would be then called
+  }
+  rpc LostPays(ekipma.api.common.Integrity) returns (stream Pay) {
+    // from pay ids that were lost in client side
+    // retrieve all of the pays and stream it back for client to append
+  }
+
+  // -- turn --
+  rpc SubmitTurn(ekipma.api.common.IdInput) returns (Turn) {
+    // changes assignee to next person in the assignees list
+  }
+}
+
+enum RecordType {
+  IsPay = 0;
+  IsTurn = 1;
+  IsPlan = 2;
+}
+
+message Record {
+  ekipma.api.common.Chunk chunk = 1;
+
+  // gorm - output
+  uint64 id = 2;
+  google.protobuf.Timestamp createdAt = 3;
+  google.protobuf.Timestamp updatedAt = 4;
+
+  // rec
+  string title = 5;
+  string desc = 6;
+  uint64 author = 7;
+  repeated uint64 assignees = 8;
+  uint64 group = 9;
+  bool private = 10;
+
+  // value
+  RecordType type = 11;
+  oneof value {
+    Pay pay = 12;
+    Turn turn = 13;
+    Plan plan = 14;
+  }
+}
+
+message Pay {
+  double total = 1;
+  ekipma.api.pay.PayUnit unit = 2;
+  ekipma.api.pay.PayType type = 3;
+}
+
+message Turn {
+  uint32 iter = 1;   // increasing - output
+  uint32 peroid = 2; // in hours
+}
+
+message Plan {
+  google.protobuf.Timestamp dueAt = 1; // due date
+  ekipma.api.plan.Location location = 2;
+  bool notify = 3;
+  ekipma.api.plan.Sound sound = 4;
+}

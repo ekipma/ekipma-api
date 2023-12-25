@@ -33,14 +33,18 @@ class UserRole extends $pb.ProtobufEnum {
 }
 
 class WalletType extends $pb.ProtobufEnum {
-  static const WalletType BTC = WalletType._(0, _omitEnumNames ? '' : 'BTC');
+  static const WalletType CUSTOM = WalletType._(0, _omitEnumNames ? '' : 'CUSTOM');
   static const WalletType XNO = WalletType._(1, _omitEnumNames ? '' : 'XNO');
   static const WalletType TRX = WalletType._(2, _omitEnumNames ? '' : 'TRX');
+  static const WalletType DOGE = WalletType._(3, _omitEnumNames ? '' : 'DOGE');
+  static const WalletType ADA = WalletType._(4, _omitEnumNames ? '' : 'ADA');
 
   static const $core.List<WalletType> values = <WalletType> [
-    BTC,
+    CUSTOM,
     XNO,
     TRX,
+    DOGE,
+    ADA,
   ];
 
   static final $core.Map<$core.int, WalletType> _byValue = $pb.ProtobufEnum.initByValue(values);

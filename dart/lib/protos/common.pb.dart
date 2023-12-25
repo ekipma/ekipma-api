@@ -14,7 +14,7 @@ import 'dart:core' as $core;
 import 'package:fixnum/fixnum.dart' as $fixnum;
 import 'package:protobuf/protobuf.dart' as $pb;
 
-import '../google/protobuf/timestamp.pb.dart' as $5;
+import '../google/protobuf/timestamp.pb.dart' as $6;
 
 class Empty extends $pb.GeneratedMessage {
   factory Empty() => create();
@@ -323,8 +323,8 @@ class Integrity extends $pb.GeneratedMessage {
 class Gorm extends $pb.GeneratedMessage {
   factory Gorm({
     $fixnum.Int64? id,
-    $5.Timestamp? createdAt,
-    $5.Timestamp? updatedAt,
+    $6.Timestamp? createdAt,
+    $6.Timestamp? updatedAt,
   }) {
     final $result = create();
     if (id != null) {
@@ -344,8 +344,8 @@ class Gorm extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Gorm', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.common'), createEmptyInstance: create)
     ..a<$fixnum.Int64>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
-    ..aOM<$5.Timestamp>(2, _omitFieldNames ? '' : 'createdAt', protoName: 'createdAt', subBuilder: $5.Timestamp.create)
-    ..aOM<$5.Timestamp>(3, _omitFieldNames ? '' : 'updatedAt', protoName: 'updatedAt', subBuilder: $5.Timestamp.create)
+    ..aOM<$6.Timestamp>(2, _omitFieldNames ? '' : 'createdAt', protoName: 'createdAt', subBuilder: $6.Timestamp.create)
+    ..aOM<$6.Timestamp>(3, _omitFieldNames ? '' : 'updatedAt', protoName: 'updatedAt', subBuilder: $6.Timestamp.create)
     ..hasRequiredFields = false
   ;
 
@@ -380,26 +380,26 @@ class Gorm extends $pb.GeneratedMessage {
   void clearId() => clearField(1);
 
   @$pb.TagNumber(2)
-  $5.Timestamp get createdAt => $_getN(1);
+  $6.Timestamp get createdAt => $_getN(1);
   @$pb.TagNumber(2)
-  set createdAt($5.Timestamp v) { setField(2, v); }
+  set createdAt($6.Timestamp v) { setField(2, v); }
   @$pb.TagNumber(2)
   $core.bool hasCreatedAt() => $_has(1);
   @$pb.TagNumber(2)
   void clearCreatedAt() => clearField(2);
   @$pb.TagNumber(2)
-  $5.Timestamp ensureCreatedAt() => $_ensure(1);
+  $6.Timestamp ensureCreatedAt() => $_ensure(1);
 
   @$pb.TagNumber(3)
-  $5.Timestamp get updatedAt => $_getN(2);
+  $6.Timestamp get updatedAt => $_getN(2);
   @$pb.TagNumber(3)
-  set updatedAt($5.Timestamp v) { setField(3, v); }
+  set updatedAt($6.Timestamp v) { setField(3, v); }
   @$pb.TagNumber(3)
   $core.bool hasUpdatedAt() => $_has(2);
   @$pb.TagNumber(3)
   void clearUpdatedAt() => clearField(3);
   @$pb.TagNumber(3)
-  $5.Timestamp ensureUpdatedAt() => $_ensure(2);
+  $6.Timestamp ensureUpdatedAt() => $_ensure(2);
 }
 
 class Rec extends $pb.GeneratedMessage {

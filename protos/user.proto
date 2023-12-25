@@ -6,6 +6,44 @@ import "google/protobuf/timestamp.proto";
 
 option go_package = "./go;pb";
 
+service UserService {
+  // otp
+  rpc SendOtp(OtpMobileInput) returns (ekipma.api.common.Empty) {
+    // only sends otp to the mobile number in separate go routine
+    // it has two types -> register and forget
+    // if register -> check duplicate
+  }
+  rpc VerifyOtp(OtpCodeInput) returns (OtpOutput) {
+    // validate otp code of the mobile number
+    // generate a token for signing up
+  }
+  // auth
+  rpc RegisterUser(RegisterInput) returns (AuthOutput) {
+    // with the otp-token given attempt a register
+    // generate access-token and send it
+  }
+  rpc LoginUser(LoginInput) returns (AuthOutput) {}
+  // friend
+  rpc AddFriends(stream FriendInput) returns (stream FriendOutput);
+  rpc GetFriends(ekipma.api.common.Empty) returns (stream FriendOutput);
+  rpc RemoveFriend(ekipma.api.common.IdInput) returns (ekipma.api.common.Empty);
+  // premium
+  rpc UpdateWallet(Wallet) returns (WalletOutput) {
+    // based on type + owner -> update/set addr (unique)
+    // based on type -> send my wallet of same type
+    // wallet public is `false` by default (for premium)
+    // but can be set as `public` or `primary` in account section
+    // `primary` address is what others can copy from copy btn
+  }
+  rpc CheckPremium(Wallet) returns (User) {
+    // based on wallet type check purchase
+    // if purchase correct -> 35d premium +
+    // each friend 5d premium if not premium
+  }
+}
+
+// user
+
 enum UserRole {
   Unkown = 0;
   Normal = 1;
@@ -13,59 +51,24 @@ enum UserRole {
   Admin = 3;
 }
 
-enum WalletType {
-  BTC = 0;
-  XNO = 1;
-  TRX = 2;
-}
-
 message User {
-  ekipma.api.common.Chunk chunk = 1;
   // gorm
-  uint64 id = 2;
-  google.protobuf.Timestamp createdAt = 3;
-  google.protobuf.Timestamp updatedAt = 4;
+  uint64 id = 1;
+  google.protobuf.Timestamp createdAt = 2;
+  google.protobuf.Timestamp updatedAt = 3;
   // user
-  string mobile = 5;
-  string code = 6;
-  string name = 7;
-  string email = 8;
-  string photoURL = 9;
-  bool public = 10;
-  repeated uint64 friends = 11;
-  uint64 inviter = 12;
-  UserRole role = 13;
-  google.protobuf.Timestamp premiumTill = 14;
-  string wAddr = 15;
-  WalletType wType = 16;
-}
-
-message Friend {
-  ekipma.api.common.Chunk chunk = 1;
-  uint64 id = 2;
-  string name = 3;
-  string email = 4;
-  string photoURL = 5;
-  google.protobuf.Timestamp premiumTill = 6;
-}
-
-service UserService {
-  // otp
-  rpc SendOtp(OtpMobileInput) returns (ekipma.api.common.Empty) {}
-  rpc CheckOtp(OtpCodeInput) returns (OtpOutput) {}
-  // auth
-  rpc RegisterUser(RegisterInput) returns (AuthOutput) {}
-  rpc LoginUser(LoginInput) returns (AuthOutput) {}
-  // friend
-  rpc AddFriends(stream FriendInput) returns (stream Friend) {}
-  rpc GetFriends(ekipma.api.common.Empty) returns (stream Friend) {}
-  rpc RemoveFriend(ekipma.api.common.IdInput)
-      returns (ekipma.api.common.Empty) {}
-  // NOTICE no methods for integrity - it can be checked client-side
-  // premium
-  rpc CheckAndSetWallet(WalletInput) returns (WalletOutput) {
-  } // updates user's wallets and sends my wallet to them
-  rpc CheckPremium(ekipma.api.common.Empty) returns (User) {}
+  string mobile = 4;
+  string code = 5;
+  string name = 6;
+  string email = 7;
+  string photoURL = 8;
+  bool public = 9;
+  repeated uint64 friends = 10;
+  uint64 inviter = 11;
+  UserRole role = 12;
+  google.protobuf.Timestamp premiumTill = 13;
+  repeated Wallet wallets = 14;
+  uint64 primaryWallet = 15;
 }
 
 // otp
@@ -102,19 +105,47 @@ message AuthOutput {
   User user = 2;
 }
 
-// friend
+// friend - subtype of user with limited fields
+
+message Friend {
+  uint64 id = 1;
+  string name = 2;
+  string email = 3;
+  string photoURL = 4;
+  google.protobuf.Timestamp premiumTill = 5;
+  repeated Wallet wallets = 6; // NOTICE send only public wallets
+}
+
 message FriendInput {
   ekipma.api.common.Chunk chunk = 1;
   string mobile = 2;
 }
 
-// premium
-message WalletInput {
-  string wAddr = 1;
-  WalletType wType = 2;
+message FriendOutput {
+  ekipma.api.common.Chunk chunk = 1;
+  optional Friend friend = 2;
+}
+
+// wallets
+
+enum WalletType {
+  CUSTOM = 0;
+  XNO = 1;
+  TRX = 2;
+  DOGE = 3;
+  ADA = 4;
+}
+
+message Wallet {
+  uint64 id = 1;    // - output
+  uint64 owner = 2; // - output
+  WalletType type = 3;
+  string addr = 4;
+  bool public = 5;  // visible to other users
+  bool primary = 6; // sets as primary - input
 }
 
 message WalletOutput {
   User user = 1;    // updated user with his new wallet
-  string wAddr = 2; // send my related wallet address
+  Wallet wDist = 2; // send my related wallet address
 }

@@ -26,22 +26,14 @@ class PlanServiceClient extends $grpc.Client {
       '/ekipma.api.plan.PlanService/CreatePlan',
       ($2.PlanInput value) => value.writeToBuffer(),
       ($core.List<$core.int> value) => $2.Plan.fromBuffer(value));
-  static final _$recentPlans = $grpc.ClientMethod<$1.Last, $2.Plan>(
+  static final _$recentPlans = $grpc.ClientMethod<$1.Empty, $2.Plan>(
       '/ekipma.api.plan.PlanService/RecentPlans',
-      ($1.Last value) => value.writeToBuffer(),
+      ($1.Empty value) => value.writeToBuffer(),
       ($core.List<$core.int> value) => $2.Plan.fromBuffer(value));
   static final _$deletePlan = $grpc.ClientMethod<$1.Last, $1.Empty>(
       '/ekipma.api.plan.PlanService/DeletePlan',
       ($1.Last value) => value.writeToBuffer(),
       ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
-  static final _$planIds = $grpc.ClientMethod<$1.Empty, $1.Integrity>(
-      '/ekipma.api.plan.PlanService/PlanIds',
-      ($1.Empty value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) => $1.Integrity.fromBuffer(value));
-  static final _$lostPlans = $grpc.ClientMethod<$1.Integrity, $2.Plan>(
-      '/ekipma.api.plan.PlanService/LostPlans',
-      ($1.Integrity value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) => $2.Plan.fromBuffer(value));
 
   PlanServiceClient($grpc.ClientChannel channel,
       {$grpc.CallOptions? options,
@@ -53,20 +45,12 @@ class PlanServiceClient extends $grpc.Client {
     return $createUnaryCall(_$createPlan, request, options: options);
   }
 
-  $grpc.ResponseStream<$2.Plan> recentPlans($1.Last request, {$grpc.CallOptions? options}) {
+  $grpc.ResponseStream<$2.Plan> recentPlans($1.Empty request, {$grpc.CallOptions? options}) {
     return $createStreamingCall(_$recentPlans, $async.Stream.fromIterable([request]), options: options);
   }
 
   $grpc.ResponseFuture<$1.Empty> deletePlan($1.Last request, {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$deletePlan, request, options: options);
-  }
-
-  $grpc.ResponseFuture<$1.Integrity> planIds($1.Empty request, {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$planIds, request, options: options);
-  }
-
-  $grpc.ResponseStream<$2.Plan> lostPlans($1.Integrity request, {$grpc.CallOptions? options}) {
-    return $createStreamingCall(_$lostPlans, $async.Stream.fromIterable([request]), options: options);
   }
 }
 
@@ -82,12 +66,12 @@ abstract class PlanServiceBase extends $grpc.Service {
         false,
         ($core.List<$core.int> value) => $2.PlanInput.fromBuffer(value),
         ($2.Plan value) => value.writeToBuffer()));
-    $addMethod($grpc.ServiceMethod<$1.Last, $2.Plan>(
+    $addMethod($grpc.ServiceMethod<$1.Empty, $2.Plan>(
         'RecentPlans',
         recentPlans_Pre,
         false,
         true,
-        ($core.List<$core.int> value) => $1.Last.fromBuffer(value),
+        ($core.List<$core.int> value) => $1.Empty.fromBuffer(value),
         ($2.Plan value) => value.writeToBuffer()));
     $addMethod($grpc.ServiceMethod<$1.Last, $1.Empty>(
         'DeletePlan',
@@ -96,27 +80,13 @@ abstract class PlanServiceBase extends $grpc.Service {
         false,
         ($core.List<$core.int> value) => $1.Last.fromBuffer(value),
         ($1.Empty value) => value.writeToBuffer()));
-    $addMethod($grpc.ServiceMethod<$1.Empty, $1.Integrity>(
-        'PlanIds',
-        planIds_Pre,
-        false,
-        false,
-        ($core.List<$core.int> value) => $1.Empty.fromBuffer(value),
-        ($1.Integrity value) => value.writeToBuffer()));
-    $addMethod($grpc.ServiceMethod<$1.Integrity, $2.Plan>(
-        'LostPlans',
-        lostPlans_Pre,
-        false,
-        true,
-        ($core.List<$core.int> value) => $1.Integrity.fromBuffer(value),
-        ($2.Plan value) => value.writeToBuffer()));
   }
 
   $async.Future<$2.Plan> createPlan_Pre($grpc.ServiceCall call, $async.Future<$2.PlanInput> request) async {
     return createPlan(call, await request);
   }
 
-  $async.Stream<$2.Plan> recentPlans_Pre($grpc.ServiceCall call, $async.Future<$1.Last> request) async* {
+  $async.Stream<$2.Plan> recentPlans_Pre($grpc.ServiceCall call, $async.Future<$1.Empty> request) async* {
     yield* recentPlans(call, await request);
   }
 
@@ -124,17 +94,7 @@ abstract class PlanServiceBase extends $grpc.Service {
     return deletePlan(call, await request);
   }
 
-  $async.Future<$1.Integrity> planIds_Pre($grpc.ServiceCall call, $async.Future<$1.Empty> request) async {
-    return planIds(call, await request);
-  }
-
-  $async.Stream<$2.Plan> lostPlans_Pre($grpc.ServiceCall call, $async.Future<$1.Integrity> request) async* {
-    yield* lostPlans(call, await request);
-  }
-
   $async.Future<$2.Plan> createPlan($grpc.ServiceCall call, $2.PlanInput request);
-  $async.Stream<$2.Plan> recentPlans($grpc.ServiceCall call, $1.Last request);
+  $async.Stream<$2.Plan> recentPlans($grpc.ServiceCall call, $1.Empty request);
   $async.Future<$1.Empty> deletePlan($grpc.ServiceCall call, $1.Last request);
-  $async.Future<$1.Integrity> planIds($grpc.ServiceCall call, $1.Empty request);
-  $async.Stream<$2.Plan> lostPlans($grpc.ServiceCall call, $1.Integrity request);
 }

@@ -26,9 +26,6 @@ type TurnServiceClient interface {
 	RecentTurns(ctx context.Context, in *Last, opts ...grpc.CallOption) (TurnService_RecentTurnsClient, error)
 	SubmitTurn(ctx context.Context, in *IdInput, opts ...grpc.CallOption) (*Turn, error)
 	DeleteTurn(ctx context.Context, in *Last, opts ...grpc.CallOption) (*Empty, error)
-	// integrity - probably a button in mobile client settings
-	TurnIds(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Integrity, error)
-	LostTurns(ctx context.Context, in *Integrity, opts ...grpc.CallOption) (TurnService_LostTurnsClient, error)
 }
 
 type turnServiceClient struct {
@@ -98,47 +95,6 @@ func (c *turnServiceClient) DeleteTurn(ctx context.Context, in *Last, opts ...gr
 	return out, nil
 }
 
-func (c *turnServiceClient) TurnIds(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Integrity, error) {
-	out := new(Integrity)
-	err := c.cc.Invoke(ctx, "/ekipma.api.turn.TurnService/TurnIds", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *turnServiceClient) LostTurns(ctx context.Context, in *Integrity, opts ...grpc.CallOption) (TurnService_LostTurnsClient, error) {
-	stream, err := c.cc.NewStream(ctx, &TurnService_ServiceDesc.Streams[1], "/ekipma.api.turn.TurnService/LostTurns", opts...)
-	if err != nil {
-		return nil, err
-	}
-	x := &turnServiceLostTurnsClient{stream}
-	if err := x.ClientStream.SendMsg(in); err != nil {
-		return nil, err
-	}
-	if err := x.ClientStream.CloseSend(); err != nil {
-		return nil, err
-	}
-	return x, nil
-}
-
-type TurnService_LostTurnsClient interface {
-	Recv() (*Turn, error)
-	grpc.ClientStream
-}
-
-type turnServiceLostTurnsClient struct {
-	grpc.ClientStream
-}
-
-func (x *turnServiceLostTurnsClient) Recv() (*Turn, error) {
-	m := new(Turn)
-	if err := x.ClientStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
-}
-
 // TurnServiceServer is the server API for TurnService service.
 // All implementations must embed UnimplementedTurnServiceServer
 // for forward compatibility
@@ -147,9 +103,6 @@ type TurnServiceServer interface {
 	RecentTurns(*Last, TurnService_RecentTurnsServer) error
 	SubmitTurn(context.Context, *IdInput) (*Turn, error)
 	DeleteTurn(context.Context, *Last) (*Empty, error)
-	// integrity - probably a button in mobile client settings
-	TurnIds(context.Context, *Empty) (*Integrity, error)
-	LostTurns(*Integrity, TurnService_LostTurnsServer) error
 	mustEmbedUnimplementedTurnServiceServer()
 }
 
@@ -168,12 +121,6 @@ func (UnimplementedTurnServiceServer) SubmitTurn(context.Context, *IdInput) (*Tu
 }
 func (UnimplementedTurnServiceServer) DeleteTurn(context.Context, *Last) (*Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteTurn not implemented")
-}
-func (UnimplementedTurnServiceServer) TurnIds(context.Context, *Empty) (*Integrity, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method TurnIds not implemented")
-}
-func (UnimplementedTurnServiceServer) LostTurns(*Integrity, TurnService_LostTurnsServer) error {
-	return status.Errorf(codes.Unimplemented, "method LostTurns not implemented")
 }
 func (UnimplementedTurnServiceServer) mustEmbedUnimplementedTurnServiceServer() {}
 
@@ -263,45 +210,6 @@ func _TurnService_DeleteTurn_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TurnService_TurnIds_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Empty)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(TurnServiceServer).TurnIds(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/ekipma.api.turn.TurnService/TurnIds",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TurnServiceServer).TurnIds(ctx, req.(*Empty))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _TurnService_LostTurns_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(Integrity)
-	if err := stream.RecvMsg(m); err != nil {
-		return err
-	}
-	return srv.(TurnServiceServer).LostTurns(m, &turnServiceLostTurnsServer{stream})
-}
-
-type TurnService_LostTurnsServer interface {
-	Send(*Turn) error
-	grpc.ServerStream
-}
-
-type turnServiceLostTurnsServer struct {
-	grpc.ServerStream
-}
-
-func (x *turnServiceLostTurnsServer) Send(m *Turn) error {
-	return x.ServerStream.SendMsg(m)
-}
-
 // TurnService_ServiceDesc is the grpc.ServiceDesc for TurnService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -321,20 +229,11 @@ var TurnService_ServiceDesc = grpc.ServiceDesc{
 			MethodName: "DeleteTurn",
 			Handler:    _TurnService_DeleteTurn_Handler,
 		},
-		{
-			MethodName: "TurnIds",
-			Handler:    _TurnService_TurnIds_Handler,
-		},
 	},
 	Streams: []grpc.StreamDesc{
 		{
 			StreamName:    "RecentTurns",
 			Handler:       _TurnService_RecentTurns_Handler,
-			ServerStreams: true,
-		},
-		{
-			StreamName:    "LostTurns",
-			Handler:       _TurnService_LostTurns_Handler,
 			ServerStreams: true,
 		},
 	},
