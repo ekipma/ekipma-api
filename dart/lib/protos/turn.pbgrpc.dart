@@ -16,24 +16,24 @@ import 'package:grpc/service_api.dart' as $grpc;
 import 'package:protobuf/protobuf.dart' as $pb;
 
 import 'common.pb.dart' as $1;
-import 'turn.pb.dart' as $4;
+import 'turn.pb.dart' as $3;
 
 export 'turn.pb.dart';
 
 @$pb.GrpcServiceName('ekipma.api.turn.TurnService')
 class TurnServiceClient extends $grpc.Client {
-  static final _$createTurn = $grpc.ClientMethod<$4.TurnInput, $4.Turn>(
+  static final _$createTurn = $grpc.ClientMethod<$3.TurnInput, $3.Turn>(
       '/ekipma.api.turn.TurnService/CreateTurn',
-      ($4.TurnInput value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) => $4.Turn.fromBuffer(value));
-  static final _$recentTurns = $grpc.ClientMethod<$1.Last, $4.Turn>(
+      ($3.TurnInput value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $3.Turn.fromBuffer(value));
+  static final _$recentTurns = $grpc.ClientMethod<$1.Last, $3.Turn>(
       '/ekipma.api.turn.TurnService/RecentTurns',
       ($1.Last value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) => $4.Turn.fromBuffer(value));
-  static final _$submitTurn = $grpc.ClientMethod<$1.IdInput, $4.Turn>(
+      ($core.List<$core.int> value) => $3.Turn.fromBuffer(value));
+  static final _$submitTurn = $grpc.ClientMethod<$1.IdInput, $3.Turn>(
       '/ekipma.api.turn.TurnService/SubmitTurn',
       ($1.IdInput value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) => $4.Turn.fromBuffer(value));
+      ($core.List<$core.int> value) => $3.Turn.fromBuffer(value));
   static final _$deleteTurn = $grpc.ClientMethod<$1.Last, $1.Empty>(
       '/ekipma.api.turn.TurnService/DeleteTurn',
       ($1.Last value) => value.writeToBuffer(),
@@ -45,15 +45,15 @@ class TurnServiceClient extends $grpc.Client {
       : super(channel, options: options,
         interceptors: interceptors);
 
-  $grpc.ResponseFuture<$4.Turn> createTurn($4.TurnInput request, {$grpc.CallOptions? options}) {
+  $grpc.ResponseFuture<$3.Turn> createTurn($3.TurnInput request, {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$createTurn, request, options: options);
   }
 
-  $grpc.ResponseStream<$4.Turn> recentTurns($1.Last request, {$grpc.CallOptions? options}) {
+  $grpc.ResponseStream<$3.Turn> recentTurns($1.Last request, {$grpc.CallOptions? options}) {
     return $createStreamingCall(_$recentTurns, $async.Stream.fromIterable([request]), options: options);
   }
 
-  $grpc.ResponseFuture<$4.Turn> submitTurn($1.IdInput request, {$grpc.CallOptions? options}) {
+  $grpc.ResponseFuture<$3.Turn> submitTurn($1.IdInput request, {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$submitTurn, request, options: options);
   }
 
@@ -67,27 +67,27 @@ abstract class TurnServiceBase extends $grpc.Service {
   $core.String get $name => 'ekipma.api.turn.TurnService';
 
   TurnServiceBase() {
-    $addMethod($grpc.ServiceMethod<$4.TurnInput, $4.Turn>(
+    $addMethod($grpc.ServiceMethod<$3.TurnInput, $3.Turn>(
         'CreateTurn',
         createTurn_Pre,
         false,
         false,
-        ($core.List<$core.int> value) => $4.TurnInput.fromBuffer(value),
-        ($4.Turn value) => value.writeToBuffer()));
-    $addMethod($grpc.ServiceMethod<$1.Last, $4.Turn>(
+        ($core.List<$core.int> value) => $3.TurnInput.fromBuffer(value),
+        ($3.Turn value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$1.Last, $3.Turn>(
         'RecentTurns',
         recentTurns_Pre,
         false,
         true,
         ($core.List<$core.int> value) => $1.Last.fromBuffer(value),
-        ($4.Turn value) => value.writeToBuffer()));
-    $addMethod($grpc.ServiceMethod<$1.IdInput, $4.Turn>(
+        ($3.Turn value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$1.IdInput, $3.Turn>(
         'SubmitTurn',
         submitTurn_Pre,
         false,
         false,
         ($core.List<$core.int> value) => $1.IdInput.fromBuffer(value),
-        ($4.Turn value) => value.writeToBuffer()));
+        ($3.Turn value) => value.writeToBuffer()));
     $addMethod($grpc.ServiceMethod<$1.Last, $1.Empty>(
         'DeleteTurn',
         deleteTurn_Pre,
@@ -97,15 +97,15 @@ abstract class TurnServiceBase extends $grpc.Service {
         ($1.Empty value) => value.writeToBuffer()));
   }
 
-  $async.Future<$4.Turn> createTurn_Pre($grpc.ServiceCall call, $async.Future<$4.TurnInput> request) async {
+  $async.Future<$3.Turn> createTurn_Pre($grpc.ServiceCall call, $async.Future<$3.TurnInput> request) async {
     return createTurn(call, await request);
   }
 
-  $async.Stream<$4.Turn> recentTurns_Pre($grpc.ServiceCall call, $async.Future<$1.Last> request) async* {
+  $async.Stream<$3.Turn> recentTurns_Pre($grpc.ServiceCall call, $async.Future<$1.Last> request) async* {
     yield* recentTurns(call, await request);
   }
 
-  $async.Future<$4.Turn> submitTurn_Pre($grpc.ServiceCall call, $async.Future<$1.IdInput> request) async {
+  $async.Future<$3.Turn> submitTurn_Pre($grpc.ServiceCall call, $async.Future<$1.IdInput> request) async {
     return submitTurn(call, await request);
   }
 
@@ -113,8 +113,8 @@ abstract class TurnServiceBase extends $grpc.Service {
     return deleteTurn(call, await request);
   }
 
-  $async.Future<$4.Turn> createTurn($grpc.ServiceCall call, $4.TurnInput request);
-  $async.Stream<$4.Turn> recentTurns($grpc.ServiceCall call, $1.Last request);
-  $async.Future<$4.Turn> submitTurn($grpc.ServiceCall call, $1.IdInput request);
+  $async.Future<$3.Turn> createTurn($grpc.ServiceCall call, $3.TurnInput request);
+  $async.Stream<$3.Turn> recentTurns($grpc.ServiceCall call, $1.Last request);
+  $async.Future<$3.Turn> submitTurn($grpc.ServiceCall call, $1.IdInput request);
   $async.Future<$1.Empty> deleteTurn($grpc.ServiceCall call, $1.Last request);
 }

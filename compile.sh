@@ -3,11 +3,7 @@
 set -e # exit immediately if any command exits with a non-zero exit code
 
 echo "> Compile proto files"
-protoc protos/*.proto \
---go_out=./ --go_opt=paths=import \
---go-grpc_out=./ --go-grpc_opt=paths=import \
---dart_out=grpc:dart/lib \
---proto_path=.
+make compile
 
 while getopts v:m:t: flag
 do
@@ -45,5 +41,5 @@ else
 fi
 
 echo "> Push everything"
-git push origin main
+git push -u origin HEAD
 git push origin $version

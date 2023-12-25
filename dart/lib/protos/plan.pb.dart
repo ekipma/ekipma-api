@@ -14,7 +14,7 @@ import 'dart:core' as $core;
 import 'package:fixnum/fixnum.dart' as $fixnum;
 import 'package:protobuf/protobuf.dart' as $pb;
 
-import '../google/protobuf/timestamp.pb.dart' as $6;
+import '../google/protobuf/timestamp.pb.dart' as $5;
 import 'common.pb.dart' as $1;
 import 'plan.pbenum.dart';
 
@@ -102,8 +102,8 @@ class Plan extends $pb.GeneratedMessage {
   factory Plan({
     $1.Chunk? chunk,
     $fixnum.Int64? id,
-    $6.Timestamp? createdAt,
-    $6.Timestamp? updatedAt,
+    $5.Timestamp? createdAt,
+    $5.Timestamp? updatedAt,
     $core.String? title,
     $core.String? desc,
     $fixnum.Int64? author,
@@ -111,7 +111,7 @@ class Plan extends $pb.GeneratedMessage {
     $core.Iterable<$fixnum.Int64>? assignees,
     $fixnum.Int64? group,
     $core.bool? private,
-    $6.Timestamp? dueAt,
+    $5.Timestamp? dueAt,
     Location? location,
     $core.bool? notify,
     Sound? sound,
@@ -171,8 +171,8 @@ class Plan extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Plan', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.plan'), createEmptyInstance: create)
     ..aOM<$1.Chunk>(1, _omitFieldNames ? '' : 'chunk', subBuilder: $1.Chunk.create)
     ..a<$fixnum.Int64>(2, _omitFieldNames ? '' : 'id', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
-    ..aOM<$6.Timestamp>(3, _omitFieldNames ? '' : 'createdAt', protoName: 'createdAt', subBuilder: $6.Timestamp.create)
-    ..aOM<$6.Timestamp>(4, _omitFieldNames ? '' : 'updatedAt', protoName: 'updatedAt', subBuilder: $6.Timestamp.create)
+    ..aOM<$5.Timestamp>(3, _omitFieldNames ? '' : 'createdAt', protoName: 'createdAt', subBuilder: $5.Timestamp.create)
+    ..aOM<$5.Timestamp>(4, _omitFieldNames ? '' : 'updatedAt', protoName: 'updatedAt', subBuilder: $5.Timestamp.create)
     ..aOS(5, _omitFieldNames ? '' : 'title')
     ..aOS(6, _omitFieldNames ? '' : 'desc')
     ..a<$fixnum.Int64>(7, _omitFieldNames ? '' : 'author', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
@@ -180,7 +180,7 @@ class Plan extends $pb.GeneratedMessage {
     ..p<$fixnum.Int64>(9, _omitFieldNames ? '' : 'assignees', $pb.PbFieldType.KU6)
     ..a<$fixnum.Int64>(10, _omitFieldNames ? '' : 'group', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
     ..aOB(11, _omitFieldNames ? '' : 'private')
-    ..aOM<$6.Timestamp>(12, _omitFieldNames ? '' : 'dueAt', protoName: 'dueAt', subBuilder: $6.Timestamp.create)
+    ..aOM<$5.Timestamp>(12, _omitFieldNames ? '' : 'dueAt', protoName: 'dueAt', subBuilder: $5.Timestamp.create)
     ..aOM<Location>(13, _omitFieldNames ? '' : 'location', subBuilder: Location.create)
     ..aOB(14, _omitFieldNames ? '' : 'notify')
     ..e<Sound>(15, _omitFieldNames ? '' : 'sound', $pb.PbFieldType.OE, defaultOrMaker: Sound.NONE, valueOf: Sound.valueOf, enumValues: Sound.values)
@@ -230,26 +230,26 @@ class Plan extends $pb.GeneratedMessage {
   void clearId() => clearField(2);
 
   @$pb.TagNumber(3)
-  $6.Timestamp get createdAt => $_getN(2);
+  $5.Timestamp get createdAt => $_getN(2);
   @$pb.TagNumber(3)
-  set createdAt($6.Timestamp v) { setField(3, v); }
+  set createdAt($5.Timestamp v) { setField(3, v); }
   @$pb.TagNumber(3)
   $core.bool hasCreatedAt() => $_has(2);
   @$pb.TagNumber(3)
   void clearCreatedAt() => clearField(3);
   @$pb.TagNumber(3)
-  $6.Timestamp ensureCreatedAt() => $_ensure(2);
+  $5.Timestamp ensureCreatedAt() => $_ensure(2);
 
   @$pb.TagNumber(4)
-  $6.Timestamp get updatedAt => $_getN(3);
+  $5.Timestamp get updatedAt => $_getN(3);
   @$pb.TagNumber(4)
-  set updatedAt($6.Timestamp v) { setField(4, v); }
+  set updatedAt($5.Timestamp v) { setField(4, v); }
   @$pb.TagNumber(4)
   $core.bool hasUpdatedAt() => $_has(3);
   @$pb.TagNumber(4)
   void clearUpdatedAt() => clearField(4);
   @$pb.TagNumber(4)
-  $6.Timestamp ensureUpdatedAt() => $_ensure(3);
+  $5.Timestamp ensureUpdatedAt() => $_ensure(3);
 
   /// rec
   @$pb.TagNumber(5)
@@ -311,15 +311,15 @@ class Plan extends $pb.GeneratedMessage {
 
   /// plan
   @$pb.TagNumber(12)
-  $6.Timestamp get dueAt => $_getN(11);
+  $5.Timestamp get dueAt => $_getN(11);
   @$pb.TagNumber(12)
-  set dueAt($6.Timestamp v) { setField(12, v); }
+  set dueAt($5.Timestamp v) { setField(12, v); }
   @$pb.TagNumber(12)
   $core.bool hasDueAt() => $_has(11);
   @$pb.TagNumber(12)
   void clearDueAt() => clearField(12);
   @$pb.TagNumber(12)
-  $6.Timestamp ensureDueAt() => $_ensure(11);
+  $5.Timestamp ensureDueAt() => $_ensure(11);
 
   @$pb.TagNumber(13)
   Location get location => $_getN(12);
@@ -358,7 +358,7 @@ class PlanInput extends $pb.GeneratedMessage {
     $core.Iterable<$fixnum.Int64>? assignees,
     $fixnum.Int64? group,
     $core.bool? private,
-    $6.Timestamp? dueAt,
+    $5.Timestamp? dueAt,
     Location? location,
     $core.bool? notify,
     Sound? sound,
@@ -403,7 +403,7 @@ class PlanInput extends $pb.GeneratedMessage {
     ..p<$fixnum.Int64>(4, _omitFieldNames ? '' : 'assignees', $pb.PbFieldType.KU6)
     ..a<$fixnum.Int64>(5, _omitFieldNames ? '' : 'group', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
     ..aOB(6, _omitFieldNames ? '' : 'private')
-    ..aOM<$6.Timestamp>(7, _omitFieldNames ? '' : 'dueAt', protoName: 'dueAt', subBuilder: $6.Timestamp.create)
+    ..aOM<$5.Timestamp>(7, _omitFieldNames ? '' : 'dueAt', protoName: 'dueAt', subBuilder: $5.Timestamp.create)
     ..aOM<Location>(8, _omitFieldNames ? '' : 'location', subBuilder: Location.create)
     ..aOB(9, _omitFieldNames ? '' : 'notify')
     ..e<Sound>(10, _omitFieldNames ? '' : 'sound', $pb.PbFieldType.OE, defaultOrMaker: Sound.NONE, valueOf: Sound.valueOf, enumValues: Sound.values)
@@ -472,15 +472,15 @@ class PlanInput extends $pb.GeneratedMessage {
 
   /// plan
   @$pb.TagNumber(7)
-  $6.Timestamp get dueAt => $_getN(5);
+  $5.Timestamp get dueAt => $_getN(5);
   @$pb.TagNumber(7)
-  set dueAt($6.Timestamp v) { setField(7, v); }
+  set dueAt($5.Timestamp v) { setField(7, v); }
   @$pb.TagNumber(7)
   $core.bool hasDueAt() => $_has(5);
   @$pb.TagNumber(7)
   void clearDueAt() => clearField(7);
   @$pb.TagNumber(7)
-  $6.Timestamp ensureDueAt() => $_ensure(5);
+  $5.Timestamp ensureDueAt() => $_ensure(5);
 
   @$pb.TagNumber(8)
   Location get location => $_getN(6);
