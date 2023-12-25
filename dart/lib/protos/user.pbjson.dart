@@ -243,11 +243,13 @@ const WalletOutput$json = {
   '2': [
     {'1': 'user', '3': 1, '4': 1, '5': 11, '6': '.ekipma.api.user.User', '10': 'user'},
     {'1': 'wDist', '3': 2, '4': 1, '5': 11, '6': '.ekipma.api.user.Wallet', '10': 'wDist'},
+    {'1': 'price', '3': 3, '4': 1, '5': 2, '10': 'price'},
   ],
 };
 
 /// Descriptor for `WalletOutput`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List walletOutputDescriptor = $convert.base64Decode(
     'CgxXYWxsZXRPdXRwdXQSKQoEdXNlchgBIAEoCzIVLmVraXBtYS5hcGkudXNlci5Vc2VyUgR1c2'
-    'VyEi0KBXdEaXN0GAIgASgLMhcuZWtpcG1hLmFwaS51c2VyLldhbGxldFIFd0Rpc3Q=');
+    'VyEi0KBXdEaXN0GAIgASgLMhcuZWtpcG1hLmFwaS51c2VyLldhbGxldFIFd0Rpc3QSFAoFcHJp'
+    'Y2UYAyABKAJSBXByaWNl');
 

@@ -148,4 +148,5 @@ message Wallet {
 message WalletOutput {
   User user = 1;    // updated user with his new wallet
   Wallet wDist = 2; // send my related wallet address
+  float price = 3;
 }

@@ -1052,6 +1052,7 @@ class WalletOutput extends $pb.GeneratedMessage {
   factory WalletOutput({
     User? user,
     Wallet? wDist,
+    $core.double? price,
   }) {
     final $result = create();
     if (user != null) {
@@ -1059,6 +1060,9 @@ class WalletOutput extends $pb.GeneratedMessage {
     }
     if (wDist != null) {
       $result.wDist = wDist;
+    }
+    if (price != null) {
+      $result.price = price;
     }
     return $result;
   }
@@ -1069,6 +1073,7 @@ class WalletOutput extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'WalletOutput', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.user'), createEmptyInstance: create)
     ..aOM<User>(1, _omitFieldNames ? '' : 'user', subBuilder: User.create)
     ..aOM<Wallet>(2, _omitFieldNames ? '' : 'wDist', protoName: 'wDist', subBuilder: Wallet.create)
+    ..a<$core.double>(3, _omitFieldNames ? '' : 'price', $pb.PbFieldType.OF)
     ..hasRequiredFields = false
   ;
 
@@ -1114,6 +1119,15 @@ class WalletOutput extends $pb.GeneratedMessage {
   void clearWDist() => clearField(2);
   @$pb.TagNumber(2)
   Wallet ensureWDist() => $_ensure(1);
+
+  @$pb.TagNumber(3)
+  $core.double get price => $_getN(2);
+  @$pb.TagNumber(3)
+  set price($core.double v) { $_setFloat(2, v); }
+  @$pb.TagNumber(3)
+  $core.bool hasPrice() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearPrice() => clearField(3);
 }
 
 
