@@ -35,7 +35,7 @@ service UserService {
     // but can be set as `public` or `primary` in account section
     // `primary` address is what others can copy from copy btn
   }
-  rpc CheckPremium(Wallet) returns (User) {
+  rpc CheckPremium(PremiumInput) returns (User) {
     // based on wallet type check purchase
     // if purchase correct -> 35d premium +
     // each friend 5d premium if not premium
@@ -149,4 +149,9 @@ message WalletOutput {
   User user = 1;    // updated user with his new wallet
   Wallet wDist = 2; // send my related wallet address
   float price = 3;
+}
+
+message PremiumInput {
+  WalletType type = 1;
+  string hash = 2;
 }

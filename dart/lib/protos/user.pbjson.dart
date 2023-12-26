@@ -253,3 +253,17 @@ final $typed_data.Uint8List walletOutputDescriptor = $convert.base64Decode(
     'VyEi0KBXdEaXN0GAIgASgLMhcuZWtpcG1hLmFwaS51c2VyLldhbGxldFIFd0Rpc3QSFAoFcHJp'
     'Y2UYAyABKAJSBXByaWNl');
 
+@$core.Deprecated('Use premiumInputDescriptor instead')
+const PremiumInput$json = {
+  '1': 'PremiumInput',
+  '2': [
+    {'1': 'type', '3': 1, '4': 1, '5': 14, '6': '.ekipma.api.user.WalletType', '10': 'type'},
+    {'1': 'hash', '3': 2, '4': 1, '5': 9, '10': 'hash'},
+  ],
+};
+
+/// Descriptor for `PremiumInput`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List premiumInputDescriptor = $convert.base64Decode(
+    'CgxQcmVtaXVtSW5wdXQSLwoEdHlwZRgBIAEoDjIbLmVraXBtYS5hcGkudXNlci5XYWxsZXRUeX'
+    'BlUgR0eXBlEhIKBGhhc2gYAiABKAlSBGhhc2g=');
+

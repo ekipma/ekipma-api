@@ -1130,6 +1130,70 @@ class WalletOutput extends $pb.GeneratedMessage {
   void clearPrice() => clearField(3);
 }
 
+class PremiumInput extends $pb.GeneratedMessage {
+  factory PremiumInput({
+    WalletType? type,
+    $core.String? hash,
+  }) {
+    final $result = create();
+    if (type != null) {
+      $result.type = type;
+    }
+    if (hash != null) {
+      $result.hash = hash;
+    }
+    return $result;
+  }
+  PremiumInput._() : super();
+  factory PremiumInput.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory PremiumInput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'PremiumInput', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.user'), createEmptyInstance: create)
+    ..e<WalletType>(1, _omitFieldNames ? '' : 'type', $pb.PbFieldType.OE, defaultOrMaker: WalletType.CUSTOM, valueOf: WalletType.valueOf, enumValues: WalletType.values)
+    ..aOS(2, _omitFieldNames ? '' : 'hash')
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  PremiumInput clone() => PremiumInput()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  PremiumInput copyWith(void Function(PremiumInput) updates) => super.copyWith((message) => updates(message as PremiumInput)) as PremiumInput;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static PremiumInput create() => PremiumInput._();
+  PremiumInput createEmptyInstance() => create();
+  static $pb.PbList<PremiumInput> createRepeated() => $pb.PbList<PremiumInput>();
+  @$core.pragma('dart2js:noInline')
+  static PremiumInput getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<PremiumInput>(create);
+  static PremiumInput? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  WalletType get type => $_getN(0);
+  @$pb.TagNumber(1)
+  set type(WalletType v) { setField(1, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasType() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearType() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get hash => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set hash($core.String v) { $_setString(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasHash() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearHash() => clearField(2);
+}
+
 
 const _omitFieldNames = $core.bool.fromEnvironment('protobuf.omit_field_names');
 const _omitMessageNames = $core.bool.fromEnvironment('protobuf.omit_message_names');
