@@ -1053,6 +1053,7 @@ class WalletOutput extends $pb.GeneratedMessage {
     User? user,
     Wallet? wDist,
     $core.double? price,
+    $core.bool? needHash,
   }) {
     final $result = create();
     if (user != null) {
@@ -1064,6 +1065,9 @@ class WalletOutput extends $pb.GeneratedMessage {
     if (price != null) {
       $result.price = price;
     }
+    if (needHash != null) {
+      $result.needHash = needHash;
+    }
     return $result;
   }
   WalletOutput._() : super();
@@ -1074,6 +1078,7 @@ class WalletOutput extends $pb.GeneratedMessage {
     ..aOM<User>(1, _omitFieldNames ? '' : 'user', subBuilder: User.create)
     ..aOM<Wallet>(2, _omitFieldNames ? '' : 'wDist', protoName: 'wDist', subBuilder: Wallet.create)
     ..a<$core.double>(3, _omitFieldNames ? '' : 'price', $pb.PbFieldType.OF)
+    ..aOB(4, _omitFieldNames ? '' : 'needHash', protoName: 'needHash')
     ..hasRequiredFields = false
   ;
 
@@ -1128,6 +1133,15 @@ class WalletOutput extends $pb.GeneratedMessage {
   $core.bool hasPrice() => $_has(2);
   @$pb.TagNumber(3)
   void clearPrice() => clearField(3);
+
+  @$pb.TagNumber(4)
+  $core.bool get needHash => $_getBF(3);
+  @$pb.TagNumber(4)
+  set needHash($core.bool v) { $_setBool(3, v); }
+  @$pb.TagNumber(4)
+  $core.bool hasNeedHash() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearNeedHash() => clearField(4);
 }
 
 class PremiumInput extends $pb.GeneratedMessage {

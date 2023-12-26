@@ -149,6 +149,7 @@ message WalletOutput {
   User user = 1;    // updated user with his new wallet
   Wallet wDist = 2; // send my related wallet address
   float price = 3;
+  bool needHash = 4; // whether the method needs tx hash
 }
 
 message PremiumInput {
