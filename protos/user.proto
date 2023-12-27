@@ -40,6 +40,9 @@ service UserService {
     // if purchase correct -> 35d premium +
     // each friend 5d premium if not premium
   }
+  rpc GetWallets(ekipma.api.common.Empty) returns (stream Wallet) {
+    // get wallets owned by user
+  }
 }
 
 // user

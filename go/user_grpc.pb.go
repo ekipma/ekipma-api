@@ -35,6 +35,7 @@ type UserServiceClient interface {
 	// premium
 	UpdateWallet(ctx context.Context, in *Wallet, opts ...grpc.CallOption) (*WalletOutput, error)
 	CheckPremium(ctx context.Context, in *PremiumInput, opts ...grpc.CallOption) (*User, error)
+	GetWallets(ctx context.Context, in *Empty, opts ...grpc.CallOption) (UserService_GetWalletsClient, error)
 }
 
 type userServiceClient struct {
@@ -171,6 +172,38 @@ func (c *userServiceClient) CheckPremium(ctx context.Context, in *PremiumInput, 
 	return out, nil
 }
 
+func (c *userServiceClient) GetWallets(ctx context.Context, in *Empty, opts ...grpc.CallOption) (UserService_GetWalletsClient, error) {
+	stream, err := c.cc.NewStream(ctx, &UserService_ServiceDesc.Streams[2], "/ekipma.api.user.UserService/GetWallets", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &userServiceGetWalletsClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type UserService_GetWalletsClient interface {
+	Recv() (*Wallet, error)
+	grpc.ClientStream
+}
+
+type userServiceGetWalletsClient struct {
+	grpc.ClientStream
+}
+
+func (x *userServiceGetWalletsClient) Recv() (*Wallet, error) {
+	m := new(Wallet)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 // UserServiceServer is the server API for UserService service.
 // All implementations must embed UnimplementedUserServiceServer
 // for forward compatibility
@@ -188,6 +221,7 @@ type UserServiceServer interface {
 	// premium
 	UpdateWallet(context.Context, *Wallet) (*WalletOutput, error)
 	CheckPremium(context.Context, *PremiumInput) (*User, error)
+	GetWallets(*Empty, UserService_GetWalletsServer) error
 	mustEmbedUnimplementedUserServiceServer()
 }
 
@@ -221,6 +255,9 @@ func (UnimplementedUserServiceServer) UpdateWallet(context.Context, *Wallet) (*W
 }
 func (UnimplementedUserServiceServer) CheckPremium(context.Context, *PremiumInput) (*User, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CheckPremium not implemented")
+}
+func (UnimplementedUserServiceServer) GetWallets(*Empty, UserService_GetWalletsServer) error {
+	return status.Errorf(codes.Unimplemented, "method GetWallets not implemented")
 }
 func (UnimplementedUserServiceServer) mustEmbedUnimplementedUserServiceServer() {}
 
@@ -408,6 +445,27 @@ func _UserService_CheckPremium_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _UserService_GetWallets_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(Empty)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(UserServiceServer).GetWallets(m, &userServiceGetWalletsServer{stream})
+}
+
+type UserService_GetWalletsServer interface {
+	Send(*Wallet) error
+	grpc.ServerStream
+}
+
+type userServiceGetWalletsServer struct {
+	grpc.ServerStream
+}
+
+func (x *userServiceGetWalletsServer) Send(m *Wallet) error {
+	return x.ServerStream.SendMsg(m)
+}
+
 // UserService_ServiceDesc is the grpc.ServiceDesc for UserService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -454,6 +512,11 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 		{
 			StreamName:    "GetFriends",
 			Handler:       _UserService_GetFriends_Handler,
+			ServerStreams: true,
+		},
+		{
+			StreamName:    "GetWallets",
+			Handler:       _UserService_GetWallets_Handler,
 			ServerStreams: true,
 		},
 	},
