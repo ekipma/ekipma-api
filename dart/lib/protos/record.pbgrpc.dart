@@ -34,14 +34,14 @@ class RecordServiceClient extends $grpc.Client {
       '/ekipma.api.record.RecordService/DeleteRecord',
       ($1.IdInput value) => value.writeToBuffer(),
       ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
-  static final _$payIds = $grpc.ClientMethod<$1.Empty, $1.Integrity>(
-      '/ekipma.api.record.RecordService/PayIds',
-      ($1.Empty value) => value.writeToBuffer(),
+  static final _$recordIds = $grpc.ClientMethod<$1.Last, $1.Integrity>(
+      '/ekipma.api.record.RecordService/RecordIds',
+      ($1.Last value) => value.writeToBuffer(),
       ($core.List<$core.int> value) => $1.Integrity.fromBuffer(value));
-  static final _$lostPays = $grpc.ClientMethod<$1.Integrity, $0.Pay>(
-      '/ekipma.api.record.RecordService/LostPays',
+  static final _$lostRecords = $grpc.ClientMethod<$1.Integrity, $0.Record>(
+      '/ekipma.api.record.RecordService/LostRecords',
       ($1.Integrity value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) => $0.Pay.fromBuffer(value));
+      ($core.List<$core.int> value) => $0.Record.fromBuffer(value));
   static final _$submitTurn = $grpc.ClientMethod<$1.IdInput, $0.Turn>(
       '/ekipma.api.record.RecordService/SubmitTurn',
       ($1.IdInput value) => value.writeToBuffer(),
@@ -65,12 +65,12 @@ class RecordServiceClient extends $grpc.Client {
     return $createUnaryCall(_$deleteRecord, request, options: options);
   }
 
-  $grpc.ResponseFuture<$1.Integrity> payIds($1.Empty request, {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$payIds, request, options: options);
+  $grpc.ResponseFuture<$1.Integrity> recordIds($1.Last request, {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$recordIds, request, options: options);
   }
 
-  $grpc.ResponseStream<$0.Pay> lostPays($1.Integrity request, {$grpc.CallOptions? options}) {
-    return $createStreamingCall(_$lostPays, $async.Stream.fromIterable([request]), options: options);
+  $grpc.ResponseStream<$0.Record> lostRecords($1.Integrity request, {$grpc.CallOptions? options}) {
+    return $createStreamingCall(_$lostRecords, $async.Stream.fromIterable([request]), options: options);
   }
 
   $grpc.ResponseFuture<$0.Turn> submitTurn($1.IdInput request, {$grpc.CallOptions? options}) {
@@ -104,20 +104,20 @@ abstract class RecordServiceBase extends $grpc.Service {
         false,
         ($core.List<$core.int> value) => $1.IdInput.fromBuffer(value),
         ($1.Empty value) => value.writeToBuffer()));
-    $addMethod($grpc.ServiceMethod<$1.Empty, $1.Integrity>(
-        'PayIds',
-        payIds_Pre,
+    $addMethod($grpc.ServiceMethod<$1.Last, $1.Integrity>(
+        'RecordIds',
+        recordIds_Pre,
         false,
         false,
-        ($core.List<$core.int> value) => $1.Empty.fromBuffer(value),
+        ($core.List<$core.int> value) => $1.Last.fromBuffer(value),
         ($1.Integrity value) => value.writeToBuffer()));
-    $addMethod($grpc.ServiceMethod<$1.Integrity, $0.Pay>(
-        'LostPays',
-        lostPays_Pre,
+    $addMethod($grpc.ServiceMethod<$1.Integrity, $0.Record>(
+        'LostRecords',
+        lostRecords_Pre,
         false,
         true,
         ($core.List<$core.int> value) => $1.Integrity.fromBuffer(value),
-        ($0.Pay value) => value.writeToBuffer()));
+        ($0.Record value) => value.writeToBuffer()));
     $addMethod($grpc.ServiceMethod<$1.IdInput, $0.Turn>(
         'SubmitTurn',
         submitTurn_Pre,
@@ -139,12 +139,12 @@ abstract class RecordServiceBase extends $grpc.Service {
     return deleteRecord(call, await request);
   }
 
-  $async.Future<$1.Integrity> payIds_Pre($grpc.ServiceCall call, $async.Future<$1.Empty> request) async {
-    return payIds(call, await request);
+  $async.Future<$1.Integrity> recordIds_Pre($grpc.ServiceCall call, $async.Future<$1.Last> request) async {
+    return recordIds(call, await request);
   }
 
-  $async.Stream<$0.Pay> lostPays_Pre($grpc.ServiceCall call, $async.Future<$1.Integrity> request) async* {
-    yield* lostPays(call, await request);
+  $async.Stream<$0.Record> lostRecords_Pre($grpc.ServiceCall call, $async.Future<$1.Integrity> request) async* {
+    yield* lostRecords(call, await request);
   }
 
   $async.Future<$0.Turn> submitTurn_Pre($grpc.ServiceCall call, $async.Future<$1.IdInput> request) async {
@@ -154,7 +154,7 @@ abstract class RecordServiceBase extends $grpc.Service {
   $async.Stream<$0.Record> createRecords($grpc.ServiceCall call, $0.Record request);
   $async.Stream<$0.Record> recentRecords($grpc.ServiceCall call, $1.Last request);
   $async.Future<$1.Empty> deleteRecord($grpc.ServiceCall call, $1.IdInput request);
-  $async.Future<$1.Integrity> payIds($grpc.ServiceCall call, $1.Empty request);
-  $async.Stream<$0.Pay> lostPays($grpc.ServiceCall call, $1.Integrity request);
+  $async.Future<$1.Integrity> recordIds($grpc.ServiceCall call, $1.Last request);
+  $async.Stream<$0.Record> lostRecords($grpc.ServiceCall call, $1.Integrity request);
   $async.Future<$0.Turn> submitTurn($grpc.ServiceCall call, $1.IdInput request);
 }

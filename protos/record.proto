@@ -24,17 +24,16 @@ service RecordService {
   }
   rpc DeleteRecord(ekipma.api.common.IdInput) returns (ekipma.api.common.Empty);
 
-  // -- pay --
   // integrity - probably a button in mobile client settings
-  rpc PayIds(ekipma.api.common.Empty) returns (ekipma.api.common.Integrity) {
-    // get a list of all pay ids related to the user
+  rpc RecordIds(ekipma.api.common.Last) returns (ekipma.api.common.Integrity) {
+    // get a list of all ids related to the user before the last
     // send the list to the client to be matched
-    // for the missing list of pay ids from pay ids sent to the client
-    // the lost-pays method would be then called
+    // for the missing list of ids from ids sent to the client
+    // the lost-records method would be then called
   }
-  rpc LostPays(ekipma.api.common.Integrity) returns (stream Pay) {
-    // from pay ids that were lost in client side
-    // retrieve all of the pays and stream it back for client to append
+  rpc LostRecords(ekipma.api.common.Integrity) returns (stream Record) {
+    // from ids that were lost in client side
+    // retrieve all of the records and stream it back for client to append
   }
 
   // -- turn --

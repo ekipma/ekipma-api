@@ -25,10 +25,9 @@ type RecordServiceClient interface {
 	CreateRecords(ctx context.Context, in *Record, opts ...grpc.CallOption) (RecordService_CreateRecordsClient, error)
 	RecentRecords(ctx context.Context, in *Last, opts ...grpc.CallOption) (RecordService_RecentRecordsClient, error)
 	DeleteRecord(ctx context.Context, in *IdInput, opts ...grpc.CallOption) (*Empty, error)
-	// -- pay --
 	// integrity - probably a button in mobile client settings
-	PayIds(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Integrity, error)
-	LostPays(ctx context.Context, in *Integrity, opts ...grpc.CallOption) (RecordService_LostPaysClient, error)
+	RecordIds(ctx context.Context, in *Last, opts ...grpc.CallOption) (*Integrity, error)
+	LostRecords(ctx context.Context, in *Integrity, opts ...grpc.CallOption) (RecordService_LostRecordsClient, error)
 	// -- turn --
 	SubmitTurn(ctx context.Context, in *IdInput, opts ...grpc.CallOption) (*Turn, error)
 }
@@ -114,21 +113,21 @@ func (c *recordServiceClient) DeleteRecord(ctx context.Context, in *IdInput, opt
 	return out, nil
 }
 
-func (c *recordServiceClient) PayIds(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Integrity, error) {
+func (c *recordServiceClient) RecordIds(ctx context.Context, in *Last, opts ...grpc.CallOption) (*Integrity, error) {
 	out := new(Integrity)
-	err := c.cc.Invoke(ctx, "/ekipma.api.record.RecordService/PayIds", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/ekipma.api.record.RecordService/RecordIds", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *recordServiceClient) LostPays(ctx context.Context, in *Integrity, opts ...grpc.CallOption) (RecordService_LostPaysClient, error) {
-	stream, err := c.cc.NewStream(ctx, &RecordService_ServiceDesc.Streams[2], "/ekipma.api.record.RecordService/LostPays", opts...)
+func (c *recordServiceClient) LostRecords(ctx context.Context, in *Integrity, opts ...grpc.CallOption) (RecordService_LostRecordsClient, error) {
+	stream, err := c.cc.NewStream(ctx, &RecordService_ServiceDesc.Streams[2], "/ekipma.api.record.RecordService/LostRecords", opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &recordServiceLostPaysClient{stream}
+	x := &recordServiceLostRecordsClient{stream}
 	if err := x.ClientStream.SendMsg(in); err != nil {
 		return nil, err
 	}
@@ -138,17 +137,17 @@ func (c *recordServiceClient) LostPays(ctx context.Context, in *Integrity, opts 
 	return x, nil
 }
 
-type RecordService_LostPaysClient interface {
-	Recv() (*Pay, error)
+type RecordService_LostRecordsClient interface {
+	Recv() (*Record, error)
 	grpc.ClientStream
 }
 
-type recordServiceLostPaysClient struct {
+type recordServiceLostRecordsClient struct {
 	grpc.ClientStream
 }
 
-func (x *recordServiceLostPaysClient) Recv() (*Pay, error) {
-	m := new(Pay)
+func (x *recordServiceLostRecordsClient) Recv() (*Record, error) {
+	m := new(Record)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
@@ -171,10 +170,9 @@ type RecordServiceServer interface {
 	CreateRecords(*Record, RecordService_CreateRecordsServer) error
 	RecentRecords(*Last, RecordService_RecentRecordsServer) error
 	DeleteRecord(context.Context, *IdInput) (*Empty, error)
-	// -- pay --
 	// integrity - probably a button in mobile client settings
-	PayIds(context.Context, *Empty) (*Integrity, error)
-	LostPays(*Integrity, RecordService_LostPaysServer) error
+	RecordIds(context.Context, *Last) (*Integrity, error)
+	LostRecords(*Integrity, RecordService_LostRecordsServer) error
 	// -- turn --
 	SubmitTurn(context.Context, *IdInput) (*Turn, error)
 	mustEmbedUnimplementedRecordServiceServer()
@@ -193,11 +191,11 @@ func (UnimplementedRecordServiceServer) RecentRecords(*Last, RecordService_Recen
 func (UnimplementedRecordServiceServer) DeleteRecord(context.Context, *IdInput) (*Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteRecord not implemented")
 }
-func (UnimplementedRecordServiceServer) PayIds(context.Context, *Empty) (*Integrity, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method PayIds not implemented")
+func (UnimplementedRecordServiceServer) RecordIds(context.Context, *Last) (*Integrity, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RecordIds not implemented")
 }
-func (UnimplementedRecordServiceServer) LostPays(*Integrity, RecordService_LostPaysServer) error {
-	return status.Errorf(codes.Unimplemented, "method LostPays not implemented")
+func (UnimplementedRecordServiceServer) LostRecords(*Integrity, RecordService_LostRecordsServer) error {
+	return status.Errorf(codes.Unimplemented, "method LostRecords not implemented")
 }
 func (UnimplementedRecordServiceServer) SubmitTurn(context.Context, *IdInput) (*Turn, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SubmitTurn not implemented")
@@ -275,42 +273,42 @@ func _RecordService_DeleteRecord_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
-func _RecordService_PayIds_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Empty)
+func _RecordService_RecordIds_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Last)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(RecordServiceServer).PayIds(ctx, in)
+		return srv.(RecordServiceServer).RecordIds(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/ekipma.api.record.RecordService/PayIds",
+		FullMethod: "/ekipma.api.record.RecordService/RecordIds",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RecordServiceServer).PayIds(ctx, req.(*Empty))
+		return srv.(RecordServiceServer).RecordIds(ctx, req.(*Last))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _RecordService_LostPays_Handler(srv interface{}, stream grpc.ServerStream) error {
+func _RecordService_LostRecords_Handler(srv interface{}, stream grpc.ServerStream) error {
 	m := new(Integrity)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(RecordServiceServer).LostPays(m, &recordServiceLostPaysServer{stream})
+	return srv.(RecordServiceServer).LostRecords(m, &recordServiceLostRecordsServer{stream})
 }
 
-type RecordService_LostPaysServer interface {
-	Send(*Pay) error
+type RecordService_LostRecordsServer interface {
+	Send(*Record) error
 	grpc.ServerStream
 }
 
-type recordServiceLostPaysServer struct {
+type recordServiceLostRecordsServer struct {
 	grpc.ServerStream
 }
 
-func (x *recordServiceLostPaysServer) Send(m *Pay) error {
+func (x *recordServiceLostRecordsServer) Send(m *Record) error {
 	return x.ServerStream.SendMsg(m)
 }
 
@@ -344,8 +342,8 @@ var RecordService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _RecordService_DeleteRecord_Handler,
 		},
 		{
-			MethodName: "PayIds",
-			Handler:    _RecordService_PayIds_Handler,
+			MethodName: "RecordIds",
+			Handler:    _RecordService_RecordIds_Handler,
 		},
 		{
 			MethodName: "SubmitTurn",
@@ -364,8 +362,8 @@ var RecordService_ServiceDesc = grpc.ServiceDesc{
 			ServerStreams: true,
 		},
 		{
-			StreamName:    "LostPays",
-			Handler:       _RecordService_LostPays_Handler,
+			StreamName:    "LostRecords",
+			Handler:       _RecordService_LostRecords_Handler,
 			ServerStreams: true,
 		},
 	},
