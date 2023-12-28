@@ -797,14 +797,14 @@ class Friend extends $pb.GeneratedMessage {
 class FriendInput extends $pb.GeneratedMessage {
   factory FriendInput({
     $1.Chunk? chunk,
-    $core.String? mobile,
+    $core.Iterable<$core.String>? mobiles,
   }) {
     final $result = create();
     if (chunk != null) {
       $result.chunk = chunk;
     }
-    if (mobile != null) {
-      $result.mobile = mobile;
+    if (mobiles != null) {
+      $result.mobiles.addAll(mobiles);
     }
     return $result;
   }
@@ -814,7 +814,7 @@ class FriendInput extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'FriendInput', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.user'), createEmptyInstance: create)
     ..aOM<$1.Chunk>(1, _omitFieldNames ? '' : 'chunk', subBuilder: $1.Chunk.create)
-    ..aOS(2, _omitFieldNames ? '' : 'mobile')
+    ..pPS(2, _omitFieldNames ? '' : 'mobiles')
     ..hasRequiredFields = false
   ;
 
@@ -851,13 +851,7 @@ class FriendInput extends $pb.GeneratedMessage {
   $1.Chunk ensureChunk() => $_ensure(0);
 
   @$pb.TagNumber(2)
-  $core.String get mobile => $_getSZ(1);
-  @$pb.TagNumber(2)
-  set mobile($core.String v) { $_setString(1, v); }
-  @$pb.TagNumber(2)
-  $core.bool hasMobile() => $_has(1);
-  @$pb.TagNumber(2)
-  void clearMobile() => clearField(2);
+  $core.List<$core.String> get mobiles => $_getList(1);
 }
 
 class FriendOutput extends $pb.GeneratedMessage {

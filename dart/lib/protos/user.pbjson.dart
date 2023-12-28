@@ -191,14 +191,14 @@ const FriendInput$json = {
   '1': 'FriendInput',
   '2': [
     {'1': 'chunk', '3': 1, '4': 1, '5': 11, '6': '.ekipma.api.common.Chunk', '10': 'chunk'},
-    {'1': 'mobile', '3': 2, '4': 1, '5': 9, '10': 'mobile'},
+    {'1': 'mobiles', '3': 2, '4': 3, '5': 9, '10': 'mobiles'},
   ],
 };
 
 /// Descriptor for `FriendInput`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List friendInputDescriptor = $convert.base64Decode(
     'CgtGcmllbmRJbnB1dBIuCgVjaHVuaxgBIAEoCzIYLmVraXBtYS5hcGkuY29tbW9uLkNodW5rUg'
-    'VjaHVuaxIWCgZtb2JpbGUYAiABKAlSBm1vYmlsZQ==');
+    'VjaHVuaxIYCgdtb2JpbGVzGAIgAygJUgdtb2JpbGVz');
 
 @$core.Deprecated('Use friendOutputDescriptor instead')
 const FriendOutput$json = {
