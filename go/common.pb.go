@@ -373,101 +373,6 @@ func (x *Gorm) GetUpdatedAt() *timestamppb.Timestamp {
 	return nil
 }
 
-type Rec struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Title     string   `protobuf:"bytes,1,opt,name=title,proto3" json:"title,omitempty"`
-	Desc      string   `protobuf:"bytes,2,opt,name=desc,proto3" json:"desc,omitempty"`
-	Author    uint64   `protobuf:"varint,3,opt,name=author,proto3" json:"author,omitempty"`
-	Assignee  uint64   `protobuf:"varint,4,opt,name=assignee,proto3" json:"assignee,omitempty"`
-	Assignees []uint64 `protobuf:"varint,5,rep,packed,name=assignees,proto3" json:"assignees,omitempty"`
-	Group     uint64   `protobuf:"varint,6,opt,name=group,proto3" json:"group,omitempty"`
-	Private   bool     `protobuf:"varint,7,opt,name=private,proto3" json:"private,omitempty"`
-}
-
-func (x *Rec) Reset() {
-	*x = Rec{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_protos_common_proto_msgTypes[7]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *Rec) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Rec) ProtoMessage() {}
-
-func (x *Rec) ProtoReflect() protoreflect.Message {
-	mi := &file_protos_common_proto_msgTypes[7]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Rec.ProtoReflect.Descriptor instead.
-func (*Rec) Descriptor() ([]byte, []int) {
-	return file_protos_common_proto_rawDescGZIP(), []int{7}
-}
-
-func (x *Rec) GetTitle() string {
-	if x != nil {
-		return x.Title
-	}
-	return ""
-}
-
-func (x *Rec) GetDesc() string {
-	if x != nil {
-		return x.Desc
-	}
-	return ""
-}
-
-func (x *Rec) GetAuthor() uint64 {
-	if x != nil {
-		return x.Author
-	}
-	return 0
-}
-
-func (x *Rec) GetAssignee() uint64 {
-	if x != nil {
-		return x.Assignee
-	}
-	return 0
-}
-
-func (x *Rec) GetAssignees() []uint64 {
-	if x != nil {
-		return x.Assignees
-	}
-	return nil
-}
-
-func (x *Rec) GetGroup() uint64 {
-	if x != nil {
-		return x.Group
-	}
-	return 0
-}
-
-func (x *Rec) GetPrivate() bool {
-	if x != nil {
-		return x.Private
-	}
-	return false
-}
-
 var File_protos_common_proto protoreflect.FileDescriptor
 
 var file_protos_common_proto_rawDesc = []byte{
@@ -498,20 +403,8 @@ var file_protos_common_proto_rawDesc = []byte{
 	0x41, 0x74, 0x12, 0x38, 0x0a, 0x09, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x64, 0x41, 0x74, 0x18,
 	0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70,
 	0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d,
-	0x70, 0x52, 0x09, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x64, 0x41, 0x74, 0x22, 0xb1, 0x01, 0x0a,
-	0x03, 0x52, 0x65, 0x63, 0x12, 0x14, 0x0a, 0x05, 0x74, 0x69, 0x74, 0x6c, 0x65, 0x18, 0x01, 0x20,
-	0x01, 0x28, 0x09, 0x52, 0x05, 0x74, 0x69, 0x74, 0x6c, 0x65, 0x12, 0x12, 0x0a, 0x04, 0x64, 0x65,
-	0x73, 0x63, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x64, 0x65, 0x73, 0x63, 0x12, 0x16,
-	0x0a, 0x06, 0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x18, 0x03, 0x20, 0x01, 0x28, 0x04, 0x52, 0x06,
-	0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x12, 0x1a, 0x0a, 0x08, 0x61, 0x73, 0x73, 0x69, 0x67, 0x6e,
-	0x65, 0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x04, 0x52, 0x08, 0x61, 0x73, 0x73, 0x69, 0x67, 0x6e,
-	0x65, 0x65, 0x12, 0x1c, 0x0a, 0x09, 0x61, 0x73, 0x73, 0x69, 0x67, 0x6e, 0x65, 0x65, 0x73, 0x18,
-	0x05, 0x20, 0x03, 0x28, 0x04, 0x52, 0x09, 0x61, 0x73, 0x73, 0x69, 0x67, 0x6e, 0x65, 0x65, 0x73,
-	0x12, 0x14, 0x0a, 0x05, 0x67, 0x72, 0x6f, 0x75, 0x70, 0x18, 0x06, 0x20, 0x01, 0x28, 0x04, 0x52,
-	0x05, 0x67, 0x72, 0x6f, 0x75, 0x70, 0x12, 0x18, 0x0a, 0x07, 0x70, 0x72, 0x69, 0x76, 0x61, 0x74,
-	0x65, 0x18, 0x07, 0x20, 0x01, 0x28, 0x08, 0x52, 0x07, 0x70, 0x72, 0x69, 0x76, 0x61, 0x74, 0x65,
-	0x42, 0x09, 0x5a, 0x07, 0x2e, 0x2f, 0x67, 0x6f, 0x3b, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f,
-	0x74, 0x6f, 0x33,
+	0x70, 0x52, 0x09, 0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x64, 0x41, 0x74, 0x42, 0x09, 0x5a, 0x07,
+	0x2e, 0x2f, 0x67, 0x6f, 0x3b, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -526,7 +419,7 @@ func file_protos_common_proto_rawDescGZIP() []byte {
 	return file_protos_common_proto_rawDescData
 }
 
-var file_protos_common_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
+var file_protos_common_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_protos_common_proto_goTypes = []interface{}{
 	(*Empty)(nil),                 // 0: ekipma.api.common.Empty
 	(*Messages)(nil),              // 1: ekipma.api.common.Messages
@@ -535,12 +428,11 @@ var file_protos_common_proto_goTypes = []interface{}{
 	(*Last)(nil),                  // 4: ekipma.api.common.Last
 	(*Integrity)(nil),             // 5: ekipma.api.common.Integrity
 	(*Gorm)(nil),                  // 6: ekipma.api.common.Gorm
-	(*Rec)(nil),                   // 7: ekipma.api.common.Rec
-	(*timestamppb.Timestamp)(nil), // 8: google.protobuf.Timestamp
+	(*timestamppb.Timestamp)(nil), // 7: google.protobuf.Timestamp
 }
 var file_protos_common_proto_depIdxs = []int32{
-	8, // 0: ekipma.api.common.Gorm.createdAt:type_name -> google.protobuf.Timestamp
-	8, // 1: ekipma.api.common.Gorm.updatedAt:type_name -> google.protobuf.Timestamp
+	7, // 0: ekipma.api.common.Gorm.createdAt:type_name -> google.protobuf.Timestamp
+	7, // 1: ekipma.api.common.Gorm.updatedAt:type_name -> google.protobuf.Timestamp
 	2, // [2:2] is the sub-list for method output_type
 	2, // [2:2] is the sub-list for method input_type
 	2, // [2:2] is the sub-list for extension type_name
@@ -638,18 +530,6 @@ func file_protos_common_proto_init() {
 				return nil
 			}
 		}
-		file_protos_common_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Rec); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
 	}
 	file_protos_common_proto_msgTypes[1].OneofWrappers = []interface{}{}
 	type x struct{}
@@ -658,7 +538,7 @@ func file_protos_common_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_protos_common_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   8,
+			NumMessages:   7,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

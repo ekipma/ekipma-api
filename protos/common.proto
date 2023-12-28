@@ -29,13 +29,3 @@ message Gorm {
   google.protobuf.Timestamp createdAt = 2;
   google.protobuf.Timestamp updatedAt = 3;
 }
-
-message Rec {
-  string title = 1;
-  string desc = 2;
-  uint64 author = 3;
-  uint64 assignee = 4;
-  repeated uint64 assignees = 5;
-  uint64 group = 6;
-  bool private = 7;
-}
