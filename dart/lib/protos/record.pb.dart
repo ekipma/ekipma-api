@@ -373,14 +373,14 @@ class Pay extends $pb.GeneratedMessage {
 class Turn extends $pb.GeneratedMessage {
   factory Turn({
     $core.int? iter,
-    $core.int? peroid,
+    $core.int? period,
   }) {
     final $result = create();
     if (iter != null) {
       $result.iter = iter;
     }
-    if (peroid != null) {
-      $result.peroid = peroid;
+    if (period != null) {
+      $result.period = period;
     }
     return $result;
   }
@@ -390,7 +390,7 @@ class Turn extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Turn', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.record'), createEmptyInstance: create)
     ..a<$core.int>(1, _omitFieldNames ? '' : 'iter', $pb.PbFieldType.OU3)
-    ..a<$core.int>(2, _omitFieldNames ? '' : 'peroid', $pb.PbFieldType.OU3)
+    ..a<$core.int>(2, _omitFieldNames ? '' : 'period', $pb.PbFieldType.OU3)
     ..hasRequiredFields = false
   ;
 
@@ -425,13 +425,13 @@ class Turn extends $pb.GeneratedMessage {
   void clearIter() => clearField(1);
 
   @$pb.TagNumber(2)
-  $core.int get peroid => $_getIZ(1);
+  $core.int get period => $_getIZ(1);
   @$pb.TagNumber(2)
-  set peroid($core.int v) { $_setUnsignedInt32(1, v); }
+  set period($core.int v) { $_setUnsignedInt32(1, v); }
   @$pb.TagNumber(2)
-  $core.bool hasPeroid() => $_has(1);
+  $core.bool hasPeriod() => $_has(1);
   @$pb.TagNumber(2)
-  void clearPeroid() => clearField(2);
+  void clearPeriod() => clearField(2);
 }
 
 class Location extends $pb.GeneratedMessage {

@@ -100,7 +100,7 @@ message Pay {
 
 message Turn {
   uint32 iter = 1;   // increasing - output
-  uint32 peroid = 2; // in hours
+  uint32 period = 2; // in hours
 }
 
 // plan

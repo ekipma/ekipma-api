@@ -133,13 +133,13 @@ const Turn$json = {
   '1': 'Turn',
   '2': [
     {'1': 'iter', '3': 1, '4': 1, '5': 13, '10': 'iter'},
-    {'1': 'peroid', '3': 2, '4': 1, '5': 13, '10': 'peroid'},
+    {'1': 'period', '3': 2, '4': 1, '5': 13, '10': 'period'},
   ],
 };
 
 /// Descriptor for `Turn`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List turnDescriptor = $convert.base64Decode(
-    'CgRUdXJuEhIKBGl0ZXIYASABKA1SBGl0ZXISFgoGcGVyb2lkGAIgASgNUgZwZXJvaWQ=');
+    'CgRUdXJuEhIKBGl0ZXIYASABKA1SBGl0ZXISFgoGcGVyaW9kGAIgASgNUgZwZXJpb2Q=');
 
 @$core.Deprecated('Use locationDescriptor instead')
 const Location$json = {
