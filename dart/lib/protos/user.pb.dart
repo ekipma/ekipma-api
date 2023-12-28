@@ -14,7 +14,7 @@ import 'dart:core' as $core;
 import 'package:fixnum/fixnum.dart' as $fixnum;
 import 'package:protobuf/protobuf.dart' as $pb;
 
-import '../google/protobuf/timestamp.pb.dart' as $5;
+import '../google/protobuf/timestamp.pb.dart' as $3;
 import 'common.pb.dart' as $1;
 import 'user.pbenum.dart';
 
@@ -23,8 +23,8 @@ export 'user.pbenum.dart';
 class User extends $pb.GeneratedMessage {
   factory User({
     $fixnum.Int64? id,
-    $5.Timestamp? createdAt,
-    $5.Timestamp? updatedAt,
+    $3.Timestamp? createdAt,
+    $3.Timestamp? updatedAt,
     $core.String? mobile,
     $core.String? code,
     $core.String? name,
@@ -34,7 +34,7 @@ class User extends $pb.GeneratedMessage {
     $core.Iterable<$fixnum.Int64>? friends,
     $fixnum.Int64? inviter,
     UserRole? role,
-    $5.Timestamp? premiumTill,
+    $3.Timestamp? premiumTill,
     $core.Iterable<Wallet>? wallets,
     $fixnum.Int64? primaryWallet,
   }) {
@@ -92,8 +92,8 @@ class User extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'User', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.user'), createEmptyInstance: create)
     ..a<$fixnum.Int64>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
-    ..aOM<$5.Timestamp>(2, _omitFieldNames ? '' : 'createdAt', protoName: 'createdAt', subBuilder: $5.Timestamp.create)
-    ..aOM<$5.Timestamp>(3, _omitFieldNames ? '' : 'updatedAt', protoName: 'updatedAt', subBuilder: $5.Timestamp.create)
+    ..aOM<$3.Timestamp>(2, _omitFieldNames ? '' : 'createdAt', protoName: 'createdAt', subBuilder: $3.Timestamp.create)
+    ..aOM<$3.Timestamp>(3, _omitFieldNames ? '' : 'updatedAt', protoName: 'updatedAt', subBuilder: $3.Timestamp.create)
     ..aOS(4, _omitFieldNames ? '' : 'mobile')
     ..aOS(5, _omitFieldNames ? '' : 'code')
     ..aOS(6, _omitFieldNames ? '' : 'name')
@@ -103,7 +103,7 @@ class User extends $pb.GeneratedMessage {
     ..p<$fixnum.Int64>(10, _omitFieldNames ? '' : 'friends', $pb.PbFieldType.KU6)
     ..a<$fixnum.Int64>(11, _omitFieldNames ? '' : 'inviter', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
     ..e<UserRole>(12, _omitFieldNames ? '' : 'role', $pb.PbFieldType.OE, defaultOrMaker: UserRole.Unkown, valueOf: UserRole.valueOf, enumValues: UserRole.values)
-    ..aOM<$5.Timestamp>(13, _omitFieldNames ? '' : 'premiumTill', protoName: 'premiumTill', subBuilder: $5.Timestamp.create)
+    ..aOM<$3.Timestamp>(13, _omitFieldNames ? '' : 'premiumTill', protoName: 'premiumTill', subBuilder: $3.Timestamp.create)
     ..pc<Wallet>(14, _omitFieldNames ? '' : 'wallets', $pb.PbFieldType.PM, subBuilder: Wallet.create)
     ..a<$fixnum.Int64>(15, _omitFieldNames ? '' : 'primaryWallet', $pb.PbFieldType.OU6, protoName: 'primaryWallet', defaultOrMaker: $fixnum.Int64.ZERO)
     ..hasRequiredFields = false
@@ -141,26 +141,26 @@ class User extends $pb.GeneratedMessage {
   void clearId() => clearField(1);
 
   @$pb.TagNumber(2)
-  $5.Timestamp get createdAt => $_getN(1);
+  $3.Timestamp get createdAt => $_getN(1);
   @$pb.TagNumber(2)
-  set createdAt($5.Timestamp v) { setField(2, v); }
+  set createdAt($3.Timestamp v) { setField(2, v); }
   @$pb.TagNumber(2)
   $core.bool hasCreatedAt() => $_has(1);
   @$pb.TagNumber(2)
   void clearCreatedAt() => clearField(2);
   @$pb.TagNumber(2)
-  $5.Timestamp ensureCreatedAt() => $_ensure(1);
+  $3.Timestamp ensureCreatedAt() => $_ensure(1);
 
   @$pb.TagNumber(3)
-  $5.Timestamp get updatedAt => $_getN(2);
+  $3.Timestamp get updatedAt => $_getN(2);
   @$pb.TagNumber(3)
-  set updatedAt($5.Timestamp v) { setField(3, v); }
+  set updatedAt($3.Timestamp v) { setField(3, v); }
   @$pb.TagNumber(3)
   $core.bool hasUpdatedAt() => $_has(2);
   @$pb.TagNumber(3)
   void clearUpdatedAt() => clearField(3);
   @$pb.TagNumber(3)
-  $5.Timestamp ensureUpdatedAt() => $_ensure(2);
+  $3.Timestamp ensureUpdatedAt() => $_ensure(2);
 
   /// user
   @$pb.TagNumber(4)
@@ -239,15 +239,15 @@ class User extends $pb.GeneratedMessage {
   void clearRole() => clearField(12);
 
   @$pb.TagNumber(13)
-  $5.Timestamp get premiumTill => $_getN(12);
+  $3.Timestamp get premiumTill => $_getN(12);
   @$pb.TagNumber(13)
-  set premiumTill($5.Timestamp v) { setField(13, v); }
+  set premiumTill($3.Timestamp v) { setField(13, v); }
   @$pb.TagNumber(13)
   $core.bool hasPremiumTill() => $_has(12);
   @$pb.TagNumber(13)
   void clearPremiumTill() => clearField(13);
   @$pb.TagNumber(13)
-  $5.Timestamp ensurePremiumTill() => $_ensure(12);
+  $3.Timestamp ensurePremiumTill() => $_ensure(12);
 
   @$pb.TagNumber(14)
   $core.List<Wallet> get wallets => $_getList(13);
@@ -684,7 +684,7 @@ class Friend extends $pb.GeneratedMessage {
     $core.String? name,
     $core.String? email,
     $core.String? photoURL,
-    $5.Timestamp? premiumTill,
+    $3.Timestamp? premiumTill,
     $core.Iterable<Wallet>? wallets,
   }) {
     final $result = create();
@@ -717,7 +717,7 @@ class Friend extends $pb.GeneratedMessage {
     ..aOS(2, _omitFieldNames ? '' : 'name')
     ..aOS(3, _omitFieldNames ? '' : 'email')
     ..aOS(4, _omitFieldNames ? '' : 'photoURL', protoName: 'photoURL')
-    ..aOM<$5.Timestamp>(5, _omitFieldNames ? '' : 'premiumTill', protoName: 'premiumTill', subBuilder: $5.Timestamp.create)
+    ..aOM<$3.Timestamp>(5, _omitFieldNames ? '' : 'premiumTill', protoName: 'premiumTill', subBuilder: $3.Timestamp.create)
     ..pc<Wallet>(6, _omitFieldNames ? '' : 'wallets', $pb.PbFieldType.PM, subBuilder: Wallet.create)
     ..hasRequiredFields = false
   ;
@@ -780,15 +780,15 @@ class Friend extends $pb.GeneratedMessage {
   void clearPhotoURL() => clearField(4);
 
   @$pb.TagNumber(5)
-  $5.Timestamp get premiumTill => $_getN(4);
+  $3.Timestamp get premiumTill => $_getN(4);
   @$pb.TagNumber(5)
-  set premiumTill($5.Timestamp v) { setField(5, v); }
+  set premiumTill($3.Timestamp v) { setField(5, v); }
   @$pb.TagNumber(5)
   $core.bool hasPremiumTill() => $_has(4);
   @$pb.TagNumber(5)
   void clearPremiumTill() => clearField(5);
   @$pb.TagNumber(5)
-  $5.Timestamp ensurePremiumTill() => $_ensure(4);
+  $3.Timestamp ensurePremiumTill() => $_ensure(4);
 
   @$pb.TagNumber(6)
   $core.List<Wallet> get wallets => $_getList(5);

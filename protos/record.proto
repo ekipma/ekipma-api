@@ -1,8 +1,6 @@
 syntax = "proto3";
 package ekipma.api.record;
 
-import "protos/pay.proto";
-import "protos/plan.proto";
 import "protos/common.proto";
 import "google/protobuf/timestamp.proto";
 
@@ -63,33 +61,66 @@ message Record {
   string title = 5;
   string desc = 6;
   uint64 author = 7;
-  repeated uint64 assignees = 8;
-  uint64 group = 9;
-  bool private = 10;
+  uint64 assignee = 8; // output
+  repeated uint64 assignees = 9;
+  uint64 group = 10;
+  bool private = 11;
 
   // value
-  RecordType type = 11;
+  RecordType type = 12;
   oneof value {
-    Pay pay = 12;
-    Turn turn = 13;
-    Plan plan = 14;
+    Pay pay = 13;
+    Turn turn = 14;
+    Plan plan = 15;
   }
+}
+
+// pay
+
+enum PayType {
+  Unkown = 0;
+  New = 1;
+  Repay = 2;
+}
+
+enum PayUnit {
+  Unknown = 0;
+  USD = 1;
+  IRTT = 2;
+  EUR = 3;
+  POND = 4;
 }
 
 message Pay {
   double total = 1;
-  ekipma.api.pay.PayUnit unit = 2;
-  ekipma.api.pay.PayType type = 3;
+  PayUnit unit = 2;
+  PayType type = 3;
 }
+
+// turn
 
 message Turn {
   uint32 iter = 1;   // increasing - output
   uint32 peroid = 2; // in hours
 }
 
+// plan
+
+message Location {
+  string name = 1;
+  string lat = 2;
+  string long = 3;
+}
+
+enum Sound {
+  NONE = 0;
+  DEFAULT = 1;
+  NATURE = 2;
+  YAMETE = 3; // can be used by premium users
+}
+
 message Plan {
   google.protobuf.Timestamp dueAt = 1; // due date
-  ekipma.api.plan.Location location = 2;
-  bool notify = 3;
-  ekipma.api.plan.Sound sound = 4;
+  Location location = 2;
+  Sound sound = 3;
 }
