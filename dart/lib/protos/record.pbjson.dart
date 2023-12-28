@@ -17,21 +17,23 @@ import 'dart:typed_data' as $typed_data;
 const RecordType$json = {
   '1': 'RecordType',
   '2': [
-    {'1': 'IsPay', '2': 0},
-    {'1': 'IsTurn', '2': 1},
-    {'1': 'IsPlan', '2': 2},
+    {'1': 'UnkownRecordType', '2': 0},
+    {'1': 'IsPay', '2': 1},
+    {'1': 'IsTurn', '2': 2},
+    {'1': 'IsPlan', '2': 3},
   ],
 };
 
 /// Descriptor for `RecordType`. Decode as a `google.protobuf.EnumDescriptorProto`.
 final $typed_data.Uint8List recordTypeDescriptor = $convert.base64Decode(
-    'CgpSZWNvcmRUeXBlEgkKBUlzUGF5EAASCgoGSXNUdXJuEAESCgoGSXNQbGFuEAI=');
+    'CgpSZWNvcmRUeXBlEhQKEFVua293blJlY29yZFR5cGUQABIJCgVJc1BheRABEgoKBklzVHVybh'
+    'ACEgoKBklzUGxhbhAD');
 
 @$core.Deprecated('Use payTypeDescriptor instead')
 const PayType$json = {
   '1': 'PayType',
   '2': [
-    {'1': 'Unkown', '2': 0},
+    {'1': 'UnknownPayType', '2': 0},
     {'1': 'New', '2': 1},
     {'1': 'Repay', '2': 2},
   ],
@@ -39,13 +41,13 @@ const PayType$json = {
 
 /// Descriptor for `PayType`. Decode as a `google.protobuf.EnumDescriptorProto`.
 final $typed_data.Uint8List payTypeDescriptor = $convert.base64Decode(
-    'CgdQYXlUeXBlEgoKBlVua293bhAAEgcKA05ldxABEgkKBVJlcGF5EAI=');
+    'CgdQYXlUeXBlEhIKDlVua25vd25QYXlUeXBlEAASBwoDTmV3EAESCQoFUmVwYXkQAg==');
 
 @$core.Deprecated('Use payUnitDescriptor instead')
 const PayUnit$json = {
   '1': 'PayUnit',
   '2': [
-    {'1': 'Unknown', '2': 0},
+    {'1': 'UnknownPayUnit', '2': 0},
     {'1': 'USD', '2': 1},
     {'1': 'IRTT', '2': 2},
     {'1': 'EUR', '2': 3},
@@ -55,8 +57,8 @@ const PayUnit$json = {
 
 /// Descriptor for `PayUnit`. Decode as a `google.protobuf.EnumDescriptorProto`.
 final $typed_data.Uint8List payUnitDescriptor = $convert.base64Decode(
-    'CgdQYXlVbml0EgsKB1Vua25vd24QABIHCgNVU0QQARIICgRJUlRUEAISBwoDRVVSEAMSCAoEUE'
-    '9ORBAE');
+    'CgdQYXlVbml0EhIKDlVua25vd25QYXlVbml0EAASBwoDVVNEEAESCAoESVJUVBACEgcKA0VVUh'
+    'ADEggKBFBPTkQQBA==');
 
 @$core.Deprecated('Use soundDescriptor instead')
 const Sound$json = {

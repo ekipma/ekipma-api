@@ -116,7 +116,7 @@ class Record extends $pb.GeneratedMessage {
     ..p<$fixnum.Int64>(9, _omitFieldNames ? '' : 'assignees', $pb.PbFieldType.KU6)
     ..a<$fixnum.Int64>(10, _omitFieldNames ? '' : 'group', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
     ..aOB(11, _omitFieldNames ? '' : 'private')
-    ..e<RecordType>(12, _omitFieldNames ? '' : 'type', $pb.PbFieldType.OE, defaultOrMaker: RecordType.IsPay, valueOf: RecordType.valueOf, enumValues: RecordType.values)
+    ..e<RecordType>(12, _omitFieldNames ? '' : 'type', $pb.PbFieldType.OE, defaultOrMaker: RecordType.UnkownRecordType, valueOf: RecordType.valueOf, enumValues: RecordType.values)
     ..aOM<Pay>(13, _omitFieldNames ? '' : 'pay', subBuilder: Pay.create)
     ..aOM<Turn>(14, _omitFieldNames ? '' : 'turn', subBuilder: Turn.create)
     ..aOM<Plan>(15, _omitFieldNames ? '' : 'plan', subBuilder: Plan.create)
@@ -316,8 +316,8 @@ class Pay extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Pay', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.record'), createEmptyInstance: create)
     ..a<$core.double>(1, _omitFieldNames ? '' : 'total', $pb.PbFieldType.OD)
-    ..e<PayUnit>(2, _omitFieldNames ? '' : 'payUnit', $pb.PbFieldType.OE, protoName: 'payUnit', defaultOrMaker: PayUnit.Unknown, valueOf: PayUnit.valueOf, enumValues: PayUnit.values)
-    ..e<PayType>(3, _omitFieldNames ? '' : 'payType', $pb.PbFieldType.OE, protoName: 'payType', defaultOrMaker: PayType.Unkown, valueOf: PayType.valueOf, enumValues: PayType.values)
+    ..e<PayUnit>(2, _omitFieldNames ? '' : 'payUnit', $pb.PbFieldType.OE, protoName: 'payUnit', defaultOrMaker: PayUnit.UnknownPayUnit, valueOf: PayUnit.valueOf, enumValues: PayUnit.values)
+    ..e<PayType>(3, _omitFieldNames ? '' : 'payType', $pb.PbFieldType.OE, protoName: 'payType', defaultOrMaker: PayType.UnknownPayType, valueOf: PayType.valueOf, enumValues: PayType.values)
     ..hasRequiredFields = false
   ;
 

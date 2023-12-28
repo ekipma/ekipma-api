@@ -14,11 +14,13 @@ import 'dart:core' as $core;
 import 'package:protobuf/protobuf.dart' as $pb;
 
 class RecordType extends $pb.ProtobufEnum {
-  static const RecordType IsPay = RecordType._(0, _omitEnumNames ? '' : 'IsPay');
-  static const RecordType IsTurn = RecordType._(1, _omitEnumNames ? '' : 'IsTurn');
-  static const RecordType IsPlan = RecordType._(2, _omitEnumNames ? '' : 'IsPlan');
+  static const RecordType UnkownRecordType = RecordType._(0, _omitEnumNames ? '' : 'UnkownRecordType');
+  static const RecordType IsPay = RecordType._(1, _omitEnumNames ? '' : 'IsPay');
+  static const RecordType IsTurn = RecordType._(2, _omitEnumNames ? '' : 'IsTurn');
+  static const RecordType IsPlan = RecordType._(3, _omitEnumNames ? '' : 'IsPlan');
 
   static const $core.List<RecordType> values = <RecordType> [
+    UnkownRecordType,
     IsPay,
     IsTurn,
     IsPlan,
@@ -31,12 +33,12 @@ class RecordType extends $pb.ProtobufEnum {
 }
 
 class PayType extends $pb.ProtobufEnum {
-  static const PayType Unkown = PayType._(0, _omitEnumNames ? '' : 'Unkown');
+  static const PayType UnknownPayType = PayType._(0, _omitEnumNames ? '' : 'UnknownPayType');
   static const PayType New = PayType._(1, _omitEnumNames ? '' : 'New');
   static const PayType Repay = PayType._(2, _omitEnumNames ? '' : 'Repay');
 
   static const $core.List<PayType> values = <PayType> [
-    Unkown,
+    UnknownPayType,
     New,
     Repay,
   ];
@@ -48,14 +50,14 @@ class PayType extends $pb.ProtobufEnum {
 }
 
 class PayUnit extends $pb.ProtobufEnum {
-  static const PayUnit Unknown = PayUnit._(0, _omitEnumNames ? '' : 'Unknown');
+  static const PayUnit UnknownPayUnit = PayUnit._(0, _omitEnumNames ? '' : 'UnknownPayUnit');
   static const PayUnit USD = PayUnit._(1, _omitEnumNames ? '' : 'USD');
   static const PayUnit IRTT = PayUnit._(2, _omitEnumNames ? '' : 'IRTT');
   static const PayUnit EUR = PayUnit._(3, _omitEnumNames ? '' : 'EUR');
   static const PayUnit POND = PayUnit._(4, _omitEnumNames ? '' : 'POND');
 
   static const $core.List<PayUnit> values = <PayUnit> [
-    Unknown,
+    UnknownPayUnit,
     USD,
     IRTT,
     EUR,

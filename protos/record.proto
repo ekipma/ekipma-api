@@ -43,9 +43,10 @@ service RecordService {
 }
 
 enum RecordType {
-  IsPay = 0;
-  IsTurn = 1;
-  IsPlan = 2;
+  UnkownRecordType = 0;
+  IsPay = 1;
+  IsTurn = 2;
+  IsPlan = 3;
 }
 
 message Record {
@@ -77,13 +78,13 @@ message Record {
 // pay
 
 enum PayType {
-  Unkown = 0;
+  UnknownPayType = 0;
   New = 1;
   Repay = 2;
 }
 
 enum PayUnit {
-  Unknown = 0;
+  UnknownPayUnit = 0;
   USD = 1;
   IRTT = 2;
   EUR = 3;
