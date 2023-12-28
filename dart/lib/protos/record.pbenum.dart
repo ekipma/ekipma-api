@@ -69,16 +69,16 @@ class PayUnit extends $pb.ProtobufEnum {
 }
 
 class Sound extends $pb.ProtobufEnum {
-  static const Sound NONE = Sound._(0, _omitEnumNames ? '' : 'NONE');
-  static const Sound DEFAULT = Sound._(1, _omitEnumNames ? '' : 'DEFAULT');
-  static const Sound NATURE = Sound._(2, _omitEnumNames ? '' : 'NATURE');
-  static const Sound YAMETE = Sound._(3, _omitEnumNames ? '' : 'YAMETE');
+  static const Sound None = Sound._(0, _omitEnumNames ? '' : 'None');
+  static const Sound Default = Sound._(1, _omitEnumNames ? '' : 'Default');
+  static const Sound Nature = Sound._(2, _omitEnumNames ? '' : 'Nature');
+  static const Sound Yamete = Sound._(3, _omitEnumNames ? '' : 'Yamete');
 
   static const $core.List<Sound> values = <Sound> [
-    NONE,
-    DEFAULT,
-    NATURE,
-    YAMETE,
+    None,
+    Default,
+    Nature,
+    Yamete,
   ];
 
   static final $core.Map<$core.int, Sound> _byValue = $pb.ProtobufEnum.initByValue(values);

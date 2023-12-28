@@ -62,16 +62,16 @@ final $typed_data.Uint8List payUnitDescriptor = $convert.base64Decode(
 const Sound$json = {
   '1': 'Sound',
   '2': [
-    {'1': 'NONE', '2': 0},
-    {'1': 'DEFAULT', '2': 1},
-    {'1': 'NATURE', '2': 2},
-    {'1': 'YAMETE', '2': 3},
+    {'1': 'None', '2': 0},
+    {'1': 'Default', '2': 1},
+    {'1': 'Nature', '2': 2},
+    {'1': 'Yamete', '2': 3},
   ],
 };
 
 /// Descriptor for `Sound`. Decode as a `google.protobuf.EnumDescriptorProto`.
 final $typed_data.Uint8List soundDescriptor = $convert.base64Decode(
-    'CgVTb3VuZBIICgROT05FEAASCwoHREVGQVVMVBABEgoKBk5BVFVSRRACEgoKBllBTUVURRAD');
+    'CgVTb3VuZBIICgROb25lEAASCwoHRGVmYXVsdBABEgoKBk5hdHVyZRACEgoKBllhbWV0ZRAD');
 
 @$core.Deprecated('Use recordDescriptor instead')
 const Record$json = {
@@ -117,16 +117,16 @@ const Pay$json = {
   '1': 'Pay',
   '2': [
     {'1': 'total', '3': 1, '4': 1, '5': 1, '10': 'total'},
-    {'1': 'unit', '3': 2, '4': 1, '5': 14, '6': '.ekipma.api.record.PayUnit', '10': 'unit'},
-    {'1': 'type', '3': 3, '4': 1, '5': 14, '6': '.ekipma.api.record.PayType', '10': 'type'},
+    {'1': 'payUnit', '3': 2, '4': 1, '5': 14, '6': '.ekipma.api.record.PayUnit', '10': 'payUnit'},
+    {'1': 'payType', '3': 3, '4': 1, '5': 14, '6': '.ekipma.api.record.PayType', '10': 'payType'},
   ],
 };
 
 /// Descriptor for `Pay`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List payDescriptor = $convert.base64Decode(
-    'CgNQYXkSFAoFdG90YWwYASABKAFSBXRvdGFsEi4KBHVuaXQYAiABKA4yGi5la2lwbWEuYXBpLn'
-    'JlY29yZC5QYXlVbml0UgR1bml0Ei4KBHR5cGUYAyABKA4yGi5la2lwbWEuYXBpLnJlY29yZC5Q'
-    'YXlUeXBlUgR0eXBl');
+    'CgNQYXkSFAoFdG90YWwYASABKAFSBXRvdGFsEjQKB3BheVVuaXQYAiABKA4yGi5la2lwbWEuYX'
+    'BpLnJlY29yZC5QYXlVbml0UgdwYXlVbml0EjQKB3BheVR5cGUYAyABKA4yGi5la2lwbWEuYXBp'
+    'LnJlY29yZC5QYXlUeXBlUgdwYXlUeXBl');
 
 @$core.Deprecated('Use turnDescriptor instead')
 const Turn$json = {

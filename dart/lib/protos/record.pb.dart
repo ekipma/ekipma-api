@@ -295,18 +295,18 @@ class Record extends $pb.GeneratedMessage {
 class Pay extends $pb.GeneratedMessage {
   factory Pay({
     $core.double? total,
-    PayUnit? unit,
-    PayType? type,
+    PayUnit? payUnit,
+    PayType? payType,
   }) {
     final $result = create();
     if (total != null) {
       $result.total = total;
     }
-    if (unit != null) {
-      $result.unit = unit;
+    if (payUnit != null) {
+      $result.payUnit = payUnit;
     }
-    if (type != null) {
-      $result.type = type;
+    if (payType != null) {
+      $result.payType = payType;
     }
     return $result;
   }
@@ -316,8 +316,8 @@ class Pay extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Pay', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.record'), createEmptyInstance: create)
     ..a<$core.double>(1, _omitFieldNames ? '' : 'total', $pb.PbFieldType.OD)
-    ..e<PayUnit>(2, _omitFieldNames ? '' : 'unit', $pb.PbFieldType.OE, defaultOrMaker: PayUnit.Unknown, valueOf: PayUnit.valueOf, enumValues: PayUnit.values)
-    ..e<PayType>(3, _omitFieldNames ? '' : 'type', $pb.PbFieldType.OE, defaultOrMaker: PayType.Unkown, valueOf: PayType.valueOf, enumValues: PayType.values)
+    ..e<PayUnit>(2, _omitFieldNames ? '' : 'payUnit', $pb.PbFieldType.OE, protoName: 'payUnit', defaultOrMaker: PayUnit.Unknown, valueOf: PayUnit.valueOf, enumValues: PayUnit.values)
+    ..e<PayType>(3, _omitFieldNames ? '' : 'payType', $pb.PbFieldType.OE, protoName: 'payType', defaultOrMaker: PayType.Unkown, valueOf: PayType.valueOf, enumValues: PayType.values)
     ..hasRequiredFields = false
   ;
 
@@ -352,22 +352,22 @@ class Pay extends $pb.GeneratedMessage {
   void clearTotal() => clearField(1);
 
   @$pb.TagNumber(2)
-  PayUnit get unit => $_getN(1);
+  PayUnit get payUnit => $_getN(1);
   @$pb.TagNumber(2)
-  set unit(PayUnit v) { setField(2, v); }
+  set payUnit(PayUnit v) { setField(2, v); }
   @$pb.TagNumber(2)
-  $core.bool hasUnit() => $_has(1);
+  $core.bool hasPayUnit() => $_has(1);
   @$pb.TagNumber(2)
-  void clearUnit() => clearField(2);
+  void clearPayUnit() => clearField(2);
 
   @$pb.TagNumber(3)
-  PayType get type => $_getN(2);
+  PayType get payType => $_getN(2);
   @$pb.TagNumber(3)
-  set type(PayType v) { setField(3, v); }
+  set payType(PayType v) { setField(3, v); }
   @$pb.TagNumber(3)
-  $core.bool hasType() => $_has(2);
+  $core.bool hasPayType() => $_has(2);
   @$pb.TagNumber(3)
-  void clearType() => clearField(3);
+  void clearPayType() => clearField(3);
 }
 
 class Turn extends $pb.GeneratedMessage {
@@ -537,7 +537,7 @@ class Plan extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Plan', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.record'), createEmptyInstance: create)
     ..aOM<$3.Timestamp>(1, _omitFieldNames ? '' : 'dueAt', protoName: 'dueAt', subBuilder: $3.Timestamp.create)
     ..aOM<Location>(2, _omitFieldNames ? '' : 'location', subBuilder: Location.create)
-    ..e<Sound>(3, _omitFieldNames ? '' : 'sound', $pb.PbFieldType.OE, defaultOrMaker: Sound.NONE, valueOf: Sound.valueOf, enumValues: Sound.values)
+    ..e<Sound>(3, _omitFieldNames ? '' : 'sound', $pb.PbFieldType.OE, defaultOrMaker: Sound.None, valueOf: Sound.valueOf, enumValues: Sound.values)
     ..hasRequiredFields = false
   ;
 

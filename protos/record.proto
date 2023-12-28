@@ -92,8 +92,8 @@ enum PayUnit {
 
 message Pay {
   double total = 1;
-  PayUnit unit = 2;
-  PayType type = 3;
+  PayUnit payUnit = 2;
+  PayType payType = 3;
 }
 
 // turn
@@ -112,10 +112,10 @@ message Location {
 }
 
 enum Sound {
-  NONE = 0;
-  DEFAULT = 1;
-  NATURE = 2;
-  YAMETE = 3; // can be used by premium users
+  None = 0;
+  Default = 1;
+  Nature = 2;
+  Yamete = 3; // can be used by premium users
 }
 
 message Plan {
