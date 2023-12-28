@@ -29,7 +29,7 @@ type RecordServiceClient interface {
 	RecordIds(ctx context.Context, in *Last, opts ...grpc.CallOption) (*Integrity, error)
 	LostRecords(ctx context.Context, in *Integrity, opts ...grpc.CallOption) (RecordService_LostRecordsClient, error)
 	// -- turn --
-	SubmitTurn(ctx context.Context, in *IdInput, opts ...grpc.CallOption) (*Turn, error)
+	SubmitTurn(ctx context.Context, in *IdInput, opts ...grpc.CallOption) (*Record, error)
 }
 
 type recordServiceClient struct {
@@ -154,8 +154,8 @@ func (x *recordServiceLostRecordsClient) Recv() (*Record, error) {
 	return m, nil
 }
 
-func (c *recordServiceClient) SubmitTurn(ctx context.Context, in *IdInput, opts ...grpc.CallOption) (*Turn, error) {
-	out := new(Turn)
+func (c *recordServiceClient) SubmitTurn(ctx context.Context, in *IdInput, opts ...grpc.CallOption) (*Record, error) {
+	out := new(Record)
 	err := c.cc.Invoke(ctx, "/ekipma.api.record.RecordService/SubmitTurn", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -174,7 +174,7 @@ type RecordServiceServer interface {
 	RecordIds(context.Context, *Last) (*Integrity, error)
 	LostRecords(*Integrity, RecordService_LostRecordsServer) error
 	// -- turn --
-	SubmitTurn(context.Context, *IdInput) (*Turn, error)
+	SubmitTurn(context.Context, *IdInput) (*Record, error)
 	mustEmbedUnimplementedRecordServiceServer()
 }
 
@@ -197,7 +197,7 @@ func (UnimplementedRecordServiceServer) RecordIds(context.Context, *Last) (*Inte
 func (UnimplementedRecordServiceServer) LostRecords(*Integrity, RecordService_LostRecordsServer) error {
 	return status.Errorf(codes.Unimplemented, "method LostRecords not implemented")
 }
-func (UnimplementedRecordServiceServer) SubmitTurn(context.Context, *IdInput) (*Turn, error) {
+func (UnimplementedRecordServiceServer) SubmitTurn(context.Context, *IdInput) (*Record, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SubmitTurn not implemented")
 }
 func (UnimplementedRecordServiceServer) mustEmbedUnimplementedRecordServiceServer() {}

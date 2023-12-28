@@ -37,7 +37,7 @@ service RecordService {
   }
 
   // -- turn --
-  rpc SubmitTurn(ekipma.api.common.IdInput) returns (Turn) {
+  rpc SubmitTurn(ekipma.api.common.IdInput) returns (Record) {
     // changes assignee to next person in the assignees list
   }
 }
