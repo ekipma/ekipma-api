@@ -46,22 +46,23 @@ message Record {
   uint64 id = 2;
   google.protobuf.Timestamp createdAt = 3;
   google.protobuf.Timestamp updatedAt = 4;
+  bool deleted = 5;
 
   // rec
-  string title = 5;
-  string desc = 6;
-  uint64 author = 7;
-  uint64 assignee = 8; // output
-  repeated uint64 assignees = 9;
-  uint64 group = 10;
-  bool private = 11;
+  string title = 6;
+  string desc = 7;
+  uint64 author = 8;
+  uint64 assignee = 9; // output
+  repeated uint64 assignees = 10;
+  uint64 group = 11;
+  bool private = 12;
 
   // value
-  RecordType type = 12;
+  RecordType type = 13;
   oneof value {
-    Pay pay = 13;
-    Turn turn = 14;
-    Plan plan = 15;
+    Pay pay = 14;
+    Turn turn = 15;
+    Plan plan = 16;
   }
 }
 

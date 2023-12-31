@@ -83,17 +83,18 @@ const Record$json = {
     {'1': 'id', '3': 2, '4': 1, '5': 4, '10': 'id'},
     {'1': 'createdAt', '3': 3, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'createdAt'},
     {'1': 'updatedAt', '3': 4, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'updatedAt'},
-    {'1': 'title', '3': 5, '4': 1, '5': 9, '10': 'title'},
-    {'1': 'desc', '3': 6, '4': 1, '5': 9, '10': 'desc'},
-    {'1': 'author', '3': 7, '4': 1, '5': 4, '10': 'author'},
-    {'1': 'assignee', '3': 8, '4': 1, '5': 4, '10': 'assignee'},
-    {'1': 'assignees', '3': 9, '4': 3, '5': 4, '10': 'assignees'},
-    {'1': 'group', '3': 10, '4': 1, '5': 4, '10': 'group'},
-    {'1': 'private', '3': 11, '4': 1, '5': 8, '10': 'private'},
-    {'1': 'type', '3': 12, '4': 1, '5': 14, '6': '.ekipma.api.record.RecordType', '10': 'type'},
-    {'1': 'pay', '3': 13, '4': 1, '5': 11, '6': '.ekipma.api.record.Pay', '9': 0, '10': 'pay'},
-    {'1': 'turn', '3': 14, '4': 1, '5': 11, '6': '.ekipma.api.record.Turn', '9': 0, '10': 'turn'},
-    {'1': 'plan', '3': 15, '4': 1, '5': 11, '6': '.ekipma.api.record.Plan', '9': 0, '10': 'plan'},
+    {'1': 'deleted', '3': 5, '4': 1, '5': 8, '10': 'deleted'},
+    {'1': 'title', '3': 6, '4': 1, '5': 9, '10': 'title'},
+    {'1': 'desc', '3': 7, '4': 1, '5': 9, '10': 'desc'},
+    {'1': 'author', '3': 8, '4': 1, '5': 4, '10': 'author'},
+    {'1': 'assignee', '3': 9, '4': 1, '5': 4, '10': 'assignee'},
+    {'1': 'assignees', '3': 10, '4': 3, '5': 4, '10': 'assignees'},
+    {'1': 'group', '3': 11, '4': 1, '5': 4, '10': 'group'},
+    {'1': 'private', '3': 12, '4': 1, '5': 8, '10': 'private'},
+    {'1': 'type', '3': 13, '4': 1, '5': 14, '6': '.ekipma.api.record.RecordType', '10': 'type'},
+    {'1': 'pay', '3': 14, '4': 1, '5': 11, '6': '.ekipma.api.record.Pay', '9': 0, '10': 'pay'},
+    {'1': 'turn', '3': 15, '4': 1, '5': 11, '6': '.ekipma.api.record.Turn', '9': 0, '10': 'turn'},
+    {'1': 'plan', '3': 16, '4': 1, '5': 11, '6': '.ekipma.api.record.Plan', '9': 0, '10': 'plan'},
   ],
   '8': [
     {'1': 'value'},
@@ -105,14 +106,14 @@ final $typed_data.Uint8List recordDescriptor = $convert.base64Decode(
     'CgZSZWNvcmQSLgoFY2h1bmsYASABKAsyGC5la2lwbWEuYXBpLmNvbW1vbi5DaHVua1IFY2h1bm'
     'sSDgoCaWQYAiABKARSAmlkEjgKCWNyZWF0ZWRBdBgDIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5U'
     'aW1lc3RhbXBSCWNyZWF0ZWRBdBI4Cgl1cGRhdGVkQXQYBCABKAsyGi5nb29nbGUucHJvdG9idW'
-    'YuVGltZXN0YW1wUgl1cGRhdGVkQXQSFAoFdGl0bGUYBSABKAlSBXRpdGxlEhIKBGRlc2MYBiAB'
-    'KAlSBGRlc2MSFgoGYXV0aG9yGAcgASgEUgZhdXRob3ISGgoIYXNzaWduZWUYCCABKARSCGFzc2'
-    'lnbmVlEhwKCWFzc2lnbmVlcxgJIAMoBFIJYXNzaWduZWVzEhQKBWdyb3VwGAogASgEUgVncm91'
-    'cBIYCgdwcml2YXRlGAsgASgIUgdwcml2YXRlEjEKBHR5cGUYDCABKA4yHS5la2lwbWEuYXBpLn'
-    'JlY29yZC5SZWNvcmRUeXBlUgR0eXBlEioKA3BheRgNIAEoCzIWLmVraXBtYS5hcGkucmVjb3Jk'
-    'LlBheUgAUgNwYXkSLQoEdHVybhgOIAEoCzIXLmVraXBtYS5hcGkucmVjb3JkLlR1cm5IAFIEdH'
-    'VybhItCgRwbGFuGA8gASgLMhcuZWtpcG1hLmFwaS5yZWNvcmQuUGxhbkgAUgRwbGFuQgcKBXZh'
-    'bHVl');
+    'YuVGltZXN0YW1wUgl1cGRhdGVkQXQSGAoHZGVsZXRlZBgFIAEoCFIHZGVsZXRlZBIUCgV0aXRs'
+    'ZRgGIAEoCVIFdGl0bGUSEgoEZGVzYxgHIAEoCVIEZGVzYxIWCgZhdXRob3IYCCABKARSBmF1dG'
+    'hvchIaCghhc3NpZ25lZRgJIAEoBFIIYXNzaWduZWUSHAoJYXNzaWduZWVzGAogAygEUglhc3Np'
+    'Z25lZXMSFAoFZ3JvdXAYCyABKARSBWdyb3VwEhgKB3ByaXZhdGUYDCABKAhSB3ByaXZhdGUSMQ'
+    'oEdHlwZRgNIAEoDjIdLmVraXBtYS5hcGkucmVjb3JkLlJlY29yZFR5cGVSBHR5cGUSKgoDcGF5'
+    'GA4gASgLMhYuZWtpcG1hLmFwaS5yZWNvcmQuUGF5SABSA3BheRItCgR0dXJuGA8gASgLMhcuZW'
+    'tpcG1hLmFwaS5yZWNvcmQuVHVybkgAUgR0dXJuEi0KBHBsYW4YECABKAsyFy5la2lwbWEuYXBp'
+    'LnJlY29yZC5QbGFuSABSBHBsYW5CBwoFdmFsdWU=');
 
 @$core.Deprecated('Use payDescriptor instead')
 const Pay$json = {
