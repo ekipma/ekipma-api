@@ -22,16 +22,8 @@ service RecordService {
     // use ID = 0 to receive all.
     // check "assignees | author" instead of "assignee | author"
   }
-  rpc DeleteRecord(ekipma.api.common.IdInput)
-      returns (ekipma.api.common.Empty) {
-    // can only delete after 1 day.
-  }
-  rpc VerifyIntegrity(IntegrityInput) returns (IntegrityOutput) {
-    // client: list ids. hash ids list
-    // server: list ids based on last id. hash ids. compare hash
-    // if hashes match - return ok
-    // else - compares ids: send list of lost-deleted
-  }
+  rpc DeleteRecord(ekipma.api.common.IdInput) returns (ekipma.api.common.Empty);
+  rpc VerifyIntegrity(IntegrityInput) returns (IntegrityOutput);
   rpc LostRecords(Lost) returns (stream Record);
 
   // -- turn --
@@ -126,14 +118,15 @@ message Plan {
 // Integrity
 
 message IntegrityInput {
-  repeated uint64 ids = 1; // id of all client records
-  string hash = 2;         // checksum - hash of all ids
+  uint64 last = 1; // id of the last record
+  string hash = 2; // checksum - hash of all ids
 }
 
 message IntegrityOutput {
   bool ok = 1;
-  repeated uint64 lostIds = 2;    // id of lost items
-  repeated uint64 deletedIds = 3; // id of deleted items
+  repeated uint64 ids = 2; // ids of all items
 }
 
-message Lost { repeated uint64 ids = 1; }
+message Lost {
+  repeated uint64 ids = 1; // ids of lost items
+}

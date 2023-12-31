@@ -178,29 +178,28 @@ final $typed_data.Uint8List planDescriptor = $convert.base64Decode(
 const IntegrityInput$json = {
   '1': 'IntegrityInput',
   '2': [
-    {'1': 'ids', '3': 1, '4': 3, '5': 4, '10': 'ids'},
+    {'1': 'last', '3': 1, '4': 1, '5': 4, '10': 'last'},
     {'1': 'hash', '3': 2, '4': 1, '5': 9, '10': 'hash'},
   ],
 };
 
 /// Descriptor for `IntegrityInput`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List integrityInputDescriptor = $convert.base64Decode(
-    'Cg5JbnRlZ3JpdHlJbnB1dBIQCgNpZHMYASADKARSA2lkcxISCgRoYXNoGAIgASgJUgRoYXNo');
+    'Cg5JbnRlZ3JpdHlJbnB1dBISCgRsYXN0GAEgASgEUgRsYXN0EhIKBGhhc2gYAiABKAlSBGhhc2'
+    'g=');
 
 @$core.Deprecated('Use integrityOutputDescriptor instead')
 const IntegrityOutput$json = {
   '1': 'IntegrityOutput',
   '2': [
     {'1': 'ok', '3': 1, '4': 1, '5': 8, '10': 'ok'},
-    {'1': 'lostIds', '3': 2, '4': 3, '5': 4, '10': 'lostIds'},
-    {'1': 'deletedIds', '3': 3, '4': 3, '5': 4, '10': 'deletedIds'},
+    {'1': 'ids', '3': 2, '4': 3, '5': 4, '10': 'ids'},
   ],
 };
 
 /// Descriptor for `IntegrityOutput`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List integrityOutputDescriptor = $convert.base64Decode(
-    'Cg9JbnRlZ3JpdHlPdXRwdXQSDgoCb2sYASABKAhSAm9rEhgKB2xvc3RJZHMYAiADKARSB2xvc3'
-    'RJZHMSHgoKZGVsZXRlZElkcxgDIAMoBFIKZGVsZXRlZElkcw==');
+    'Cg9JbnRlZ3JpdHlPdXRwdXQSDgoCb2sYASABKAhSAm9rEhAKA2lkcxgCIAMoBFIDaWRz');
 
 @$core.Deprecated('Use lostDescriptor instead')
 const Lost$json = {

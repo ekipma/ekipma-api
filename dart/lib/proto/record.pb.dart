@@ -596,12 +596,12 @@ class Plan extends $pb.GeneratedMessage {
 
 class IntegrityInput extends $pb.GeneratedMessage {
   factory IntegrityInput({
-    $core.Iterable<$fixnum.Int64>? ids,
+    $fixnum.Int64? last,
     $core.String? hash,
   }) {
     final $result = create();
-    if (ids != null) {
-      $result.ids.addAll(ids);
+    if (last != null) {
+      $result.last = last;
     }
     if (hash != null) {
       $result.hash = hash;
@@ -613,7 +613,7 @@ class IntegrityInput extends $pb.GeneratedMessage {
   factory IntegrityInput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'IntegrityInput', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.record'), createEmptyInstance: create)
-    ..p<$fixnum.Int64>(1, _omitFieldNames ? '' : 'ids', $pb.PbFieldType.KU6)
+    ..a<$fixnum.Int64>(1, _omitFieldNames ? '' : 'last', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
     ..aOS(2, _omitFieldNames ? '' : 'hash')
     ..hasRequiredFields = false
   ;
@@ -640,7 +640,13 @@ class IntegrityInput extends $pb.GeneratedMessage {
   static IntegrityInput? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.List<$fixnum.Int64> get ids => $_getList(0);
+  $fixnum.Int64 get last => $_getI64(0);
+  @$pb.TagNumber(1)
+  set last($fixnum.Int64 v) { $_setInt64(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasLast() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearLast() => clearField(1);
 
   @$pb.TagNumber(2)
   $core.String get hash => $_getSZ(1);
@@ -655,18 +661,14 @@ class IntegrityInput extends $pb.GeneratedMessage {
 class IntegrityOutput extends $pb.GeneratedMessage {
   factory IntegrityOutput({
     $core.bool? ok,
-    $core.Iterable<$fixnum.Int64>? lostIds,
-    $core.Iterable<$fixnum.Int64>? deletedIds,
+    $core.Iterable<$fixnum.Int64>? ids,
   }) {
     final $result = create();
     if (ok != null) {
       $result.ok = ok;
     }
-    if (lostIds != null) {
-      $result.lostIds.addAll(lostIds);
-    }
-    if (deletedIds != null) {
-      $result.deletedIds.addAll(deletedIds);
+    if (ids != null) {
+      $result.ids.addAll(ids);
     }
     return $result;
   }
@@ -676,8 +678,7 @@ class IntegrityOutput extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'IntegrityOutput', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.record'), createEmptyInstance: create)
     ..aOB(1, _omitFieldNames ? '' : 'ok')
-    ..p<$fixnum.Int64>(2, _omitFieldNames ? '' : 'lostIds', $pb.PbFieldType.KU6, protoName: 'lostIds')
-    ..p<$fixnum.Int64>(3, _omitFieldNames ? '' : 'deletedIds', $pb.PbFieldType.KU6, protoName: 'deletedIds')
+    ..p<$fixnum.Int64>(2, _omitFieldNames ? '' : 'ids', $pb.PbFieldType.KU6)
     ..hasRequiredFields = false
   ;
 
@@ -712,10 +713,7 @@ class IntegrityOutput extends $pb.GeneratedMessage {
   void clearOk() => clearField(1);
 
   @$pb.TagNumber(2)
-  $core.List<$fixnum.Int64> get lostIds => $_getList(1);
-
-  @$pb.TagNumber(3)
-  $core.List<$fixnum.Int64> get deletedIds => $_getList(2);
+  $core.List<$fixnum.Int64> get ids => $_getList(1);
 }
 
 class Lost extends $pb.GeneratedMessage {
