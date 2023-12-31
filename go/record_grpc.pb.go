@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.2.0
 // - protoc             v4.25.0
-// source: protos/record.proto
+// source: proto/record.proto
 
 package pb
 
@@ -25,9 +25,8 @@ type RecordServiceClient interface {
 	CreateRecords(ctx context.Context, in *Record, opts ...grpc.CallOption) (RecordService_CreateRecordsClient, error)
 	RecentRecords(ctx context.Context, in *Last, opts ...grpc.CallOption) (RecordService_RecentRecordsClient, error)
 	DeleteRecord(ctx context.Context, in *IdInput, opts ...grpc.CallOption) (*Empty, error)
-	// integrity - probably a button in mobile client settings
-	RecordIds(ctx context.Context, in *Last, opts ...grpc.CallOption) (*Integrity, error)
-	LostRecords(ctx context.Context, in *Integrity, opts ...grpc.CallOption) (RecordService_LostRecordsClient, error)
+	VerifyIntegrity(ctx context.Context, in *IntegrityInput, opts ...grpc.CallOption) (*IntegrityOutput, error)
+	LostRecords(ctx context.Context, in *Lost, opts ...grpc.CallOption) (RecordService_LostRecordsClient, error)
 	// -- turn --
 	SubmitTurn(ctx context.Context, in *IdInput, opts ...grpc.CallOption) (*Record, error)
 }
@@ -113,16 +112,16 @@ func (c *recordServiceClient) DeleteRecord(ctx context.Context, in *IdInput, opt
 	return out, nil
 }
 
-func (c *recordServiceClient) RecordIds(ctx context.Context, in *Last, opts ...grpc.CallOption) (*Integrity, error) {
-	out := new(Integrity)
-	err := c.cc.Invoke(ctx, "/ekipma.api.record.RecordService/RecordIds", in, out, opts...)
+func (c *recordServiceClient) VerifyIntegrity(ctx context.Context, in *IntegrityInput, opts ...grpc.CallOption) (*IntegrityOutput, error) {
+	out := new(IntegrityOutput)
+	err := c.cc.Invoke(ctx, "/ekipma.api.record.RecordService/VerifyIntegrity", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *recordServiceClient) LostRecords(ctx context.Context, in *Integrity, opts ...grpc.CallOption) (RecordService_LostRecordsClient, error) {
+func (c *recordServiceClient) LostRecords(ctx context.Context, in *Lost, opts ...grpc.CallOption) (RecordService_LostRecordsClient, error) {
 	stream, err := c.cc.NewStream(ctx, &RecordService_ServiceDesc.Streams[2], "/ekipma.api.record.RecordService/LostRecords", opts...)
 	if err != nil {
 		return nil, err
@@ -170,9 +169,8 @@ type RecordServiceServer interface {
 	CreateRecords(*Record, RecordService_CreateRecordsServer) error
 	RecentRecords(*Last, RecordService_RecentRecordsServer) error
 	DeleteRecord(context.Context, *IdInput) (*Empty, error)
-	// integrity - probably a button in mobile client settings
-	RecordIds(context.Context, *Last) (*Integrity, error)
-	LostRecords(*Integrity, RecordService_LostRecordsServer) error
+	VerifyIntegrity(context.Context, *IntegrityInput) (*IntegrityOutput, error)
+	LostRecords(*Lost, RecordService_LostRecordsServer) error
 	// -- turn --
 	SubmitTurn(context.Context, *IdInput) (*Record, error)
 	mustEmbedUnimplementedRecordServiceServer()
@@ -191,10 +189,10 @@ func (UnimplementedRecordServiceServer) RecentRecords(*Last, RecordService_Recen
 func (UnimplementedRecordServiceServer) DeleteRecord(context.Context, *IdInput) (*Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteRecord not implemented")
 }
-func (UnimplementedRecordServiceServer) RecordIds(context.Context, *Last) (*Integrity, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method RecordIds not implemented")
+func (UnimplementedRecordServiceServer) VerifyIntegrity(context.Context, *IntegrityInput) (*IntegrityOutput, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method VerifyIntegrity not implemented")
 }
-func (UnimplementedRecordServiceServer) LostRecords(*Integrity, RecordService_LostRecordsServer) error {
+func (UnimplementedRecordServiceServer) LostRecords(*Lost, RecordService_LostRecordsServer) error {
 	return status.Errorf(codes.Unimplemented, "method LostRecords not implemented")
 }
 func (UnimplementedRecordServiceServer) SubmitTurn(context.Context, *IdInput) (*Record, error) {
@@ -273,26 +271,26 @@ func _RecordService_DeleteRecord_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
-func _RecordService_RecordIds_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Last)
+func _RecordService_VerifyIntegrity_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IntegrityInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(RecordServiceServer).RecordIds(ctx, in)
+		return srv.(RecordServiceServer).VerifyIntegrity(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/ekipma.api.record.RecordService/RecordIds",
+		FullMethod: "/ekipma.api.record.RecordService/VerifyIntegrity",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RecordServiceServer).RecordIds(ctx, req.(*Last))
+		return srv.(RecordServiceServer).VerifyIntegrity(ctx, req.(*IntegrityInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _RecordService_LostRecords_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(Integrity)
+	m := new(Lost)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
@@ -342,8 +340,8 @@ var RecordService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _RecordService_DeleteRecord_Handler,
 		},
 		{
-			MethodName: "RecordIds",
-			Handler:    _RecordService_RecordIds_Handler,
+			MethodName: "VerifyIntegrity",
+			Handler:    _RecordService_VerifyIntegrity_Handler,
 		},
 		{
 			MethodName: "SubmitTurn",
@@ -367,5 +365,5 @@ var RecordService_ServiceDesc = grpc.ServiceDesc{
 			ServerStreams: true,
 		},
 	},
-	Metadata: "protos/record.proto",
+	Metadata: "proto/record.proto",
 }

@@ -20,10 +20,6 @@ message Chunk {
 message IdInput { uint64 id = 1; }
 message Last { uint64 id = 1; }
 
-message Integrity {
-  repeated uint64 ids = 1; // id of lost items
-}
-
 message Gorm {
   uint64 id = 1;
   google.protobuf.Timestamp createdAt = 2;

@@ -1,7 +1,7 @@
 syntax = "proto3";
 package ekipma.api.record;
 
-import "protos/common.proto";
+import "proto/common.proto";
 import "google/protobuf/timestamp.proto";
 
 option go_package = "./go;pb";
@@ -22,19 +22,17 @@ service RecordService {
     // use ID = 0 to receive all.
     // check "assignees | author" instead of "assignee | author"
   }
-  rpc DeleteRecord(ekipma.api.common.IdInput) returns (ekipma.api.common.Empty);
-
-  // integrity - probably a button in mobile client settings
-  rpc RecordIds(ekipma.api.common.Last) returns (ekipma.api.common.Integrity) {
-    // get a list of all ids related to the user before the last
-    // send the list to the client to be matched
-    // for the missing list of ids from ids sent to the client
-    // the lost-records method would be then called
+  rpc DeleteRecord(ekipma.api.common.IdInput)
+      returns (ekipma.api.common.Empty) {
+    // can only delete after 1 day.
   }
-  rpc LostRecords(ekipma.api.common.Integrity) returns (stream Record) {
-    // from ids that were lost in client side
-    // retrieve all of the records and stream it back for client to append
+  rpc VerifyIntegrity(IntegrityInput) returns (IntegrityOutput) {
+    // client: list ids. hash ids list
+    // server: list ids based on last id. hash ids. compare hash
+    // if hashes match - return ok
+    // else - compares ids: send list of lost-deleted
   }
+  rpc LostRecords(Lost) returns (stream Record);
 
   // -- turn --
   rpc SubmitTurn(ekipma.api.common.IdInput) returns (Record) {
@@ -124,3 +122,18 @@ message Plan {
   Location location = 2;
   Sound sound = 3;
 }
+
+// Integrity
+
+message IntegrityInput {
+  repeated uint64 ids = 1; // id of all client records
+  string hash = 2;         // checksum - hash of all ids
+}
+
+message IntegrityOutput {
+  bool ok = 1;
+  repeated uint64 lostIds = 2;    // id of lost items
+  repeated uint64 deletedIds = 3; // id of deleted items
+}
+
+message Lost { repeated uint64 ids = 1; }
