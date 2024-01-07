@@ -1034,8 +1034,8 @@ class Wallet extends $pb.GeneratedMessage {
   void clearPrimary() => clearField(6);
 }
 
-class WalletOutput extends $pb.GeneratedMessage {
-  factory WalletOutput({
+class UpdateWalletOutput extends $pb.GeneratedMessage {
+  factory UpdateWalletOutput({
     User? user,
     Wallet? wDist,
     $core.double? price,
@@ -1056,11 +1056,11 @@ class WalletOutput extends $pb.GeneratedMessage {
     }
     return $result;
   }
-  WalletOutput._() : super();
-  factory WalletOutput.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory WalletOutput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  UpdateWalletOutput._() : super();
+  factory UpdateWalletOutput.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory UpdateWalletOutput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'WalletOutput', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.user'), createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'UpdateWalletOutput', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.user'), createEmptyInstance: create)
     ..aOM<User>(1, _omitFieldNames ? '' : 'user', subBuilder: User.create)
     ..aOM<Wallet>(2, _omitFieldNames ? '' : 'wDist', protoName: 'wDist', subBuilder: Wallet.create)
     ..a<$core.double>(3, _omitFieldNames ? '' : 'price', $pb.PbFieldType.OF)
@@ -1072,22 +1072,22 @@ class WalletOutput extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
   'Will be removed in next major version')
-  WalletOutput clone() => WalletOutput()..mergeFromMessage(this);
+  UpdateWalletOutput clone() => UpdateWalletOutput()..mergeFromMessage(this);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  WalletOutput copyWith(void Function(WalletOutput) updates) => super.copyWith((message) => updates(message as WalletOutput)) as WalletOutput;
+  UpdateWalletOutput copyWith(void Function(UpdateWalletOutput) updates) => super.copyWith((message) => updates(message as UpdateWalletOutput)) as UpdateWalletOutput;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
-  static WalletOutput create() => WalletOutput._();
-  WalletOutput createEmptyInstance() => create();
-  static $pb.PbList<WalletOutput> createRepeated() => $pb.PbList<WalletOutput>();
+  static UpdateWalletOutput create() => UpdateWalletOutput._();
+  UpdateWalletOutput createEmptyInstance() => create();
+  static $pb.PbList<UpdateWalletOutput> createRepeated() => $pb.PbList<UpdateWalletOutput>();
   @$core.pragma('dart2js:noInline')
-  static WalletOutput getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<WalletOutput>(create);
-  static WalletOutput? _defaultInstance;
+  static UpdateWalletOutput getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<UpdateWalletOutput>(create);
+  static UpdateWalletOutput? _defaultInstance;
 
   @$pb.TagNumber(1)
   User get user => $_getN(0);
@@ -1130,8 +1130,8 @@ class WalletOutput extends $pb.GeneratedMessage {
   void clearNeedHash() => clearField(4);
 }
 
-class PremiumInput extends $pb.GeneratedMessage {
-  factory PremiumInput({
+class CheckPremiumInput extends $pb.GeneratedMessage {
+  factory CheckPremiumInput({
     WalletType? type,
     $core.String? hash,
   }) {
@@ -1144,11 +1144,11 @@ class PremiumInput extends $pb.GeneratedMessage {
     }
     return $result;
   }
-  PremiumInput._() : super();
-  factory PremiumInput.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory PremiumInput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  CheckPremiumInput._() : super();
+  factory CheckPremiumInput.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory CheckPremiumInput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'PremiumInput', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.user'), createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'CheckPremiumInput', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.user'), createEmptyInstance: create)
     ..e<WalletType>(1, _omitFieldNames ? '' : 'type', $pb.PbFieldType.OE, defaultOrMaker: WalletType.CUSTOM, valueOf: WalletType.valueOf, enumValues: WalletType.values)
     ..aOS(2, _omitFieldNames ? '' : 'hash')
     ..hasRequiredFields = false
@@ -1158,22 +1158,22 @@ class PremiumInput extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
   'Will be removed in next major version')
-  PremiumInput clone() => PremiumInput()..mergeFromMessage(this);
+  CheckPremiumInput clone() => CheckPremiumInput()..mergeFromMessage(this);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  PremiumInput copyWith(void Function(PremiumInput) updates) => super.copyWith((message) => updates(message as PremiumInput)) as PremiumInput;
+  CheckPremiumInput copyWith(void Function(CheckPremiumInput) updates) => super.copyWith((message) => updates(message as CheckPremiumInput)) as CheckPremiumInput;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
-  static PremiumInput create() => PremiumInput._();
-  PremiumInput createEmptyInstance() => create();
-  static $pb.PbList<PremiumInput> createRepeated() => $pb.PbList<PremiumInput>();
+  static CheckPremiumInput create() => CheckPremiumInput._();
+  CheckPremiumInput createEmptyInstance() => create();
+  static $pb.PbList<CheckPremiumInput> createRepeated() => $pb.PbList<CheckPremiumInput>();
   @$core.pragma('dart2js:noInline')
-  static PremiumInput getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<PremiumInput>(create);
-  static PremiumInput? _defaultInstance;
+  static CheckPremiumInput getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<CheckPremiumInput>(create);
+  static CheckPremiumInput? _defaultInstance;
 
   @$pb.TagNumber(1)
   WalletType get type => $_getN(0);

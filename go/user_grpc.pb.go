@@ -34,9 +34,9 @@ type UserServiceClient interface {
 	RemoveFriend(ctx context.Context, in *IdInput, opts ...grpc.CallOption) (*Empty, error)
 	// wallet
 	GetWallets(ctx context.Context, in *Empty, opts ...grpc.CallOption) (UserService_GetWalletsClient, error)
-	UpdateWallet(ctx context.Context, in *Wallet, opts ...grpc.CallOption) (*WalletOutput, error)
+	UpdateWallet(ctx context.Context, in *Wallet, opts ...grpc.CallOption) (*UpdateWalletOutput, error)
 	// premium
-	CheckPremium(ctx context.Context, in *PremiumInput, opts ...grpc.CallOption) (*User, error)
+	CheckPremium(ctx context.Context, in *CheckPremiumInput, opts ...grpc.CallOption) (*User, error)
 }
 
 type userServiceClient struct {
@@ -187,8 +187,8 @@ func (x *userServiceGetWalletsClient) Recv() (*Wallet, error) {
 	return m, nil
 }
 
-func (c *userServiceClient) UpdateWallet(ctx context.Context, in *Wallet, opts ...grpc.CallOption) (*WalletOutput, error) {
-	out := new(WalletOutput)
+func (c *userServiceClient) UpdateWallet(ctx context.Context, in *Wallet, opts ...grpc.CallOption) (*UpdateWalletOutput, error) {
+	out := new(UpdateWalletOutput)
 	err := c.cc.Invoke(ctx, "/ekipma.api.user.UserService/UpdateWallet", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -196,7 +196,7 @@ func (c *userServiceClient) UpdateWallet(ctx context.Context, in *Wallet, opts .
 	return out, nil
 }
 
-func (c *userServiceClient) CheckPremium(ctx context.Context, in *PremiumInput, opts ...grpc.CallOption) (*User, error) {
+func (c *userServiceClient) CheckPremium(ctx context.Context, in *CheckPremiumInput, opts ...grpc.CallOption) (*User, error) {
 	out := new(User)
 	err := c.cc.Invoke(ctx, "/ekipma.api.user.UserService/CheckPremium", in, out, opts...)
 	if err != nil {
@@ -221,9 +221,9 @@ type UserServiceServer interface {
 	RemoveFriend(context.Context, *IdInput) (*Empty, error)
 	// wallet
 	GetWallets(*Empty, UserService_GetWalletsServer) error
-	UpdateWallet(context.Context, *Wallet) (*WalletOutput, error)
+	UpdateWallet(context.Context, *Wallet) (*UpdateWalletOutput, error)
 	// premium
-	CheckPremium(context.Context, *PremiumInput) (*User, error)
+	CheckPremium(context.Context, *CheckPremiumInput) (*User, error)
 	mustEmbedUnimplementedUserServiceServer()
 }
 
@@ -255,10 +255,10 @@ func (UnimplementedUserServiceServer) RemoveFriend(context.Context, *IdInput) (*
 func (UnimplementedUserServiceServer) GetWallets(*Empty, UserService_GetWalletsServer) error {
 	return status.Errorf(codes.Unimplemented, "method GetWallets not implemented")
 }
-func (UnimplementedUserServiceServer) UpdateWallet(context.Context, *Wallet) (*WalletOutput, error) {
+func (UnimplementedUserServiceServer) UpdateWallet(context.Context, *Wallet) (*UpdateWalletOutput, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateWallet not implemented")
 }
-func (UnimplementedUserServiceServer) CheckPremium(context.Context, *PremiumInput) (*User, error) {
+func (UnimplementedUserServiceServer) CheckPremium(context.Context, *CheckPremiumInput) (*User, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CheckPremium not implemented")
 }
 func (UnimplementedUserServiceServer) mustEmbedUnimplementedUserServiceServer() {}
@@ -451,7 +451,7 @@ func _UserService_UpdateWallet_Handler(srv interface{}, ctx context.Context, dec
 }
 
 func _UserService_CheckPremium_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PremiumInput)
+	in := new(CheckPremiumInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -463,7 +463,7 @@ func _UserService_CheckPremium_Handler(srv interface{}, ctx context.Context, dec
 		FullMethod: "/ekipma.api.user.UserService/CheckPremium",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServiceServer).CheckPremium(ctx, req.(*PremiumInput))
+		return srv.(UserServiceServer).CheckPremium(ctx, req.(*CheckPremiumInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }

@@ -234,9 +234,9 @@ final $typed_data.Uint8List walletDescriptor = $convert.base64Decode(
     'MgASgOMhsuZWtpcG1hLmFwaS51c2VyLldhbGxldFR5cGVSBHR5cGUSEgoEYWRkchgEIAEoCVIE'
     'YWRkchIWCgZwdWJsaWMYBSABKAhSBnB1YmxpYxIYCgdwcmltYXJ5GAYgASgIUgdwcmltYXJ5');
 
-@$core.Deprecated('Use walletOutputDescriptor instead')
-const WalletOutput$json = {
-  '1': 'WalletOutput',
+@$core.Deprecated('Use updateWalletOutputDescriptor instead')
+const UpdateWalletOutput$json = {
+  '1': 'UpdateWalletOutput',
   '2': [
     {'1': 'user', '3': 1, '4': 1, '5': 11, '6': '.ekipma.api.user.User', '10': 'user'},
     {'1': 'wDist', '3': 2, '4': 1, '5': 11, '6': '.ekipma.api.user.Wallet', '10': 'wDist'},
@@ -245,23 +245,23 @@ const WalletOutput$json = {
   ],
 };
 
-/// Descriptor for `WalletOutput`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List walletOutputDescriptor = $convert.base64Decode(
-    'CgxXYWxsZXRPdXRwdXQSKQoEdXNlchgBIAEoCzIVLmVraXBtYS5hcGkudXNlci5Vc2VyUgR1c2'
-    'VyEi0KBXdEaXN0GAIgASgLMhcuZWtpcG1hLmFwaS51c2VyLldhbGxldFIFd0Rpc3QSFAoFcHJp'
-    'Y2UYAyABKAJSBXByaWNlEhoKCG5lZWRIYXNoGAQgASgIUghuZWVkSGFzaA==');
+/// Descriptor for `UpdateWalletOutput`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List updateWalletOutputDescriptor = $convert.base64Decode(
+    'ChJVcGRhdGVXYWxsZXRPdXRwdXQSKQoEdXNlchgBIAEoCzIVLmVraXBtYS5hcGkudXNlci5Vc2'
+    'VyUgR1c2VyEi0KBXdEaXN0GAIgASgLMhcuZWtpcG1hLmFwaS51c2VyLldhbGxldFIFd0Rpc3QS'
+    'FAoFcHJpY2UYAyABKAJSBXByaWNlEhoKCG5lZWRIYXNoGAQgASgIUghuZWVkSGFzaA==');
 
-@$core.Deprecated('Use premiumInputDescriptor instead')
-const PremiumInput$json = {
-  '1': 'PremiumInput',
+@$core.Deprecated('Use checkPremiumInputDescriptor instead')
+const CheckPremiumInput$json = {
+  '1': 'CheckPremiumInput',
   '2': [
     {'1': 'type', '3': 1, '4': 1, '5': 14, '6': '.ekipma.api.user.WalletType', '10': 'type'},
     {'1': 'hash', '3': 2, '4': 1, '5': 9, '10': 'hash'},
   ],
 };
 
-/// Descriptor for `PremiumInput`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List premiumInputDescriptor = $convert.base64Decode(
-    'CgxQcmVtaXVtSW5wdXQSLwoEdHlwZRgBIAEoDjIbLmVraXBtYS5hcGkudXNlci5XYWxsZXRUeX'
-    'BlUgR0eXBlEhIKBGhhc2gYAiABKAlSBGhhc2g=');
+/// Descriptor for `CheckPremiumInput`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List checkPremiumInputDescriptor = $convert.base64Decode(
+    'ChFDaGVja1ByZW1pdW1JbnB1dBIvCgR0eXBlGAEgASgOMhsuZWtpcG1hLmFwaS51c2VyLldhbG'
+    'xldFR5cGVSBHR5cGUSEgoEaGFzaBgCIAEoCVIEaGFzaA==');
 

@@ -31,7 +31,7 @@ service UserService {
   rpc GetWallets(ekipma.api.common.Empty) returns (stream Wallet) {
     // get wallets owned by user
   }
-  rpc UpdateWallet(Wallet) returns (WalletOutput) {
+  rpc UpdateWallet(Wallet) returns (UpdateWalletOutput) {
     // based on type + owner -> update/set addr (unique)
     // based on type -> send my wallet of same type
     // wallet public is `false` by default (for premium)
@@ -39,7 +39,7 @@ service UserService {
     // `primary` address is what others can copy from copy btn
   }
   // premium
-  rpc CheckPremium(PremiumInput) returns (User) {
+  rpc CheckPremium(CheckPremiumInput) returns (User) {
     // based on wallet type check purchase
     // if purchase correct -> 35d premium +
     // each friend 5d premium if not premium
@@ -149,14 +149,14 @@ message Wallet {
   bool primary = 6; // sets as primary - input
 }
 
-message WalletOutput {
+message UpdateWalletOutput {
   User user = 1;    // updated user with his new wallet
   Wallet wDist = 2; // send my related wallet address
   float price = 3;
   bool needHash = 4; // whether the method needs tx hash
 }
 
-message PremiumInput {
+message CheckPremiumInput {
   WalletType type = 1;
   string hash = 2;
 }
