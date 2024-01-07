@@ -794,8 +794,8 @@ class Friend extends $pb.GeneratedMessage {
   $core.List<Wallet> get wallets => $_getList(5);
 }
 
-class FriendInput extends $pb.GeneratedMessage {
-  factory FriendInput({
+class MobilesChunk extends $pb.GeneratedMessage {
+  factory MobilesChunk({
     $1.Chunk? chunk,
     $core.Iterable<$core.String>? mobiles,
   }) {
@@ -808,11 +808,11 @@ class FriendInput extends $pb.GeneratedMessage {
     }
     return $result;
   }
-  FriendInput._() : super();
-  factory FriendInput.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory FriendInput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  MobilesChunk._() : super();
+  factory MobilesChunk.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory MobilesChunk.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'FriendInput', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.user'), createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'MobilesChunk', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.user'), createEmptyInstance: create)
     ..aOM<$1.Chunk>(1, _omitFieldNames ? '' : 'chunk', subBuilder: $1.Chunk.create)
     ..pPS(2, _omitFieldNames ? '' : 'mobiles')
     ..hasRequiredFields = false
@@ -822,22 +822,22 @@ class FriendInput extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
   'Will be removed in next major version')
-  FriendInput clone() => FriendInput()..mergeFromMessage(this);
+  MobilesChunk clone() => MobilesChunk()..mergeFromMessage(this);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  FriendInput copyWith(void Function(FriendInput) updates) => super.copyWith((message) => updates(message as FriendInput)) as FriendInput;
+  MobilesChunk copyWith(void Function(MobilesChunk) updates) => super.copyWith((message) => updates(message as MobilesChunk)) as MobilesChunk;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
-  static FriendInput create() => FriendInput._();
-  FriendInput createEmptyInstance() => create();
-  static $pb.PbList<FriendInput> createRepeated() => $pb.PbList<FriendInput>();
+  static MobilesChunk create() => MobilesChunk._();
+  MobilesChunk createEmptyInstance() => create();
+  static $pb.PbList<MobilesChunk> createRepeated() => $pb.PbList<MobilesChunk>();
   @$core.pragma('dart2js:noInline')
-  static FriendInput getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<FriendInput>(create);
-  static FriendInput? _defaultInstance;
+  static MobilesChunk getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<MobilesChunk>(create);
+  static MobilesChunk? _defaultInstance;
 
   @$pb.TagNumber(1)
   $1.Chunk get chunk => $_getN(0);
@@ -854,8 +854,8 @@ class FriendInput extends $pb.GeneratedMessage {
   $core.List<$core.String> get mobiles => $_getList(1);
 }
 
-class FriendOutput extends $pb.GeneratedMessage {
-  factory FriendOutput({
+class FriendsChunk extends $pb.GeneratedMessage {
+  factory FriendsChunk({
     $1.Chunk? chunk,
     $core.Iterable<Friend>? friends,
   }) {
@@ -868,11 +868,11 @@ class FriendOutput extends $pb.GeneratedMessage {
     }
     return $result;
   }
-  FriendOutput._() : super();
-  factory FriendOutput.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory FriendOutput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  FriendsChunk._() : super();
+  factory FriendsChunk.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory FriendsChunk.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'FriendOutput', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.user'), createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'FriendsChunk', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.user'), createEmptyInstance: create)
     ..aOM<$1.Chunk>(1, _omitFieldNames ? '' : 'chunk', subBuilder: $1.Chunk.create)
     ..pc<Friend>(2, _omitFieldNames ? '' : 'friends', $pb.PbFieldType.PM, subBuilder: Friend.create)
     ..hasRequiredFields = false
@@ -882,22 +882,22 @@ class FriendOutput extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
   'Will be removed in next major version')
-  FriendOutput clone() => FriendOutput()..mergeFromMessage(this);
+  FriendsChunk clone() => FriendsChunk()..mergeFromMessage(this);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  FriendOutput copyWith(void Function(FriendOutput) updates) => super.copyWith((message) => updates(message as FriendOutput)) as FriendOutput;
+  FriendsChunk copyWith(void Function(FriendsChunk) updates) => super.copyWith((message) => updates(message as FriendsChunk)) as FriendsChunk;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
-  static FriendOutput create() => FriendOutput._();
-  FriendOutput createEmptyInstance() => create();
-  static $pb.PbList<FriendOutput> createRepeated() => $pb.PbList<FriendOutput>();
+  static FriendsChunk create() => FriendsChunk._();
+  FriendsChunk createEmptyInstance() => create();
+  static $pb.PbList<FriendsChunk> createRepeated() => $pb.PbList<FriendsChunk>();
   @$core.pragma('dart2js:noInline')
-  static FriendOutput getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<FriendOutput>(create);
-  static FriendOutput? _defaultInstance;
+  static FriendsChunk getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<FriendsChunk>(create);
+  static FriendsChunk? _defaultInstance;
 
   @$pb.TagNumber(1)
   $1.Chunk get chunk => $_getN(0);

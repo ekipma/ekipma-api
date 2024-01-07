@@ -186,32 +186,32 @@ final $typed_data.Uint8List friendDescriptor = $convert.base64Decode(
     'IAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBSC3ByZW1pdW1UaWxsEjEKB3dhbGxldH'
     'MYBiADKAsyFy5la2lwbWEuYXBpLnVzZXIuV2FsbGV0Ugd3YWxsZXRz');
 
-@$core.Deprecated('Use friendInputDescriptor instead')
-const FriendInput$json = {
-  '1': 'FriendInput',
+@$core.Deprecated('Use mobilesChunkDescriptor instead')
+const MobilesChunk$json = {
+  '1': 'MobilesChunk',
   '2': [
     {'1': 'chunk', '3': 1, '4': 1, '5': 11, '6': '.ekipma.api.common.Chunk', '10': 'chunk'},
     {'1': 'mobiles', '3': 2, '4': 3, '5': 9, '10': 'mobiles'},
   ],
 };
 
-/// Descriptor for `FriendInput`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List friendInputDescriptor = $convert.base64Decode(
-    'CgtGcmllbmRJbnB1dBIuCgVjaHVuaxgBIAEoCzIYLmVraXBtYS5hcGkuY29tbW9uLkNodW5rUg'
-    'VjaHVuaxIYCgdtb2JpbGVzGAIgAygJUgdtb2JpbGVz');
+/// Descriptor for `MobilesChunk`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List mobilesChunkDescriptor = $convert.base64Decode(
+    'CgxNb2JpbGVzQ2h1bmsSLgoFY2h1bmsYASABKAsyGC5la2lwbWEuYXBpLmNvbW1vbi5DaHVua1'
+    'IFY2h1bmsSGAoHbW9iaWxlcxgCIAMoCVIHbW9iaWxlcw==');
 
-@$core.Deprecated('Use friendOutputDescriptor instead')
-const FriendOutput$json = {
-  '1': 'FriendOutput',
+@$core.Deprecated('Use friendsChunkDescriptor instead')
+const FriendsChunk$json = {
+  '1': 'FriendsChunk',
   '2': [
     {'1': 'chunk', '3': 1, '4': 1, '5': 11, '6': '.ekipma.api.common.Chunk', '10': 'chunk'},
     {'1': 'friends', '3': 2, '4': 3, '5': 11, '6': '.ekipma.api.user.Friend', '10': 'friends'},
   ],
 };
 
-/// Descriptor for `FriendOutput`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List friendOutputDescriptor = $convert.base64Decode(
-    'CgxGcmllbmRPdXRwdXQSLgoFY2h1bmsYASABKAsyGC5la2lwbWEuYXBpLmNvbW1vbi5DaHVua1'
+/// Descriptor for `FriendsChunk`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List friendsChunkDescriptor = $convert.base64Decode(
+    'CgxGcmllbmRzQ2h1bmsSLgoFY2h1bmsYASABKAsyGC5la2lwbWEuYXBpLmNvbW1vbi5DaHVua1'
     'IFY2h1bmsSMQoHZnJpZW5kcxgCIAMoCzIXLmVraXBtYS5hcGkudXNlci5GcmllbmRSB2ZyaWVu'
     'ZHM=');
 

@@ -93,8 +93,8 @@ func (c *userServiceClient) AddFriends(ctx context.Context, opts ...grpc.CallOpt
 }
 
 type UserService_AddFriendsClient interface {
-	Send(*FriendInput) error
-	Recv() (*FriendOutput, error)
+	Send(*MobilesChunk) error
+	Recv() (*FriendsChunk, error)
 	grpc.ClientStream
 }
 
@@ -102,12 +102,12 @@ type userServiceAddFriendsClient struct {
 	grpc.ClientStream
 }
 
-func (x *userServiceAddFriendsClient) Send(m *FriendInput) error {
+func (x *userServiceAddFriendsClient) Send(m *MobilesChunk) error {
 	return x.ClientStream.SendMsg(m)
 }
 
-func (x *userServiceAddFriendsClient) Recv() (*FriendOutput, error) {
-	m := new(FriendOutput)
+func (x *userServiceAddFriendsClient) Recv() (*FriendsChunk, error) {
+	m := new(FriendsChunk)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
@@ -130,7 +130,7 @@ func (c *userServiceClient) GetFriends(ctx context.Context, in *Empty, opts ...g
 }
 
 type UserService_GetFriendsClient interface {
-	Recv() (*FriendOutput, error)
+	Recv() (*FriendsChunk, error)
 	grpc.ClientStream
 }
 
@@ -138,8 +138,8 @@ type userServiceGetFriendsClient struct {
 	grpc.ClientStream
 }
 
-func (x *userServiceGetFriendsClient) Recv() (*FriendOutput, error) {
-	m := new(FriendOutput)
+func (x *userServiceGetFriendsClient) Recv() (*FriendsChunk, error) {
+	m := new(FriendsChunk)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
@@ -351,8 +351,8 @@ func _UserService_AddFriends_Handler(srv interface{}, stream grpc.ServerStream) 
 }
 
 type UserService_AddFriendsServer interface {
-	Send(*FriendOutput) error
-	Recv() (*FriendInput, error)
+	Send(*FriendsChunk) error
+	Recv() (*MobilesChunk, error)
 	grpc.ServerStream
 }
 
@@ -360,12 +360,12 @@ type userServiceAddFriendsServer struct {
 	grpc.ServerStream
 }
 
-func (x *userServiceAddFriendsServer) Send(m *FriendOutput) error {
+func (x *userServiceAddFriendsServer) Send(m *FriendsChunk) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func (x *userServiceAddFriendsServer) Recv() (*FriendInput, error) {
-	m := new(FriendInput)
+func (x *userServiceAddFriendsServer) Recv() (*MobilesChunk, error) {
+	m := new(MobilesChunk)
 	if err := x.ServerStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
@@ -381,7 +381,7 @@ func _UserService_GetFriends_Handler(srv interface{}, stream grpc.ServerStream) 
 }
 
 type UserService_GetFriendsServer interface {
-	Send(*FriendOutput) error
+	Send(*FriendsChunk) error
 	grpc.ServerStream
 }
 
@@ -389,7 +389,7 @@ type userServiceGetFriendsServer struct {
 	grpc.ServerStream
 }
 
-func (x *userServiceGetFriendsServer) Send(m *FriendOutput) error {
+func (x *userServiceGetFriendsServer) Send(m *FriendsChunk) error {
 	return x.ServerStream.SendMsg(m)
 }
 

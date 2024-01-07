@@ -24,8 +24,8 @@ service UserService {
   }
   rpc LoginUser(LoginInput) returns (AuthOutput) {}
   // friend
-  rpc AddFriends(stream FriendInput) returns (stream FriendOutput);
-  rpc GetFriends(ekipma.api.common.Empty) returns (stream FriendOutput);
+  rpc AddFriends(stream MobilesChunk) returns (stream FriendsChunk);
+  rpc GetFriends(ekipma.api.common.Empty) returns (stream FriendsChunk);
   rpc RemoveFriend(ekipma.api.common.IdInput) returns (ekipma.api.common.Empty);
   // wallet
   rpc GetWallets(ekipma.api.common.Empty) returns (stream Wallet) {
@@ -120,12 +120,12 @@ message Friend {
   repeated Wallet wallets = 6; // NOTICE send only public wallets
 }
 
-message FriendInput {
+message MobilesChunk {
   ekipma.api.common.Chunk chunk = 1;
   repeated string mobiles = 2; // 100 mobiles per chunk
 }
 
-message FriendOutput {
+message FriendsChunk {
   ekipma.api.common.Chunk chunk = 1;
   repeated Friend friends = 2;
 }
