@@ -3,7 +3,11 @@
 set -e # exit immediately if any command exits with a non-zero exit code
 
 echo "> Compile proto files"
-make compile
+protoc proto/*.proto \
+--go_out=./ --go_opt=paths=import \
+--go-grpc_out=./ --go-grpc_opt=paths=import \
+--dart_out=grpc:dart/lib \
+--proto_path=.
 
 while getopts v:m:t: flag
 do

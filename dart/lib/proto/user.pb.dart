@@ -857,14 +857,14 @@ class FriendInput extends $pb.GeneratedMessage {
 class FriendOutput extends $pb.GeneratedMessage {
   factory FriendOutput({
     $1.Chunk? chunk,
-    Friend? friend,
+    $core.Iterable<Friend>? friends,
   }) {
     final $result = create();
     if (chunk != null) {
       $result.chunk = chunk;
     }
-    if (friend != null) {
-      $result.friend = friend;
+    if (friends != null) {
+      $result.friends.addAll(friends);
     }
     return $result;
   }
@@ -874,7 +874,7 @@ class FriendOutput extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'FriendOutput', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.user'), createEmptyInstance: create)
     ..aOM<$1.Chunk>(1, _omitFieldNames ? '' : 'chunk', subBuilder: $1.Chunk.create)
-    ..aOM<Friend>(2, _omitFieldNames ? '' : 'friend', subBuilder: Friend.create)
+    ..pc<Friend>(2, _omitFieldNames ? '' : 'friends', $pb.PbFieldType.PM, subBuilder: Friend.create)
     ..hasRequiredFields = false
   ;
 
@@ -911,15 +911,7 @@ class FriendOutput extends $pb.GeneratedMessage {
   $1.Chunk ensureChunk() => $_ensure(0);
 
   @$pb.TagNumber(2)
-  Friend get friend => $_getN(1);
-  @$pb.TagNumber(2)
-  set friend(Friend v) { setField(2, v); }
-  @$pb.TagNumber(2)
-  $core.bool hasFriend() => $_has(1);
-  @$pb.TagNumber(2)
-  void clearFriend() => clearField(2);
-  @$pb.TagNumber(2)
-  Friend ensureFriend() => $_ensure(1);
+  $core.List<Friend> get friends => $_getList(1);
 }
 
 class Wallet extends $pb.GeneratedMessage {

@@ -205,18 +205,15 @@ const FriendOutput$json = {
   '1': 'FriendOutput',
   '2': [
     {'1': 'chunk', '3': 1, '4': 1, '5': 11, '6': '.ekipma.api.common.Chunk', '10': 'chunk'},
-    {'1': 'friend', '3': 2, '4': 1, '5': 11, '6': '.ekipma.api.user.Friend', '9': 0, '10': 'friend', '17': true},
-  ],
-  '8': [
-    {'1': '_friend'},
+    {'1': 'friends', '3': 2, '4': 3, '5': 11, '6': '.ekipma.api.user.Friend', '10': 'friends'},
   ],
 };
 
 /// Descriptor for `FriendOutput`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List friendOutputDescriptor = $convert.base64Decode(
     'CgxGcmllbmRPdXRwdXQSLgoFY2h1bmsYASABKAsyGC5la2lwbWEuYXBpLmNvbW1vbi5DaHVua1'
-    'IFY2h1bmsSNAoGZnJpZW5kGAIgASgLMhcuZWtpcG1hLmFwaS51c2VyLkZyaWVuZEgAUgZmcmll'
-    'bmSIAQFCCQoHX2ZyaWVuZA==');
+    'IFY2h1bmsSMQoHZnJpZW5kcxgCIAMoCzIXLmVraXBtYS5hcGkudXNlci5GcmllbmRSB2ZyaWVu'
+    'ZHM=');
 
 @$core.Deprecated('Use walletDescriptor instead')
 const Wallet$json = {
