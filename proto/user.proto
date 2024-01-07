@@ -127,7 +127,7 @@ message FriendInput {
 
 message FriendOutput {
   ekipma.api.common.Chunk chunk = 1;
-  optional Friend friend = 2;
+  repeated Friend friends = 2;
 }
 
 // wallets
