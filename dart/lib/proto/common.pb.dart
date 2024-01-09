@@ -228,11 +228,11 @@ class IdInput extends $pb.GeneratedMessage {
 
 class Last extends $pb.GeneratedMessage {
   factory Last({
-    $fixnum.Int64? id,
+    $3.Timestamp? updatedAt,
   }) {
     final $result = create();
-    if (id != null) {
-      $result.id = id;
+    if (updatedAt != null) {
+      $result.updatedAt = updatedAt;
     }
     return $result;
   }
@@ -241,7 +241,7 @@ class Last extends $pb.GeneratedMessage {
   factory Last.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Last', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.common'), createEmptyInstance: create)
-    ..a<$fixnum.Int64>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
+    ..aOM<$3.Timestamp>(3, _omitFieldNames ? '' : 'updatedAt', protoName: 'updatedAt', subBuilder: $3.Timestamp.create)
     ..hasRequiredFields = false
   ;
 
@@ -266,14 +266,16 @@ class Last extends $pb.GeneratedMessage {
   static Last getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Last>(create);
   static Last? _defaultInstance;
 
-  @$pb.TagNumber(1)
-  $fixnum.Int64 get id => $_getI64(0);
-  @$pb.TagNumber(1)
-  set id($fixnum.Int64 v) { $_setInt64(0, v); }
-  @$pb.TagNumber(1)
-  $core.bool hasId() => $_has(0);
-  @$pb.TagNumber(1)
-  void clearId() => clearField(1);
+  @$pb.TagNumber(3)
+  $3.Timestamp get updatedAt => $_getN(0);
+  @$pb.TagNumber(3)
+  set updatedAt($3.Timestamp v) { setField(3, v); }
+  @$pb.TagNumber(3)
+  $core.bool hasUpdatedAt() => $_has(0);
+  @$pb.TagNumber(3)
+  void clearUpdatedAt() => clearField(3);
+  @$pb.TagNumber(3)
+  $3.Timestamp ensureUpdatedAt() => $_ensure(0);
 }
 
 class Gorm extends $pb.GeneratedMessage {

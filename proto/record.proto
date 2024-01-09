@@ -17,10 +17,10 @@ service RecordService {
     // plan: has no `assignee` field
   }
   rpc RecentRecords(ekipma.api.common.Last) returns (stream Record) {
-    // get a list of recent records after the last item
-    // if -- turn | plan
-    // use ID = 0 to receive all.
-    // check "assignees | author" instead of "assignee | author"
+    /*
+     get list of records ( created | updated | deleted ) after last-time-updated
+     where ( pay ? ( assignee | author ) : ( assignees | author ) )
+    */
   }
   rpc DeleteRecord(ekipma.api.common.IdInput) returns (ekipma.api.common.Empty);
   rpc VerifyIntegrity(IntegrityInput) returns (IntegrityOutput);
