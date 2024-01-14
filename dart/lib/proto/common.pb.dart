@@ -14,7 +14,7 @@ import 'dart:core' as $core;
 import 'package:fixnum/fixnum.dart' as $fixnum;
 import 'package:protobuf/protobuf.dart' as $pb;
 
-import '../google/protobuf/timestamp.pb.dart' as $3;
+import '../google/protobuf/timestamp.pb.dart' as $4;
 
 class Empty extends $pb.GeneratedMessage {
   factory Empty() => create();
@@ -228,7 +228,7 @@ class IdInput extends $pb.GeneratedMessage {
 
 class Last extends $pb.GeneratedMessage {
   factory Last({
-    $3.Timestamp? updatedAt,
+    $4.Timestamp? updatedAt,
   }) {
     final $result = create();
     if (updatedAt != null) {
@@ -241,7 +241,7 @@ class Last extends $pb.GeneratedMessage {
   factory Last.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Last', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.common'), createEmptyInstance: create)
-    ..aOM<$3.Timestamp>(3, _omitFieldNames ? '' : 'updatedAt', protoName: 'updatedAt', subBuilder: $3.Timestamp.create)
+    ..aOM<$4.Timestamp>(3, _omitFieldNames ? '' : 'updatedAt', protoName: 'updatedAt', subBuilder: $4.Timestamp.create)
     ..hasRequiredFields = false
   ;
 
@@ -267,22 +267,22 @@ class Last extends $pb.GeneratedMessage {
   static Last? _defaultInstance;
 
   @$pb.TagNumber(3)
-  $3.Timestamp get updatedAt => $_getN(0);
+  $4.Timestamp get updatedAt => $_getN(0);
   @$pb.TagNumber(3)
-  set updatedAt($3.Timestamp v) { setField(3, v); }
+  set updatedAt($4.Timestamp v) { setField(3, v); }
   @$pb.TagNumber(3)
   $core.bool hasUpdatedAt() => $_has(0);
   @$pb.TagNumber(3)
   void clearUpdatedAt() => clearField(3);
   @$pb.TagNumber(3)
-  $3.Timestamp ensureUpdatedAt() => $_ensure(0);
+  $4.Timestamp ensureUpdatedAt() => $_ensure(0);
 }
 
 class Gorm extends $pb.GeneratedMessage {
   factory Gorm({
     $fixnum.Int64? id,
-    $3.Timestamp? createdAt,
-    $3.Timestamp? updatedAt,
+    $4.Timestamp? createdAt,
+    $4.Timestamp? updatedAt,
   }) {
     final $result = create();
     if (id != null) {
@@ -302,8 +302,8 @@ class Gorm extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Gorm', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.common'), createEmptyInstance: create)
     ..a<$fixnum.Int64>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
-    ..aOM<$3.Timestamp>(2, _omitFieldNames ? '' : 'createdAt', protoName: 'createdAt', subBuilder: $3.Timestamp.create)
-    ..aOM<$3.Timestamp>(3, _omitFieldNames ? '' : 'updatedAt', protoName: 'updatedAt', subBuilder: $3.Timestamp.create)
+    ..aOM<$4.Timestamp>(2, _omitFieldNames ? '' : 'createdAt', protoName: 'createdAt', subBuilder: $4.Timestamp.create)
+    ..aOM<$4.Timestamp>(3, _omitFieldNames ? '' : 'updatedAt', protoName: 'updatedAt', subBuilder: $4.Timestamp.create)
     ..hasRequiredFields = false
   ;
 
@@ -338,26 +338,26 @@ class Gorm extends $pb.GeneratedMessage {
   void clearId() => clearField(1);
 
   @$pb.TagNumber(2)
-  $3.Timestamp get createdAt => $_getN(1);
+  $4.Timestamp get createdAt => $_getN(1);
   @$pb.TagNumber(2)
-  set createdAt($3.Timestamp v) { setField(2, v); }
+  set createdAt($4.Timestamp v) { setField(2, v); }
   @$pb.TagNumber(2)
   $core.bool hasCreatedAt() => $_has(1);
   @$pb.TagNumber(2)
   void clearCreatedAt() => clearField(2);
   @$pb.TagNumber(2)
-  $3.Timestamp ensureCreatedAt() => $_ensure(1);
+  $4.Timestamp ensureCreatedAt() => $_ensure(1);
 
   @$pb.TagNumber(3)
-  $3.Timestamp get updatedAt => $_getN(2);
+  $4.Timestamp get updatedAt => $_getN(2);
   @$pb.TagNumber(3)
-  set updatedAt($3.Timestamp v) { setField(3, v); }
+  set updatedAt($4.Timestamp v) { setField(3, v); }
   @$pb.TagNumber(3)
   $core.bool hasUpdatedAt() => $_has(2);
   @$pb.TagNumber(3)
   void clearUpdatedAt() => clearField(3);
   @$pb.TagNumber(3)
-  $3.Timestamp ensureUpdatedAt() => $_ensure(2);
+  $4.Timestamp ensureUpdatedAt() => $_ensure(2);
 }
 
 

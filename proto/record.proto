@@ -19,7 +19,7 @@ service RecordService {
   rpc RecentRecords(ekipma.api.common.Last) returns (stream Record) {
     /*
      get list of records ( created | updated | deleted ) after last-time-updated
-     where ( pay ? ( assignee | author ) : ( assignees | author ) )
+     where ( author | assignee | !pay & assignees )
     */
   }
   rpc DeleteRecord(ekipma.api.common.IdInput) returns (ekipma.api.common.Empty);

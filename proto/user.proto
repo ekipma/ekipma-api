@@ -7,6 +7,9 @@ import "google/protobuf/timestamp.proto";
 option go_package = "./go;pb";
 
 service UserService {
+  rpc UpdateUser(User) returns (User) {
+    // update only "name | "
+  }
   // otp
   rpc SendOtp(OtpMobileInput) returns (ekipma.api.common.Empty) {
     // only sends otp to the mobile number in separate go routine
@@ -62,11 +65,11 @@ message User {
   google.protobuf.Timestamp updatedAt = 3;
   // user
   string mobile = 4;
-  string code = 5;
-  string name = 6;
-  string email = 7;
-  string photoURL = 8;
-  bool public = 9;
+  string code = 5;     // TODO
+  string name = 6;     // editable
+  string email = 7;    // editable
+  string photoURL = 8; // editable
+  bool public = 9;     // editable
   repeated uint64 friends = 10;
   uint64 inviter = 11;
   UserRole role = 12;

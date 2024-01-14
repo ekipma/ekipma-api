@@ -15,37 +15,37 @@ import 'dart:core' as $core;
 import 'package:grpc/service_api.dart' as $grpc;
 import 'package:protobuf/protobuf.dart' as $pb;
 
-import 'common.pb.dart' as $1;
-import 'record.pb.dart' as $0;
+import 'common.pb.dart' as $2;
+import 'record.pb.dart' as $1;
 
 export 'record.pb.dart';
 
 @$pb.GrpcServiceName('ekipma.api.record.RecordService')
 class RecordServiceClient extends $grpc.Client {
-  static final _$createRecords = $grpc.ClientMethod<$0.Record, $0.Record>(
+  static final _$createRecords = $grpc.ClientMethod<$1.Record, $1.Record>(
       '/ekipma.api.record.RecordService/CreateRecords',
-      ($0.Record value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) => $0.Record.fromBuffer(value));
-  static final _$recentRecords = $grpc.ClientMethod<$1.Last, $0.Record>(
+      ($1.Record value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $1.Record.fromBuffer(value));
+  static final _$recentRecords = $grpc.ClientMethod<$2.Last, $1.Record>(
       '/ekipma.api.record.RecordService/RecentRecords',
-      ($1.Last value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) => $0.Record.fromBuffer(value));
-  static final _$deleteRecord = $grpc.ClientMethod<$1.IdInput, $1.Empty>(
+      ($2.Last value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $1.Record.fromBuffer(value));
+  static final _$deleteRecord = $grpc.ClientMethod<$2.IdInput, $2.Empty>(
       '/ekipma.api.record.RecordService/DeleteRecord',
-      ($1.IdInput value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) => $1.Empty.fromBuffer(value));
-  static final _$verifyIntegrity = $grpc.ClientMethod<$0.IntegrityInput, $0.IntegrityOutput>(
+      ($2.IdInput value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $2.Empty.fromBuffer(value));
+  static final _$verifyIntegrity = $grpc.ClientMethod<$1.IntegrityInput, $1.IntegrityOutput>(
       '/ekipma.api.record.RecordService/VerifyIntegrity',
-      ($0.IntegrityInput value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) => $0.IntegrityOutput.fromBuffer(value));
-  static final _$lostRecords = $grpc.ClientMethod<$0.Lost, $0.Record>(
+      ($1.IntegrityInput value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $1.IntegrityOutput.fromBuffer(value));
+  static final _$lostRecords = $grpc.ClientMethod<$1.Lost, $1.Record>(
       '/ekipma.api.record.RecordService/LostRecords',
-      ($0.Lost value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) => $0.Record.fromBuffer(value));
-  static final _$submitTurn = $grpc.ClientMethod<$1.IdInput, $0.Record>(
+      ($1.Lost value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $1.Record.fromBuffer(value));
+  static final _$submitTurn = $grpc.ClientMethod<$2.IdInput, $1.Record>(
       '/ekipma.api.record.RecordService/SubmitTurn',
-      ($1.IdInput value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) => $0.Record.fromBuffer(value));
+      ($2.IdInput value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $1.Record.fromBuffer(value));
 
   RecordServiceClient($grpc.ClientChannel channel,
       {$grpc.CallOptions? options,
@@ -53,27 +53,27 @@ class RecordServiceClient extends $grpc.Client {
       : super(channel, options: options,
         interceptors: interceptors);
 
-  $grpc.ResponseStream<$0.Record> createRecords($0.Record request, {$grpc.CallOptions? options}) {
+  $grpc.ResponseStream<$1.Record> createRecords($1.Record request, {$grpc.CallOptions? options}) {
     return $createStreamingCall(_$createRecords, $async.Stream.fromIterable([request]), options: options);
   }
 
-  $grpc.ResponseStream<$0.Record> recentRecords($1.Last request, {$grpc.CallOptions? options}) {
+  $grpc.ResponseStream<$1.Record> recentRecords($2.Last request, {$grpc.CallOptions? options}) {
     return $createStreamingCall(_$recentRecords, $async.Stream.fromIterable([request]), options: options);
   }
 
-  $grpc.ResponseFuture<$1.Empty> deleteRecord($1.IdInput request, {$grpc.CallOptions? options}) {
+  $grpc.ResponseFuture<$2.Empty> deleteRecord($2.IdInput request, {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$deleteRecord, request, options: options);
   }
 
-  $grpc.ResponseFuture<$0.IntegrityOutput> verifyIntegrity($0.IntegrityInput request, {$grpc.CallOptions? options}) {
+  $grpc.ResponseFuture<$1.IntegrityOutput> verifyIntegrity($1.IntegrityInput request, {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$verifyIntegrity, request, options: options);
   }
 
-  $grpc.ResponseStream<$0.Record> lostRecords($0.Lost request, {$grpc.CallOptions? options}) {
+  $grpc.ResponseStream<$1.Record> lostRecords($1.Lost request, {$grpc.CallOptions? options}) {
     return $createStreamingCall(_$lostRecords, $async.Stream.fromIterable([request]), options: options);
   }
 
-  $grpc.ResponseFuture<$0.Record> submitTurn($1.IdInput request, {$grpc.CallOptions? options}) {
+  $grpc.ResponseFuture<$1.Record> submitTurn($2.IdInput request, {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$submitTurn, request, options: options);
   }
 }
@@ -83,78 +83,78 @@ abstract class RecordServiceBase extends $grpc.Service {
   $core.String get $name => 'ekipma.api.record.RecordService';
 
   RecordServiceBase() {
-    $addMethod($grpc.ServiceMethod<$0.Record, $0.Record>(
+    $addMethod($grpc.ServiceMethod<$1.Record, $1.Record>(
         'CreateRecords',
         createRecords_Pre,
         false,
         true,
-        ($core.List<$core.int> value) => $0.Record.fromBuffer(value),
-        ($0.Record value) => value.writeToBuffer()));
-    $addMethod($grpc.ServiceMethod<$1.Last, $0.Record>(
+        ($core.List<$core.int> value) => $1.Record.fromBuffer(value),
+        ($1.Record value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$2.Last, $1.Record>(
         'RecentRecords',
         recentRecords_Pre,
         false,
         true,
-        ($core.List<$core.int> value) => $1.Last.fromBuffer(value),
-        ($0.Record value) => value.writeToBuffer()));
-    $addMethod($grpc.ServiceMethod<$1.IdInput, $1.Empty>(
+        ($core.List<$core.int> value) => $2.Last.fromBuffer(value),
+        ($1.Record value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$2.IdInput, $2.Empty>(
         'DeleteRecord',
         deleteRecord_Pre,
         false,
         false,
-        ($core.List<$core.int> value) => $1.IdInput.fromBuffer(value),
-        ($1.Empty value) => value.writeToBuffer()));
-    $addMethod($grpc.ServiceMethod<$0.IntegrityInput, $0.IntegrityOutput>(
+        ($core.List<$core.int> value) => $2.IdInput.fromBuffer(value),
+        ($2.Empty value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$1.IntegrityInput, $1.IntegrityOutput>(
         'VerifyIntegrity',
         verifyIntegrity_Pre,
         false,
         false,
-        ($core.List<$core.int> value) => $0.IntegrityInput.fromBuffer(value),
-        ($0.IntegrityOutput value) => value.writeToBuffer()));
-    $addMethod($grpc.ServiceMethod<$0.Lost, $0.Record>(
+        ($core.List<$core.int> value) => $1.IntegrityInput.fromBuffer(value),
+        ($1.IntegrityOutput value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$1.Lost, $1.Record>(
         'LostRecords',
         lostRecords_Pre,
         false,
         true,
-        ($core.List<$core.int> value) => $0.Lost.fromBuffer(value),
-        ($0.Record value) => value.writeToBuffer()));
-    $addMethod($grpc.ServiceMethod<$1.IdInput, $0.Record>(
+        ($core.List<$core.int> value) => $1.Lost.fromBuffer(value),
+        ($1.Record value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$2.IdInput, $1.Record>(
         'SubmitTurn',
         submitTurn_Pre,
         false,
         false,
-        ($core.List<$core.int> value) => $1.IdInput.fromBuffer(value),
-        ($0.Record value) => value.writeToBuffer()));
+        ($core.List<$core.int> value) => $2.IdInput.fromBuffer(value),
+        ($1.Record value) => value.writeToBuffer()));
   }
 
-  $async.Stream<$0.Record> createRecords_Pre($grpc.ServiceCall call, $async.Future<$0.Record> request) async* {
+  $async.Stream<$1.Record> createRecords_Pre($grpc.ServiceCall call, $async.Future<$1.Record> request) async* {
     yield* createRecords(call, await request);
   }
 
-  $async.Stream<$0.Record> recentRecords_Pre($grpc.ServiceCall call, $async.Future<$1.Last> request) async* {
+  $async.Stream<$1.Record> recentRecords_Pre($grpc.ServiceCall call, $async.Future<$2.Last> request) async* {
     yield* recentRecords(call, await request);
   }
 
-  $async.Future<$1.Empty> deleteRecord_Pre($grpc.ServiceCall call, $async.Future<$1.IdInput> request) async {
+  $async.Future<$2.Empty> deleteRecord_Pre($grpc.ServiceCall call, $async.Future<$2.IdInput> request) async {
     return deleteRecord(call, await request);
   }
 
-  $async.Future<$0.IntegrityOutput> verifyIntegrity_Pre($grpc.ServiceCall call, $async.Future<$0.IntegrityInput> request) async {
+  $async.Future<$1.IntegrityOutput> verifyIntegrity_Pre($grpc.ServiceCall call, $async.Future<$1.IntegrityInput> request) async {
     return verifyIntegrity(call, await request);
   }
 
-  $async.Stream<$0.Record> lostRecords_Pre($grpc.ServiceCall call, $async.Future<$0.Lost> request) async* {
+  $async.Stream<$1.Record> lostRecords_Pre($grpc.ServiceCall call, $async.Future<$1.Lost> request) async* {
     yield* lostRecords(call, await request);
   }
 
-  $async.Future<$0.Record> submitTurn_Pre($grpc.ServiceCall call, $async.Future<$1.IdInput> request) async {
+  $async.Future<$1.Record> submitTurn_Pre($grpc.ServiceCall call, $async.Future<$2.IdInput> request) async {
     return submitTurn(call, await request);
   }
 
-  $async.Stream<$0.Record> createRecords($grpc.ServiceCall call, $0.Record request);
-  $async.Stream<$0.Record> recentRecords($grpc.ServiceCall call, $1.Last request);
-  $async.Future<$1.Empty> deleteRecord($grpc.ServiceCall call, $1.IdInput request);
-  $async.Future<$0.IntegrityOutput> verifyIntegrity($grpc.ServiceCall call, $0.IntegrityInput request);
-  $async.Stream<$0.Record> lostRecords($grpc.ServiceCall call, $0.Lost request);
-  $async.Future<$0.Record> submitTurn($grpc.ServiceCall call, $1.IdInput request);
+  $async.Stream<$1.Record> createRecords($grpc.ServiceCall call, $1.Record request);
+  $async.Stream<$1.Record> recentRecords($grpc.ServiceCall call, $2.Last request);
+  $async.Future<$2.Empty> deleteRecord($grpc.ServiceCall call, $2.IdInput request);
+  $async.Future<$1.IntegrityOutput> verifyIntegrity($grpc.ServiceCall call, $1.IntegrityInput request);
+  $async.Stream<$1.Record> lostRecords($grpc.ServiceCall call, $1.Lost request);
+  $async.Future<$1.Record> submitTurn($grpc.ServiceCall call, $2.IdInput request);
 }

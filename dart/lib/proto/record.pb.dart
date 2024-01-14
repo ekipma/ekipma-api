@@ -14,8 +14,8 @@ import 'dart:core' as $core;
 import 'package:fixnum/fixnum.dart' as $fixnum;
 import 'package:protobuf/protobuf.dart' as $pb;
 
-import '../google/protobuf/timestamp.pb.dart' as $3;
-import 'common.pb.dart' as $1;
+import '../google/protobuf/timestamp.pb.dart' as $4;
+import 'common.pb.dart' as $2;
 import 'record.pbenum.dart';
 
 export 'record.pbenum.dart';
@@ -29,10 +29,10 @@ enum Record_Value {
 
 class Record extends $pb.GeneratedMessage {
   factory Record({
-    $1.Chunk? chunk,
+    $2.Chunk? chunk,
     $fixnum.Int64? id,
-    $3.Timestamp? createdAt,
-    $3.Timestamp? updatedAt,
+    $4.Timestamp? createdAt,
+    $4.Timestamp? updatedAt,
     $core.bool? deleted,
     $core.String? title,
     $core.String? desc,
@@ -109,10 +109,10 @@ class Record extends $pb.GeneratedMessage {
   };
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Record', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.record'), createEmptyInstance: create)
     ..oo(0, [14, 15, 16])
-    ..aOM<$1.Chunk>(1, _omitFieldNames ? '' : 'chunk', subBuilder: $1.Chunk.create)
+    ..aOM<$2.Chunk>(1, _omitFieldNames ? '' : 'chunk', subBuilder: $2.Chunk.create)
     ..a<$fixnum.Int64>(2, _omitFieldNames ? '' : 'id', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
-    ..aOM<$3.Timestamp>(3, _omitFieldNames ? '' : 'createdAt', protoName: 'createdAt', subBuilder: $3.Timestamp.create)
-    ..aOM<$3.Timestamp>(4, _omitFieldNames ? '' : 'updatedAt', protoName: 'updatedAt', subBuilder: $3.Timestamp.create)
+    ..aOM<$4.Timestamp>(3, _omitFieldNames ? '' : 'createdAt', protoName: 'createdAt', subBuilder: $4.Timestamp.create)
+    ..aOM<$4.Timestamp>(4, _omitFieldNames ? '' : 'updatedAt', protoName: 'updatedAt', subBuilder: $4.Timestamp.create)
     ..aOB(5, _omitFieldNames ? '' : 'deleted')
     ..aOS(6, _omitFieldNames ? '' : 'title')
     ..aOS(7, _omitFieldNames ? '' : 'desc')
@@ -153,15 +153,15 @@ class Record extends $pb.GeneratedMessage {
   void clearValue() => clearField($_whichOneof(0));
 
   @$pb.TagNumber(1)
-  $1.Chunk get chunk => $_getN(0);
+  $2.Chunk get chunk => $_getN(0);
   @$pb.TagNumber(1)
-  set chunk($1.Chunk v) { setField(1, v); }
+  set chunk($2.Chunk v) { setField(1, v); }
   @$pb.TagNumber(1)
   $core.bool hasChunk() => $_has(0);
   @$pb.TagNumber(1)
   void clearChunk() => clearField(1);
   @$pb.TagNumber(1)
-  $1.Chunk ensureChunk() => $_ensure(0);
+  $2.Chunk ensureChunk() => $_ensure(0);
 
   /// gorm - output
   @$pb.TagNumber(2)
@@ -174,26 +174,26 @@ class Record extends $pb.GeneratedMessage {
   void clearId() => clearField(2);
 
   @$pb.TagNumber(3)
-  $3.Timestamp get createdAt => $_getN(2);
+  $4.Timestamp get createdAt => $_getN(2);
   @$pb.TagNumber(3)
-  set createdAt($3.Timestamp v) { setField(3, v); }
+  set createdAt($4.Timestamp v) { setField(3, v); }
   @$pb.TagNumber(3)
   $core.bool hasCreatedAt() => $_has(2);
   @$pb.TagNumber(3)
   void clearCreatedAt() => clearField(3);
   @$pb.TagNumber(3)
-  $3.Timestamp ensureCreatedAt() => $_ensure(2);
+  $4.Timestamp ensureCreatedAt() => $_ensure(2);
 
   @$pb.TagNumber(4)
-  $3.Timestamp get updatedAt => $_getN(3);
+  $4.Timestamp get updatedAt => $_getN(3);
   @$pb.TagNumber(4)
-  set updatedAt($3.Timestamp v) { setField(4, v); }
+  set updatedAt($4.Timestamp v) { setField(4, v); }
   @$pb.TagNumber(4)
   $core.bool hasUpdatedAt() => $_has(3);
   @$pb.TagNumber(4)
   void clearUpdatedAt() => clearField(4);
   @$pb.TagNumber(4)
-  $3.Timestamp ensureUpdatedAt() => $_ensure(3);
+  $4.Timestamp ensureUpdatedAt() => $_ensure(3);
 
   @$pb.TagNumber(5)
   $core.bool get deleted => $_getBF(4);
@@ -528,7 +528,7 @@ class Location extends $pb.GeneratedMessage {
 
 class Plan extends $pb.GeneratedMessage {
   factory Plan({
-    $3.Timestamp? dueAt,
+    $4.Timestamp? dueAt,
     Location? location,
     Sound? sound,
   }) {
@@ -549,7 +549,7 @@ class Plan extends $pb.GeneratedMessage {
   factory Plan.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Plan', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.record'), createEmptyInstance: create)
-    ..aOM<$3.Timestamp>(1, _omitFieldNames ? '' : 'dueAt', protoName: 'dueAt', subBuilder: $3.Timestamp.create)
+    ..aOM<$4.Timestamp>(1, _omitFieldNames ? '' : 'dueAt', protoName: 'dueAt', subBuilder: $4.Timestamp.create)
     ..aOM<Location>(2, _omitFieldNames ? '' : 'location', subBuilder: Location.create)
     ..e<Sound>(3, _omitFieldNames ? '' : 'sound', $pb.PbFieldType.OE, defaultOrMaker: Sound.None, valueOf: Sound.valueOf, enumValues: Sound.values)
     ..hasRequiredFields = false
@@ -577,15 +577,15 @@ class Plan extends $pb.GeneratedMessage {
   static Plan? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $3.Timestamp get dueAt => $_getN(0);
+  $4.Timestamp get dueAt => $_getN(0);
   @$pb.TagNumber(1)
-  set dueAt($3.Timestamp v) { setField(1, v); }
+  set dueAt($4.Timestamp v) { setField(1, v); }
   @$pb.TagNumber(1)
   $core.bool hasDueAt() => $_has(0);
   @$pb.TagNumber(1)
   void clearDueAt() => clearField(1);
   @$pb.TagNumber(1)
-  $3.Timestamp ensureDueAt() => $_ensure(0);
+  $4.Timestamp ensureDueAt() => $_ensure(0);
 
   @$pb.TagNumber(2)
   Location get location => $_getN(1);
