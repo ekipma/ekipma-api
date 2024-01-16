@@ -42,6 +42,10 @@ class RecordServiceClient extends $grpc.Client {
       '/ekipma.api.record.RecordService/LostRecords',
       ($1.Lost value) => value.writeToBuffer(),
       ($core.List<$core.int> value) => $1.Record.fromBuffer(value));
+  static final _$acceptRepay = $grpc.ClientMethod<$2.IdInput, $2.Empty>(
+      '/ekipma.api.record.RecordService/AcceptRepay',
+      ($2.IdInput value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $2.Empty.fromBuffer(value));
   static final _$submitTurn = $grpc.ClientMethod<$2.IdInput, $1.Record>(
       '/ekipma.api.record.RecordService/SubmitTurn',
       ($2.IdInput value) => value.writeToBuffer(),
@@ -71,6 +75,10 @@ class RecordServiceClient extends $grpc.Client {
 
   $grpc.ResponseStream<$1.Record> lostRecords($1.Lost request, {$grpc.CallOptions? options}) {
     return $createStreamingCall(_$lostRecords, $async.Stream.fromIterable([request]), options: options);
+  }
+
+  $grpc.ResponseFuture<$2.Empty> acceptRepay($2.IdInput request, {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$acceptRepay, request, options: options);
   }
 
   $grpc.ResponseFuture<$1.Record> submitTurn($2.IdInput request, {$grpc.CallOptions? options}) {
@@ -118,6 +126,13 @@ abstract class RecordServiceBase extends $grpc.Service {
         true,
         ($core.List<$core.int> value) => $1.Lost.fromBuffer(value),
         ($1.Record value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$2.IdInput, $2.Empty>(
+        'AcceptRepay',
+        acceptRepay_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) => $2.IdInput.fromBuffer(value),
+        ($2.Empty value) => value.writeToBuffer()));
     $addMethod($grpc.ServiceMethod<$2.IdInput, $1.Record>(
         'SubmitTurn',
         submitTurn_Pre,
@@ -147,6 +162,10 @@ abstract class RecordServiceBase extends $grpc.Service {
     yield* lostRecords(call, await request);
   }
 
+  $async.Future<$2.Empty> acceptRepay_Pre($grpc.ServiceCall call, $async.Future<$2.IdInput> request) async {
+    return acceptRepay(call, await request);
+  }
+
   $async.Future<$1.Record> submitTurn_Pre($grpc.ServiceCall call, $async.Future<$2.IdInput> request) async {
     return submitTurn(call, await request);
   }
@@ -156,5 +175,6 @@ abstract class RecordServiceBase extends $grpc.Service {
   $async.Future<$2.Empty> deleteRecord($grpc.ServiceCall call, $2.IdInput request);
   $async.Future<$1.IntegrityOutput> verifyIntegrity($grpc.ServiceCall call, $1.IntegrityInput request);
   $async.Stream<$1.Record> lostRecords($grpc.ServiceCall call, $1.Lost request);
+  $async.Future<$2.Empty> acceptRepay($grpc.ServiceCall call, $2.IdInput request);
   $async.Future<$1.Record> submitTurn($grpc.ServiceCall call, $2.IdInput request);
 }

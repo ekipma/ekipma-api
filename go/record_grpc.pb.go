@@ -27,6 +27,8 @@ type RecordServiceClient interface {
 	DeleteRecord(ctx context.Context, in *IdInput, opts ...grpc.CallOption) (*Empty, error)
 	VerifyIntegrity(ctx context.Context, in *IntegrityInput, opts ...grpc.CallOption) (*IntegrityOutput, error)
 	LostRecords(ctx context.Context, in *Lost, opts ...grpc.CallOption) (RecordService_LostRecordsClient, error)
+	// -- pay --
+	AcceptRepay(ctx context.Context, in *IdInput, opts ...grpc.CallOption) (*Empty, error)
 	// -- turn --
 	SubmitTurn(ctx context.Context, in *IdInput, opts ...grpc.CallOption) (*Record, error)
 }
@@ -153,6 +155,15 @@ func (x *recordServiceLostRecordsClient) Recv() (*Record, error) {
 	return m, nil
 }
 
+func (c *recordServiceClient) AcceptRepay(ctx context.Context, in *IdInput, opts ...grpc.CallOption) (*Empty, error) {
+	out := new(Empty)
+	err := c.cc.Invoke(ctx, "/ekipma.api.record.RecordService/AcceptRepay", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *recordServiceClient) SubmitTurn(ctx context.Context, in *IdInput, opts ...grpc.CallOption) (*Record, error) {
 	out := new(Record)
 	err := c.cc.Invoke(ctx, "/ekipma.api.record.RecordService/SubmitTurn", in, out, opts...)
@@ -171,6 +182,8 @@ type RecordServiceServer interface {
 	DeleteRecord(context.Context, *IdInput) (*Empty, error)
 	VerifyIntegrity(context.Context, *IntegrityInput) (*IntegrityOutput, error)
 	LostRecords(*Lost, RecordService_LostRecordsServer) error
+	// -- pay --
+	AcceptRepay(context.Context, *IdInput) (*Empty, error)
 	// -- turn --
 	SubmitTurn(context.Context, *IdInput) (*Record, error)
 	mustEmbedUnimplementedRecordServiceServer()
@@ -194,6 +207,9 @@ func (UnimplementedRecordServiceServer) VerifyIntegrity(context.Context, *Integr
 }
 func (UnimplementedRecordServiceServer) LostRecords(*Lost, RecordService_LostRecordsServer) error {
 	return status.Errorf(codes.Unimplemented, "method LostRecords not implemented")
+}
+func (UnimplementedRecordServiceServer) AcceptRepay(context.Context, *IdInput) (*Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AcceptRepay not implemented")
 }
 func (UnimplementedRecordServiceServer) SubmitTurn(context.Context, *IdInput) (*Record, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SubmitTurn not implemented")
@@ -310,6 +326,24 @@ func (x *recordServiceLostRecordsServer) Send(m *Record) error {
 	return x.ServerStream.SendMsg(m)
 }
 
+func _RecordService_AcceptRepay_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IdInput)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RecordServiceServer).AcceptRepay(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/ekipma.api.record.RecordService/AcceptRepay",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RecordServiceServer).AcceptRepay(ctx, req.(*IdInput))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _RecordService_SubmitTurn_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(IdInput)
 	if err := dec(in); err != nil {
@@ -342,6 +376,10 @@ var RecordService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "VerifyIntegrity",
 			Handler:    _RecordService_VerifyIntegrity_Handler,
+		},
+		{
+			MethodName: "AcceptRepay",
+			Handler:    _RecordService_AcceptRepay_Handler,
 		},
 		{
 			MethodName: "SubmitTurn",

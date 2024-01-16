@@ -5,7 +5,7 @@ option go_package = "./go;pb";
 
 message FileUploadRequest {
   string file_name = 1;
-  uint32 size = 2; // should not exceed 250k
+  uint32 size = 2;
   bytes chunk = 3;
 }
 

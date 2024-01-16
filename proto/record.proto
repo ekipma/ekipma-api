@@ -26,6 +26,11 @@ service RecordService {
   rpc VerifyIntegrity(IntegrityInput) returns (IntegrityOutput);
   rpc LostRecords(Lost) returns (stream Record);
 
+  // -- pay --
+  rpc AcceptRepay(ekipma.api.common.IdInput) returns (ekipma.api.common.Empty) {
+    // when repay record is accepted by friend
+    // mark all previos user-friend records as repaid
+  }
   // -- turn --
   rpc SubmitTurn(ekipma.api.common.IdInput) returns (Record) {
     // changes assignee to next person in the assignees list
@@ -47,22 +52,23 @@ message Record {
   google.protobuf.Timestamp createdAt = 3;
   google.protobuf.Timestamp updatedAt = 4;
   bool deleted = 5;
+  bool repaid = 6;
 
   // rec
-  string title = 6;
-  string desc = 7;
-  uint64 author = 8;
-  uint64 assignee = 9; // output
-  repeated uint64 assignees = 10;
-  uint64 group = 11;
-  bool private = 12;
+  string title = 7;
+  string desc = 8;
+  uint64 author = 9;
+  uint64 assignee = 10; // output
+  repeated uint64 assignees = 11;
+  uint64 group = 12;
+  bool private = 13;
 
   // value
-  RecordType type = 13;
+  RecordType type = 14;
   oneof value {
-    Pay pay = 14;
-    Turn turn = 15;
-    Plan plan = 16;
+    Pay pay = 15;
+    Turn turn = 16;
+    Plan plan = 17;
   }
 }
 

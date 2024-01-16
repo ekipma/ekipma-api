@@ -26,7 +26,7 @@ type FileUploadRequest struct {
 	unknownFields protoimpl.UnknownFields
 
 	FileName string `protobuf:"bytes,1,opt,name=file_name,json=fileName,proto3" json:"file_name,omitempty"`
-	Size     uint32 `protobuf:"varint,2,opt,name=size,proto3" json:"size,omitempty"` // should not exceed 250k
+	Size     uint32 `protobuf:"varint,2,opt,name=size,proto3" json:"size,omitempty"`
 	Chunk    []byte `protobuf:"bytes,3,opt,name=chunk,proto3" json:"chunk,omitempty"`
 }
 

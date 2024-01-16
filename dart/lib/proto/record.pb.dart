@@ -34,6 +34,7 @@ class Record extends $pb.GeneratedMessage {
     $4.Timestamp? createdAt,
     $4.Timestamp? updatedAt,
     $core.bool? deleted,
+    $core.bool? repaid,
     $core.String? title,
     $core.String? desc,
     $fixnum.Int64? author,
@@ -61,6 +62,9 @@ class Record extends $pb.GeneratedMessage {
     }
     if (deleted != null) {
       $result.deleted = deleted;
+    }
+    if (repaid != null) {
+      $result.repaid = repaid;
     }
     if (title != null) {
       $result.title = title;
@@ -102,29 +106,30 @@ class Record extends $pb.GeneratedMessage {
   factory Record.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
   static const $core.Map<$core.int, Record_Value> _Record_ValueByTag = {
-    14 : Record_Value.pay,
-    15 : Record_Value.turn,
-    16 : Record_Value.plan,
+    15 : Record_Value.pay,
+    16 : Record_Value.turn,
+    17 : Record_Value.plan,
     0 : Record_Value.notSet
   };
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Record', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.record'), createEmptyInstance: create)
-    ..oo(0, [14, 15, 16])
+    ..oo(0, [15, 16, 17])
     ..aOM<$2.Chunk>(1, _omitFieldNames ? '' : 'chunk', subBuilder: $2.Chunk.create)
     ..a<$fixnum.Int64>(2, _omitFieldNames ? '' : 'id', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
     ..aOM<$4.Timestamp>(3, _omitFieldNames ? '' : 'createdAt', protoName: 'createdAt', subBuilder: $4.Timestamp.create)
     ..aOM<$4.Timestamp>(4, _omitFieldNames ? '' : 'updatedAt', protoName: 'updatedAt', subBuilder: $4.Timestamp.create)
     ..aOB(5, _omitFieldNames ? '' : 'deleted')
-    ..aOS(6, _omitFieldNames ? '' : 'title')
-    ..aOS(7, _omitFieldNames ? '' : 'desc')
-    ..a<$fixnum.Int64>(8, _omitFieldNames ? '' : 'author', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
-    ..a<$fixnum.Int64>(9, _omitFieldNames ? '' : 'assignee', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
-    ..p<$fixnum.Int64>(10, _omitFieldNames ? '' : 'assignees', $pb.PbFieldType.KU6)
-    ..a<$fixnum.Int64>(11, _omitFieldNames ? '' : 'group', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
-    ..aOB(12, _omitFieldNames ? '' : 'private')
-    ..e<RecordType>(13, _omitFieldNames ? '' : 'type', $pb.PbFieldType.OE, defaultOrMaker: RecordType.UnkownRecordType, valueOf: RecordType.valueOf, enumValues: RecordType.values)
-    ..aOM<Pay>(14, _omitFieldNames ? '' : 'pay', subBuilder: Pay.create)
-    ..aOM<Turn>(15, _omitFieldNames ? '' : 'turn', subBuilder: Turn.create)
-    ..aOM<Plan>(16, _omitFieldNames ? '' : 'plan', subBuilder: Plan.create)
+    ..aOB(6, _omitFieldNames ? '' : 'repaid')
+    ..aOS(7, _omitFieldNames ? '' : 'title')
+    ..aOS(8, _omitFieldNames ? '' : 'desc')
+    ..a<$fixnum.Int64>(9, _omitFieldNames ? '' : 'author', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
+    ..a<$fixnum.Int64>(10, _omitFieldNames ? '' : 'assignee', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
+    ..p<$fixnum.Int64>(11, _omitFieldNames ? '' : 'assignees', $pb.PbFieldType.KU6)
+    ..a<$fixnum.Int64>(12, _omitFieldNames ? '' : 'group', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
+    ..aOB(13, _omitFieldNames ? '' : 'private')
+    ..e<RecordType>(14, _omitFieldNames ? '' : 'type', $pb.PbFieldType.OE, defaultOrMaker: RecordType.UnkownRecordType, valueOf: RecordType.valueOf, enumValues: RecordType.values)
+    ..aOM<Pay>(15, _omitFieldNames ? '' : 'pay', subBuilder: Pay.create)
+    ..aOM<Turn>(16, _omitFieldNames ? '' : 'turn', subBuilder: Turn.create)
+    ..aOM<Plan>(17, _omitFieldNames ? '' : 'plan', subBuilder: Plan.create)
     ..hasRequiredFields = false
   ;
 
@@ -204,106 +209,115 @@ class Record extends $pb.GeneratedMessage {
   @$pb.TagNumber(5)
   void clearDeleted() => clearField(5);
 
+  @$pb.TagNumber(6)
+  $core.bool get repaid => $_getBF(5);
+  @$pb.TagNumber(6)
+  set repaid($core.bool v) { $_setBool(5, v); }
+  @$pb.TagNumber(6)
+  $core.bool hasRepaid() => $_has(5);
+  @$pb.TagNumber(6)
+  void clearRepaid() => clearField(6);
+
   /// rec
-  @$pb.TagNumber(6)
-  $core.String get title => $_getSZ(5);
-  @$pb.TagNumber(6)
-  set title($core.String v) { $_setString(5, v); }
-  @$pb.TagNumber(6)
-  $core.bool hasTitle() => $_has(5);
-  @$pb.TagNumber(6)
-  void clearTitle() => clearField(6);
-
   @$pb.TagNumber(7)
-  $core.String get desc => $_getSZ(6);
+  $core.String get title => $_getSZ(6);
   @$pb.TagNumber(7)
-  set desc($core.String v) { $_setString(6, v); }
+  set title($core.String v) { $_setString(6, v); }
   @$pb.TagNumber(7)
-  $core.bool hasDesc() => $_has(6);
+  $core.bool hasTitle() => $_has(6);
   @$pb.TagNumber(7)
-  void clearDesc() => clearField(7);
+  void clearTitle() => clearField(7);
 
   @$pb.TagNumber(8)
-  $fixnum.Int64 get author => $_getI64(7);
+  $core.String get desc => $_getSZ(7);
   @$pb.TagNumber(8)
-  set author($fixnum.Int64 v) { $_setInt64(7, v); }
+  set desc($core.String v) { $_setString(7, v); }
   @$pb.TagNumber(8)
-  $core.bool hasAuthor() => $_has(7);
+  $core.bool hasDesc() => $_has(7);
   @$pb.TagNumber(8)
-  void clearAuthor() => clearField(8);
+  void clearDesc() => clearField(8);
 
   @$pb.TagNumber(9)
-  $fixnum.Int64 get assignee => $_getI64(8);
+  $fixnum.Int64 get author => $_getI64(8);
   @$pb.TagNumber(9)
-  set assignee($fixnum.Int64 v) { $_setInt64(8, v); }
+  set author($fixnum.Int64 v) { $_setInt64(8, v); }
   @$pb.TagNumber(9)
-  $core.bool hasAssignee() => $_has(8);
+  $core.bool hasAuthor() => $_has(8);
   @$pb.TagNumber(9)
-  void clearAssignee() => clearField(9);
+  void clearAuthor() => clearField(9);
 
   @$pb.TagNumber(10)
-  $core.List<$fixnum.Int64> get assignees => $_getList(9);
+  $fixnum.Int64 get assignee => $_getI64(9);
+  @$pb.TagNumber(10)
+  set assignee($fixnum.Int64 v) { $_setInt64(9, v); }
+  @$pb.TagNumber(10)
+  $core.bool hasAssignee() => $_has(9);
+  @$pb.TagNumber(10)
+  void clearAssignee() => clearField(10);
 
   @$pb.TagNumber(11)
-  $fixnum.Int64 get group => $_getI64(10);
-  @$pb.TagNumber(11)
-  set group($fixnum.Int64 v) { $_setInt64(10, v); }
-  @$pb.TagNumber(11)
-  $core.bool hasGroup() => $_has(10);
-  @$pb.TagNumber(11)
-  void clearGroup() => clearField(11);
+  $core.List<$fixnum.Int64> get assignees => $_getList(10);
 
   @$pb.TagNumber(12)
-  $core.bool get private => $_getBF(11);
+  $fixnum.Int64 get group => $_getI64(11);
   @$pb.TagNumber(12)
-  set private($core.bool v) { $_setBool(11, v); }
+  set group($fixnum.Int64 v) { $_setInt64(11, v); }
   @$pb.TagNumber(12)
-  $core.bool hasPrivate() => $_has(11);
+  $core.bool hasGroup() => $_has(11);
   @$pb.TagNumber(12)
-  void clearPrivate() => clearField(12);
+  void clearGroup() => clearField(12);
+
+  @$pb.TagNumber(13)
+  $core.bool get private => $_getBF(12);
+  @$pb.TagNumber(13)
+  set private($core.bool v) { $_setBool(12, v); }
+  @$pb.TagNumber(13)
+  $core.bool hasPrivate() => $_has(12);
+  @$pb.TagNumber(13)
+  void clearPrivate() => clearField(13);
 
   /// value
-  @$pb.TagNumber(13)
-  RecordType get type => $_getN(12);
-  @$pb.TagNumber(13)
-  set type(RecordType v) { setField(13, v); }
-  @$pb.TagNumber(13)
-  $core.bool hasType() => $_has(12);
-  @$pb.TagNumber(13)
-  void clearType() => clearField(13);
-
   @$pb.TagNumber(14)
-  Pay get pay => $_getN(13);
+  RecordType get type => $_getN(13);
   @$pb.TagNumber(14)
-  set pay(Pay v) { setField(14, v); }
+  set type(RecordType v) { setField(14, v); }
   @$pb.TagNumber(14)
-  $core.bool hasPay() => $_has(13);
+  $core.bool hasType() => $_has(13);
   @$pb.TagNumber(14)
-  void clearPay() => clearField(14);
-  @$pb.TagNumber(14)
-  Pay ensurePay() => $_ensure(13);
+  void clearType() => clearField(14);
 
   @$pb.TagNumber(15)
-  Turn get turn => $_getN(14);
+  Pay get pay => $_getN(14);
   @$pb.TagNumber(15)
-  set turn(Turn v) { setField(15, v); }
+  set pay(Pay v) { setField(15, v); }
   @$pb.TagNumber(15)
-  $core.bool hasTurn() => $_has(14);
+  $core.bool hasPay() => $_has(14);
   @$pb.TagNumber(15)
-  void clearTurn() => clearField(15);
+  void clearPay() => clearField(15);
   @$pb.TagNumber(15)
-  Turn ensureTurn() => $_ensure(14);
+  Pay ensurePay() => $_ensure(14);
 
   @$pb.TagNumber(16)
-  Plan get plan => $_getN(15);
+  Turn get turn => $_getN(15);
   @$pb.TagNumber(16)
-  set plan(Plan v) { setField(16, v); }
+  set turn(Turn v) { setField(16, v); }
   @$pb.TagNumber(16)
-  $core.bool hasPlan() => $_has(15);
+  $core.bool hasTurn() => $_has(15);
   @$pb.TagNumber(16)
-  void clearPlan() => clearField(16);
+  void clearTurn() => clearField(16);
   @$pb.TagNumber(16)
-  Plan ensurePlan() => $_ensure(15);
+  Turn ensureTurn() => $_ensure(15);
+
+  @$pb.TagNumber(17)
+  Plan get plan => $_getN(16);
+  @$pb.TagNumber(17)
+  set plan(Plan v) { setField(17, v); }
+  @$pb.TagNumber(17)
+  $core.bool hasPlan() => $_has(16);
+  @$pb.TagNumber(17)
+  void clearPlan() => clearField(17);
+  @$pb.TagNumber(17)
+  Plan ensurePlan() => $_ensure(16);
 }
 
 class Pay extends $pb.GeneratedMessage {
