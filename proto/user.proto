@@ -7,9 +7,6 @@ import "google/protobuf/timestamp.proto";
 option go_package = "./go;pb";
 
 service UserService {
-  rpc UpdateUser(User) returns (User) {
-    // update only "name | "
-  }
   // otp
   rpc SendOtp(OtpMobileInput) returns (ekipma.api.common.Empty) {
     // only sends otp to the mobile number in separate go routine
@@ -26,6 +23,10 @@ service UserService {
     // generate access-token and send it
   }
   rpc LoginUser(LoginInput) returns (AuthOutput) {}
+  // direct update
+  rpc UpdateUser(User) returns (User) {
+    // update only "name | "
+  }
   // friend
   rpc AddFriends(stream MobilesChunk) returns (stream FriendsChunk);
   rpc GetFriends(ekipma.api.common.Empty) returns (stream FriendsChunk);

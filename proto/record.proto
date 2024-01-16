@@ -29,7 +29,7 @@ service RecordService {
   // -- pay --
   rpc AcceptRepay(ekipma.api.common.IdInput) returns (ekipma.api.common.Empty) {
     // when repay record is accepted by friend
-    // mark all previos user-friend records as repaid
+    // mark all related to-repay records as repaid
   }
   // -- turn --
   rpc SubmitTurn(ekipma.api.common.IdInput) returns (Record) {
@@ -52,7 +52,6 @@ message Record {
   google.protobuf.Timestamp createdAt = 3;
   google.protobuf.Timestamp updatedAt = 4;
   bool deleted = 5;
-  bool repaid = 6;
 
   // rec
   string title = 7;
@@ -92,6 +91,8 @@ message Pay {
   double total = 1;
   PayUnit payUnit = 2;
   PayType payType = 3;
+  uint64 repay = 4;
+  repeated uint64 toRepay = 5;
 }
 
 // turn

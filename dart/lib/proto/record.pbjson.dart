@@ -84,7 +84,6 @@ const Record$json = {
     {'1': 'createdAt', '3': 3, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'createdAt'},
     {'1': 'updatedAt', '3': 4, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'updatedAt'},
     {'1': 'deleted', '3': 5, '4': 1, '5': 8, '10': 'deleted'},
-    {'1': 'repaid', '3': 6, '4': 1, '5': 8, '10': 'repaid'},
     {'1': 'title', '3': 7, '4': 1, '5': 9, '10': 'title'},
     {'1': 'desc', '3': 8, '4': 1, '5': 9, '10': 'desc'},
     {'1': 'author', '3': 9, '4': 1, '5': 4, '10': 'author'},
@@ -107,14 +106,14 @@ final $typed_data.Uint8List recordDescriptor = $convert.base64Decode(
     'CgZSZWNvcmQSLgoFY2h1bmsYASABKAsyGC5la2lwbWEuYXBpLmNvbW1vbi5DaHVua1IFY2h1bm'
     'sSDgoCaWQYAiABKARSAmlkEjgKCWNyZWF0ZWRBdBgDIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5U'
     'aW1lc3RhbXBSCWNyZWF0ZWRBdBI4Cgl1cGRhdGVkQXQYBCABKAsyGi5nb29nbGUucHJvdG9idW'
-    'YuVGltZXN0YW1wUgl1cGRhdGVkQXQSGAoHZGVsZXRlZBgFIAEoCFIHZGVsZXRlZBIWCgZyZXBh'
-    'aWQYBiABKAhSBnJlcGFpZBIUCgV0aXRsZRgHIAEoCVIFdGl0bGUSEgoEZGVzYxgIIAEoCVIEZG'
-    'VzYxIWCgZhdXRob3IYCSABKARSBmF1dGhvchIaCghhc3NpZ25lZRgKIAEoBFIIYXNzaWduZWUS'
-    'HAoJYXNzaWduZWVzGAsgAygEUglhc3NpZ25lZXMSFAoFZ3JvdXAYDCABKARSBWdyb3VwEhgKB3'
-    'ByaXZhdGUYDSABKAhSB3ByaXZhdGUSMQoEdHlwZRgOIAEoDjIdLmVraXBtYS5hcGkucmVjb3Jk'
-    'LlJlY29yZFR5cGVSBHR5cGUSKgoDcGF5GA8gASgLMhYuZWtpcG1hLmFwaS5yZWNvcmQuUGF5SA'
-    'BSA3BheRItCgR0dXJuGBAgASgLMhcuZWtpcG1hLmFwaS5yZWNvcmQuVHVybkgAUgR0dXJuEi0K'
-    'BHBsYW4YESABKAsyFy5la2lwbWEuYXBpLnJlY29yZC5QbGFuSABSBHBsYW5CBwoFdmFsdWU=');
+    'YuVGltZXN0YW1wUgl1cGRhdGVkQXQSGAoHZGVsZXRlZBgFIAEoCFIHZGVsZXRlZBIUCgV0aXRs'
+    'ZRgHIAEoCVIFdGl0bGUSEgoEZGVzYxgIIAEoCVIEZGVzYxIWCgZhdXRob3IYCSABKARSBmF1dG'
+    'hvchIaCghhc3NpZ25lZRgKIAEoBFIIYXNzaWduZWUSHAoJYXNzaWduZWVzGAsgAygEUglhc3Np'
+    'Z25lZXMSFAoFZ3JvdXAYDCABKARSBWdyb3VwEhgKB3ByaXZhdGUYDSABKAhSB3ByaXZhdGUSMQ'
+    'oEdHlwZRgOIAEoDjIdLmVraXBtYS5hcGkucmVjb3JkLlJlY29yZFR5cGVSBHR5cGUSKgoDcGF5'
+    'GA8gASgLMhYuZWtpcG1hLmFwaS5yZWNvcmQuUGF5SABSA3BheRItCgR0dXJuGBAgASgLMhcuZW'
+    'tpcG1hLmFwaS5yZWNvcmQuVHVybkgAUgR0dXJuEi0KBHBsYW4YESABKAsyFy5la2lwbWEuYXBp'
+    'LnJlY29yZC5QbGFuSABSBHBsYW5CBwoFdmFsdWU=');
 
 @$core.Deprecated('Use payDescriptor instead')
 const Pay$json = {
@@ -123,6 +122,8 @@ const Pay$json = {
     {'1': 'total', '3': 1, '4': 1, '5': 1, '10': 'total'},
     {'1': 'payUnit', '3': 2, '4': 1, '5': 14, '6': '.ekipma.api.record.PayUnit', '10': 'payUnit'},
     {'1': 'payType', '3': 3, '4': 1, '5': 14, '6': '.ekipma.api.record.PayType', '10': 'payType'},
+    {'1': 'repay', '3': 4, '4': 1, '5': 4, '10': 'repay'},
+    {'1': 'toRepay', '3': 5, '4': 3, '5': 4, '10': 'toRepay'},
   ],
 };
 
@@ -130,7 +131,8 @@ const Pay$json = {
 final $typed_data.Uint8List payDescriptor = $convert.base64Decode(
     'CgNQYXkSFAoFdG90YWwYASABKAFSBXRvdGFsEjQKB3BheVVuaXQYAiABKA4yGi5la2lwbWEuYX'
     'BpLnJlY29yZC5QYXlVbml0UgdwYXlVbml0EjQKB3BheVR5cGUYAyABKA4yGi5la2lwbWEuYXBp'
-    'LnJlY29yZC5QYXlUeXBlUgdwYXlUeXBl');
+    'LnJlY29yZC5QYXlUeXBlUgdwYXlUeXBlEhQKBXJlcGF5GAQgASgEUgVyZXBheRIYCgd0b1JlcG'
+    'F5GAUgAygEUgd0b1JlcGF5');
 
 @$core.Deprecated('Use turnDescriptor instead')
 const Turn$json = {

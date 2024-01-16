@@ -22,13 +22,14 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type UserServiceClient interface {
-	UpdateUser(ctx context.Context, in *User, opts ...grpc.CallOption) (*User, error)
 	// otp
 	SendOtp(ctx context.Context, in *OtpMobileInput, opts ...grpc.CallOption) (*Empty, error)
 	VerifyOtp(ctx context.Context, in *OtpCodeInput, opts ...grpc.CallOption) (*OtpOutput, error)
 	// auth
 	RegisterUser(ctx context.Context, in *RegisterInput, opts ...grpc.CallOption) (*AuthOutput, error)
 	LoginUser(ctx context.Context, in *LoginInput, opts ...grpc.CallOption) (*AuthOutput, error)
+	// direct update
+	UpdateUser(ctx context.Context, in *User, opts ...grpc.CallOption) (*User, error)
 	// friend
 	AddFriends(ctx context.Context, opts ...grpc.CallOption) (UserService_AddFriendsClient, error)
 	GetFriends(ctx context.Context, in *Empty, opts ...grpc.CallOption) (UserService_GetFriendsClient, error)
@@ -46,15 +47,6 @@ type userServiceClient struct {
 
 func NewUserServiceClient(cc grpc.ClientConnInterface) UserServiceClient {
 	return &userServiceClient{cc}
-}
-
-func (c *userServiceClient) UpdateUser(ctx context.Context, in *User, opts ...grpc.CallOption) (*User, error) {
-	out := new(User)
-	err := c.cc.Invoke(ctx, "/ekipma.api.user.UserService/UpdateUser", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
 }
 
 func (c *userServiceClient) SendOtp(ctx context.Context, in *OtpMobileInput, opts ...grpc.CallOption) (*Empty, error) {
@@ -87,6 +79,15 @@ func (c *userServiceClient) RegisterUser(ctx context.Context, in *RegisterInput,
 func (c *userServiceClient) LoginUser(ctx context.Context, in *LoginInput, opts ...grpc.CallOption) (*AuthOutput, error) {
 	out := new(AuthOutput)
 	err := c.cc.Invoke(ctx, "/ekipma.api.user.UserService/LoginUser", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userServiceClient) UpdateUser(ctx context.Context, in *User, opts ...grpc.CallOption) (*User, error) {
+	out := new(User)
+	err := c.cc.Invoke(ctx, "/ekipma.api.user.UserService/UpdateUser", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -219,13 +220,14 @@ func (c *userServiceClient) CheckPremium(ctx context.Context, in *CheckPremiumIn
 // All implementations must embed UnimplementedUserServiceServer
 // for forward compatibility
 type UserServiceServer interface {
-	UpdateUser(context.Context, *User) (*User, error)
 	// otp
 	SendOtp(context.Context, *OtpMobileInput) (*Empty, error)
 	VerifyOtp(context.Context, *OtpCodeInput) (*OtpOutput, error)
 	// auth
 	RegisterUser(context.Context, *RegisterInput) (*AuthOutput, error)
 	LoginUser(context.Context, *LoginInput) (*AuthOutput, error)
+	// direct update
+	UpdateUser(context.Context, *User) (*User, error)
 	// friend
 	AddFriends(UserService_AddFriendsServer) error
 	GetFriends(*Empty, UserService_GetFriendsServer) error
@@ -242,9 +244,6 @@ type UserServiceServer interface {
 type UnimplementedUserServiceServer struct {
 }
 
-func (UnimplementedUserServiceServer) UpdateUser(context.Context, *User) (*User, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateUser not implemented")
-}
 func (UnimplementedUserServiceServer) SendOtp(context.Context, *OtpMobileInput) (*Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SendOtp not implemented")
 }
@@ -256,6 +255,9 @@ func (UnimplementedUserServiceServer) RegisterUser(context.Context, *RegisterInp
 }
 func (UnimplementedUserServiceServer) LoginUser(context.Context, *LoginInput) (*AuthOutput, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method LoginUser not implemented")
+}
+func (UnimplementedUserServiceServer) UpdateUser(context.Context, *User) (*User, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateUser not implemented")
 }
 func (UnimplementedUserServiceServer) AddFriends(UserService_AddFriendsServer) error {
 	return status.Errorf(codes.Unimplemented, "method AddFriends not implemented")
@@ -286,24 +288,6 @@ type UnsafeUserServiceServer interface {
 
 func RegisterUserServiceServer(s grpc.ServiceRegistrar, srv UserServiceServer) {
 	s.RegisterService(&UserService_ServiceDesc, srv)
-}
-
-func _UserService_UpdateUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(User)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(UserServiceServer).UpdateUser(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/ekipma.api.user.UserService/UpdateUser",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServiceServer).UpdateUser(ctx, req.(*User))
-	}
-	return interceptor(ctx, in, info, handler)
 }
 
 func _UserService_SendOtp_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -374,6 +358,24 @@ func _UserService_LoginUser_Handler(srv interface{}, ctx context.Context, dec fu
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UserServiceServer).LoginUser(ctx, req.(*LoginInput))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _UserService_UpdateUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(User)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).UpdateUser(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/ekipma.api.user.UserService/UpdateUser",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).UpdateUser(ctx, req.(*User))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -508,10 +510,6 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*UserServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "UpdateUser",
-			Handler:    _UserService_UpdateUser_Handler,
-		},
-		{
 			MethodName: "SendOtp",
 			Handler:    _UserService_SendOtp_Handler,
 		},
@@ -526,6 +524,10 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "LoginUser",
 			Handler:    _UserService_LoginUser_Handler,
+		},
+		{
+			MethodName: "UpdateUser",
+			Handler:    _UserService_UpdateUser_Handler,
 		},
 		{
 			MethodName: "RemoveFriend",
