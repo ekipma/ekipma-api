@@ -796,12 +796,12 @@ class Friend extends $pb.GeneratedMessage {
 
 class MobilesChunk extends $pb.GeneratedMessage {
   factory MobilesChunk({
-    $2.Chunk? chunk,
+    $2.Chunk? info,
     $core.Iterable<$core.String>? mobiles,
   }) {
     final $result = create();
-    if (chunk != null) {
-      $result.chunk = chunk;
+    if (info != null) {
+      $result.info = info;
     }
     if (mobiles != null) {
       $result.mobiles.addAll(mobiles);
@@ -813,7 +813,7 @@ class MobilesChunk extends $pb.GeneratedMessage {
   factory MobilesChunk.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'MobilesChunk', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.user'), createEmptyInstance: create)
-    ..aOM<$2.Chunk>(1, _omitFieldNames ? '' : 'chunk', subBuilder: $2.Chunk.create)
+    ..aOM<$2.Chunk>(1, _omitFieldNames ? '' : 'info', subBuilder: $2.Chunk.create)
     ..pPS(2, _omitFieldNames ? '' : 'mobiles')
     ..hasRequiredFields = false
   ;
@@ -840,15 +840,15 @@ class MobilesChunk extends $pb.GeneratedMessage {
   static MobilesChunk? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $2.Chunk get chunk => $_getN(0);
+  $2.Chunk get info => $_getN(0);
   @$pb.TagNumber(1)
-  set chunk($2.Chunk v) { setField(1, v); }
+  set info($2.Chunk v) { setField(1, v); }
   @$pb.TagNumber(1)
-  $core.bool hasChunk() => $_has(0);
+  $core.bool hasInfo() => $_has(0);
   @$pb.TagNumber(1)
-  void clearChunk() => clearField(1);
+  void clearInfo() => clearField(1);
   @$pb.TagNumber(1)
-  $2.Chunk ensureChunk() => $_ensure(0);
+  $2.Chunk ensureInfo() => $_ensure(0);
 
   @$pb.TagNumber(2)
   $core.List<$core.String> get mobiles => $_getList(1);
@@ -856,12 +856,12 @@ class MobilesChunk extends $pb.GeneratedMessage {
 
 class FriendsChunk extends $pb.GeneratedMessage {
   factory FriendsChunk({
-    $2.Chunk? chunk,
+    $2.Chunk? info,
     $core.Iterable<Friend>? friends,
   }) {
     final $result = create();
-    if (chunk != null) {
-      $result.chunk = chunk;
+    if (info != null) {
+      $result.info = info;
     }
     if (friends != null) {
       $result.friends.addAll(friends);
@@ -873,7 +873,7 @@ class FriendsChunk extends $pb.GeneratedMessage {
   factory FriendsChunk.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'FriendsChunk', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.user'), createEmptyInstance: create)
-    ..aOM<$2.Chunk>(1, _omitFieldNames ? '' : 'chunk', subBuilder: $2.Chunk.create)
+    ..aOM<$2.Chunk>(1, _omitFieldNames ? '' : 'info', subBuilder: $2.Chunk.create)
     ..pc<Friend>(2, _omitFieldNames ? '' : 'friends', $pb.PbFieldType.PM, subBuilder: Friend.create)
     ..hasRequiredFields = false
   ;
@@ -900,15 +900,15 @@ class FriendsChunk extends $pb.GeneratedMessage {
   static FriendsChunk? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $2.Chunk get chunk => $_getN(0);
+  $2.Chunk get info => $_getN(0);
   @$pb.TagNumber(1)
-  set chunk($2.Chunk v) { setField(1, v); }
+  set info($2.Chunk v) { setField(1, v); }
   @$pb.TagNumber(1)
-  $core.bool hasChunk() => $_has(0);
+  $core.bool hasInfo() => $_has(0);
   @$pb.TagNumber(1)
-  void clearChunk() => clearField(1);
+  void clearInfo() => clearField(1);
   @$pb.TagNumber(1)
-  $2.Chunk ensureChunk() => $_ensure(0);
+  $2.Chunk ensureInfo() => $_ensure(0);
 
   @$pb.TagNumber(2)
   $core.List<Friend> get friends => $_getList(1);

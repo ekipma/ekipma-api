@@ -190,30 +190,29 @@ final $typed_data.Uint8List friendDescriptor = $convert.base64Decode(
 const MobilesChunk$json = {
   '1': 'MobilesChunk',
   '2': [
-    {'1': 'chunk', '3': 1, '4': 1, '5': 11, '6': '.ekipma.api.common.Chunk', '10': 'chunk'},
+    {'1': 'info', '3': 1, '4': 1, '5': 11, '6': '.ekipma.api.common.Chunk', '10': 'info'},
     {'1': 'mobiles', '3': 2, '4': 3, '5': 9, '10': 'mobiles'},
   ],
 };
 
 /// Descriptor for `MobilesChunk`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List mobilesChunkDescriptor = $convert.base64Decode(
-    'CgxNb2JpbGVzQ2h1bmsSLgoFY2h1bmsYASABKAsyGC5la2lwbWEuYXBpLmNvbW1vbi5DaHVua1'
-    'IFY2h1bmsSGAoHbW9iaWxlcxgCIAMoCVIHbW9iaWxlcw==');
+    'CgxNb2JpbGVzQ2h1bmsSLAoEaW5mbxgBIAEoCzIYLmVraXBtYS5hcGkuY29tbW9uLkNodW5rUg'
+    'RpbmZvEhgKB21vYmlsZXMYAiADKAlSB21vYmlsZXM=');
 
 @$core.Deprecated('Use friendsChunkDescriptor instead')
 const FriendsChunk$json = {
   '1': 'FriendsChunk',
   '2': [
-    {'1': 'chunk', '3': 1, '4': 1, '5': 11, '6': '.ekipma.api.common.Chunk', '10': 'chunk'},
+    {'1': 'info', '3': 1, '4': 1, '5': 11, '6': '.ekipma.api.common.Chunk', '10': 'info'},
     {'1': 'friends', '3': 2, '4': 3, '5': 11, '6': '.ekipma.api.user.Friend', '10': 'friends'},
   ],
 };
 
 /// Descriptor for `FriendsChunk`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List friendsChunkDescriptor = $convert.base64Decode(
-    'CgxGcmllbmRzQ2h1bmsSLgoFY2h1bmsYASABKAsyGC5la2lwbWEuYXBpLmNvbW1vbi5DaHVua1'
-    'IFY2h1bmsSMQoHZnJpZW5kcxgCIAMoCzIXLmVraXBtYS5hcGkudXNlci5GcmllbmRSB2ZyaWVu'
-    'ZHM=');
+    'CgxGcmllbmRzQ2h1bmsSLAoEaW5mbxgBIAEoCzIYLmVraXBtYS5hcGkuY29tbW9uLkNodW5rUg'
+    'RpbmZvEjEKB2ZyaWVuZHMYAiADKAsyFy5la2lwbWEuYXBpLnVzZXIuRnJpZW5kUgdmcmllbmRz');
 
 @$core.Deprecated('Use walletDescriptor instead')
 const Wallet$json = {

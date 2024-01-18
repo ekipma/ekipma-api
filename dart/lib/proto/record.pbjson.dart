@@ -17,63 +17,65 @@ import 'dart:typed_data' as $typed_data;
 const RecordType$json = {
   '1': 'RecordType',
   '2': [
-    {'1': 'UnkownRecordType', '2': 0},
-    {'1': 'IsPay', '2': 1},
-    {'1': 'IsTurn', '2': 2},
-    {'1': 'IsPlan', '2': 3},
+    {'1': 'RecordTypeUnkown', '2': 0},
+    {'1': 'RecordTypePay', '2': 1},
+    {'1': 'RecordTypeTurn', '2': 2},
+    {'1': 'RecordTypePlan', '2': 3},
   ],
 };
 
 /// Descriptor for `RecordType`. Decode as a `google.protobuf.EnumDescriptorProto`.
 final $typed_data.Uint8List recordTypeDescriptor = $convert.base64Decode(
-    'CgpSZWNvcmRUeXBlEhQKEFVua293blJlY29yZFR5cGUQABIJCgVJc1BheRABEgoKBklzVHVybh'
-    'ACEgoKBklzUGxhbhAD');
+    'CgpSZWNvcmRUeXBlEhQKEFJlY29yZFR5cGVVbmtvd24QABIRCg1SZWNvcmRUeXBlUGF5EAESEg'
+    'oOUmVjb3JkVHlwZVR1cm4QAhISCg5SZWNvcmRUeXBlUGxhbhAD');
 
 @$core.Deprecated('Use payTypeDescriptor instead')
 const PayType$json = {
   '1': 'PayType',
   '2': [
-    {'1': 'UnknownPayType', '2': 0},
-    {'1': 'New', '2': 1},
-    {'1': 'Repay', '2': 2},
+    {'1': 'PayTypeUnkown', '2': 0},
+    {'1': 'PayTypeNormal', '2': 1},
+    {'1': 'PayTypeRepay', '2': 2},
   ],
 };
 
 /// Descriptor for `PayType`. Decode as a `google.protobuf.EnumDescriptorProto`.
 final $typed_data.Uint8List payTypeDescriptor = $convert.base64Decode(
-    'CgdQYXlUeXBlEhIKDlVua25vd25QYXlUeXBlEAASBwoDTmV3EAESCQoFUmVwYXkQAg==');
+    'CgdQYXlUeXBlEhEKDVBheVR5cGVVbmtvd24QABIRCg1QYXlUeXBlTm9ybWFsEAESEAoMUGF5VH'
+    'lwZVJlcGF5EAI=');
 
 @$core.Deprecated('Use payUnitDescriptor instead')
 const PayUnit$json = {
   '1': 'PayUnit',
   '2': [
-    {'1': 'UnknownPayUnit', '2': 0},
-    {'1': 'USD', '2': 1},
-    {'1': 'IRTT', '2': 2},
-    {'1': 'EUR', '2': 3},
-    {'1': 'POND', '2': 4},
+    {'1': 'PayUnitUnkown', '2': 0},
+    {'1': 'PayUnitUSD', '2': 1},
+    {'1': 'PayUnitIRTT', '2': 2},
+    {'1': 'PayUnitEUR', '2': 3},
+    {'1': 'PayUnitPOND', '2': 4},
   ],
 };
 
 /// Descriptor for `PayUnit`. Decode as a `google.protobuf.EnumDescriptorProto`.
 final $typed_data.Uint8List payUnitDescriptor = $convert.base64Decode(
-    'CgdQYXlVbml0EhIKDlVua25vd25QYXlVbml0EAASBwoDVVNEEAESCAoESVJUVBACEgcKA0VVUh'
-    'ADEggKBFBPTkQQBA==');
+    'CgdQYXlVbml0EhEKDVBheVVuaXRVbmtvd24QABIOCgpQYXlVbml0VVNEEAESDwoLUGF5VW5pdE'
+    'lSVFQQAhIOCgpQYXlVbml0RVVSEAMSDwoLUGF5VW5pdFBPTkQQBA==');
 
 @$core.Deprecated('Use soundDescriptor instead')
 const Sound$json = {
   '1': 'Sound',
   '2': [
-    {'1': 'None', '2': 0},
-    {'1': 'Default', '2': 1},
-    {'1': 'Nature', '2': 2},
-    {'1': 'Yamete', '2': 3},
+    {'1': 'SoundNone', '2': 0},
+    {'1': 'SoundDefault', '2': 1},
+    {'1': 'SoundNature', '2': 2},
+    {'1': 'SoundYamete', '2': 3},
   ],
 };
 
 /// Descriptor for `Sound`. Decode as a `google.protobuf.EnumDescriptorProto`.
 final $typed_data.Uint8List soundDescriptor = $convert.base64Decode(
-    'CgVTb3VuZBIICgROb25lEAASCwoHRGVmYXVsdBABEgoKBk5hdHVyZRACEgoKBllhbWV0ZRAD');
+    'CgVTb3VuZBINCglTb3VuZE5vbmUQABIQCgxTb3VuZERlZmF1bHQQARIPCgtTb3VuZE5hdHVyZR'
+    'ACEg8KC1NvdW5kWWFtZXRlEAM=');
 
 @$core.Deprecated('Use recordDescriptor instead')
 const Record$json = {
@@ -83,7 +85,7 @@ const Record$json = {
     {'1': 'id', '3': 2, '4': 1, '5': 4, '10': 'id'},
     {'1': 'createdAt', '3': 3, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'createdAt'},
     {'1': 'updatedAt', '3': 4, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'updatedAt'},
-    {'1': 'deleted', '3': 5, '4': 1, '5': 8, '10': 'deleted'},
+    {'1': 'deletedAt', '3': 5, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'deletedAt'},
     {'1': 'title', '3': 7, '4': 1, '5': 9, '10': 'title'},
     {'1': 'desc', '3': 8, '4': 1, '5': 9, '10': 'desc'},
     {'1': 'author', '3': 9, '4': 1, '5': 4, '10': 'author'},
@@ -106,14 +108,15 @@ final $typed_data.Uint8List recordDescriptor = $convert.base64Decode(
     'CgZSZWNvcmQSLgoFY2h1bmsYASABKAsyGC5la2lwbWEuYXBpLmNvbW1vbi5DaHVua1IFY2h1bm'
     'sSDgoCaWQYAiABKARSAmlkEjgKCWNyZWF0ZWRBdBgDIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5U'
     'aW1lc3RhbXBSCWNyZWF0ZWRBdBI4Cgl1cGRhdGVkQXQYBCABKAsyGi5nb29nbGUucHJvdG9idW'
-    'YuVGltZXN0YW1wUgl1cGRhdGVkQXQSGAoHZGVsZXRlZBgFIAEoCFIHZGVsZXRlZBIUCgV0aXRs'
-    'ZRgHIAEoCVIFdGl0bGUSEgoEZGVzYxgIIAEoCVIEZGVzYxIWCgZhdXRob3IYCSABKARSBmF1dG'
-    'hvchIaCghhc3NpZ25lZRgKIAEoBFIIYXNzaWduZWUSHAoJYXNzaWduZWVzGAsgAygEUglhc3Np'
-    'Z25lZXMSFAoFZ3JvdXAYDCABKARSBWdyb3VwEhgKB3ByaXZhdGUYDSABKAhSB3ByaXZhdGUSMQ'
-    'oEdHlwZRgOIAEoDjIdLmVraXBtYS5hcGkucmVjb3JkLlJlY29yZFR5cGVSBHR5cGUSKgoDcGF5'
-    'GA8gASgLMhYuZWtpcG1hLmFwaS5yZWNvcmQuUGF5SABSA3BheRItCgR0dXJuGBAgASgLMhcuZW'
-    'tpcG1hLmFwaS5yZWNvcmQuVHVybkgAUgR0dXJuEi0KBHBsYW4YESABKAsyFy5la2lwbWEuYXBp'
-    'LnJlY29yZC5QbGFuSABSBHBsYW5CBwoFdmFsdWU=');
+    'YuVGltZXN0YW1wUgl1cGRhdGVkQXQSOAoJZGVsZXRlZEF0GAUgASgLMhouZ29vZ2xlLnByb3Rv'
+    'YnVmLlRpbWVzdGFtcFIJZGVsZXRlZEF0EhQKBXRpdGxlGAcgASgJUgV0aXRsZRISCgRkZXNjGA'
+    'ggASgJUgRkZXNjEhYKBmF1dGhvchgJIAEoBFIGYXV0aG9yEhoKCGFzc2lnbmVlGAogASgEUghh'
+    'c3NpZ25lZRIcCglhc3NpZ25lZXMYCyADKARSCWFzc2lnbmVlcxIUCgVncm91cBgMIAEoBFIFZ3'
+    'JvdXASGAoHcHJpdmF0ZRgNIAEoCFIHcHJpdmF0ZRIxCgR0eXBlGA4gASgOMh0uZWtpcG1hLmFw'
+    'aS5yZWNvcmQuUmVjb3JkVHlwZVIEdHlwZRIqCgNwYXkYDyABKAsyFi5la2lwbWEuYXBpLnJlY2'
+    '9yZC5QYXlIAFIDcGF5Ei0KBHR1cm4YECABKAsyFy5la2lwbWEuYXBpLnJlY29yZC5UdXJuSABS'
+    'BHR1cm4SLQoEcGxhbhgRIAEoCzIXLmVraXBtYS5hcGkucmVjb3JkLlBsYW5IAFIEcGxhbkIHCg'
+    'V2YWx1ZQ==');
 
 @$core.Deprecated('Use payDescriptor instead')
 const Pay$json = {
@@ -177,6 +180,21 @@ final $typed_data.Uint8List planDescriptor = $convert.base64Decode(
     'CgRQbGFuEjAKBWR1ZUF0GAEgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcFIFZHVlQX'
     'QSNwoIbG9jYXRpb24YAiABKAsyGy5la2lwbWEuYXBpLnJlY29yZC5Mb2NhdGlvblIIbG9jYXRp'
     'b24SLgoFc291bmQYAyABKA4yGC5la2lwbWEuYXBpLnJlY29yZC5Tb3VuZFIFc291bmQ=');
+
+@$core.Deprecated('Use recordsChunkDescriptor instead')
+const RecordsChunk$json = {
+  '1': 'RecordsChunk',
+  '2': [
+    {'1': 'info', '3': 1, '4': 1, '5': 11, '6': '.ekipma.api.common.Chunk', '10': 'info'},
+    {'1': 'reocrds', '3': 2, '4': 3, '5': 11, '6': '.ekipma.api.record.Record', '10': 'reocrds'},
+  ],
+};
+
+/// Descriptor for `RecordsChunk`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List recordsChunkDescriptor = $convert.base64Decode(
+    'CgxSZWNvcmRzQ2h1bmsSLAoEaW5mbxgBIAEoCzIYLmVraXBtYS5hcGkuY29tbW9uLkNodW5rUg'
+    'RpbmZvEjMKB3Jlb2NyZHMYAiADKAsyGS5la2lwbWEuYXBpLnJlY29yZC5SZWNvcmRSB3Jlb2Ny'
+    'ZHM=');
 
 @$core.Deprecated('Use integrityInputDescriptor instead')
 const IntegrityInput$json = {

@@ -14,16 +14,16 @@ import 'dart:core' as $core;
 import 'package:protobuf/protobuf.dart' as $pb;
 
 class RecordType extends $pb.ProtobufEnum {
-  static const RecordType UnkownRecordType = RecordType._(0, _omitEnumNames ? '' : 'UnkownRecordType');
-  static const RecordType IsPay = RecordType._(1, _omitEnumNames ? '' : 'IsPay');
-  static const RecordType IsTurn = RecordType._(2, _omitEnumNames ? '' : 'IsTurn');
-  static const RecordType IsPlan = RecordType._(3, _omitEnumNames ? '' : 'IsPlan');
+  static const RecordType RecordTypeUnkown = RecordType._(0, _omitEnumNames ? '' : 'RecordTypeUnkown');
+  static const RecordType RecordTypePay = RecordType._(1, _omitEnumNames ? '' : 'RecordTypePay');
+  static const RecordType RecordTypeTurn = RecordType._(2, _omitEnumNames ? '' : 'RecordTypeTurn');
+  static const RecordType RecordTypePlan = RecordType._(3, _omitEnumNames ? '' : 'RecordTypePlan');
 
   static const $core.List<RecordType> values = <RecordType> [
-    UnkownRecordType,
-    IsPay,
-    IsTurn,
-    IsPlan,
+    RecordTypeUnkown,
+    RecordTypePay,
+    RecordTypeTurn,
+    RecordTypePlan,
   ];
 
   static final $core.Map<$core.int, RecordType> _byValue = $pb.ProtobufEnum.initByValue(values);
@@ -33,14 +33,14 @@ class RecordType extends $pb.ProtobufEnum {
 }
 
 class PayType extends $pb.ProtobufEnum {
-  static const PayType UnknownPayType = PayType._(0, _omitEnumNames ? '' : 'UnknownPayType');
-  static const PayType New = PayType._(1, _omitEnumNames ? '' : 'New');
-  static const PayType Repay = PayType._(2, _omitEnumNames ? '' : 'Repay');
+  static const PayType PayTypeUnkown = PayType._(0, _omitEnumNames ? '' : 'PayTypeUnkown');
+  static const PayType PayTypeNormal = PayType._(1, _omitEnumNames ? '' : 'PayTypeNormal');
+  static const PayType PayTypeRepay = PayType._(2, _omitEnumNames ? '' : 'PayTypeRepay');
 
   static const $core.List<PayType> values = <PayType> [
-    UnknownPayType,
-    New,
-    Repay,
+    PayTypeUnkown,
+    PayTypeNormal,
+    PayTypeRepay,
   ];
 
   static final $core.Map<$core.int, PayType> _byValue = $pb.ProtobufEnum.initByValue(values);
@@ -50,18 +50,18 @@ class PayType extends $pb.ProtobufEnum {
 }
 
 class PayUnit extends $pb.ProtobufEnum {
-  static const PayUnit UnknownPayUnit = PayUnit._(0, _omitEnumNames ? '' : 'UnknownPayUnit');
-  static const PayUnit USD = PayUnit._(1, _omitEnumNames ? '' : 'USD');
-  static const PayUnit IRTT = PayUnit._(2, _omitEnumNames ? '' : 'IRTT');
-  static const PayUnit EUR = PayUnit._(3, _omitEnumNames ? '' : 'EUR');
-  static const PayUnit POND = PayUnit._(4, _omitEnumNames ? '' : 'POND');
+  static const PayUnit PayUnitUnkown = PayUnit._(0, _omitEnumNames ? '' : 'PayUnitUnkown');
+  static const PayUnit PayUnitUSD = PayUnit._(1, _omitEnumNames ? '' : 'PayUnitUSD');
+  static const PayUnit PayUnitIRTT = PayUnit._(2, _omitEnumNames ? '' : 'PayUnitIRTT');
+  static const PayUnit PayUnitEUR = PayUnit._(3, _omitEnumNames ? '' : 'PayUnitEUR');
+  static const PayUnit PayUnitPOND = PayUnit._(4, _omitEnumNames ? '' : 'PayUnitPOND');
 
   static const $core.List<PayUnit> values = <PayUnit> [
-    UnknownPayUnit,
-    USD,
-    IRTT,
-    EUR,
-    POND,
+    PayUnitUnkown,
+    PayUnitUSD,
+    PayUnitIRTT,
+    PayUnitEUR,
+    PayUnitPOND,
   ];
 
   static final $core.Map<$core.int, PayUnit> _byValue = $pb.ProtobufEnum.initByValue(values);
@@ -71,16 +71,16 @@ class PayUnit extends $pb.ProtobufEnum {
 }
 
 class Sound extends $pb.ProtobufEnum {
-  static const Sound None = Sound._(0, _omitEnumNames ? '' : 'None');
-  static const Sound Default = Sound._(1, _omitEnumNames ? '' : 'Default');
-  static const Sound Nature = Sound._(2, _omitEnumNames ? '' : 'Nature');
-  static const Sound Yamete = Sound._(3, _omitEnumNames ? '' : 'Yamete');
+  static const Sound SoundNone = Sound._(0, _omitEnumNames ? '' : 'SoundNone');
+  static const Sound SoundDefault = Sound._(1, _omitEnumNames ? '' : 'SoundDefault');
+  static const Sound SoundNature = Sound._(2, _omitEnumNames ? '' : 'SoundNature');
+  static const Sound SoundYamete = Sound._(3, _omitEnumNames ? '' : 'SoundYamete');
 
   static const $core.List<Sound> values = <Sound> [
-    None,
-    Default,
-    Nature,
-    Yamete,
+    SoundNone,
+    SoundDefault,
+    SoundNature,
+    SoundYamete,
   ];
 
   static final $core.Map<$core.int, Sound> _byValue = $pb.ProtobufEnum.initByValue(values);

@@ -125,12 +125,12 @@ message Friend {
 }
 
 message MobilesChunk {
-  ekipma.api.common.Chunk chunk = 1;
+  ekipma.api.common.Chunk info = 1;
   repeated string mobiles = 2; // 100 mobiles per chunk
 }
 
 message FriendsChunk {
-  ekipma.api.common.Chunk chunk = 1;
+  ekipma.api.common.Chunk info = 1;
   repeated Friend friends = 2;
 }
 

@@ -22,13 +22,14 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type RecordServiceClient interface {
-	CreateRecords(ctx context.Context, in *Record, opts ...grpc.CallOption) (RecordService_CreateRecordsClient, error)
+	CreateRecords(ctx context.Context, in *Record, opts ...grpc.CallOption) (*RecordsChunk, error)
 	RecentRecords(ctx context.Context, in *Last, opts ...grpc.CallOption) (RecordService_RecentRecordsClient, error)
 	DeleteRecord(ctx context.Context, in *IdInput, opts ...grpc.CallOption) (*Empty, error)
 	VerifyIntegrity(ctx context.Context, in *IntegrityInput, opts ...grpc.CallOption) (*IntegrityOutput, error)
 	LostRecords(ctx context.Context, in *Lost, opts ...grpc.CallOption) (RecordService_LostRecordsClient, error)
 	// -- pay --
 	AcceptRepay(ctx context.Context, in *IdInput, opts ...grpc.CallOption) (*Empty, error)
+	RejectRepay(ctx context.Context, in *IdInput, opts ...grpc.CallOption) (*Empty, error)
 	// -- turn --
 	SubmitTurn(ctx context.Context, in *IdInput, opts ...grpc.CallOption) (*Record, error)
 }
@@ -41,40 +42,17 @@ func NewRecordServiceClient(cc grpc.ClientConnInterface) RecordServiceClient {
 	return &recordServiceClient{cc}
 }
 
-func (c *recordServiceClient) CreateRecords(ctx context.Context, in *Record, opts ...grpc.CallOption) (RecordService_CreateRecordsClient, error) {
-	stream, err := c.cc.NewStream(ctx, &RecordService_ServiceDesc.Streams[0], "/ekipma.api.record.RecordService/CreateRecords", opts...)
+func (c *recordServiceClient) CreateRecords(ctx context.Context, in *Record, opts ...grpc.CallOption) (*RecordsChunk, error) {
+	out := new(RecordsChunk)
+	err := c.cc.Invoke(ctx, "/ekipma.api.record.RecordService/CreateRecords", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &recordServiceCreateRecordsClient{stream}
-	if err := x.ClientStream.SendMsg(in); err != nil {
-		return nil, err
-	}
-	if err := x.ClientStream.CloseSend(); err != nil {
-		return nil, err
-	}
-	return x, nil
-}
-
-type RecordService_CreateRecordsClient interface {
-	Recv() (*Record, error)
-	grpc.ClientStream
-}
-
-type recordServiceCreateRecordsClient struct {
-	grpc.ClientStream
-}
-
-func (x *recordServiceCreateRecordsClient) Recv() (*Record, error) {
-	m := new(Record)
-	if err := x.ClientStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
+	return out, nil
 }
 
 func (c *recordServiceClient) RecentRecords(ctx context.Context, in *Last, opts ...grpc.CallOption) (RecordService_RecentRecordsClient, error) {
-	stream, err := c.cc.NewStream(ctx, &RecordService_ServiceDesc.Streams[1], "/ekipma.api.record.RecordService/RecentRecords", opts...)
+	stream, err := c.cc.NewStream(ctx, &RecordService_ServiceDesc.Streams[0], "/ekipma.api.record.RecordService/RecentRecords", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -89,7 +67,7 @@ func (c *recordServiceClient) RecentRecords(ctx context.Context, in *Last, opts 
 }
 
 type RecordService_RecentRecordsClient interface {
-	Recv() (*Record, error)
+	Recv() (*RecordsChunk, error)
 	grpc.ClientStream
 }
 
@@ -97,8 +75,8 @@ type recordServiceRecentRecordsClient struct {
 	grpc.ClientStream
 }
 
-func (x *recordServiceRecentRecordsClient) Recv() (*Record, error) {
-	m := new(Record)
+func (x *recordServiceRecentRecordsClient) Recv() (*RecordsChunk, error) {
+	m := new(RecordsChunk)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
@@ -124,7 +102,7 @@ func (c *recordServiceClient) VerifyIntegrity(ctx context.Context, in *Integrity
 }
 
 func (c *recordServiceClient) LostRecords(ctx context.Context, in *Lost, opts ...grpc.CallOption) (RecordService_LostRecordsClient, error) {
-	stream, err := c.cc.NewStream(ctx, &RecordService_ServiceDesc.Streams[2], "/ekipma.api.record.RecordService/LostRecords", opts...)
+	stream, err := c.cc.NewStream(ctx, &RecordService_ServiceDesc.Streams[1], "/ekipma.api.record.RecordService/LostRecords", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -164,6 +142,15 @@ func (c *recordServiceClient) AcceptRepay(ctx context.Context, in *IdInput, opts
 	return out, nil
 }
 
+func (c *recordServiceClient) RejectRepay(ctx context.Context, in *IdInput, opts ...grpc.CallOption) (*Empty, error) {
+	out := new(Empty)
+	err := c.cc.Invoke(ctx, "/ekipma.api.record.RecordService/RejectRepay", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *recordServiceClient) SubmitTurn(ctx context.Context, in *IdInput, opts ...grpc.CallOption) (*Record, error) {
 	out := new(Record)
 	err := c.cc.Invoke(ctx, "/ekipma.api.record.RecordService/SubmitTurn", in, out, opts...)
@@ -177,13 +164,14 @@ func (c *recordServiceClient) SubmitTurn(ctx context.Context, in *IdInput, opts 
 // All implementations must embed UnimplementedRecordServiceServer
 // for forward compatibility
 type RecordServiceServer interface {
-	CreateRecords(*Record, RecordService_CreateRecordsServer) error
+	CreateRecords(context.Context, *Record) (*RecordsChunk, error)
 	RecentRecords(*Last, RecordService_RecentRecordsServer) error
 	DeleteRecord(context.Context, *IdInput) (*Empty, error)
 	VerifyIntegrity(context.Context, *IntegrityInput) (*IntegrityOutput, error)
 	LostRecords(*Lost, RecordService_LostRecordsServer) error
 	// -- pay --
 	AcceptRepay(context.Context, *IdInput) (*Empty, error)
+	RejectRepay(context.Context, *IdInput) (*Empty, error)
 	// -- turn --
 	SubmitTurn(context.Context, *IdInput) (*Record, error)
 	mustEmbedUnimplementedRecordServiceServer()
@@ -193,8 +181,8 @@ type RecordServiceServer interface {
 type UnimplementedRecordServiceServer struct {
 }
 
-func (UnimplementedRecordServiceServer) CreateRecords(*Record, RecordService_CreateRecordsServer) error {
-	return status.Errorf(codes.Unimplemented, "method CreateRecords not implemented")
+func (UnimplementedRecordServiceServer) CreateRecords(context.Context, *Record) (*RecordsChunk, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateRecords not implemented")
 }
 func (UnimplementedRecordServiceServer) RecentRecords(*Last, RecordService_RecentRecordsServer) error {
 	return status.Errorf(codes.Unimplemented, "method RecentRecords not implemented")
@@ -210,6 +198,9 @@ func (UnimplementedRecordServiceServer) LostRecords(*Lost, RecordService_LostRec
 }
 func (UnimplementedRecordServiceServer) AcceptRepay(context.Context, *IdInput) (*Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AcceptRepay not implemented")
+}
+func (UnimplementedRecordServiceServer) RejectRepay(context.Context, *IdInput) (*Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RejectRepay not implemented")
 }
 func (UnimplementedRecordServiceServer) SubmitTurn(context.Context, *IdInput) (*Record, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SubmitTurn not implemented")
@@ -227,25 +218,22 @@ func RegisterRecordServiceServer(s grpc.ServiceRegistrar, srv RecordServiceServe
 	s.RegisterService(&RecordService_ServiceDesc, srv)
 }
 
-func _RecordService_CreateRecords_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(Record)
-	if err := stream.RecvMsg(m); err != nil {
-		return err
+func _RecordService_CreateRecords_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Record)
+	if err := dec(in); err != nil {
+		return nil, err
 	}
-	return srv.(RecordServiceServer).CreateRecords(m, &recordServiceCreateRecordsServer{stream})
-}
-
-type RecordService_CreateRecordsServer interface {
-	Send(*Record) error
-	grpc.ServerStream
-}
-
-type recordServiceCreateRecordsServer struct {
-	grpc.ServerStream
-}
-
-func (x *recordServiceCreateRecordsServer) Send(m *Record) error {
-	return x.ServerStream.SendMsg(m)
+	if interceptor == nil {
+		return srv.(RecordServiceServer).CreateRecords(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/ekipma.api.record.RecordService/CreateRecords",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RecordServiceServer).CreateRecords(ctx, req.(*Record))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _RecordService_RecentRecords_Handler(srv interface{}, stream grpc.ServerStream) error {
@@ -257,7 +245,7 @@ func _RecordService_RecentRecords_Handler(srv interface{}, stream grpc.ServerStr
 }
 
 type RecordService_RecentRecordsServer interface {
-	Send(*Record) error
+	Send(*RecordsChunk) error
 	grpc.ServerStream
 }
 
@@ -265,7 +253,7 @@ type recordServiceRecentRecordsServer struct {
 	grpc.ServerStream
 }
 
-func (x *recordServiceRecentRecordsServer) Send(m *Record) error {
+func (x *recordServiceRecentRecordsServer) Send(m *RecordsChunk) error {
 	return x.ServerStream.SendMsg(m)
 }
 
@@ -344,6 +332,24 @@ func _RecordService_AcceptRepay_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
+func _RecordService_RejectRepay_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IdInput)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RecordServiceServer).RejectRepay(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/ekipma.api.record.RecordService/RejectRepay",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RecordServiceServer).RejectRepay(ctx, req.(*IdInput))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _RecordService_SubmitTurn_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(IdInput)
 	if err := dec(in); err != nil {
@@ -370,6 +376,10 @@ var RecordService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*RecordServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
+			MethodName: "CreateRecords",
+			Handler:    _RecordService_CreateRecords_Handler,
+		},
+		{
 			MethodName: "DeleteRecord",
 			Handler:    _RecordService_DeleteRecord_Handler,
 		},
@@ -382,16 +392,15 @@ var RecordService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _RecordService_AcceptRepay_Handler,
 		},
 		{
+			MethodName: "RejectRepay",
+			Handler:    _RecordService_RejectRepay_Handler,
+		},
+		{
 			MethodName: "SubmitTurn",
 			Handler:    _RecordService_SubmitTurn_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
-		{
-			StreamName:    "CreateRecords",
-			Handler:       _RecordService_CreateRecords_Handler,
-			ServerStreams: true,
-		},
 		{
 			StreamName:    "RecentRecords",
 			Handler:       _RecordService_RecentRecords_Handler,

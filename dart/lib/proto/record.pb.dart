@@ -33,7 +33,7 @@ class Record extends $pb.GeneratedMessage {
     $fixnum.Int64? id,
     $4.Timestamp? createdAt,
     $4.Timestamp? updatedAt,
-    $core.bool? deleted,
+    $4.Timestamp? deletedAt,
     $core.String? title,
     $core.String? desc,
     $fixnum.Int64? author,
@@ -59,8 +59,8 @@ class Record extends $pb.GeneratedMessage {
     if (updatedAt != null) {
       $result.updatedAt = updatedAt;
     }
-    if (deleted != null) {
-      $result.deleted = deleted;
+    if (deletedAt != null) {
+      $result.deletedAt = deletedAt;
     }
     if (title != null) {
       $result.title = title;
@@ -113,7 +113,7 @@ class Record extends $pb.GeneratedMessage {
     ..a<$fixnum.Int64>(2, _omitFieldNames ? '' : 'id', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
     ..aOM<$4.Timestamp>(3, _omitFieldNames ? '' : 'createdAt', protoName: 'createdAt', subBuilder: $4.Timestamp.create)
     ..aOM<$4.Timestamp>(4, _omitFieldNames ? '' : 'updatedAt', protoName: 'updatedAt', subBuilder: $4.Timestamp.create)
-    ..aOB(5, _omitFieldNames ? '' : 'deleted')
+    ..aOM<$4.Timestamp>(5, _omitFieldNames ? '' : 'deletedAt', protoName: 'deletedAt', subBuilder: $4.Timestamp.create)
     ..aOS(7, _omitFieldNames ? '' : 'title')
     ..aOS(8, _omitFieldNames ? '' : 'desc')
     ..a<$fixnum.Int64>(9, _omitFieldNames ? '' : 'author', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
@@ -121,7 +121,7 @@ class Record extends $pb.GeneratedMessage {
     ..p<$fixnum.Int64>(11, _omitFieldNames ? '' : 'assignees', $pb.PbFieldType.KU6)
     ..a<$fixnum.Int64>(12, _omitFieldNames ? '' : 'group', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
     ..aOB(13, _omitFieldNames ? '' : 'private')
-    ..e<RecordType>(14, _omitFieldNames ? '' : 'type', $pb.PbFieldType.OE, defaultOrMaker: RecordType.UnkownRecordType, valueOf: RecordType.valueOf, enumValues: RecordType.values)
+    ..e<RecordType>(14, _omitFieldNames ? '' : 'type', $pb.PbFieldType.OE, defaultOrMaker: RecordType.RecordTypeUnkown, valueOf: RecordType.valueOf, enumValues: RecordType.values)
     ..aOM<Pay>(15, _omitFieldNames ? '' : 'pay', subBuilder: Pay.create)
     ..aOM<Turn>(16, _omitFieldNames ? '' : 'turn', subBuilder: Turn.create)
     ..aOM<Plan>(17, _omitFieldNames ? '' : 'plan', subBuilder: Plan.create)
@@ -196,13 +196,15 @@ class Record extends $pb.GeneratedMessage {
   $4.Timestamp ensureUpdatedAt() => $_ensure(3);
 
   @$pb.TagNumber(5)
-  $core.bool get deleted => $_getBF(4);
+  $4.Timestamp get deletedAt => $_getN(4);
   @$pb.TagNumber(5)
-  set deleted($core.bool v) { $_setBool(4, v); }
+  set deletedAt($4.Timestamp v) { setField(5, v); }
   @$pb.TagNumber(5)
-  $core.bool hasDeleted() => $_has(4);
+  $core.bool hasDeletedAt() => $_has(4);
   @$pb.TagNumber(5)
-  void clearDeleted() => clearField(5);
+  void clearDeletedAt() => clearField(5);
+  @$pb.TagNumber(5)
+  $4.Timestamp ensureDeletedAt() => $_ensure(4);
 
   /// rec
   @$pb.TagNumber(7)
@@ -338,8 +340,8 @@ class Pay extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Pay', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.record'), createEmptyInstance: create)
     ..a<$core.double>(1, _omitFieldNames ? '' : 'total', $pb.PbFieldType.OD)
-    ..e<PayUnit>(2, _omitFieldNames ? '' : 'payUnit', $pb.PbFieldType.OE, protoName: 'payUnit', defaultOrMaker: PayUnit.UnknownPayUnit, valueOf: PayUnit.valueOf, enumValues: PayUnit.values)
-    ..e<PayType>(3, _omitFieldNames ? '' : 'payType', $pb.PbFieldType.OE, protoName: 'payType', defaultOrMaker: PayType.UnknownPayType, valueOf: PayType.valueOf, enumValues: PayType.values)
+    ..e<PayUnit>(2, _omitFieldNames ? '' : 'payUnit', $pb.PbFieldType.OE, protoName: 'payUnit', defaultOrMaker: PayUnit.PayUnitUnkown, valueOf: PayUnit.valueOf, enumValues: PayUnit.values)
+    ..e<PayType>(3, _omitFieldNames ? '' : 'payType', $pb.PbFieldType.OE, protoName: 'payType', defaultOrMaker: PayType.PayTypeUnkown, valueOf: PayType.valueOf, enumValues: PayType.values)
     ..a<$fixnum.Int64>(4, _omitFieldNames ? '' : 'repay', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
     ..p<$fixnum.Int64>(5, _omitFieldNames ? '' : 'toRepay', $pb.PbFieldType.KU6, protoName: 'toRepay')
     ..hasRequiredFields = false
@@ -573,7 +575,7 @@ class Plan extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Plan', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.record'), createEmptyInstance: create)
     ..aOM<$4.Timestamp>(1, _omitFieldNames ? '' : 'dueAt', protoName: 'dueAt', subBuilder: $4.Timestamp.create)
     ..aOM<Location>(2, _omitFieldNames ? '' : 'location', subBuilder: Location.create)
-    ..e<Sound>(3, _omitFieldNames ? '' : 'sound', $pb.PbFieldType.OE, defaultOrMaker: Sound.None, valueOf: Sound.valueOf, enumValues: Sound.values)
+    ..e<Sound>(3, _omitFieldNames ? '' : 'sound', $pb.PbFieldType.OE, defaultOrMaker: Sound.SoundNone, valueOf: Sound.valueOf, enumValues: Sound.values)
     ..hasRequiredFields = false
   ;
 
@@ -628,6 +630,67 @@ class Plan extends $pb.GeneratedMessage {
   $core.bool hasSound() => $_has(2);
   @$pb.TagNumber(3)
   void clearSound() => clearField(3);
+}
+
+/// conventionally has size of 20 reocrds per chunk
+class RecordsChunk extends $pb.GeneratedMessage {
+  factory RecordsChunk({
+    $2.Chunk? info,
+    $core.Iterable<Record>? reocrds,
+  }) {
+    final $result = create();
+    if (info != null) {
+      $result.info = info;
+    }
+    if (reocrds != null) {
+      $result.reocrds.addAll(reocrds);
+    }
+    return $result;
+  }
+  RecordsChunk._() : super();
+  factory RecordsChunk.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory RecordsChunk.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'RecordsChunk', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.record'), createEmptyInstance: create)
+    ..aOM<$2.Chunk>(1, _omitFieldNames ? '' : 'info', subBuilder: $2.Chunk.create)
+    ..pc<Record>(2, _omitFieldNames ? '' : 'reocrds', $pb.PbFieldType.PM, subBuilder: Record.create)
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  RecordsChunk clone() => RecordsChunk()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  RecordsChunk copyWith(void Function(RecordsChunk) updates) => super.copyWith((message) => updates(message as RecordsChunk)) as RecordsChunk;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static RecordsChunk create() => RecordsChunk._();
+  RecordsChunk createEmptyInstance() => create();
+  static $pb.PbList<RecordsChunk> createRepeated() => $pb.PbList<RecordsChunk>();
+  @$core.pragma('dart2js:noInline')
+  static RecordsChunk getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<RecordsChunk>(create);
+  static RecordsChunk? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $2.Chunk get info => $_getN(0);
+  @$pb.TagNumber(1)
+  set info($2.Chunk v) { setField(1, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasInfo() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearInfo() => clearField(1);
+  @$pb.TagNumber(1)
+  $2.Chunk ensureInfo() => $_ensure(0);
+
+  @$pb.TagNumber(2)
+  $core.List<Record> get reocrds => $_getList(1);
 }
 
 class IntegrityInput extends $pb.GeneratedMessage {
