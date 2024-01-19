@@ -55,7 +55,7 @@ message Record {
   uint64 id = 2;
   google.protobuf.Timestamp createdAt = 3;
   google.protobuf.Timestamp updatedAt = 4;
-  google.protobuf.Timestamp deletedAt = 5;
+  optional google.protobuf.Timestamp deletedAt = 5;
 
   // rec
   string title = 7;

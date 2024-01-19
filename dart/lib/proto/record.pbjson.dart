@@ -85,7 +85,7 @@ const Record$json = {
     {'1': 'id', '3': 2, '4': 1, '5': 4, '10': 'id'},
     {'1': 'createdAt', '3': 3, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'createdAt'},
     {'1': 'updatedAt', '3': 4, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'updatedAt'},
-    {'1': 'deletedAt', '3': 5, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'deletedAt'},
+    {'1': 'deletedAt', '3': 5, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '9': 1, '10': 'deletedAt', '17': true},
     {'1': 'title', '3': 7, '4': 1, '5': 9, '10': 'title'},
     {'1': 'desc', '3': 8, '4': 1, '5': 9, '10': 'desc'},
     {'1': 'author', '3': 9, '4': 1, '5': 4, '10': 'author'},
@@ -100,6 +100,7 @@ const Record$json = {
   ],
   '8': [
     {'1': 'value'},
+    {'1': '_deletedAt'},
   ],
 };
 
@@ -108,15 +109,15 @@ final $typed_data.Uint8List recordDescriptor = $convert.base64Decode(
     'CgZSZWNvcmQSLgoFY2h1bmsYASABKAsyGC5la2lwbWEuYXBpLmNvbW1vbi5DaHVua1IFY2h1bm'
     'sSDgoCaWQYAiABKARSAmlkEjgKCWNyZWF0ZWRBdBgDIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5U'
     'aW1lc3RhbXBSCWNyZWF0ZWRBdBI4Cgl1cGRhdGVkQXQYBCABKAsyGi5nb29nbGUucHJvdG9idW'
-    'YuVGltZXN0YW1wUgl1cGRhdGVkQXQSOAoJZGVsZXRlZEF0GAUgASgLMhouZ29vZ2xlLnByb3Rv'
-    'YnVmLlRpbWVzdGFtcFIJZGVsZXRlZEF0EhQKBXRpdGxlGAcgASgJUgV0aXRsZRISCgRkZXNjGA'
-    'ggASgJUgRkZXNjEhYKBmF1dGhvchgJIAEoBFIGYXV0aG9yEhoKCGFzc2lnbmVlGAogASgEUghh'
-    'c3NpZ25lZRIcCglhc3NpZ25lZXMYCyADKARSCWFzc2lnbmVlcxIUCgVncm91cBgMIAEoBFIFZ3'
-    'JvdXASGAoHcHJpdmF0ZRgNIAEoCFIHcHJpdmF0ZRIxCgR0eXBlGA4gASgOMh0uZWtpcG1hLmFw'
-    'aS5yZWNvcmQuUmVjb3JkVHlwZVIEdHlwZRIqCgNwYXkYDyABKAsyFi5la2lwbWEuYXBpLnJlY2'
-    '9yZC5QYXlIAFIDcGF5Ei0KBHR1cm4YECABKAsyFy5la2lwbWEuYXBpLnJlY29yZC5UdXJuSABS'
-    'BHR1cm4SLQoEcGxhbhgRIAEoCzIXLmVraXBtYS5hcGkucmVjb3JkLlBsYW5IAFIEcGxhbkIHCg'
-    'V2YWx1ZQ==');
+    'YuVGltZXN0YW1wUgl1cGRhdGVkQXQSPQoJZGVsZXRlZEF0GAUgASgLMhouZ29vZ2xlLnByb3Rv'
+    'YnVmLlRpbWVzdGFtcEgBUglkZWxldGVkQXSIAQESFAoFdGl0bGUYByABKAlSBXRpdGxlEhIKBG'
+    'Rlc2MYCCABKAlSBGRlc2MSFgoGYXV0aG9yGAkgASgEUgZhdXRob3ISGgoIYXNzaWduZWUYCiAB'
+    'KARSCGFzc2lnbmVlEhwKCWFzc2lnbmVlcxgLIAMoBFIJYXNzaWduZWVzEhQKBWdyb3VwGAwgAS'
+    'gEUgVncm91cBIYCgdwcml2YXRlGA0gASgIUgdwcml2YXRlEjEKBHR5cGUYDiABKA4yHS5la2lw'
+    'bWEuYXBpLnJlY29yZC5SZWNvcmRUeXBlUgR0eXBlEioKA3BheRgPIAEoCzIWLmVraXBtYS5hcG'
+    'kucmVjb3JkLlBheUgAUgNwYXkSLQoEdHVybhgQIAEoCzIXLmVraXBtYS5hcGkucmVjb3JkLlR1'
+    'cm5IAFIEdHVybhItCgRwbGFuGBEgASgLMhcuZWtpcG1hLmFwaS5yZWNvcmQuUGxhbkgAUgRwbG'
+    'FuQgcKBXZhbHVlQgwKCl9kZWxldGVkQXQ=');
 
 @$core.Deprecated('Use payDescriptor instead')
 const Pay$json = {
