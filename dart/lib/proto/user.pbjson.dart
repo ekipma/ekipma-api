@@ -49,15 +49,15 @@ final $typed_data.Uint8List walletTypeDescriptor = $convert.base64Decode(
 const User$json = {
   '1': 'User',
   '2': [
-    {'1': 'id', '3': 1, '4': 1, '5': 4, '10': 'id'},
+    {'1': 'id', '3': 1, '4': 1, '5': 9, '10': 'id'},
     {'1': 'createdAt', '3': 2, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'createdAt'},
     {'1': 'updatedAt', '3': 3, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'updatedAt'},
     {'1': 'mobile', '3': 4, '4': 1, '5': 9, '10': 'mobile'},
-    {'1': 'code', '3': 5, '4': 1, '5': 9, '10': 'code'},
-    {'1': 'name', '3': 6, '4': 1, '5': 9, '10': 'name'},
-    {'1': 'email', '3': 7, '4': 1, '5': 9, '10': 'email'},
-    {'1': 'photoURL', '3': 8, '4': 1, '5': 9, '10': 'photoURL'},
-    {'1': 'public', '3': 9, '4': 1, '5': 8, '10': 'public'},
+    {'1': 'name', '3': 5, '4': 1, '5': 9, '10': 'name'},
+    {'1': 'email', '3': 6, '4': 1, '5': 9, '10': 'email'},
+    {'1': 'public', '3': 7, '4': 1, '5': 8, '10': 'public'},
+    {'1': 'code', '3': 8, '4': 1, '5': 9, '10': 'code'},
+    {'1': 'photoURL', '3': 9, '4': 1, '5': 9, '10': 'photoURL'},
     {'1': 'friends', '3': 10, '4': 3, '5': 4, '10': 'friends'},
     {'1': 'inviter', '3': 11, '4': 1, '5': 4, '10': 'inviter'},
     {'1': 'role', '3': 12, '4': 1, '5': 14, '6': '.ekipma.api.user.UserRole', '10': 'role'},
@@ -69,11 +69,11 @@ const User$json = {
 
 /// Descriptor for `User`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List userDescriptor = $convert.base64Decode(
-    'CgRVc2VyEg4KAmlkGAEgASgEUgJpZBI4CgljcmVhdGVkQXQYAiABKAsyGi5nb29nbGUucHJvdG'
+    'CgRVc2VyEg4KAmlkGAEgASgJUgJpZBI4CgljcmVhdGVkQXQYAiABKAsyGi5nb29nbGUucHJvdG'
     '9idWYuVGltZXN0YW1wUgljcmVhdGVkQXQSOAoJdXBkYXRlZEF0GAMgASgLMhouZ29vZ2xlLnBy'
     'b3RvYnVmLlRpbWVzdGFtcFIJdXBkYXRlZEF0EhYKBm1vYmlsZRgEIAEoCVIGbW9iaWxlEhIKBG'
-    'NvZGUYBSABKAlSBGNvZGUSEgoEbmFtZRgGIAEoCVIEbmFtZRIUCgVlbWFpbBgHIAEoCVIFZW1h'
-    'aWwSGgoIcGhvdG9VUkwYCCABKAlSCHBob3RvVVJMEhYKBnB1YmxpYxgJIAEoCFIGcHVibGljEh'
+    '5hbWUYBSABKAlSBG5hbWUSFAoFZW1haWwYBiABKAlSBWVtYWlsEhYKBnB1YmxpYxgHIAEoCFIG'
+    'cHVibGljEhIKBGNvZGUYCCABKAlSBGNvZGUSGgoIcGhvdG9VUkwYCSABKAlSCHBob3RvVVJMEh'
     'gKB2ZyaWVuZHMYCiADKARSB2ZyaWVuZHMSGAoHaW52aXRlchgLIAEoBFIHaW52aXRlchItCgRy'
     'b2xlGAwgASgOMhkuZWtpcG1hLmFwaS51c2VyLlVzZXJSb2xlUgRyb2xlEjwKC3ByZW1pdW1UaW'
     'xsGA0gASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcFILcHJlbWl1bVRpbGwSMQoHd2Fs'

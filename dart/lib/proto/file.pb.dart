@@ -13,32 +13,27 @@ import 'dart:core' as $core;
 
 import 'package:protobuf/protobuf.dart' as $pb;
 
-class FileUploadRequest extends $pb.GeneratedMessage {
-  factory FileUploadRequest({
-    $core.String? fileName,
-    $core.int? size,
+class FileChunk extends $pb.GeneratedMessage {
+  factory FileChunk({
+    $core.int? fileSize,
     $core.List<$core.int>? chunk,
   }) {
     final $result = create();
-    if (fileName != null) {
-      $result.fileName = fileName;
-    }
-    if (size != null) {
-      $result.size = size;
+    if (fileSize != null) {
+      $result.fileSize = fileSize;
     }
     if (chunk != null) {
       $result.chunk = chunk;
     }
     return $result;
   }
-  FileUploadRequest._() : super();
-  factory FileUploadRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory FileUploadRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  FileChunk._() : super();
+  factory FileChunk.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory FileChunk.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'FileUploadRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.record'), createEmptyInstance: create)
-    ..aOS(1, _omitFieldNames ? '' : 'fileName')
-    ..a<$core.int>(2, _omitFieldNames ? '' : 'size', $pb.PbFieldType.OU3)
-    ..a<$core.List<$core.int>>(3, _omitFieldNames ? '' : 'chunk', $pb.PbFieldType.OY)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'FileChunk', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.record'), createEmptyInstance: create)
+    ..a<$core.int>(1, _omitFieldNames ? '' : 'fileSize', $pb.PbFieldType.OU3)
+    ..a<$core.List<$core.int>>(2, _omitFieldNames ? '' : 'chunk', $pb.PbFieldType.OY)
     ..hasRequiredFields = false
   ;
 
@@ -46,72 +41,63 @@ class FileUploadRequest extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
   'Will be removed in next major version')
-  FileUploadRequest clone() => FileUploadRequest()..mergeFromMessage(this);
+  FileChunk clone() => FileChunk()..mergeFromMessage(this);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  FileUploadRequest copyWith(void Function(FileUploadRequest) updates) => super.copyWith((message) => updates(message as FileUploadRequest)) as FileUploadRequest;
+  FileChunk copyWith(void Function(FileChunk) updates) => super.copyWith((message) => updates(message as FileChunk)) as FileChunk;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
-  static FileUploadRequest create() => FileUploadRequest._();
-  FileUploadRequest createEmptyInstance() => create();
-  static $pb.PbList<FileUploadRequest> createRepeated() => $pb.PbList<FileUploadRequest>();
+  static FileChunk create() => FileChunk._();
+  FileChunk createEmptyInstance() => create();
+  static $pb.PbList<FileChunk> createRepeated() => $pb.PbList<FileChunk>();
   @$core.pragma('dart2js:noInline')
-  static FileUploadRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<FileUploadRequest>(create);
-  static FileUploadRequest? _defaultInstance;
+  static FileChunk getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<FileChunk>(create);
+  static FileChunk? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.String get fileName => $_getSZ(0);
+  $core.int get fileSize => $_getIZ(0);
   @$pb.TagNumber(1)
-  set fileName($core.String v) { $_setString(0, v); }
+  set fileSize($core.int v) { $_setUnsignedInt32(0, v); }
   @$pb.TagNumber(1)
-  $core.bool hasFileName() => $_has(0);
+  $core.bool hasFileSize() => $_has(0);
   @$pb.TagNumber(1)
-  void clearFileName() => clearField(1);
+  void clearFileSize() => clearField(1);
 
   @$pb.TagNumber(2)
-  $core.int get size => $_getIZ(1);
+  $core.List<$core.int> get chunk => $_getN(1);
   @$pb.TagNumber(2)
-  set size($core.int v) { $_setUnsignedInt32(1, v); }
+  set chunk($core.List<$core.int> v) { $_setBytes(1, v); }
   @$pb.TagNumber(2)
-  $core.bool hasSize() => $_has(1);
+  $core.bool hasChunk() => $_has(1);
   @$pb.TagNumber(2)
-  void clearSize() => clearField(2);
-
-  @$pb.TagNumber(3)
-  $core.List<$core.int> get chunk => $_getN(2);
-  @$pb.TagNumber(3)
-  set chunk($core.List<$core.int> v) { $_setBytes(2, v); }
-  @$pb.TagNumber(3)
-  $core.bool hasChunk() => $_has(2);
-  @$pb.TagNumber(3)
-  void clearChunk() => clearField(3);
+  void clearChunk() => clearField(2);
 }
 
-class FileUploadResponse extends $pb.GeneratedMessage {
-  factory FileUploadResponse({
+class UploadOut extends $pb.GeneratedMessage {
+  factory UploadOut({
     $core.String? fileName,
-    $core.int? size,
+    $core.int? part,
   }) {
     final $result = create();
     if (fileName != null) {
       $result.fileName = fileName;
     }
-    if (size != null) {
-      $result.size = size;
+    if (part != null) {
+      $result.part = part;
     }
     return $result;
   }
-  FileUploadResponse._() : super();
-  factory FileUploadResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory FileUploadResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  UploadOut._() : super();
+  factory UploadOut.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory UploadOut.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'FileUploadResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.record'), createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'UploadOut', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.record'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'fileName')
-    ..a<$core.int>(2, _omitFieldNames ? '' : 'size', $pb.PbFieldType.OU3)
+    ..a<$core.int>(2, _omitFieldNames ? '' : 'part', $pb.PbFieldType.OU3)
     ..hasRequiredFields = false
   ;
 
@@ -119,22 +105,22 @@ class FileUploadResponse extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
   'Will be removed in next major version')
-  FileUploadResponse clone() => FileUploadResponse()..mergeFromMessage(this);
+  UploadOut clone() => UploadOut()..mergeFromMessage(this);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  FileUploadResponse copyWith(void Function(FileUploadResponse) updates) => super.copyWith((message) => updates(message as FileUploadResponse)) as FileUploadResponse;
+  UploadOut copyWith(void Function(UploadOut) updates) => super.copyWith((message) => updates(message as UploadOut)) as UploadOut;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
-  static FileUploadResponse create() => FileUploadResponse._();
-  FileUploadResponse createEmptyInstance() => create();
-  static $pb.PbList<FileUploadResponse> createRepeated() => $pb.PbList<FileUploadResponse>();
+  static UploadOut create() => UploadOut._();
+  UploadOut createEmptyInstance() => create();
+  static $pb.PbList<UploadOut> createRepeated() => $pb.PbList<UploadOut>();
   @$core.pragma('dart2js:noInline')
-  static FileUploadResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<FileUploadResponse>(create);
-  static FileUploadResponse? _defaultInstance;
+  static UploadOut getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<UploadOut>(create);
+  static UploadOut? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get fileName => $_getSZ(0);
@@ -146,13 +132,13 @@ class FileUploadResponse extends $pb.GeneratedMessage {
   void clearFileName() => clearField(1);
 
   @$pb.TagNumber(2)
-  $core.int get size => $_getIZ(1);
+  $core.int get part => $_getIZ(1);
   @$pb.TagNumber(2)
-  set size($core.int v) { $_setUnsignedInt32(1, v); }
+  set part($core.int v) { $_setUnsignedInt32(1, v); }
   @$pb.TagNumber(2)
-  $core.bool hasSize() => $_has(1);
+  $core.bool hasPart() => $_has(1);
   @$pb.TagNumber(2)
-  void clearSize() => clearField(2);
+  void clearPart() => clearField(2);
 }
 
 

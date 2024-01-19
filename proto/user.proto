@@ -61,21 +61,22 @@ enum UserRole {
 
 message User {
   // gorm
-  uint64 id = 1;
+  string id = 1;
   google.protobuf.Timestamp createdAt = 2;
   google.protobuf.Timestamp updatedAt = 3;
   // user
   string mobile = 4;
-  string name = 5;  // editable
-  string email = 6; // editable
-  bool public = 7;  // editable
-  string code = 8;  // renewable - referal code
-  repeated uint64 friends = 9;
-  uint64 inviter = 10;
-  UserRole role = 11;
-  google.protobuf.Timestamp premiumTill = 12;
-  repeated Wallet wallets = 13;
-  uint64 primaryWallet = 14;
+  string name = 5;     // editable
+  string email = 6;    // editable
+  bool public = 7;     // editable
+  string code = 8;     // renewable - referral code
+  string photoURL = 9; // from uuid
+  repeated uint64 friends = 10;
+  uint64 inviter = 11;
+  UserRole role = 12;
+  google.protobuf.Timestamp premiumTill = 13;
+  repeated Wallet wallets = 14;
+  uint64 primaryWallet = 15;
 }
 
 // otp

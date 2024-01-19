@@ -22,15 +22,15 @@ export 'user.pbenum.dart';
 
 class User extends $pb.GeneratedMessage {
   factory User({
-    $fixnum.Int64? id,
+    $core.String? id,
     $4.Timestamp? createdAt,
     $4.Timestamp? updatedAt,
     $core.String? mobile,
-    $core.String? code,
     $core.String? name,
     $core.String? email,
-    $core.String? photoURL,
     $core.bool? public,
+    $core.String? code,
+    $core.String? photoURL,
     $core.Iterable<$fixnum.Int64>? friends,
     $fixnum.Int64? inviter,
     UserRole? role,
@@ -51,20 +51,20 @@ class User extends $pb.GeneratedMessage {
     if (mobile != null) {
       $result.mobile = mobile;
     }
-    if (code != null) {
-      $result.code = code;
-    }
     if (name != null) {
       $result.name = name;
     }
     if (email != null) {
       $result.email = email;
     }
-    if (photoURL != null) {
-      $result.photoURL = photoURL;
-    }
     if (public != null) {
       $result.public = public;
+    }
+    if (code != null) {
+      $result.code = code;
+    }
+    if (photoURL != null) {
+      $result.photoURL = photoURL;
     }
     if (friends != null) {
       $result.friends.addAll(friends);
@@ -91,15 +91,15 @@ class User extends $pb.GeneratedMessage {
   factory User.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'User', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.user'), createEmptyInstance: create)
-    ..a<$fixnum.Int64>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
+    ..aOS(1, _omitFieldNames ? '' : 'id')
     ..aOM<$4.Timestamp>(2, _omitFieldNames ? '' : 'createdAt', protoName: 'createdAt', subBuilder: $4.Timestamp.create)
     ..aOM<$4.Timestamp>(3, _omitFieldNames ? '' : 'updatedAt', protoName: 'updatedAt', subBuilder: $4.Timestamp.create)
     ..aOS(4, _omitFieldNames ? '' : 'mobile')
-    ..aOS(5, _omitFieldNames ? '' : 'code')
-    ..aOS(6, _omitFieldNames ? '' : 'name')
-    ..aOS(7, _omitFieldNames ? '' : 'email')
-    ..aOS(8, _omitFieldNames ? '' : 'photoURL', protoName: 'photoURL')
-    ..aOB(9, _omitFieldNames ? '' : 'public')
+    ..aOS(5, _omitFieldNames ? '' : 'name')
+    ..aOS(6, _omitFieldNames ? '' : 'email')
+    ..aOB(7, _omitFieldNames ? '' : 'public')
+    ..aOS(8, _omitFieldNames ? '' : 'code')
+    ..aOS(9, _omitFieldNames ? '' : 'photoURL', protoName: 'photoURL')
     ..p<$fixnum.Int64>(10, _omitFieldNames ? '' : 'friends', $pb.PbFieldType.KU6)
     ..a<$fixnum.Int64>(11, _omitFieldNames ? '' : 'inviter', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
     ..e<UserRole>(12, _omitFieldNames ? '' : 'role', $pb.PbFieldType.OE, defaultOrMaker: UserRole.Unkown, valueOf: UserRole.valueOf, enumValues: UserRole.values)
@@ -132,9 +132,9 @@ class User extends $pb.GeneratedMessage {
 
   /// gorm
   @$pb.TagNumber(1)
-  $fixnum.Int64 get id => $_getI64(0);
+  $core.String get id => $_getSZ(0);
   @$pb.TagNumber(1)
-  set id($fixnum.Int64 v) { $_setInt64(0, v); }
+  set id($core.String v) { $_setString(0, v); }
   @$pb.TagNumber(1)
   $core.bool hasId() => $_has(0);
   @$pb.TagNumber(1)
@@ -173,49 +173,49 @@ class User extends $pb.GeneratedMessage {
   void clearMobile() => clearField(4);
 
   @$pb.TagNumber(5)
-  $core.String get code => $_getSZ(4);
+  $core.String get name => $_getSZ(4);
   @$pb.TagNumber(5)
-  set code($core.String v) { $_setString(4, v); }
+  set name($core.String v) { $_setString(4, v); }
   @$pb.TagNumber(5)
-  $core.bool hasCode() => $_has(4);
+  $core.bool hasName() => $_has(4);
   @$pb.TagNumber(5)
-  void clearCode() => clearField(5);
+  void clearName() => clearField(5);
 
   @$pb.TagNumber(6)
-  $core.String get name => $_getSZ(5);
+  $core.String get email => $_getSZ(5);
   @$pb.TagNumber(6)
-  set name($core.String v) { $_setString(5, v); }
+  set email($core.String v) { $_setString(5, v); }
   @$pb.TagNumber(6)
-  $core.bool hasName() => $_has(5);
+  $core.bool hasEmail() => $_has(5);
   @$pb.TagNumber(6)
-  void clearName() => clearField(6);
+  void clearEmail() => clearField(6);
 
   @$pb.TagNumber(7)
-  $core.String get email => $_getSZ(6);
+  $core.bool get public => $_getBF(6);
   @$pb.TagNumber(7)
-  set email($core.String v) { $_setString(6, v); }
+  set public($core.bool v) { $_setBool(6, v); }
   @$pb.TagNumber(7)
-  $core.bool hasEmail() => $_has(6);
+  $core.bool hasPublic() => $_has(6);
   @$pb.TagNumber(7)
-  void clearEmail() => clearField(7);
+  void clearPublic() => clearField(7);
 
   @$pb.TagNumber(8)
-  $core.String get photoURL => $_getSZ(7);
+  $core.String get code => $_getSZ(7);
   @$pb.TagNumber(8)
-  set photoURL($core.String v) { $_setString(7, v); }
+  set code($core.String v) { $_setString(7, v); }
   @$pb.TagNumber(8)
-  $core.bool hasPhotoURL() => $_has(7);
+  $core.bool hasCode() => $_has(7);
   @$pb.TagNumber(8)
-  void clearPhotoURL() => clearField(8);
+  void clearCode() => clearField(8);
 
   @$pb.TagNumber(9)
-  $core.bool get public => $_getBF(8);
+  $core.String get photoURL => $_getSZ(8);
   @$pb.TagNumber(9)
-  set public($core.bool v) { $_setBool(8, v); }
+  set photoURL($core.String v) { $_setString(8, v); }
   @$pb.TagNumber(9)
-  $core.bool hasPublic() => $_has(8);
+  $core.bool hasPhotoURL() => $_has(8);
   @$pb.TagNumber(9)
-  void clearPublic() => clearField(9);
+  void clearPhotoURL() => clearField(9);
 
   @$pb.TagNumber(10)
   $core.List<$fixnum.Int64> get friends => $_getList(9);

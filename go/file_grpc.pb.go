@@ -22,7 +22,7 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type FileServiceClient interface {
-	Upload(ctx context.Context, opts ...grpc.CallOption) (FileService_UploadClient, error)
+	UploadAvatar(ctx context.Context, opts ...grpc.CallOption) (FileService_UploadAvatarClient, error)
 }
 
 type fileServiceClient struct {
@@ -33,34 +33,31 @@ func NewFileServiceClient(cc grpc.ClientConnInterface) FileServiceClient {
 	return &fileServiceClient{cc}
 }
 
-func (c *fileServiceClient) Upload(ctx context.Context, opts ...grpc.CallOption) (FileService_UploadClient, error) {
-	stream, err := c.cc.NewStream(ctx, &FileService_ServiceDesc.Streams[0], "/ekipma.api.record.FileService/Upload", opts...)
+func (c *fileServiceClient) UploadAvatar(ctx context.Context, opts ...grpc.CallOption) (FileService_UploadAvatarClient, error) {
+	stream, err := c.cc.NewStream(ctx, &FileService_ServiceDesc.Streams[0], "/ekipma.api.record.FileService/UploadAvatar", opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &fileServiceUploadClient{stream}
+	x := &fileServiceUploadAvatarClient{stream}
 	return x, nil
 }
 
-type FileService_UploadClient interface {
-	Send(*FileUploadRequest) error
-	CloseAndRecv() (*FileUploadResponse, error)
+type FileService_UploadAvatarClient interface {
+	Send(*FileChunk) error
+	Recv() (*UploadOut, error)
 	grpc.ClientStream
 }
 
-type fileServiceUploadClient struct {
+type fileServiceUploadAvatarClient struct {
 	grpc.ClientStream
 }
 
-func (x *fileServiceUploadClient) Send(m *FileUploadRequest) error {
+func (x *fileServiceUploadAvatarClient) Send(m *FileChunk) error {
 	return x.ClientStream.SendMsg(m)
 }
 
-func (x *fileServiceUploadClient) CloseAndRecv() (*FileUploadResponse, error) {
-	if err := x.ClientStream.CloseSend(); err != nil {
-		return nil, err
-	}
-	m := new(FileUploadResponse)
+func (x *fileServiceUploadAvatarClient) Recv() (*UploadOut, error) {
+	m := new(UploadOut)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
@@ -71,7 +68,7 @@ func (x *fileServiceUploadClient) CloseAndRecv() (*FileUploadResponse, error) {
 // All implementations must embed UnimplementedFileServiceServer
 // for forward compatibility
 type FileServiceServer interface {
-	Upload(FileService_UploadServer) error
+	UploadAvatar(FileService_UploadAvatarServer) error
 	mustEmbedUnimplementedFileServiceServer()
 }
 
@@ -79,8 +76,8 @@ type FileServiceServer interface {
 type UnimplementedFileServiceServer struct {
 }
 
-func (UnimplementedFileServiceServer) Upload(FileService_UploadServer) error {
-	return status.Errorf(codes.Unimplemented, "method Upload not implemented")
+func (UnimplementedFileServiceServer) UploadAvatar(FileService_UploadAvatarServer) error {
+	return status.Errorf(codes.Unimplemented, "method UploadAvatar not implemented")
 }
 func (UnimplementedFileServiceServer) mustEmbedUnimplementedFileServiceServer() {}
 
@@ -95,26 +92,26 @@ func RegisterFileServiceServer(s grpc.ServiceRegistrar, srv FileServiceServer) {
 	s.RegisterService(&FileService_ServiceDesc, srv)
 }
 
-func _FileService_Upload_Handler(srv interface{}, stream grpc.ServerStream) error {
-	return srv.(FileServiceServer).Upload(&fileServiceUploadServer{stream})
+func _FileService_UploadAvatar_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(FileServiceServer).UploadAvatar(&fileServiceUploadAvatarServer{stream})
 }
 
-type FileService_UploadServer interface {
-	SendAndClose(*FileUploadResponse) error
-	Recv() (*FileUploadRequest, error)
+type FileService_UploadAvatarServer interface {
+	Send(*UploadOut) error
+	Recv() (*FileChunk, error)
 	grpc.ServerStream
 }
 
-type fileServiceUploadServer struct {
+type fileServiceUploadAvatarServer struct {
 	grpc.ServerStream
 }
 
-func (x *fileServiceUploadServer) SendAndClose(m *FileUploadResponse) error {
+func (x *fileServiceUploadAvatarServer) Send(m *UploadOut) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func (x *fileServiceUploadServer) Recv() (*FileUploadRequest, error) {
-	m := new(FileUploadRequest)
+func (x *fileServiceUploadAvatarServer) Recv() (*FileChunk, error) {
+	m := new(FileChunk)
 	if err := x.ServerStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
@@ -130,8 +127,9 @@ var FileService_ServiceDesc = grpc.ServiceDesc{
 	Methods:     []grpc.MethodDesc{},
 	Streams: []grpc.StreamDesc{
 		{
-			StreamName:    "Upload",
-			Handler:       _FileService_Upload_Handler,
+			StreamName:    "UploadAvatar",
+			Handler:       _FileService_UploadAvatar_Handler,
+			ServerStreams: true,
 			ClientStreams: true,
 		},
 	},
