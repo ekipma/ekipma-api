@@ -126,7 +126,7 @@ const Pay$json = {
     {'1': 'payUnit', '3': 2, '4': 1, '5': 14, '6': '.ekipma.api.record.PayUnit', '10': 'payUnit'},
     {'1': 'payType', '3': 3, '4': 1, '5': 14, '6': '.ekipma.api.record.PayType', '10': 'payType'},
     {'1': 'repaidBy', '3': 4, '4': 1, '5': 4, '10': 'repaidBy'},
-    {'1': 'willRepay', '3': 5, '4': 3, '5': 4, '10': 'willRepay'},
+    {'1': 'toRepay', '3': 5, '4': 3, '5': 4, '10': 'toRepay'},
   ],
 };
 
@@ -134,8 +134,8 @@ const Pay$json = {
 final $typed_data.Uint8List payDescriptor = $convert.base64Decode(
     'CgNQYXkSFAoFdG90YWwYASABKAFSBXRvdGFsEjQKB3BheVVuaXQYAiABKA4yGi5la2lwbWEuYX'
     'BpLnJlY29yZC5QYXlVbml0UgdwYXlVbml0EjQKB3BheVR5cGUYAyABKA4yGi5la2lwbWEuYXBp'
-    'LnJlY29yZC5QYXlUeXBlUgdwYXlUeXBlEhoKCHJlcGFpZEJ5GAQgASgEUghyZXBhaWRCeRIcCg'
-    'l3aWxsUmVwYXkYBSADKARSCXdpbGxSZXBheQ==');
+    'LnJlY29yZC5QYXlUeXBlUgdwYXlUeXBlEhoKCHJlcGFpZEJ5GAQgASgEUghyZXBhaWRCeRIYCg'
+    'd0b1JlcGF5GAUgAygEUgd0b1JlcGF5');
 
 @$core.Deprecated('Use turnDescriptor instead')
 const Turn$json = {

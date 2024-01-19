@@ -314,7 +314,7 @@ class Pay extends $pb.GeneratedMessage {
     PayUnit? payUnit,
     PayType? payType,
     $fixnum.Int64? repaidBy,
-    $core.Iterable<$fixnum.Int64>? willRepay,
+    $core.Iterable<$fixnum.Int64>? toRepay,
   }) {
     final $result = create();
     if (total != null) {
@@ -329,8 +329,8 @@ class Pay extends $pb.GeneratedMessage {
     if (repaidBy != null) {
       $result.repaidBy = repaidBy;
     }
-    if (willRepay != null) {
-      $result.willRepay.addAll(willRepay);
+    if (toRepay != null) {
+      $result.toRepay.addAll(toRepay);
     }
     return $result;
   }
@@ -343,7 +343,7 @@ class Pay extends $pb.GeneratedMessage {
     ..e<PayUnit>(2, _omitFieldNames ? '' : 'payUnit', $pb.PbFieldType.OE, protoName: 'payUnit', defaultOrMaker: PayUnit.PayUnitUnkown, valueOf: PayUnit.valueOf, enumValues: PayUnit.values)
     ..e<PayType>(3, _omitFieldNames ? '' : 'payType', $pb.PbFieldType.OE, protoName: 'payType', defaultOrMaker: PayType.PayTypeUnkown, valueOf: PayType.valueOf, enumValues: PayType.values)
     ..a<$fixnum.Int64>(4, _omitFieldNames ? '' : 'repaidBy', $pb.PbFieldType.OU6, protoName: 'repaidBy', defaultOrMaker: $fixnum.Int64.ZERO)
-    ..p<$fixnum.Int64>(5, _omitFieldNames ? '' : 'willRepay', $pb.PbFieldType.KU6, protoName: 'willRepay')
+    ..p<$fixnum.Int64>(5, _omitFieldNames ? '' : 'toRepay', $pb.PbFieldType.KU6, protoName: 'toRepay')
     ..hasRequiredFields = false
   ;
 
@@ -405,7 +405,7 @@ class Pay extends $pb.GeneratedMessage {
   void clearRepaidBy() => clearField(4);
 
   @$pb.TagNumber(5)
-  $core.List<$fixnum.Int64> get willRepay => $_getList(4);
+  $core.List<$fixnum.Int64> get toRepay => $_getList(4);
 }
 
 class Turn extends $pb.GeneratedMessage {

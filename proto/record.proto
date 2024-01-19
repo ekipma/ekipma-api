@@ -95,8 +95,8 @@ message Pay {
   double total = 1;
   PayUnit payUnit = 2;
   PayType payType = 3;
-  uint64 repaidBy = 4;           // output
-  repeated uint64 willRepay = 5; // input
+  uint64 repaidBy = 4;         // output
+  repeated uint64 toRepay = 5; // input
 }
 
 // turn
