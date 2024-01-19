@@ -30,6 +30,8 @@ then
     exit 1
 fi
 
+set +e
+
 echo "> Commit everything"
 git add .
 git commit -m"$message"
@@ -40,6 +42,8 @@ if [ $? -eq 0 ]; then
 else
     echo "Command failed with exit code $?"
 fi
+
+set -e
 
 # Add git version
 if [ -z "$tag" ]
