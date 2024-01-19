@@ -25,7 +25,7 @@ service UserService {
   rpc LoginUser(LoginInput) returns (AuthOutput) {}
   // direct update
   rpc UpdateUser(User) returns (User) {
-    // update only "name | "
+    // update only "name | email | public"
   }
   // friend
   rpc AddFriends(stream MobilesChunk) returns (stream FriendsChunk);
@@ -66,17 +66,16 @@ message User {
   google.protobuf.Timestamp updatedAt = 3;
   // user
   string mobile = 4;
-  string code = 5;     // TODO
-  string name = 6;     // editable
-  string email = 7;    // editable
-  string photoURL = 8; // editable
-  bool public = 9;     // editable
-  repeated uint64 friends = 10;
-  uint64 inviter = 11;
-  UserRole role = 12;
-  google.protobuf.Timestamp premiumTill = 13;
-  repeated Wallet wallets = 14;
-  uint64 primaryWallet = 15;
+  string name = 5;  // editable
+  string email = 6; // editable
+  bool public = 7;  // editable
+  string code = 8;  // renewable - referal code
+  repeated uint64 friends = 9;
+  uint64 inviter = 10;
+  UserRole role = 11;
+  google.protobuf.Timestamp premiumTill = 12;
+  repeated Wallet wallets = 13;
+  uint64 primaryWallet = 14;
 }
 
 // otp
