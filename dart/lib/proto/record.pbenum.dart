@@ -51,17 +51,17 @@ class PayType extends $pb.ProtobufEnum {
 
 class PayUnit extends $pb.ProtobufEnum {
   static const PayUnit PayUnitUnkown = PayUnit._(0, _omitEnumNames ? '' : 'PayUnitUnkown');
-  static const PayUnit PayUnitUSD = PayUnit._(1, _omitEnumNames ? '' : 'PayUnitUSD');
-  static const PayUnit PayUnitIRTT = PayUnit._(2, _omitEnumNames ? '' : 'PayUnitIRTT');
-  static const PayUnit PayUnitEUR = PayUnit._(3, _omitEnumNames ? '' : 'PayUnitEUR');
-  static const PayUnit PayUnitPOND = PayUnit._(4, _omitEnumNames ? '' : 'PayUnitPOND');
+  static const PayUnit USD = PayUnit._(1, _omitEnumNames ? '' : 'USD');
+  static const PayUnit IRTT = PayUnit._(2, _omitEnumNames ? '' : 'IRTT');
+  static const PayUnit EUR = PayUnit._(3, _omitEnumNames ? '' : 'EUR');
+  static const PayUnit POND = PayUnit._(4, _omitEnumNames ? '' : 'POND');
 
   static const $core.List<PayUnit> values = <PayUnit> [
     PayUnitUnkown,
-    PayUnitUSD,
-    PayUnitIRTT,
-    PayUnitEUR,
-    PayUnitPOND,
+    USD,
+    IRTT,
+    EUR,
+    POND,
   ];
 
   static final $core.Map<$core.int, PayUnit> _byValue = $pb.ProtobufEnum.initByValue(values);

@@ -49,17 +49,17 @@ const PayUnit$json = {
   '1': 'PayUnit',
   '2': [
     {'1': 'PayUnitUnkown', '2': 0},
-    {'1': 'PayUnitUSD', '2': 1},
-    {'1': 'PayUnitIRTT', '2': 2},
-    {'1': 'PayUnitEUR', '2': 3},
-    {'1': 'PayUnitPOND', '2': 4},
+    {'1': 'USD', '2': 1},
+    {'1': 'IRTT', '2': 2},
+    {'1': 'EUR', '2': 3},
+    {'1': 'POND', '2': 4},
   ],
 };
 
 /// Descriptor for `PayUnit`. Decode as a `google.protobuf.EnumDescriptorProto`.
 final $typed_data.Uint8List payUnitDescriptor = $convert.base64Decode(
-    'CgdQYXlVbml0EhEKDVBheVVuaXRVbmtvd24QABIOCgpQYXlVbml0VVNEEAESDwoLUGF5VW5pdE'
-    'lSVFQQAhIOCgpQYXlVbml0RVVSEAMSDwoLUGF5VW5pdFBPTkQQBA==');
+    'CgdQYXlVbml0EhEKDVBheVVuaXRVbmtvd24QABIHCgNVU0QQARIICgRJUlRUEAISBwoDRVVSEA'
+    'MSCAoEUE9ORBAE');
 
 @$core.Deprecated('Use soundDescriptor instead')
 const Sound$json = {

@@ -81,10 +81,10 @@ enum PayType {
 
 enum PayUnit {
   PayUnitUnkown = 0;
-  PayUnitUSD = 1;
-  PayUnitIRTT = 2;
-  PayUnitEUR = 3;
-  PayUnitPOND = 4;
+  USD = 1;
+  IRTT = 2;
+  EUR = 3;
+  POND = 4;
 }
 
 message Pay {
