@@ -102,7 +102,7 @@ class User extends $pb.GeneratedMessage {
     ..aOS(9, _omitFieldNames ? '' : 'photoURL', protoName: 'photoURL')
     ..p<$fixnum.Int64>(10, _omitFieldNames ? '' : 'friends', $pb.PbFieldType.KU6)
     ..a<$fixnum.Int64>(11, _omitFieldNames ? '' : 'inviter', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
-    ..e<UserRole>(12, _omitFieldNames ? '' : 'role', $pb.PbFieldType.OE, defaultOrMaker: UserRole.Unkown, valueOf: UserRole.valueOf, enumValues: UserRole.values)
+    ..e<UserRole>(12, _omitFieldNames ? '' : 'role', $pb.PbFieldType.OE, defaultOrMaker: UserRole.UserRoleUnkown, valueOf: UserRole.valueOf, enumValues: UserRole.values)
     ..aOM<$4.Timestamp>(13, _omitFieldNames ? '' : 'premiumTill', protoName: 'premiumTill', subBuilder: $4.Timestamp.create)
     ..pc<Wallet>(14, _omitFieldNames ? '' : 'wallets', $pb.PbFieldType.PM, subBuilder: Wallet.create)
     ..a<$fixnum.Int64>(15, _omitFieldNames ? '' : 'primaryWallet', $pb.PbFieldType.OU6, protoName: 'primaryWallet', defaultOrMaker: $fixnum.Int64.ZERO)

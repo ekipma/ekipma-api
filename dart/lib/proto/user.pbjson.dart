@@ -17,16 +17,17 @@ import 'dart:typed_data' as $typed_data;
 const UserRole$json = {
   '1': 'UserRole',
   '2': [
-    {'1': 'Unkown', '2': 0},
-    {'1': 'Normal', '2': 1},
-    {'1': 'Opr', '2': 2},
-    {'1': 'Admin', '2': 3},
+    {'1': 'UserRoleUnkown', '2': 0},
+    {'1': 'UserRoleNormal', '2': 1},
+    {'1': 'UserRoleOpr', '2': 2},
+    {'1': 'UserRoleAdmin', '2': 3},
   ],
 };
 
 /// Descriptor for `UserRole`. Decode as a `google.protobuf.EnumDescriptorProto`.
 final $typed_data.Uint8List userRoleDescriptor = $convert.base64Decode(
-    'CghVc2VyUm9sZRIKCgZVbmtvd24QABIKCgZOb3JtYWwQARIHCgNPcHIQAhIJCgVBZG1pbhAD');
+    'CghVc2VyUm9sZRISCg5Vc2VyUm9sZVVua293bhAAEhIKDlVzZXJSb2xlTm9ybWFsEAESDwoLVX'
+    'NlclJvbGVPcHIQAhIRCg1Vc2VyUm9sZUFkbWluEAM=');
 
 @$core.Deprecated('Use walletTypeDescriptor instead')
 const WalletType$json = {

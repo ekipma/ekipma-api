@@ -53,10 +53,10 @@ service UserService {
 // user
 
 enum UserRole {
-  Unkown = 0;
-  Normal = 1;
-  Opr = 2;
-  Admin = 3;
+  UserRoleUnkown = 0;
+  UserRoleNormal = 1;
+  UserRoleOpr = 2;
+  UserRoleAdmin = 3;
 }
 
 message User {

@@ -14,16 +14,16 @@ import 'dart:core' as $core;
 import 'package:protobuf/protobuf.dart' as $pb;
 
 class UserRole extends $pb.ProtobufEnum {
-  static const UserRole Unkown = UserRole._(0, _omitEnumNames ? '' : 'Unkown');
-  static const UserRole Normal = UserRole._(1, _omitEnumNames ? '' : 'Normal');
-  static const UserRole Opr = UserRole._(2, _omitEnumNames ? '' : 'Opr');
-  static const UserRole Admin = UserRole._(3, _omitEnumNames ? '' : 'Admin');
+  static const UserRole UserRoleUnkown = UserRole._(0, _omitEnumNames ? '' : 'UserRoleUnkown');
+  static const UserRole UserRoleNormal = UserRole._(1, _omitEnumNames ? '' : 'UserRoleNormal');
+  static const UserRole UserRoleOpr = UserRole._(2, _omitEnumNames ? '' : 'UserRoleOpr');
+  static const UserRole UserRoleAdmin = UserRole._(3, _omitEnumNames ? '' : 'UserRoleAdmin');
 
   static const $core.List<UserRole> values = <UserRole> [
-    Unkown,
-    Normal,
-    Opr,
-    Admin,
+    UserRoleUnkown,
+    UserRoleNormal,
+    UserRoleOpr,
+    UserRoleAdmin,
   ];
 
   static final $core.Map<$core.int, UserRole> _byValue = $pb.ProtobufEnum.initByValue(values);
