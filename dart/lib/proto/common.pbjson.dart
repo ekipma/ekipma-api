@@ -69,13 +69,13 @@ final $typed_data.Uint8List idInputDescriptor = $convert.base64Decode(
 const Last$json = {
   '1': 'Last',
   '2': [
-    {'1': 'updatedAt', '3': 3, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'updatedAt'},
+    {'1': 'updatedAt', '3': 1, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'updatedAt'},
   ],
 };
 
 /// Descriptor for `Last`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List lastDescriptor = $convert.base64Decode(
-    'CgRMYXN0EjgKCXVwZGF0ZWRBdBgDIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBSCX'
+    'CgRMYXN0EjgKCXVwZGF0ZWRBdBgBIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBSCX'
     'VwZGF0ZWRBdA==');
 
 @$core.Deprecated('Use gormDescriptor instead')

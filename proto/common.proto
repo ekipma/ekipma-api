@@ -18,7 +18,7 @@ message Chunk {
 }
 
 message IdInput { uint64 id = 1; }
-message Last { google.protobuf.Timestamp updatedAt = 3; }
+message Last { google.protobuf.Timestamp updatedAt = 1; }
 
 message Gorm {
   uint64 id = 1;
