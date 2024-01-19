@@ -29,7 +29,6 @@ enum Record_Value {
 
 class Record extends $pb.GeneratedMessage {
   factory Record({
-    $2.Chunk? chunk,
     $fixnum.Int64? id,
     $4.Timestamp? createdAt,
     $4.Timestamp? updatedAt,
@@ -47,9 +46,6 @@ class Record extends $pb.GeneratedMessage {
     Plan? plan,
   }) {
     final $result = create();
-    if (chunk != null) {
-      $result.chunk = chunk;
-    }
     if (id != null) {
       $result.id = id;
     }
@@ -109,7 +105,6 @@ class Record extends $pb.GeneratedMessage {
   };
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Record', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.record'), createEmptyInstance: create)
     ..oo(0, [15, 16, 17])
-    ..aOM<$2.Chunk>(1, _omitFieldNames ? '' : 'chunk', subBuilder: $2.Chunk.create)
     ..a<$fixnum.Int64>(2, _omitFieldNames ? '' : 'id', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
     ..aOM<$4.Timestamp>(3, _omitFieldNames ? '' : 'createdAt', protoName: 'createdAt', subBuilder: $4.Timestamp.create)
     ..aOM<$4.Timestamp>(4, _omitFieldNames ? '' : 'updatedAt', protoName: 'updatedAt', subBuilder: $4.Timestamp.create)
@@ -152,160 +147,149 @@ class Record extends $pb.GeneratedMessage {
   Record_Value whichValue() => _Record_ValueByTag[$_whichOneof(0)]!;
   void clearValue() => clearField($_whichOneof(0));
 
-  @$pb.TagNumber(1)
-  $2.Chunk get chunk => $_getN(0);
-  @$pb.TagNumber(1)
-  set chunk($2.Chunk v) { setField(1, v); }
-  @$pb.TagNumber(1)
-  $core.bool hasChunk() => $_has(0);
-  @$pb.TagNumber(1)
-  void clearChunk() => clearField(1);
-  @$pb.TagNumber(1)
-  $2.Chunk ensureChunk() => $_ensure(0);
-
   /// gorm - output
   @$pb.TagNumber(2)
-  $fixnum.Int64 get id => $_getI64(1);
+  $fixnum.Int64 get id => $_getI64(0);
   @$pb.TagNumber(2)
-  set id($fixnum.Int64 v) { $_setInt64(1, v); }
+  set id($fixnum.Int64 v) { $_setInt64(0, v); }
   @$pb.TagNumber(2)
-  $core.bool hasId() => $_has(1);
+  $core.bool hasId() => $_has(0);
   @$pb.TagNumber(2)
   void clearId() => clearField(2);
 
   @$pb.TagNumber(3)
-  $4.Timestamp get createdAt => $_getN(2);
+  $4.Timestamp get createdAt => $_getN(1);
   @$pb.TagNumber(3)
   set createdAt($4.Timestamp v) { setField(3, v); }
   @$pb.TagNumber(3)
-  $core.bool hasCreatedAt() => $_has(2);
+  $core.bool hasCreatedAt() => $_has(1);
   @$pb.TagNumber(3)
   void clearCreatedAt() => clearField(3);
   @$pb.TagNumber(3)
-  $4.Timestamp ensureCreatedAt() => $_ensure(2);
+  $4.Timestamp ensureCreatedAt() => $_ensure(1);
 
   @$pb.TagNumber(4)
-  $4.Timestamp get updatedAt => $_getN(3);
+  $4.Timestamp get updatedAt => $_getN(2);
   @$pb.TagNumber(4)
   set updatedAt($4.Timestamp v) { setField(4, v); }
   @$pb.TagNumber(4)
-  $core.bool hasUpdatedAt() => $_has(3);
+  $core.bool hasUpdatedAt() => $_has(2);
   @$pb.TagNumber(4)
   void clearUpdatedAt() => clearField(4);
   @$pb.TagNumber(4)
-  $4.Timestamp ensureUpdatedAt() => $_ensure(3);
+  $4.Timestamp ensureUpdatedAt() => $_ensure(2);
 
   @$pb.TagNumber(5)
-  $4.Timestamp get deletedAt => $_getN(4);
+  $4.Timestamp get deletedAt => $_getN(3);
   @$pb.TagNumber(5)
   set deletedAt($4.Timestamp v) { setField(5, v); }
   @$pb.TagNumber(5)
-  $core.bool hasDeletedAt() => $_has(4);
+  $core.bool hasDeletedAt() => $_has(3);
   @$pb.TagNumber(5)
   void clearDeletedAt() => clearField(5);
   @$pb.TagNumber(5)
-  $4.Timestamp ensureDeletedAt() => $_ensure(4);
+  $4.Timestamp ensureDeletedAt() => $_ensure(3);
 
   /// rec
   @$pb.TagNumber(7)
-  $core.String get title => $_getSZ(5);
+  $core.String get title => $_getSZ(4);
   @$pb.TagNumber(7)
-  set title($core.String v) { $_setString(5, v); }
+  set title($core.String v) { $_setString(4, v); }
   @$pb.TagNumber(7)
-  $core.bool hasTitle() => $_has(5);
+  $core.bool hasTitle() => $_has(4);
   @$pb.TagNumber(7)
   void clearTitle() => clearField(7);
 
   @$pb.TagNumber(8)
-  $core.String get desc => $_getSZ(6);
+  $core.String get desc => $_getSZ(5);
   @$pb.TagNumber(8)
-  set desc($core.String v) { $_setString(6, v); }
+  set desc($core.String v) { $_setString(5, v); }
   @$pb.TagNumber(8)
-  $core.bool hasDesc() => $_has(6);
+  $core.bool hasDesc() => $_has(5);
   @$pb.TagNumber(8)
   void clearDesc() => clearField(8);
 
   @$pb.TagNumber(9)
-  $fixnum.Int64 get author => $_getI64(7);
+  $fixnum.Int64 get author => $_getI64(6);
   @$pb.TagNumber(9)
-  set author($fixnum.Int64 v) { $_setInt64(7, v); }
+  set author($fixnum.Int64 v) { $_setInt64(6, v); }
   @$pb.TagNumber(9)
-  $core.bool hasAuthor() => $_has(7);
+  $core.bool hasAuthor() => $_has(6);
   @$pb.TagNumber(9)
   void clearAuthor() => clearField(9);
 
   @$pb.TagNumber(10)
-  $fixnum.Int64 get assignee => $_getI64(8);
+  $fixnum.Int64 get assignee => $_getI64(7);
   @$pb.TagNumber(10)
-  set assignee($fixnum.Int64 v) { $_setInt64(8, v); }
+  set assignee($fixnum.Int64 v) { $_setInt64(7, v); }
   @$pb.TagNumber(10)
-  $core.bool hasAssignee() => $_has(8);
+  $core.bool hasAssignee() => $_has(7);
   @$pb.TagNumber(10)
   void clearAssignee() => clearField(10);
 
   @$pb.TagNumber(11)
-  $core.List<$fixnum.Int64> get assignees => $_getList(9);
+  $core.List<$fixnum.Int64> get assignees => $_getList(8);
 
   @$pb.TagNumber(12)
-  $fixnum.Int64 get group => $_getI64(10);
+  $fixnum.Int64 get group => $_getI64(9);
   @$pb.TagNumber(12)
-  set group($fixnum.Int64 v) { $_setInt64(10, v); }
+  set group($fixnum.Int64 v) { $_setInt64(9, v); }
   @$pb.TagNumber(12)
-  $core.bool hasGroup() => $_has(10);
+  $core.bool hasGroup() => $_has(9);
   @$pb.TagNumber(12)
   void clearGroup() => clearField(12);
 
   @$pb.TagNumber(13)
-  $core.bool get private => $_getBF(11);
+  $core.bool get private => $_getBF(10);
   @$pb.TagNumber(13)
-  set private($core.bool v) { $_setBool(11, v); }
+  set private($core.bool v) { $_setBool(10, v); }
   @$pb.TagNumber(13)
-  $core.bool hasPrivate() => $_has(11);
+  $core.bool hasPrivate() => $_has(10);
   @$pb.TagNumber(13)
   void clearPrivate() => clearField(13);
 
   /// value
   @$pb.TagNumber(14)
-  RecordType get type => $_getN(12);
+  RecordType get type => $_getN(11);
   @$pb.TagNumber(14)
   set type(RecordType v) { setField(14, v); }
   @$pb.TagNumber(14)
-  $core.bool hasType() => $_has(12);
+  $core.bool hasType() => $_has(11);
   @$pb.TagNumber(14)
   void clearType() => clearField(14);
 
   @$pb.TagNumber(15)
-  Pay get pay => $_getN(13);
+  Pay get pay => $_getN(12);
   @$pb.TagNumber(15)
   set pay(Pay v) { setField(15, v); }
   @$pb.TagNumber(15)
-  $core.bool hasPay() => $_has(13);
+  $core.bool hasPay() => $_has(12);
   @$pb.TagNumber(15)
   void clearPay() => clearField(15);
   @$pb.TagNumber(15)
-  Pay ensurePay() => $_ensure(13);
+  Pay ensurePay() => $_ensure(12);
 
   @$pb.TagNumber(16)
-  Turn get turn => $_getN(14);
+  Turn get turn => $_getN(13);
   @$pb.TagNumber(16)
   set turn(Turn v) { setField(16, v); }
   @$pb.TagNumber(16)
-  $core.bool hasTurn() => $_has(14);
+  $core.bool hasTurn() => $_has(13);
   @$pb.TagNumber(16)
   void clearTurn() => clearField(16);
   @$pb.TagNumber(16)
-  Turn ensureTurn() => $_ensure(14);
+  Turn ensureTurn() => $_ensure(13);
 
   @$pb.TagNumber(17)
-  Plan get plan => $_getN(15);
+  Plan get plan => $_getN(14);
   @$pb.TagNumber(17)
   set plan(Plan v) { setField(17, v); }
   @$pb.TagNumber(17)
-  $core.bool hasPlan() => $_has(15);
+  $core.bool hasPlan() => $_has(14);
   @$pb.TagNumber(17)
   void clearPlan() => clearField(17);
   @$pb.TagNumber(17)
-  Plan ensurePlan() => $_ensure(15);
+  Plan ensurePlan() => $_ensure(14);
 }
 
 class Pay extends $pb.GeneratedMessage {

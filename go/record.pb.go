@@ -234,7 +234,6 @@ type Record struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Chunk *Chunk `protobuf:"bytes,1,opt,name=chunk,proto3" json:"chunk,omitempty"`
 	// gorm - output
 	Id        uint64                 `protobuf:"varint,2,opt,name=id,proto3" json:"id,omitempty"`
 	CreatedAt *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=createdAt,proto3" json:"createdAt,omitempty"`
@@ -288,13 +287,6 @@ func (x *Record) ProtoReflect() protoreflect.Message {
 // Deprecated: Use Record.ProtoReflect.Descriptor instead.
 func (*Record) Descriptor() ([]byte, []int) {
 	return file_proto_record_proto_rawDescGZIP(), []int{0}
-}
-
-func (x *Record) GetChunk() *Chunk {
-	if x != nil {
-		return x.Chunk
-	}
-	return nil
 }
 
 func (x *Record) GetId() uint64 {
@@ -912,11 +904,8 @@ var file_proto_record_proto_rawDesc = []byte{
 	0x2e, 0x72, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x1a, 0x12, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x63,
 	0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x1f, 0x67, 0x6f, 0x6f,
 	0x67, 0x6c, 0x65, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2f, 0x74, 0x69, 0x6d,
-	0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0xfb, 0x04, 0x0a,
-	0x06, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x12, 0x2e, 0x0a, 0x05, 0x63, 0x68, 0x75, 0x6e, 0x6b,
-	0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x18, 0x2e, 0x65, 0x6b, 0x69, 0x70, 0x6d, 0x61, 0x2e,
-	0x61, 0x70, 0x69, 0x2e, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x2e, 0x43, 0x68, 0x75, 0x6e, 0x6b,
-	0x52, 0x05, 0x63, 0x68, 0x75, 0x6e, 0x6b, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x02, 0x20,
+	0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0xcb, 0x04, 0x0a,
+	0x06, 0x52, 0x65, 0x63, 0x6f, 0x72, 0x64, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x02, 0x20,
 	0x01, 0x28, 0x04, 0x52, 0x02, 0x69, 0x64, 0x12, 0x38, 0x0a, 0x09, 0x63, 0x72, 0x65, 0x61, 0x74,
 	0x65, 0x64, 0x41, 0x74, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f,
 	0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d,
@@ -1089,49 +1078,48 @@ var file_proto_record_proto_goTypes = []interface{}{
 	(*IntegrityInput)(nil),        // 10: ekipma.api.record.IntegrityInput
 	(*IntegrityOutput)(nil),       // 11: ekipma.api.record.IntegrityOutput
 	(*Lost)(nil),                  // 12: ekipma.api.record.Lost
-	(*Chunk)(nil),                 // 13: ekipma.api.common.Chunk
-	(*timestamppb.Timestamp)(nil), // 14: google.protobuf.Timestamp
+	(*timestamppb.Timestamp)(nil), // 13: google.protobuf.Timestamp
+	(*Chunk)(nil),                 // 14: ekipma.api.common.Chunk
 	(*Last)(nil),                  // 15: ekipma.api.common.Last
 	(*IdInput)(nil),               // 16: ekipma.api.common.IdInput
 	(*Empty)(nil),                 // 17: ekipma.api.common.Empty
 }
 var file_proto_record_proto_depIdxs = []int32{
-	13, // 0: ekipma.api.record.Record.chunk:type_name -> ekipma.api.common.Chunk
-	14, // 1: ekipma.api.record.Record.createdAt:type_name -> google.protobuf.Timestamp
-	14, // 2: ekipma.api.record.Record.updatedAt:type_name -> google.protobuf.Timestamp
-	14, // 3: ekipma.api.record.Record.deletedAt:type_name -> google.protobuf.Timestamp
-	0,  // 4: ekipma.api.record.Record.type:type_name -> ekipma.api.record.RecordType
-	5,  // 5: ekipma.api.record.Record.pay:type_name -> ekipma.api.record.Pay
-	6,  // 6: ekipma.api.record.Record.turn:type_name -> ekipma.api.record.Turn
-	8,  // 7: ekipma.api.record.Record.plan:type_name -> ekipma.api.record.Plan
-	2,  // 8: ekipma.api.record.Pay.payUnit:type_name -> ekipma.api.record.PayUnit
-	1,  // 9: ekipma.api.record.Pay.payType:type_name -> ekipma.api.record.PayType
-	14, // 10: ekipma.api.record.Plan.dueAt:type_name -> google.protobuf.Timestamp
-	7,  // 11: ekipma.api.record.Plan.location:type_name -> ekipma.api.record.Location
-	3,  // 12: ekipma.api.record.Plan.sound:type_name -> ekipma.api.record.Sound
-	13, // 13: ekipma.api.record.RecordsChunk.info:type_name -> ekipma.api.common.Chunk
-	4,  // 14: ekipma.api.record.RecordsChunk.reocrds:type_name -> ekipma.api.record.Record
-	4,  // 15: ekipma.api.record.RecordService.CreateRecords:input_type -> ekipma.api.record.Record
-	15, // 16: ekipma.api.record.RecordService.RecentRecords:input_type -> ekipma.api.common.Last
-	16, // 17: ekipma.api.record.RecordService.DeleteRecord:input_type -> ekipma.api.common.IdInput
-	10, // 18: ekipma.api.record.RecordService.VerifyIntegrity:input_type -> ekipma.api.record.IntegrityInput
-	12, // 19: ekipma.api.record.RecordService.LostRecords:input_type -> ekipma.api.record.Lost
-	16, // 20: ekipma.api.record.RecordService.AcceptRepay:input_type -> ekipma.api.common.IdInput
-	16, // 21: ekipma.api.record.RecordService.RejectRepay:input_type -> ekipma.api.common.IdInput
-	16, // 22: ekipma.api.record.RecordService.SubmitTurn:input_type -> ekipma.api.common.IdInput
-	9,  // 23: ekipma.api.record.RecordService.CreateRecords:output_type -> ekipma.api.record.RecordsChunk
-	9,  // 24: ekipma.api.record.RecordService.RecentRecords:output_type -> ekipma.api.record.RecordsChunk
-	17, // 25: ekipma.api.record.RecordService.DeleteRecord:output_type -> ekipma.api.common.Empty
-	11, // 26: ekipma.api.record.RecordService.VerifyIntegrity:output_type -> ekipma.api.record.IntegrityOutput
-	4,  // 27: ekipma.api.record.RecordService.LostRecords:output_type -> ekipma.api.record.Record
-	17, // 28: ekipma.api.record.RecordService.AcceptRepay:output_type -> ekipma.api.common.Empty
-	17, // 29: ekipma.api.record.RecordService.RejectRepay:output_type -> ekipma.api.common.Empty
-	4,  // 30: ekipma.api.record.RecordService.SubmitTurn:output_type -> ekipma.api.record.Record
-	23, // [23:31] is the sub-list for method output_type
-	15, // [15:23] is the sub-list for method input_type
-	15, // [15:15] is the sub-list for extension type_name
-	15, // [15:15] is the sub-list for extension extendee
-	0,  // [0:15] is the sub-list for field type_name
+	13, // 0: ekipma.api.record.Record.createdAt:type_name -> google.protobuf.Timestamp
+	13, // 1: ekipma.api.record.Record.updatedAt:type_name -> google.protobuf.Timestamp
+	13, // 2: ekipma.api.record.Record.deletedAt:type_name -> google.protobuf.Timestamp
+	0,  // 3: ekipma.api.record.Record.type:type_name -> ekipma.api.record.RecordType
+	5,  // 4: ekipma.api.record.Record.pay:type_name -> ekipma.api.record.Pay
+	6,  // 5: ekipma.api.record.Record.turn:type_name -> ekipma.api.record.Turn
+	8,  // 6: ekipma.api.record.Record.plan:type_name -> ekipma.api.record.Plan
+	2,  // 7: ekipma.api.record.Pay.payUnit:type_name -> ekipma.api.record.PayUnit
+	1,  // 8: ekipma.api.record.Pay.payType:type_name -> ekipma.api.record.PayType
+	13, // 9: ekipma.api.record.Plan.dueAt:type_name -> google.protobuf.Timestamp
+	7,  // 10: ekipma.api.record.Plan.location:type_name -> ekipma.api.record.Location
+	3,  // 11: ekipma.api.record.Plan.sound:type_name -> ekipma.api.record.Sound
+	14, // 12: ekipma.api.record.RecordsChunk.info:type_name -> ekipma.api.common.Chunk
+	4,  // 13: ekipma.api.record.RecordsChunk.reocrds:type_name -> ekipma.api.record.Record
+	4,  // 14: ekipma.api.record.RecordService.CreateRecords:input_type -> ekipma.api.record.Record
+	15, // 15: ekipma.api.record.RecordService.RecentRecords:input_type -> ekipma.api.common.Last
+	16, // 16: ekipma.api.record.RecordService.DeleteRecord:input_type -> ekipma.api.common.IdInput
+	10, // 17: ekipma.api.record.RecordService.VerifyIntegrity:input_type -> ekipma.api.record.IntegrityInput
+	12, // 18: ekipma.api.record.RecordService.LostRecords:input_type -> ekipma.api.record.Lost
+	16, // 19: ekipma.api.record.RecordService.AcceptRepay:input_type -> ekipma.api.common.IdInput
+	16, // 20: ekipma.api.record.RecordService.RejectRepay:input_type -> ekipma.api.common.IdInput
+	16, // 21: ekipma.api.record.RecordService.SubmitTurn:input_type -> ekipma.api.common.IdInput
+	9,  // 22: ekipma.api.record.RecordService.CreateRecords:output_type -> ekipma.api.record.RecordsChunk
+	9,  // 23: ekipma.api.record.RecordService.RecentRecords:output_type -> ekipma.api.record.RecordsChunk
+	17, // 24: ekipma.api.record.RecordService.DeleteRecord:output_type -> ekipma.api.common.Empty
+	11, // 25: ekipma.api.record.RecordService.VerifyIntegrity:output_type -> ekipma.api.record.IntegrityOutput
+	4,  // 26: ekipma.api.record.RecordService.LostRecords:output_type -> ekipma.api.record.Record
+	17, // 27: ekipma.api.record.RecordService.AcceptRepay:output_type -> ekipma.api.common.Empty
+	17, // 28: ekipma.api.record.RecordService.RejectRepay:output_type -> ekipma.api.common.Empty
+	4,  // 29: ekipma.api.record.RecordService.SubmitTurn:output_type -> ekipma.api.record.Record
+	22, // [22:30] is the sub-list for method output_type
+	14, // [14:22] is the sub-list for method input_type
+	14, // [14:14] is the sub-list for extension type_name
+	14, // [14:14] is the sub-list for extension extendee
+	0,  // [0:14] is the sub-list for field type_name
 }
 
 func init() { file_proto_record_proto_init() }
