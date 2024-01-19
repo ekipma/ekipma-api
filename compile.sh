@@ -30,20 +30,9 @@ then
     exit 1
 fi
 
-set +e
-
 echo "> Commit everything"
 git add .
-git commit -m"$message"
-
-# Check the exit status
-if [ $? -eq 0 ]; then
-    echo "Command succeeded"
-else
-    echo "Command failed with exit code $?"
-fi
-
-set -e
+git commit -m"$message" --allow-empty
 
 # Add git version
 if [ -z "$tag" ]
