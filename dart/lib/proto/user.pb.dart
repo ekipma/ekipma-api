@@ -36,7 +36,11 @@ class User extends $pb.GeneratedMessage {
     UserRole? role,
     $4.Timestamp? premiumTill,
     $core.Iterable<Wallet>? wallets,
-    $fixnum.Int64? primaryWallet,
+    $core.String? primaryWallet,
+    $fixnum.Int64? tokens,
+    $core.Iterable<$fixnum.Int64>? achs,
+    $core.Iterable<Asset>? assets,
+    $core.bool? acceptToken,
   }) {
     final $result = create();
     if (id != null) {
@@ -84,6 +88,18 @@ class User extends $pb.GeneratedMessage {
     if (primaryWallet != null) {
       $result.primaryWallet = primaryWallet;
     }
+    if (tokens != null) {
+      $result.tokens = tokens;
+    }
+    if (achs != null) {
+      $result.achs.addAll(achs);
+    }
+    if (assets != null) {
+      $result.assets.addAll(assets);
+    }
+    if (acceptToken != null) {
+      $result.acceptToken = acceptToken;
+    }
     return $result;
   }
   User._() : super();
@@ -105,7 +121,11 @@ class User extends $pb.GeneratedMessage {
     ..e<UserRole>(12, _omitFieldNames ? '' : 'role', $pb.PbFieldType.OE, defaultOrMaker: UserRole.UserRoleUnkown, valueOf: UserRole.valueOf, enumValues: UserRole.values)
     ..aOM<$4.Timestamp>(13, _omitFieldNames ? '' : 'premiumTill', protoName: 'premiumTill', subBuilder: $4.Timestamp.create)
     ..pc<Wallet>(14, _omitFieldNames ? '' : 'wallets', $pb.PbFieldType.PM, subBuilder: Wallet.create)
-    ..a<$fixnum.Int64>(15, _omitFieldNames ? '' : 'primaryWallet', $pb.PbFieldType.OU6, protoName: 'primaryWallet', defaultOrMaker: $fixnum.Int64.ZERO)
+    ..aOS(15, _omitFieldNames ? '' : 'primaryWallet', protoName: 'primaryWallet')
+    ..a<$fixnum.Int64>(16, _omitFieldNames ? '' : 'tokens', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
+    ..p<$fixnum.Int64>(17, _omitFieldNames ? '' : 'achs', $pb.PbFieldType.KU6)
+    ..pc<Asset>(18, _omitFieldNames ? '' : 'assets', $pb.PbFieldType.PM, subBuilder: Asset.create)
+    ..aOB(19, _omitFieldNames ? '' : 'acceptToken', protoName: 'acceptToken')
     ..hasRequiredFields = false
   ;
 
@@ -253,37 +273,64 @@ class User extends $pb.GeneratedMessage {
   $core.List<Wallet> get wallets => $_getList(13);
 
   @$pb.TagNumber(15)
-  $fixnum.Int64 get primaryWallet => $_getI64(14);
+  $core.String get primaryWallet => $_getSZ(14);
   @$pb.TagNumber(15)
-  set primaryWallet($fixnum.Int64 v) { $_setInt64(14, v); }
+  set primaryWallet($core.String v) { $_setString(14, v); }
   @$pb.TagNumber(15)
   $core.bool hasPrimaryWallet() => $_has(14);
   @$pb.TagNumber(15)
   void clearPrimaryWallet() => clearField(15);
+
+  /// amount of the tokens (ma) that user holds
+  @$pb.TagNumber(16)
+  $fixnum.Int64 get tokens => $_getI64(15);
+  @$pb.TagNumber(16)
+  set tokens($fixnum.Int64 v) { $_setInt64(15, v); }
+  @$pb.TagNumber(16)
+  $core.bool hasTokens() => $_has(15);
+  @$pb.TagNumber(16)
+  void clearTokens() => clearField(16);
+
+  /// TODO achievements achieved by the user
+  @$pb.TagNumber(17)
+  $core.List<$fixnum.Int64> get achs => $_getList(16);
+
+  /// list of all assets that the user is holding
+  @$pb.TagNumber(18)
+  $core.List<Asset> get assets => $_getList(17);
+
+  /// editable - user also likes to accept token as debt repay
+  @$pb.TagNumber(19)
+  $core.bool get acceptToken => $_getBF(18);
+  @$pb.TagNumber(19)
+  set acceptToken($core.bool v) { $_setBool(18, v); }
+  @$pb.TagNumber(19)
+  $core.bool hasAcceptToken() => $_has(18);
+  @$pb.TagNumber(19)
+  void clearAcceptToken() => clearField(19);
 }
 
-/// otp
-class OtpMobileInput extends $pb.GeneratedMessage {
-  factory OtpMobileInput({
+class SendOtpInput extends $pb.GeneratedMessage {
+  factory SendOtpInput({
     $core.String? mobile,
-    $core.bool? register,
+    OtpOpr? opr,
   }) {
     final $result = create();
     if (mobile != null) {
       $result.mobile = mobile;
     }
-    if (register != null) {
-      $result.register = register;
+    if (opr != null) {
+      $result.opr = opr;
     }
     return $result;
   }
-  OtpMobileInput._() : super();
-  factory OtpMobileInput.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory OtpMobileInput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  SendOtpInput._() : super();
+  factory SendOtpInput.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory SendOtpInput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'OtpMobileInput', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.user'), createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'SendOtpInput', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.user'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'mobile')
-    ..aOB(2, _omitFieldNames ? '' : 'register')
+    ..e<OtpOpr>(2, _omitFieldNames ? '' : 'opr', $pb.PbFieldType.OE, defaultOrMaker: OtpOpr.OtpNone, valueOf: OtpOpr.valueOf, enumValues: OtpOpr.values)
     ..hasRequiredFields = false
   ;
 
@@ -291,22 +338,22 @@ class OtpMobileInput extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
   'Will be removed in next major version')
-  OtpMobileInput clone() => OtpMobileInput()..mergeFromMessage(this);
+  SendOtpInput clone() => SendOtpInput()..mergeFromMessage(this);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  OtpMobileInput copyWith(void Function(OtpMobileInput) updates) => super.copyWith((message) => updates(message as OtpMobileInput)) as OtpMobileInput;
+  SendOtpInput copyWith(void Function(SendOtpInput) updates) => super.copyWith((message) => updates(message as SendOtpInput)) as SendOtpInput;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
-  static OtpMobileInput create() => OtpMobileInput._();
-  OtpMobileInput createEmptyInstance() => create();
-  static $pb.PbList<OtpMobileInput> createRepeated() => $pb.PbList<OtpMobileInput>();
+  static SendOtpInput create() => SendOtpInput._();
+  SendOtpInput createEmptyInstance() => create();
+  static $pb.PbList<SendOtpInput> createRepeated() => $pb.PbList<SendOtpInput>();
   @$core.pragma('dart2js:noInline')
-  static OtpMobileInput getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<OtpMobileInput>(create);
-  static OtpMobileInput? _defaultInstance;
+  static SendOtpInput getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<SendOtpInput>(create);
+  static SendOtpInput? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get mobile => $_getSZ(0);
@@ -318,17 +365,17 @@ class OtpMobileInput extends $pb.GeneratedMessage {
   void clearMobile() => clearField(1);
 
   @$pb.TagNumber(2)
-  $core.bool get register => $_getBF(1);
+  OtpOpr get opr => $_getN(1);
   @$pb.TagNumber(2)
-  set register($core.bool v) { $_setBool(1, v); }
+  set opr(OtpOpr v) { setField(2, v); }
   @$pb.TagNumber(2)
-  $core.bool hasRegister() => $_has(1);
+  $core.bool hasOpr() => $_has(1);
   @$pb.TagNumber(2)
-  void clearRegister() => clearField(2);
+  void clearOpr() => clearField(2);
 }
 
-class OtpCodeInput extends $pb.GeneratedMessage {
-  factory OtpCodeInput({
+class VerifyOtpInput extends $pb.GeneratedMessage {
+  factory VerifyOtpInput({
     $core.String? mobile,
     $core.String? code,
   }) {
@@ -341,11 +388,11 @@ class OtpCodeInput extends $pb.GeneratedMessage {
     }
     return $result;
   }
-  OtpCodeInput._() : super();
-  factory OtpCodeInput.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory OtpCodeInput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  VerifyOtpInput._() : super();
+  factory VerifyOtpInput.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory VerifyOtpInput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'OtpCodeInput', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.user'), createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'VerifyOtpInput', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.user'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'mobile')
     ..aOS(2, _omitFieldNames ? '' : 'code')
     ..hasRequiredFields = false
@@ -355,22 +402,22 @@ class OtpCodeInput extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
   'Will be removed in next major version')
-  OtpCodeInput clone() => OtpCodeInput()..mergeFromMessage(this);
+  VerifyOtpInput clone() => VerifyOtpInput()..mergeFromMessage(this);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  OtpCodeInput copyWith(void Function(OtpCodeInput) updates) => super.copyWith((message) => updates(message as OtpCodeInput)) as OtpCodeInput;
+  VerifyOtpInput copyWith(void Function(VerifyOtpInput) updates) => super.copyWith((message) => updates(message as VerifyOtpInput)) as VerifyOtpInput;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
-  static OtpCodeInput create() => OtpCodeInput._();
-  OtpCodeInput createEmptyInstance() => create();
-  static $pb.PbList<OtpCodeInput> createRepeated() => $pb.PbList<OtpCodeInput>();
+  static VerifyOtpInput create() => VerifyOtpInput._();
+  VerifyOtpInput createEmptyInstance() => create();
+  static $pb.PbList<VerifyOtpInput> createRepeated() => $pb.PbList<VerifyOtpInput>();
   @$core.pragma('dart2js:noInline')
-  static OtpCodeInput getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<OtpCodeInput>(create);
-  static OtpCodeInput? _defaultInstance;
+  static VerifyOtpInput getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<VerifyOtpInput>(create);
+  static VerifyOtpInput? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get mobile => $_getSZ(0);
@@ -391,8 +438,8 @@ class OtpCodeInput extends $pb.GeneratedMessage {
   void clearCode() => clearField(2);
 }
 
-class OtpOutput extends $pb.GeneratedMessage {
-  factory OtpOutput({
+class VerifyOtpOutput extends $pb.GeneratedMessage {
+  factory VerifyOtpOutput({
     $core.String? otpToken,
   }) {
     final $result = create();
@@ -401,11 +448,11 @@ class OtpOutput extends $pb.GeneratedMessage {
     }
     return $result;
   }
-  OtpOutput._() : super();
-  factory OtpOutput.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory OtpOutput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  VerifyOtpOutput._() : super();
+  factory VerifyOtpOutput.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory VerifyOtpOutput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'OtpOutput', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.user'), createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'VerifyOtpOutput', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.user'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'otpToken', protoName: 'otpToken')
     ..hasRequiredFields = false
   ;
@@ -414,22 +461,22 @@ class OtpOutput extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
   'Will be removed in next major version')
-  OtpOutput clone() => OtpOutput()..mergeFromMessage(this);
+  VerifyOtpOutput clone() => VerifyOtpOutput()..mergeFromMessage(this);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  OtpOutput copyWith(void Function(OtpOutput) updates) => super.copyWith((message) => updates(message as OtpOutput)) as OtpOutput;
+  VerifyOtpOutput copyWith(void Function(VerifyOtpOutput) updates) => super.copyWith((message) => updates(message as VerifyOtpOutput)) as VerifyOtpOutput;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
-  static OtpOutput create() => OtpOutput._();
-  OtpOutput createEmptyInstance() => create();
-  static $pb.PbList<OtpOutput> createRepeated() => $pb.PbList<OtpOutput>();
+  static VerifyOtpOutput create() => VerifyOtpOutput._();
+  VerifyOtpOutput createEmptyInstance() => create();
+  static $pb.PbList<VerifyOtpOutput> createRepeated() => $pb.PbList<VerifyOtpOutput>();
   @$core.pragma('dart2js:noInline')
-  static OtpOutput getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<OtpOutput>(create);
-  static OtpOutput? _defaultInstance;
+  static VerifyOtpOutput getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<VerifyOtpOutput>(create);
+  static VerifyOtpOutput? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get otpToken => $_getSZ(0);
@@ -1192,6 +1239,129 @@ class CheckPremiumInput extends $pb.GeneratedMessage {
   $core.bool hasHash() => $_has(1);
   @$pb.TagNumber(2)
   void clearHash() => clearField(2);
+}
+
+enum Asset_Value {
+  avatarFrame, 
+  cardSkin, 
+  notifSound, 
+  notSet
+}
+
+class Asset extends $pb.GeneratedMessage {
+  factory Asset({
+    AssetType? type,
+    $core.bool? active,
+    AvatarFrame? avatarFrame,
+    CardSkin? cardSkin,
+    NotifSound? notifSound,
+  }) {
+    final $result = create();
+    if (type != null) {
+      $result.type = type;
+    }
+    if (active != null) {
+      $result.active = active;
+    }
+    if (avatarFrame != null) {
+      $result.avatarFrame = avatarFrame;
+    }
+    if (cardSkin != null) {
+      $result.cardSkin = cardSkin;
+    }
+    if (notifSound != null) {
+      $result.notifSound = notifSound;
+    }
+    return $result;
+  }
+  Asset._() : super();
+  factory Asset.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory Asset.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static const $core.Map<$core.int, Asset_Value> _Asset_ValueByTag = {
+    3 : Asset_Value.avatarFrame,
+    4 : Asset_Value.cardSkin,
+    5 : Asset_Value.notifSound,
+    0 : Asset_Value.notSet
+  };
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Asset', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.user'), createEmptyInstance: create)
+    ..oo(0, [3, 4, 5])
+    ..e<AssetType>(1, _omitFieldNames ? '' : 'type', $pb.PbFieldType.OE, defaultOrMaker: AssetType.AssetUnkown, valueOf: AssetType.valueOf, enumValues: AssetType.values)
+    ..aOB(2, _omitFieldNames ? '' : 'active')
+    ..e<AvatarFrame>(3, _omitFieldNames ? '' : 'avatarFrame', $pb.PbFieldType.OE, protoName: 'avatarFrame', defaultOrMaker: AvatarFrame.AvatarFrameNone, valueOf: AvatarFrame.valueOf, enumValues: AvatarFrame.values)
+    ..e<CardSkin>(4, _omitFieldNames ? '' : 'cardSkin', $pb.PbFieldType.OE, protoName: 'cardSkin', defaultOrMaker: CardSkin.CardSkinNone, valueOf: CardSkin.valueOf, enumValues: CardSkin.values)
+    ..e<NotifSound>(5, _omitFieldNames ? '' : 'notifSound', $pb.PbFieldType.OE, protoName: 'notifSound', defaultOrMaker: NotifSound.NotifSoundNone, valueOf: NotifSound.valueOf, enumValues: NotifSound.values)
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  Asset clone() => Asset()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  Asset copyWith(void Function(Asset) updates) => super.copyWith((message) => updates(message as Asset)) as Asset;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static Asset create() => Asset._();
+  Asset createEmptyInstance() => create();
+  static $pb.PbList<Asset> createRepeated() => $pb.PbList<Asset>();
+  @$core.pragma('dart2js:noInline')
+  static Asset getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Asset>(create);
+  static Asset? _defaultInstance;
+
+  Asset_Value whichValue() => _Asset_ValueByTag[$_whichOneof(0)]!;
+  void clearValue() => clearField($_whichOneof(0));
+
+  @$pb.TagNumber(1)
+  AssetType get type => $_getN(0);
+  @$pb.TagNumber(1)
+  set type(AssetType v) { setField(1, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasType() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearType() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.bool get active => $_getBF(1);
+  @$pb.TagNumber(2)
+  set active($core.bool v) { $_setBool(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasActive() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearActive() => clearField(2);
+
+  @$pb.TagNumber(3)
+  AvatarFrame get avatarFrame => $_getN(2);
+  @$pb.TagNumber(3)
+  set avatarFrame(AvatarFrame v) { setField(3, v); }
+  @$pb.TagNumber(3)
+  $core.bool hasAvatarFrame() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearAvatarFrame() => clearField(3);
+
+  @$pb.TagNumber(4)
+  CardSkin get cardSkin => $_getN(3);
+  @$pb.TagNumber(4)
+  set cardSkin(CardSkin v) { setField(4, v); }
+  @$pb.TagNumber(4)
+  $core.bool hasCardSkin() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearCardSkin() => clearField(4);
+
+  @$pb.TagNumber(5)
+  NotifSound get notifSound => $_getN(4);
+  @$pb.TagNumber(5)
+  set notifSound(NotifSound v) { setField(5, v); }
+  @$pb.TagNumber(5)
+  $core.bool hasNotifSound() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearNotifSound() => clearField(5);
 }
 
 

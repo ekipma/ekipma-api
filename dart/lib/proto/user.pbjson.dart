@@ -29,6 +29,22 @@ final $typed_data.Uint8List userRoleDescriptor = $convert.base64Decode(
     'CghVc2VyUm9sZRISCg5Vc2VyUm9sZVVua293bhAAEhIKDlVzZXJSb2xlTm9ybWFsEAESDwoLVX'
     'NlclJvbGVPcHIQAhIRCg1Vc2VyUm9sZUFkbWluEAM=');
 
+@$core.Deprecated('Use otpOprDescriptor instead')
+const OtpOpr$json = {
+  '1': 'OtpOpr',
+  '2': [
+    {'1': 'OtpNone', '2': 0},
+    {'1': 'OtpRegister', '2': 1},
+    {'1': 'OtpForgetPassword', '2': 2},
+    {'1': 'OtpChangeMobile', '2': 3},
+  ],
+};
+
+/// Descriptor for `OtpOpr`. Decode as a `google.protobuf.EnumDescriptorProto`.
+final $typed_data.Uint8List otpOprDescriptor = $convert.base64Decode(
+    'CgZPdHBPcHISCwoHT3RwTm9uZRAAEg8KC090cFJlZ2lzdGVyEAESFQoRT3RwRm9yZ2V0UGFzc3'
+    'dvcmQQAhITCg9PdHBDaGFuZ2VNb2JpbGUQAw==');
+
 @$core.Deprecated('Use walletTypeDescriptor instead')
 const WalletType$json = {
   '1': 'WalletType',
@@ -45,6 +61,77 @@ const WalletType$json = {
 final $typed_data.Uint8List walletTypeDescriptor = $convert.base64Decode(
     'CgpXYWxsZXRUeXBlEgoKBkNVU1RPTRAAEgcKA1hOTxABEgcKA1RSWBACEggKBERPR0UQAxIHCg'
     'NBREEQBA==');
+
+@$core.Deprecated('Use assetTypeDescriptor instead')
+const AssetType$json = {
+  '1': 'AssetType',
+  '2': [
+    {'1': 'AssetUnkown', '2': 0},
+    {'1': 'AssetAvatarFrame', '2': 1},
+    {'1': 'AssetCardSkin', '2': 2},
+    {'1': 'AssetNotifSound', '2': 3},
+  ],
+};
+
+/// Descriptor for `AssetType`. Decode as a `google.protobuf.EnumDescriptorProto`.
+final $typed_data.Uint8List assetTypeDescriptor = $convert.base64Decode(
+    'CglBc3NldFR5cGUSDwoLQXNzZXRVbmtvd24QABIUChBBc3NldEF2YXRhckZyYW1lEAESEQoNQX'
+    'NzZXRDYXJkU2tpbhACEhMKD0Fzc2V0Tm90aWZTb3VuZBAD');
+
+@$core.Deprecated('Use avatarFrameDescriptor instead')
+const AvatarFrame$json = {
+  '1': 'AvatarFrame',
+  '2': [
+    {'1': 'AvatarFrameNone', '2': 0},
+    {'1': 'AvatarFrameCrown', '2': 1},
+    {'1': 'AvatarFramePoo', '2': 2},
+    {'1': 'AvatarFrameHorn', '2': 3},
+    {'1': 'AvatarFrameNoise', '2': 4},
+    {'1': 'AvatarFrameWave', '2': 5},
+    {'1': 'AvatarFrameFire', '2': 6},
+  ],
+};
+
+/// Descriptor for `AvatarFrame`. Decode as a `google.protobuf.EnumDescriptorProto`.
+final $typed_data.Uint8List avatarFrameDescriptor = $convert.base64Decode(
+    'CgtBdmF0YXJGcmFtZRITCg9BdmF0YXJGcmFtZU5vbmUQABIUChBBdmF0YXJGcmFtZUNyb3duEA'
+    'ESEgoOQXZhdGFyRnJhbWVQb28QAhITCg9BdmF0YXJGcmFtZUhvcm4QAxIUChBBdmF0YXJGcmFt'
+    'ZU5vaXNlEAQSEwoPQXZhdGFyRnJhbWVXYXZlEAUSEwoPQXZhdGFyRnJhbWVGaXJlEAY=');
+
+@$core.Deprecated('Use cardSkinDescriptor instead')
+const CardSkin$json = {
+  '1': 'CardSkin',
+  '2': [
+    {'1': 'CardSkinNone', '2': 0},
+    {'1': 'CardSkinBubbles', '2': 1},
+    {'1': 'CardSkinSpongeBob', '2': 2},
+    {'1': 'CardSkinPatrik', '2': 3},
+    {'1': 'CardSkinRickMorty', '2': 4},
+    {'1': 'CardSkinBlack', '2': 5},
+  ],
+};
+
+/// Descriptor for `CardSkin`. Decode as a `google.protobuf.EnumDescriptorProto`.
+final $typed_data.Uint8List cardSkinDescriptor = $convert.base64Decode(
+    'CghDYXJkU2tpbhIQCgxDYXJkU2tpbk5vbmUQABITCg9DYXJkU2tpbkJ1YmJsZXMQARIVChFDYX'
+    'JkU2tpblNwb25nZUJvYhACEhIKDkNhcmRTa2luUGF0cmlrEAMSFQoRQ2FyZFNraW5SaWNrTW9y'
+    'dHkQBBIRCg1DYXJkU2tpbkJsYWNrEAU=');
+
+@$core.Deprecated('Use notifSoundDescriptor instead')
+const NotifSound$json = {
+  '1': 'NotifSound',
+  '2': [
+    {'1': 'NotifSoundNone', '2': 0},
+    {'1': 'NotifSoundDefault', '2': 1},
+    {'1': 'NotifSoundFart', '2': 2},
+    {'1': 'NotifSOundYamete', '2': 3},
+  ],
+};
+
+/// Descriptor for `NotifSound`. Decode as a `google.protobuf.EnumDescriptorProto`.
+final $typed_data.Uint8List notifSoundDescriptor = $convert.base64Decode(
+    'CgpOb3RpZlNvdW5kEhIKDk5vdGlmU291bmROb25lEAASFQoRTm90aWZTb3VuZERlZmF1bHQQAR'
+    'ISCg5Ob3RpZlNvdW5kRmFydBACEhQKEE5vdGlmU091bmRZYW1ldGUQAw==');
 
 @$core.Deprecated('Use userDescriptor instead')
 const User$json = {
@@ -64,7 +151,11 @@ const User$json = {
     {'1': 'role', '3': 12, '4': 1, '5': 14, '6': '.ekipma.api.user.UserRole', '10': 'role'},
     {'1': 'premiumTill', '3': 13, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'premiumTill'},
     {'1': 'wallets', '3': 14, '4': 3, '5': 11, '6': '.ekipma.api.user.Wallet', '10': 'wallets'},
-    {'1': 'primaryWallet', '3': 15, '4': 1, '5': 4, '10': 'primaryWallet'},
+    {'1': 'primaryWallet', '3': 15, '4': 1, '5': 9, '10': 'primaryWallet'},
+    {'1': 'tokens', '3': 16, '4': 1, '5': 4, '10': 'tokens'},
+    {'1': 'achs', '3': 17, '4': 3, '5': 4, '10': 'achs'},
+    {'1': 'assets', '3': 18, '4': 3, '5': 11, '6': '.ekipma.api.user.Asset', '10': 'assets'},
+    {'1': 'acceptToken', '3': 19, '4': 1, '5': 8, '10': 'acceptToken'},
   ],
 };
 
@@ -79,47 +170,49 @@ final $typed_data.Uint8List userDescriptor = $convert.base64Decode(
     'b2xlGAwgASgOMhkuZWtpcG1hLmFwaS51c2VyLlVzZXJSb2xlUgRyb2xlEjwKC3ByZW1pdW1UaW'
     'xsGA0gASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcFILcHJlbWl1bVRpbGwSMQoHd2Fs'
     'bGV0cxgOIAMoCzIXLmVraXBtYS5hcGkudXNlci5XYWxsZXRSB3dhbGxldHMSJAoNcHJpbWFyeV'
-    'dhbGxldBgPIAEoBFINcHJpbWFyeVdhbGxldA==');
+    'dhbGxldBgPIAEoCVINcHJpbWFyeVdhbGxldBIWCgZ0b2tlbnMYECABKARSBnRva2VucxISCgRh'
+    'Y2hzGBEgAygEUgRhY2hzEi4KBmFzc2V0cxgSIAMoCzIWLmVraXBtYS5hcGkudXNlci5Bc3NldF'
+    'IGYXNzZXRzEiAKC2FjY2VwdFRva2VuGBMgASgIUgthY2NlcHRUb2tlbg==');
 
-@$core.Deprecated('Use otpMobileInputDescriptor instead')
-const OtpMobileInput$json = {
-  '1': 'OtpMobileInput',
+@$core.Deprecated('Use sendOtpInputDescriptor instead')
+const SendOtpInput$json = {
+  '1': 'SendOtpInput',
   '2': [
     {'1': 'mobile', '3': 1, '4': 1, '5': 9, '10': 'mobile'},
-    {'1': 'register', '3': 2, '4': 1, '5': 8, '10': 'register'},
+    {'1': 'opr', '3': 2, '4': 1, '5': 14, '6': '.ekipma.api.user.OtpOpr', '10': 'opr'},
   ],
 };
 
-/// Descriptor for `OtpMobileInput`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List otpMobileInputDescriptor = $convert.base64Decode(
-    'Cg5PdHBNb2JpbGVJbnB1dBIWCgZtb2JpbGUYASABKAlSBm1vYmlsZRIaCghyZWdpc3RlchgCIA'
-    'EoCFIIcmVnaXN0ZXI=');
+/// Descriptor for `SendOtpInput`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List sendOtpInputDescriptor = $convert.base64Decode(
+    'CgxTZW5kT3RwSW5wdXQSFgoGbW9iaWxlGAEgASgJUgZtb2JpbGUSKQoDb3ByGAIgASgOMhcuZW'
+    'tpcG1hLmFwaS51c2VyLk90cE9wclIDb3By');
 
-@$core.Deprecated('Use otpCodeInputDescriptor instead')
-const OtpCodeInput$json = {
-  '1': 'OtpCodeInput',
+@$core.Deprecated('Use verifyOtpInputDescriptor instead')
+const VerifyOtpInput$json = {
+  '1': 'VerifyOtpInput',
   '2': [
     {'1': 'mobile', '3': 1, '4': 1, '5': 9, '10': 'mobile'},
     {'1': 'code', '3': 2, '4': 1, '5': 9, '10': 'code'},
   ],
 };
 
-/// Descriptor for `OtpCodeInput`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List otpCodeInputDescriptor = $convert.base64Decode(
-    'CgxPdHBDb2RlSW5wdXQSFgoGbW9iaWxlGAEgASgJUgZtb2JpbGUSEgoEY29kZRgCIAEoCVIEY2'
-    '9kZQ==');
+/// Descriptor for `VerifyOtpInput`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List verifyOtpInputDescriptor = $convert.base64Decode(
+    'Cg5WZXJpZnlPdHBJbnB1dBIWCgZtb2JpbGUYASABKAlSBm1vYmlsZRISCgRjb2RlGAIgASgJUg'
+    'Rjb2Rl');
 
-@$core.Deprecated('Use otpOutputDescriptor instead')
-const OtpOutput$json = {
-  '1': 'OtpOutput',
+@$core.Deprecated('Use verifyOtpOutputDescriptor instead')
+const VerifyOtpOutput$json = {
+  '1': 'VerifyOtpOutput',
   '2': [
     {'1': 'otpToken', '3': 1, '4': 1, '5': 9, '10': 'otpToken'},
   ],
 };
 
-/// Descriptor for `OtpOutput`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List otpOutputDescriptor = $convert.base64Decode(
-    'CglPdHBPdXRwdXQSGgoIb3RwVG9rZW4YASABKAlSCG90cFRva2Vu');
+/// Descriptor for `VerifyOtpOutput`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List verifyOtpOutputDescriptor = $convert.base64Decode(
+    'Cg9WZXJpZnlPdHBPdXRwdXQSGgoIb3RwVG9rZW4YASABKAlSCG90cFRva2Vu');
 
 @$core.Deprecated('Use registerInputDescriptor instead')
 const RegisterInput$json = {
@@ -264,4 +357,27 @@ const CheckPremiumInput$json = {
 final $typed_data.Uint8List checkPremiumInputDescriptor = $convert.base64Decode(
     'ChFDaGVja1ByZW1pdW1JbnB1dBIvCgR0eXBlGAEgASgOMhsuZWtpcG1hLmFwaS51c2VyLldhbG'
     'xldFR5cGVSBHR5cGUSEgoEaGFzaBgCIAEoCVIEaGFzaA==');
+
+@$core.Deprecated('Use assetDescriptor instead')
+const Asset$json = {
+  '1': 'Asset',
+  '2': [
+    {'1': 'type', '3': 1, '4': 1, '5': 14, '6': '.ekipma.api.user.AssetType', '10': 'type'},
+    {'1': 'active', '3': 2, '4': 1, '5': 8, '10': 'active'},
+    {'1': 'avatarFrame', '3': 3, '4': 1, '5': 14, '6': '.ekipma.api.user.AvatarFrame', '9': 0, '10': 'avatarFrame'},
+    {'1': 'cardSkin', '3': 4, '4': 1, '5': 14, '6': '.ekipma.api.user.CardSkin', '9': 0, '10': 'cardSkin'},
+    {'1': 'notifSound', '3': 5, '4': 1, '5': 14, '6': '.ekipma.api.user.NotifSound', '9': 0, '10': 'notifSound'},
+  ],
+  '8': [
+    {'1': 'value'},
+  ],
+};
+
+/// Descriptor for `Asset`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List assetDescriptor = $convert.base64Decode(
+    'CgVBc3NldBIuCgR0eXBlGAEgASgOMhouZWtpcG1hLmFwaS51c2VyLkFzc2V0VHlwZVIEdHlwZR'
+    'IWCgZhY3RpdmUYAiABKAhSBmFjdGl2ZRJACgthdmF0YXJGcmFtZRgDIAEoDjIcLmVraXBtYS5h'
+    'cGkudXNlci5BdmF0YXJGcmFtZUgAUgthdmF0YXJGcmFtZRI3CghjYXJkU2tpbhgEIAEoDjIZLm'
+    'VraXBtYS5hcGkudXNlci5DYXJkU2tpbkgAUghjYXJkU2tpbhI9Cgpub3RpZlNvdW5kGAUgASgO'
+    'MhsuZWtpcG1hLmFwaS51c2VyLk5vdGlmU291bmRIAFIKbm90aWZTb3VuZEIHCgV2YWx1ZQ==');
 

@@ -538,7 +538,6 @@ class Plan extends $pb.GeneratedMessage {
   factory Plan({
     $4.Timestamp? dueAt,
     Location? location,
-    Sound? sound,
   }) {
     final $result = create();
     if (dueAt != null) {
@@ -546,9 +545,6 @@ class Plan extends $pb.GeneratedMessage {
     }
     if (location != null) {
       $result.location = location;
-    }
-    if (sound != null) {
-      $result.sound = sound;
     }
     return $result;
   }
@@ -559,7 +555,6 @@ class Plan extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Plan', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.record'), createEmptyInstance: create)
     ..aOM<$4.Timestamp>(1, _omitFieldNames ? '' : 'dueAt', protoName: 'dueAt', subBuilder: $4.Timestamp.create)
     ..aOM<Location>(2, _omitFieldNames ? '' : 'location', subBuilder: Location.create)
-    ..e<Sound>(3, _omitFieldNames ? '' : 'sound', $pb.PbFieldType.OE, defaultOrMaker: Sound.SoundNone, valueOf: Sound.valueOf, enumValues: Sound.values)
     ..hasRequiredFields = false
   ;
 
@@ -605,15 +600,6 @@ class Plan extends $pb.GeneratedMessage {
   void clearLocation() => clearField(2);
   @$pb.TagNumber(2)
   Location ensureLocation() => $_ensure(1);
-
-  @$pb.TagNumber(3)
-  Sound get sound => $_getN(2);
-  @$pb.TagNumber(3)
-  set sound(Sound v) { setField(3, v); }
-  @$pb.TagNumber(3)
-  $core.bool hasSound() => $_has(2);
-  @$pb.TagNumber(3)
-  void clearSound() => clearField(3);
 }
 
 /// conventionally has size of 20 reocrds per chunk

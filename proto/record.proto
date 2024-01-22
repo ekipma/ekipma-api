@@ -110,17 +110,9 @@ message Location {
   string long = 3;
 }
 
-enum Sound {
-  SoundNone = 0;
-  SoundDefault = 1;
-  SoundNature = 2;
-  SoundYamete = 3;
-}
-
 message Plan {
   google.protobuf.Timestamp dueAt = 1; // due date
   Location location = 2;
-  Sound sound = 3;
 }
 
 // Output

@@ -70,24 +70,5 @@ class PayUnit extends $pb.ProtobufEnum {
   const PayUnit._($core.int v, $core.String n) : super(v, n);
 }
 
-class Sound extends $pb.ProtobufEnum {
-  static const Sound SoundNone = Sound._(0, _omitEnumNames ? '' : 'SoundNone');
-  static const Sound SoundDefault = Sound._(1, _omitEnumNames ? '' : 'SoundDefault');
-  static const Sound SoundNature = Sound._(2, _omitEnumNames ? '' : 'SoundNature');
-  static const Sound SoundYamete = Sound._(3, _omitEnumNames ? '' : 'SoundYamete');
-
-  static const $core.List<Sound> values = <Sound> [
-    SoundNone,
-    SoundDefault,
-    SoundNature,
-    SoundYamete,
-  ];
-
-  static final $core.Map<$core.int, Sound> _byValue = $pb.ProtobufEnum.initByValue(values);
-  static Sound? valueOf($core.int value) => _byValue[value];
-
-  const Sound._($core.int v, $core.String n) : super(v, n);
-}
-
 
 const _omitEnumNames = $core.bool.fromEnvironment('protobuf.omit_enum_names');

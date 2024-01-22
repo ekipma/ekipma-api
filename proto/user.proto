@@ -8,12 +8,12 @@ option go_package = "./go;pb";
 
 service UserService {
   // otp
-  rpc SendOtp(OtpMobileInput) returns (ekipma.api.common.Empty) {
+  rpc SendOtp(SendOtpInput) returns (ekipma.api.common.Empty) {
     // only sends otp to the mobile number in separate go routine
     // it has two types -> register and forget
     // if register -> check duplicate
   }
-  rpc VerifyOtp(OtpCodeInput) returns (OtpOutput) {
+  rpc VerifyOtp(VerifyOtpInput) returns (VerifyOtpOutput) {
     // validate otp code of the mobile number
     // generate a token for signing up
   }
@@ -75,22 +75,39 @@ message User {
   uint64 inviter = 11;
   UserRole role = 12;
   google.protobuf.Timestamp premiumTill = 13;
-  repeated Wallet wallets = 14;
-  uint64 primaryWallet = 15;
+  repeated Wallet wallets = 14; // crud
+  string primaryWallet = 15;
+  // game
+  /* amount of the tokens (ma) that user holds */
+  uint64 tokens = 16;
+  /* TODO achievements achieved by the user */
+  repeated uint64 achs = 17;
+  /* list of all assets that the user is holding */
+  repeated Asset assets = 18;
+  /* editable - user also likes to accept token as debt repay */
+  bool acceptToken = 19;
 }
 
 // otp
-message OtpMobileInput {
-  string mobile = 1; // used for sms
-  bool register = 2; // if it is for register
+
+enum OtpOpr {
+  OtpNone = 0;
+  OtpRegister = 1;
+  OtpForgetPassword = 2;
+  OtpChangeMobile = 3;
 }
 
-message OtpCodeInput {
+message SendOtpInput {
+  string mobile = 1; // used for sms
+  OtpOpr opr = 2;
+}
+
+message VerifyOtpInput {
   string mobile = 1;
   string code = 2; // validation
 }
 
-message OtpOutput {
+message VerifyOtpOutput {
   string otpToken = 1; // salts mobile
 }
 
@@ -163,4 +180,49 @@ message UpdateWalletOutput {
 message CheckPremiumInput {
   WalletType type = 1;
   string hash = 2;
+}
+
+// game
+
+enum AssetType {
+  AssetUnkown = 0;
+  AssetAvatarFrame = 1; // user avatar frame
+  AssetCardSkin = 2;    // record-card, friend-card, notif-card
+  AssetNotifSound = 3;  // sound of the notifs made by user
+}
+
+enum AvatarFrame {
+  AvatarFrameNone = 0;
+  AvatarFrameCrown = 1;
+  AvatarFramePoo = 2;
+  AvatarFrameHorn = 3;
+  AvatarFrameNoise = 4; // shader
+  AvatarFrameWave = 5;  // shader
+  AvatarFrameFire = 6;  // just image for now... maybe shader in the future
+}
+
+enum CardSkin {
+  CardSkinNone = 0;
+  CardSkinBubbles = 1;
+  CardSkinSpongeBob = 2;
+  CardSkinPatrik = 3;
+  CardSkinRickMorty = 4;
+  CardSkinBlack = 5;
+}
+
+enum NotifSound {
+  NotifSoundNone = 0;
+  NotifSoundDefault = 1; // receiver default mobile rigntone
+  NotifSoundFart = 2;
+  NotifSOundYamete = 3;
+}
+
+message Asset {
+  AssetType type = 1;
+  bool active = 2; // only one asset of a type is active
+  oneof value {
+    AvatarFrame avatarFrame = 3;
+    CardSkin cardSkin = 4;
+    NotifSound notifSound = 5;
+  }
 }

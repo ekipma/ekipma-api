@@ -61,22 +61,6 @@ final $typed_data.Uint8List payUnitDescriptor = $convert.base64Decode(
     'CgdQYXlVbml0EhEKDVBheVVuaXRVbmtvd24QABIHCgNVU0QQARIICgRJUlRUEAISBwoDRVVSEA'
     'MSCAoEUE9ORBAE');
 
-@$core.Deprecated('Use soundDescriptor instead')
-const Sound$json = {
-  '1': 'Sound',
-  '2': [
-    {'1': 'SoundNone', '2': 0},
-    {'1': 'SoundDefault', '2': 1},
-    {'1': 'SoundNature', '2': 2},
-    {'1': 'SoundYamete', '2': 3},
-  ],
-};
-
-/// Descriptor for `Sound`. Decode as a `google.protobuf.EnumDescriptorProto`.
-final $typed_data.Uint8List soundDescriptor = $convert.base64Decode(
-    'CgVTb3VuZBINCglTb3VuZE5vbmUQABIQCgxTb3VuZERlZmF1bHQQARIPCgtTb3VuZE5hdHVyZR'
-    'ACEg8KC1NvdW5kWWFtZXRlEAM=');
-
 @$core.Deprecated('Use recordDescriptor instead')
 const Record$json = {
   '1': 'Record',
@@ -170,7 +154,6 @@ const Plan$json = {
   '2': [
     {'1': 'dueAt', '3': 1, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'dueAt'},
     {'1': 'location', '3': 2, '4': 1, '5': 11, '6': '.ekipma.api.record.Location', '10': 'location'},
-    {'1': 'sound', '3': 3, '4': 1, '5': 14, '6': '.ekipma.api.record.Sound', '10': 'sound'},
   ],
 };
 
@@ -178,7 +161,7 @@ const Plan$json = {
 final $typed_data.Uint8List planDescriptor = $convert.base64Decode(
     'CgRQbGFuEjAKBWR1ZUF0GAEgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcFIFZHVlQX'
     'QSNwoIbG9jYXRpb24YAiABKAsyGy5la2lwbWEuYXBpLnJlY29yZC5Mb2NhdGlvblIIbG9jYXRp'
-    'b24SLgoFc291bmQYAyABKA4yGC5la2lwbWEuYXBpLnJlY29yZC5Tb3VuZFIFc291bmQ=');
+    'b24=');
 
 @$core.Deprecated('Use recordsChunkDescriptor instead')
 const RecordsChunk$json = {

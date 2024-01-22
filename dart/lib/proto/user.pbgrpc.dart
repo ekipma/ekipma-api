@@ -22,14 +22,14 @@ export 'user.pb.dart';
 
 @$pb.GrpcServiceName('ekipma.api.user.UserService')
 class UserServiceClient extends $grpc.Client {
-  static final _$sendOtp = $grpc.ClientMethod<$3.OtpMobileInput, $2.Empty>(
+  static final _$sendOtp = $grpc.ClientMethod<$3.SendOtpInput, $2.Empty>(
       '/ekipma.api.user.UserService/SendOtp',
-      ($3.OtpMobileInput value) => value.writeToBuffer(),
+      ($3.SendOtpInput value) => value.writeToBuffer(),
       ($core.List<$core.int> value) => $2.Empty.fromBuffer(value));
-  static final _$verifyOtp = $grpc.ClientMethod<$3.OtpCodeInput, $3.OtpOutput>(
+  static final _$verifyOtp = $grpc.ClientMethod<$3.VerifyOtpInput, $3.VerifyOtpOutput>(
       '/ekipma.api.user.UserService/VerifyOtp',
-      ($3.OtpCodeInput value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) => $3.OtpOutput.fromBuffer(value));
+      ($3.VerifyOtpInput value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $3.VerifyOtpOutput.fromBuffer(value));
   static final _$registerUser = $grpc.ClientMethod<$3.RegisterInput, $3.AuthOutput>(
       '/ekipma.api.user.UserService/RegisterUser',
       ($3.RegisterInput value) => value.writeToBuffer(),
@@ -73,11 +73,11 @@ class UserServiceClient extends $grpc.Client {
       : super(channel, options: options,
         interceptors: interceptors);
 
-  $grpc.ResponseFuture<$2.Empty> sendOtp($3.OtpMobileInput request, {$grpc.CallOptions? options}) {
+  $grpc.ResponseFuture<$2.Empty> sendOtp($3.SendOtpInput request, {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$sendOtp, request, options: options);
   }
 
-  $grpc.ResponseFuture<$3.OtpOutput> verifyOtp($3.OtpCodeInput request, {$grpc.CallOptions? options}) {
+  $grpc.ResponseFuture<$3.VerifyOtpOutput> verifyOtp($3.VerifyOtpInput request, {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$verifyOtp, request, options: options);
   }
 
@@ -123,20 +123,20 @@ abstract class UserServiceBase extends $grpc.Service {
   $core.String get $name => 'ekipma.api.user.UserService';
 
   UserServiceBase() {
-    $addMethod($grpc.ServiceMethod<$3.OtpMobileInput, $2.Empty>(
+    $addMethod($grpc.ServiceMethod<$3.SendOtpInput, $2.Empty>(
         'SendOtp',
         sendOtp_Pre,
         false,
         false,
-        ($core.List<$core.int> value) => $3.OtpMobileInput.fromBuffer(value),
+        ($core.List<$core.int> value) => $3.SendOtpInput.fromBuffer(value),
         ($2.Empty value) => value.writeToBuffer()));
-    $addMethod($grpc.ServiceMethod<$3.OtpCodeInput, $3.OtpOutput>(
+    $addMethod($grpc.ServiceMethod<$3.VerifyOtpInput, $3.VerifyOtpOutput>(
         'VerifyOtp',
         verifyOtp_Pre,
         false,
         false,
-        ($core.List<$core.int> value) => $3.OtpCodeInput.fromBuffer(value),
-        ($3.OtpOutput value) => value.writeToBuffer()));
+        ($core.List<$core.int> value) => $3.VerifyOtpInput.fromBuffer(value),
+        ($3.VerifyOtpOutput value) => value.writeToBuffer()));
     $addMethod($grpc.ServiceMethod<$3.RegisterInput, $3.AuthOutput>(
         'RegisterUser',
         registerUser_Pre,
@@ -202,11 +202,11 @@ abstract class UserServiceBase extends $grpc.Service {
         ($3.User value) => value.writeToBuffer()));
   }
 
-  $async.Future<$2.Empty> sendOtp_Pre($grpc.ServiceCall call, $async.Future<$3.OtpMobileInput> request) async {
+  $async.Future<$2.Empty> sendOtp_Pre($grpc.ServiceCall call, $async.Future<$3.SendOtpInput> request) async {
     return sendOtp(call, await request);
   }
 
-  $async.Future<$3.OtpOutput> verifyOtp_Pre($grpc.ServiceCall call, $async.Future<$3.OtpCodeInput> request) async {
+  $async.Future<$3.VerifyOtpOutput> verifyOtp_Pre($grpc.ServiceCall call, $async.Future<$3.VerifyOtpInput> request) async {
     return verifyOtp(call, await request);
   }
 
@@ -242,8 +242,8 @@ abstract class UserServiceBase extends $grpc.Service {
     return checkPremium(call, await request);
   }
 
-  $async.Future<$2.Empty> sendOtp($grpc.ServiceCall call, $3.OtpMobileInput request);
-  $async.Future<$3.OtpOutput> verifyOtp($grpc.ServiceCall call, $3.OtpCodeInput request);
+  $async.Future<$2.Empty> sendOtp($grpc.ServiceCall call, $3.SendOtpInput request);
+  $async.Future<$3.VerifyOtpOutput> verifyOtp($grpc.ServiceCall call, $3.VerifyOtpInput request);
   $async.Future<$3.AuthOutput> registerUser($grpc.ServiceCall call, $3.RegisterInput request);
   $async.Future<$3.AuthOutput> loginUser($grpc.ServiceCall call, $3.LoginInput request);
   $async.Future<$3.User> updateUser($grpc.ServiceCall call, $3.User request);
