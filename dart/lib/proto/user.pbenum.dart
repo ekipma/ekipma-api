@@ -72,6 +72,23 @@ class WalletType extends $pb.ProtobufEnum {
   const WalletType._($core.int v, $core.String n) : super(v, n);
 }
 
+class UserPlanType extends $pb.ProtobufEnum {
+  static const UserPlanType UserPlanNormal = UserPlanType._(0, _omitEnumNames ? '' : 'UserPlanNormal');
+  static const UserPlanType UserPlanPremium = UserPlanType._(1, _omitEnumNames ? '' : 'UserPlanPremium');
+  static const UserPlanType UserPlanGod = UserPlanType._(2, _omitEnumNames ? '' : 'UserPlanGod');
+
+  static const $core.List<UserPlanType> values = <UserPlanType> [
+    UserPlanNormal,
+    UserPlanPremium,
+    UserPlanGod,
+  ];
+
+  static final $core.Map<$core.int, UserPlanType> _byValue = $pb.ProtobufEnum.initByValue(values);
+  static UserPlanType? valueOf($core.int value) => _byValue[value];
+
+  const UserPlanType._($core.int v, $core.String n) : super(v, n);
+}
+
 class AssetType extends $pb.ProtobufEnum {
   static const AssetType AssetUnkown = AssetType._(0, _omitEnumNames ? '' : 'AssetUnkown');
   static const AssetType AssetAvatarFrame = AssetType._(1, _omitEnumNames ? '' : 'AssetAvatarFrame');
@@ -89,73 +106,6 @@ class AssetType extends $pb.ProtobufEnum {
   static AssetType? valueOf($core.int value) => _byValue[value];
 
   const AssetType._($core.int v, $core.String n) : super(v, n);
-}
-
-class AvatarFrame extends $pb.ProtobufEnum {
-  static const AvatarFrame AvatarFrameNone = AvatarFrame._(0, _omitEnumNames ? '' : 'AvatarFrameNone');
-  static const AvatarFrame AvatarFrameCrown = AvatarFrame._(1, _omitEnumNames ? '' : 'AvatarFrameCrown');
-  static const AvatarFrame AvatarFramePoo = AvatarFrame._(2, _omitEnumNames ? '' : 'AvatarFramePoo');
-  static const AvatarFrame AvatarFrameHorn = AvatarFrame._(3, _omitEnumNames ? '' : 'AvatarFrameHorn');
-  static const AvatarFrame AvatarFrameNoise = AvatarFrame._(4, _omitEnumNames ? '' : 'AvatarFrameNoise');
-  static const AvatarFrame AvatarFrameWave = AvatarFrame._(5, _omitEnumNames ? '' : 'AvatarFrameWave');
-  static const AvatarFrame AvatarFrameFire = AvatarFrame._(6, _omitEnumNames ? '' : 'AvatarFrameFire');
-
-  static const $core.List<AvatarFrame> values = <AvatarFrame> [
-    AvatarFrameNone,
-    AvatarFrameCrown,
-    AvatarFramePoo,
-    AvatarFrameHorn,
-    AvatarFrameNoise,
-    AvatarFrameWave,
-    AvatarFrameFire,
-  ];
-
-  static final $core.Map<$core.int, AvatarFrame> _byValue = $pb.ProtobufEnum.initByValue(values);
-  static AvatarFrame? valueOf($core.int value) => _byValue[value];
-
-  const AvatarFrame._($core.int v, $core.String n) : super(v, n);
-}
-
-class CardSkin extends $pb.ProtobufEnum {
-  static const CardSkin CardSkinNone = CardSkin._(0, _omitEnumNames ? '' : 'CardSkinNone');
-  static const CardSkin CardSkinBubbles = CardSkin._(1, _omitEnumNames ? '' : 'CardSkinBubbles');
-  static const CardSkin CardSkinSpongeBob = CardSkin._(2, _omitEnumNames ? '' : 'CardSkinSpongeBob');
-  static const CardSkin CardSkinPatrik = CardSkin._(3, _omitEnumNames ? '' : 'CardSkinPatrik');
-  static const CardSkin CardSkinRickMorty = CardSkin._(4, _omitEnumNames ? '' : 'CardSkinRickMorty');
-  static const CardSkin CardSkinBlack = CardSkin._(5, _omitEnumNames ? '' : 'CardSkinBlack');
-
-  static const $core.List<CardSkin> values = <CardSkin> [
-    CardSkinNone,
-    CardSkinBubbles,
-    CardSkinSpongeBob,
-    CardSkinPatrik,
-    CardSkinRickMorty,
-    CardSkinBlack,
-  ];
-
-  static final $core.Map<$core.int, CardSkin> _byValue = $pb.ProtobufEnum.initByValue(values);
-  static CardSkin? valueOf($core.int value) => _byValue[value];
-
-  const CardSkin._($core.int v, $core.String n) : super(v, n);
-}
-
-class NotifSound extends $pb.ProtobufEnum {
-  static const NotifSound NotifSoundNone = NotifSound._(0, _omitEnumNames ? '' : 'NotifSoundNone');
-  static const NotifSound NotifSoundDefault = NotifSound._(1, _omitEnumNames ? '' : 'NotifSoundDefault');
-  static const NotifSound NotifSoundFart = NotifSound._(2, _omitEnumNames ? '' : 'NotifSoundFart');
-  static const NotifSound NotifSOundYamete = NotifSound._(3, _omitEnumNames ? '' : 'NotifSOundYamete');
-
-  static const $core.List<NotifSound> values = <NotifSound> [
-    NotifSoundNone,
-    NotifSoundDefault,
-    NotifSoundFart,
-    NotifSOundYamete,
-  ];
-
-  static final $core.Map<$core.int, NotifSound> _byValue = $pb.ProtobufEnum.initByValue(values);
-  static NotifSound? valueOf($core.int value) => _byValue[value];
-
-  const NotifSound._($core.int v, $core.String n) : super(v, n);
 }
 
 

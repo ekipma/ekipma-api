@@ -22,15 +22,27 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type RecordServiceClient interface {
+	// if -- Pay
+	// for each assignee of pay-input an author<->assignee record would be made
+	// if `author` field is defined transaction is reversed
+	// if -- turn | plan
+	// create only one record.
+	// turn: if `assignee` field is not defined turn is assigned to `author`
+	// plan: has no `assignee` field
 	CreateRecords(ctx context.Context, in *Record, opts ...grpc.CallOption) (*RecordsChunk, error)
+	// get list of records ( created | updated | deleted ) after last-time-updated
+	// where ( author | assignee | !pay & assignees )
 	RecentRecords(ctx context.Context, in *Last, opts ...grpc.CallOption) (RecordService_RecentRecordsClient, error)
 	DeleteRecord(ctx context.Context, in *IdInput, opts ...grpc.CallOption) (*Empty, error)
 	VerifyIntegrity(ctx context.Context, in *IntegrityInput, opts ...grpc.CallOption) (*IntegrityOutput, error)
 	LostRecords(ctx context.Context, in *Lost, opts ...grpc.CallOption) (RecordService_LostRecordsClient, error)
-	// -- pay --
+	// when repay record is accepted by friend
+	// mark all related to-repay records as repaid
 	AcceptRepay(ctx context.Context, in *IdInput, opts ...grpc.CallOption) (*Empty, error)
+	// when repay record is rejected by friend
+	// delete the repay record
 	RejectRepay(ctx context.Context, in *IdInput, opts ...grpc.CallOption) (*Empty, error)
-	// -- turn --
+	// changes assignee to next person in the assignees list
 	SubmitTurn(ctx context.Context, in *IdInput, opts ...grpc.CallOption) (*Record, error)
 }
 
@@ -117,7 +129,7 @@ func (c *recordServiceClient) LostRecords(ctx context.Context, in *Lost, opts ..
 }
 
 type RecordService_LostRecordsClient interface {
-	Recv() (*Record, error)
+	Recv() (*RecordsChunk, error)
 	grpc.ClientStream
 }
 
@@ -125,8 +137,8 @@ type recordServiceLostRecordsClient struct {
 	grpc.ClientStream
 }
 
-func (x *recordServiceLostRecordsClient) Recv() (*Record, error) {
-	m := new(Record)
+func (x *recordServiceLostRecordsClient) Recv() (*RecordsChunk, error) {
+	m := new(RecordsChunk)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
@@ -164,15 +176,27 @@ func (c *recordServiceClient) SubmitTurn(ctx context.Context, in *IdInput, opts 
 // All implementations must embed UnimplementedRecordServiceServer
 // for forward compatibility
 type RecordServiceServer interface {
+	// if -- Pay
+	// for each assignee of pay-input an author<->assignee record would be made
+	// if `author` field is defined transaction is reversed
+	// if -- turn | plan
+	// create only one record.
+	// turn: if `assignee` field is not defined turn is assigned to `author`
+	// plan: has no `assignee` field
 	CreateRecords(context.Context, *Record) (*RecordsChunk, error)
+	// get list of records ( created | updated | deleted ) after last-time-updated
+	// where ( author | assignee | !pay & assignees )
 	RecentRecords(*Last, RecordService_RecentRecordsServer) error
 	DeleteRecord(context.Context, *IdInput) (*Empty, error)
 	VerifyIntegrity(context.Context, *IntegrityInput) (*IntegrityOutput, error)
 	LostRecords(*Lost, RecordService_LostRecordsServer) error
-	// -- pay --
+	// when repay record is accepted by friend
+	// mark all related to-repay records as repaid
 	AcceptRepay(context.Context, *IdInput) (*Empty, error)
+	// when repay record is rejected by friend
+	// delete the repay record
 	RejectRepay(context.Context, *IdInput) (*Empty, error)
-	// -- turn --
+	// changes assignee to next person in the assignees list
 	SubmitTurn(context.Context, *IdInput) (*Record, error)
 	mustEmbedUnimplementedRecordServiceServer()
 }
@@ -302,7 +326,7 @@ func _RecordService_LostRecords_Handler(srv interface{}, stream grpc.ServerStrea
 }
 
 type RecordService_LostRecordsServer interface {
-	Send(*Record) error
+	Send(*RecordsChunk) error
 	grpc.ServerStream
 }
 
@@ -310,7 +334,7 @@ type recordServiceLostRecordsServer struct {
 	grpc.ServerStream
 }
 
-func (x *recordServiceLostRecordsServer) Send(m *Record) error {
+func (x *recordServiceLostRecordsServer) Send(m *RecordsChunk) error {
 	return x.ServerStream.SendMsg(m)
 }
 

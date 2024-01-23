@@ -7,57 +7,46 @@ import "google/protobuf/timestamp.proto";
 option go_package = "./go;pb";
 
 service UserService {
-  // otp
-  rpc SendOtp(SendOtpInput) returns (ekipma.api.common.Empty) {
-    // only sends otp to the mobile number in separate go routine
-    // it has two types -> register and forget
-    // if register -> check duplicate
-  }
-  rpc VerifyOtp(VerifyOtpInput) returns (VerifyOtpOutput) {
-    // validate otp code of the mobile number
-    // generate a token for signing up
-  }
-  // auth
-  rpc RegisterUser(RegisterInput) returns (AuthOutput) {
-    // with the otp-token given attempt a register
-    // generate access-token and send it
-  }
-  rpc LoginUser(LoginInput) returns (AuthOutput) {}
-  // direct update
-  rpc UpdateUser(User) returns (User) {
-    // update only "name | email | public"
-  }
-  // friend
-  rpc AddFriends(stream MobilesChunk) returns (stream FriendsChunk);
-  rpc GetFriends(ekipma.api.common.Empty) returns (stream FriendsChunk);
-  rpc RemoveFriend(ekipma.api.common.IdInput) returns (ekipma.api.common.Empty);
-  // wallet
-  rpc GetWallets(ekipma.api.common.Empty) returns (stream Wallet) {
-    // get wallets owned by user
-  }
-  rpc UpdateWallet(Wallet) returns (UpdateWalletOutput) {
-    // based on type + owner -> update/set addr (unique)
-    // based on type -> send my wallet of same type
-    // wallet public is `false` by default (for premium)
-    // but can be set as `public` or `primary` in account section
-    // `primary` address is what others can copy from copy btn
-  }
-  // premium
-  rpc CheckPremium(CheckPremiumInput) returns (User) {
-    // based on wallet type check purchase
-    // if purchase correct -> 35d premium +
-    // each friend 5d premium if not premium
-  }
+  // only sends otp to the mobile number in separate go routine
+  // it has two types -> register and forget
+  // if register -> check duplicate
+  rpc SendOtp(SendOtpInput) returns (ekipma.api.common.Empty);
+  // validate otp code of the mobile number
+  // generate a token for signing up
+  rpc VerifyOtp(VerifyOtpInput) returns (VerifyOtpOutput);
+  // with the otp-token given attempt a register
+  // generate access-token and send it
+  rpc RegisterUser(RegisterInput) returns (AuthOutput);
+  rpc LoginUser(LoginInput) returns (AuthOutput);
+  // update only "name | email | public"
+  rpc UpdateUser(User) returns (User);
+  rpc AddFriends(stream MobilesChunk) returns (User);
+  rpc RemoveFriend(ekipma.api.common.IdInput) returns (User);
+  // based on type + owner -> update/set addr (unique)
+  // based on type -> send my wallet of same type
+  // wallet public is `false` by default (for premium)
+  // but can be set as `public` or `primary` in account section
+  // `primary` address is what others can copy from copy btn
+  rpc UpdateWallet(Wallet) returns (User);
+  // if wType = custom
+  // creates a payment url for client
+  // saves authority in a column in users table
+  // client: opens link in browser
+  // else: return related wDist based on wType
+  rpc RequestPurchase(RequestPurchaseInput) returns (RequestPurchaseOutput);
+  // check purchase and convert it to equivalent amount of tokens
+  // update user tokens and return user
+  rpc VerifyPurchase(VerifyPurchaseInput) returns (User);
+  // reduce tokens based on play type and upgrade user's plan
+  rpc UpgradePlan(UserPlan) returns (User);
+  // reduce tokens based on asset type and add asset to user's assets
+  rpc BuyAsset(Asset) returns (User);
+  // reduce token from user and send to friend
+  // also notify friend
+  rpc SendToken(SendTokenInput) returns (User);
 }
 
 // user
-
-enum UserRole {
-  UserRoleUnkown = 0;
-  UserRoleNormal = 1;
-  UserRoleOpr = 2;
-  UserRoleAdmin = 3;
-}
 
 message User {
   // gorm
@@ -65,27 +54,34 @@ message User {
   google.protobuf.Timestamp createdAt = 2;
   google.protobuf.Timestamp updatedAt = 3;
   // user
-  string mobile = 4;
-  string name = 5;     // editable
-  string email = 6;    // editable
-  bool public = 7;     // editable
-  string code = 8;     // renewable - referral code
-  string photoURL = 9; // from uuid
-  repeated uint64 friends = 10;
+  UserRole role = 4;
+  string mobile = 5;
+  string name = 6;      // editable
+  string email = 7;     // editable
+  bool public = 8;      // editable
+  string code = 9;      // renewable - referral code
+  string photoURL = 10; // from uuid
   uint64 inviter = 11;
-  UserRole role = 12;
-  google.protobuf.Timestamp premiumTill = 13;
-  repeated Wallet wallets = 14; // crud
-  string primaryWallet = 15;
-  // game
-  /* amount of the tokens (ma) that user holds */
+  repeated Friend friends = 12; // output - populate from friend ids
+  repeated Wallet wallets = 13; // output - populate from wallet ids
+  uint64 mainWallet = 14;       // primary wallet id
+  UserPlan plan = 15;
+  // amount of the tokens (ma) that user holds
   uint64 tokens = 16;
-  /* TODO achievements achieved by the user */
-  repeated uint64 achs = 17;
-  /* list of all assets that the user is holding */
-  repeated Asset assets = 18;
-  /* editable - user also likes to accept token as debt repay */
-  bool acceptToken = 19;
+  // editable - user also likes to accept token as debt repay
+  bool acceptToken = 17;
+  // achievements achieved by the user
+  repeated uint64 achs = 18;
+  // list of all assets that the user is holding
+  // parsed from user.assets string
+  repeated Asset assets = 19;
+}
+
+enum UserRole {
+  UserRoleUnkown = 0;
+  UserRoleNormal = 1;
+  UserRoleOpr = 2;
+  UserRoleAdmin = 3;
 }
 
 // otp
@@ -112,6 +108,7 @@ message VerifyOtpOutput {
 }
 
 // auth
+
 message RegisterInput {
   string otpToken = 1; // has mobile
   string password = 2;
@@ -137,18 +134,13 @@ message Friend {
   string name = 2;
   string email = 3;
   string photoURL = 4;
-  google.protobuf.Timestamp premiumTill = 5;
-  repeated Wallet wallets = 6; // NOTICE send only public wallets
+  UserPlan plan = 5;
+  Wallet mainWallet = 6; // from primary wallet id
 }
 
 message MobilesChunk {
   ekipma.api.common.Chunk info = 1;
   repeated string mobiles = 2; // 100 mobiles per chunk
-}
-
-message FriendsChunk {
-  ekipma.api.common.Chunk info = 1;
-  repeated Friend friends = 2;
 }
 
 // wallets
@@ -167,22 +159,47 @@ message Wallet {
   WalletType type = 3;
   string addr = 4;
   bool public = 5;  // visible to other users
-  bool primary = 6; // sets as primary - input
+  bool primary = 6; // input - sets as primary
 }
 
-message UpdateWalletOutput {
-  User user = 1;    // updated user with his new wallet
-  Wallet wDist = 2; // send my related wallet address
-  float price = 3;
-  bool needHash = 4; // whether the method needs tx hash
+message RequestPurchaseInput { uint64 walledID = 1; }
+
+message RequestPurchaseOutput {
+  Wallet wDist = 1;       // send my related wallet address
+  float price = 2;        // actual price based on wType
+  bool needHash = 3;      // whether the method needs tx hash
+  string redirectURL = 4; // ignore other fields - open link in web
 }
 
-message CheckPremiumInput {
+message VerifyPurchaseInput {
   WalletType type = 1;
-  string hash = 2;
+  string hash = 2; // only needed for few types
+}
+
+// plan
+
+message UserPlan {
+  UserPlanType type = 1;
+  google.protobuf.Timestamp expiresAt = 2; // outpu
+}
+
+enum UserPlanType {
+  UserPlanNormal = 0;
+  UserPlanPremium = 1;
+  UserPlanGod = 2;
 }
 
 // game
+
+message Asset {
+  AssetType type = 1; // input
+  string uuid = 3;    // unique id of the asset - convention
+  // tokens necessary to unlock
+  // least 1 token (prevent brute forcing)
+  uint64 price = 4;
+  string hash = 5; // input - checksum for type+uuid+price not to alter
+  bool active = 2; // input - only one asset of a type is active
+}
 
 enum AssetType {
   AssetUnkown = 0;
@@ -191,38 +208,7 @@ enum AssetType {
   AssetNotifSound = 3;  // sound of the notifs made by user
 }
 
-enum AvatarFrame {
-  AvatarFrameNone = 0;
-  AvatarFrameCrown = 1;
-  AvatarFramePoo = 2;
-  AvatarFrameHorn = 3;
-  AvatarFrameNoise = 4; // shader
-  AvatarFrameWave = 5;  // shader
-  AvatarFrameFire = 6;  // just image for now... maybe shader in the future
-}
-
-enum CardSkin {
-  CardSkinNone = 0;
-  CardSkinBubbles = 1;
-  CardSkinSpongeBob = 2;
-  CardSkinPatrik = 3;
-  CardSkinRickMorty = 4;
-  CardSkinBlack = 5;
-}
-
-enum NotifSound {
-  NotifSoundNone = 0;
-  NotifSoundDefault = 1; // receiver default mobile rigntone
-  NotifSoundFart = 2;
-  NotifSOundYamete = 3;
-}
-
-message Asset {
-  AssetType type = 1;
-  bool active = 2; // only one asset of a type is active
-  oneof value {
-    AvatarFrame avatarFrame = 3;
-    CardSkin cardSkin = 4;
-    NotifSound notifSound = 5;
-  }
+message SendTokenInput {
+  uint64 amount = 1;
+  uint64 to = 2; // id of receiver
 }

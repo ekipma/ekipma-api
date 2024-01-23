@@ -22,23 +22,43 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type UserServiceClient interface {
-	// otp
+	// only sends otp to the mobile number in separate go routine
+	// it has two types -> register and forget
+	// if register -> check duplicate
 	SendOtp(ctx context.Context, in *SendOtpInput, opts ...grpc.CallOption) (*Empty, error)
+	// validate otp code of the mobile number
+	// generate a token for signing up
 	VerifyOtp(ctx context.Context, in *VerifyOtpInput, opts ...grpc.CallOption) (*VerifyOtpOutput, error)
-	// auth
+	// with the otp-token given attempt a register
+	// generate access-token and send it
 	RegisterUser(ctx context.Context, in *RegisterInput, opts ...grpc.CallOption) (*AuthOutput, error)
 	LoginUser(ctx context.Context, in *LoginInput, opts ...grpc.CallOption) (*AuthOutput, error)
-	// direct update
+	// update only "name | email | public"
 	UpdateUser(ctx context.Context, in *User, opts ...grpc.CallOption) (*User, error)
-	// friend
 	AddFriends(ctx context.Context, opts ...grpc.CallOption) (UserService_AddFriendsClient, error)
-	GetFriends(ctx context.Context, in *Empty, opts ...grpc.CallOption) (UserService_GetFriendsClient, error)
-	RemoveFriend(ctx context.Context, in *IdInput, opts ...grpc.CallOption) (*Empty, error)
-	// wallet
-	GetWallets(ctx context.Context, in *Empty, opts ...grpc.CallOption) (UserService_GetWalletsClient, error)
-	UpdateWallet(ctx context.Context, in *Wallet, opts ...grpc.CallOption) (*UpdateWalletOutput, error)
-	// premium
-	CheckPremium(ctx context.Context, in *CheckPremiumInput, opts ...grpc.CallOption) (*User, error)
+	RemoveFriend(ctx context.Context, in *IdInput, opts ...grpc.CallOption) (*User, error)
+	// based on type + owner -> update/set addr (unique)
+	// based on type -> send my wallet of same type
+	// wallet public is `false` by default (for premium)
+	// but can be set as `public` or `primary` in account section
+	// `primary` address is what others can copy from copy btn
+	UpdateWallet(ctx context.Context, in *Wallet, opts ...grpc.CallOption) (*User, error)
+	// if wType = custom
+	// creates a payment url for client
+	// saves authority in a column in users table
+	// client: opens link in browser
+	// else: return related wDist based on wType
+	RequestPurchase(ctx context.Context, in *RequestPurchaseInput, opts ...grpc.CallOption) (*RequestPurchaseOutput, error)
+	// check purchase and convert it to equivalent amount of tokens
+	// update user tokens and return user
+	VerifyPurchase(ctx context.Context, in *VerifyPurchaseInput, opts ...grpc.CallOption) (*User, error)
+	// reduce tokens based on play type and upgrade user's plan
+	UpgradePlan(ctx context.Context, in *UserPlan, opts ...grpc.CallOption) (*User, error)
+	// reduce tokens based on asset type and add asset to user's assets
+	BuyAsset(ctx context.Context, in *Asset, opts ...grpc.CallOption) (*User, error)
+	// reduce token from user and send to friend
+	// also notify friend
+	SendToken(ctx context.Context, in *SendTokenInput, opts ...grpc.CallOption) (*User, error)
 }
 
 type userServiceClient struct {
@@ -105,7 +125,7 @@ func (c *userServiceClient) AddFriends(ctx context.Context, opts ...grpc.CallOpt
 
 type UserService_AddFriendsClient interface {
 	Send(*MobilesChunk) error
-	Recv() (*FriendsChunk, error)
+	CloseAndRecv() (*User, error)
 	grpc.ClientStream
 }
 
@@ -117,48 +137,19 @@ func (x *userServiceAddFriendsClient) Send(m *MobilesChunk) error {
 	return x.ClientStream.SendMsg(m)
 }
 
-func (x *userServiceAddFriendsClient) Recv() (*FriendsChunk, error) {
-	m := new(FriendsChunk)
-	if err := x.ClientStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
-}
-
-func (c *userServiceClient) GetFriends(ctx context.Context, in *Empty, opts ...grpc.CallOption) (UserService_GetFriendsClient, error) {
-	stream, err := c.cc.NewStream(ctx, &UserService_ServiceDesc.Streams[1], "/ekipma.api.user.UserService/GetFriends", opts...)
-	if err != nil {
-		return nil, err
-	}
-	x := &userServiceGetFriendsClient{stream}
-	if err := x.ClientStream.SendMsg(in); err != nil {
-		return nil, err
-	}
+func (x *userServiceAddFriendsClient) CloseAndRecv() (*User, error) {
 	if err := x.ClientStream.CloseSend(); err != nil {
 		return nil, err
 	}
-	return x, nil
-}
-
-type UserService_GetFriendsClient interface {
-	Recv() (*FriendsChunk, error)
-	grpc.ClientStream
-}
-
-type userServiceGetFriendsClient struct {
-	grpc.ClientStream
-}
-
-func (x *userServiceGetFriendsClient) Recv() (*FriendsChunk, error) {
-	m := new(FriendsChunk)
+	m := new(User)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
 	return m, nil
 }
 
-func (c *userServiceClient) RemoveFriend(ctx context.Context, in *IdInput, opts ...grpc.CallOption) (*Empty, error) {
-	out := new(Empty)
+func (c *userServiceClient) RemoveFriend(ctx context.Context, in *IdInput, opts ...grpc.CallOption) (*User, error) {
+	out := new(User)
 	err := c.cc.Invoke(ctx, "/ekipma.api.user.UserService/RemoveFriend", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -166,40 +157,8 @@ func (c *userServiceClient) RemoveFriend(ctx context.Context, in *IdInput, opts 
 	return out, nil
 }
 
-func (c *userServiceClient) GetWallets(ctx context.Context, in *Empty, opts ...grpc.CallOption) (UserService_GetWalletsClient, error) {
-	stream, err := c.cc.NewStream(ctx, &UserService_ServiceDesc.Streams[2], "/ekipma.api.user.UserService/GetWallets", opts...)
-	if err != nil {
-		return nil, err
-	}
-	x := &userServiceGetWalletsClient{stream}
-	if err := x.ClientStream.SendMsg(in); err != nil {
-		return nil, err
-	}
-	if err := x.ClientStream.CloseSend(); err != nil {
-		return nil, err
-	}
-	return x, nil
-}
-
-type UserService_GetWalletsClient interface {
-	Recv() (*Wallet, error)
-	grpc.ClientStream
-}
-
-type userServiceGetWalletsClient struct {
-	grpc.ClientStream
-}
-
-func (x *userServiceGetWalletsClient) Recv() (*Wallet, error) {
-	m := new(Wallet)
-	if err := x.ClientStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
-}
-
-func (c *userServiceClient) UpdateWallet(ctx context.Context, in *Wallet, opts ...grpc.CallOption) (*UpdateWalletOutput, error) {
-	out := new(UpdateWalletOutput)
+func (c *userServiceClient) UpdateWallet(ctx context.Context, in *Wallet, opts ...grpc.CallOption) (*User, error) {
+	out := new(User)
 	err := c.cc.Invoke(ctx, "/ekipma.api.user.UserService/UpdateWallet", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -207,9 +166,45 @@ func (c *userServiceClient) UpdateWallet(ctx context.Context, in *Wallet, opts .
 	return out, nil
 }
 
-func (c *userServiceClient) CheckPremium(ctx context.Context, in *CheckPremiumInput, opts ...grpc.CallOption) (*User, error) {
+func (c *userServiceClient) RequestPurchase(ctx context.Context, in *RequestPurchaseInput, opts ...grpc.CallOption) (*RequestPurchaseOutput, error) {
+	out := new(RequestPurchaseOutput)
+	err := c.cc.Invoke(ctx, "/ekipma.api.user.UserService/RequestPurchase", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userServiceClient) VerifyPurchase(ctx context.Context, in *VerifyPurchaseInput, opts ...grpc.CallOption) (*User, error) {
 	out := new(User)
-	err := c.cc.Invoke(ctx, "/ekipma.api.user.UserService/CheckPremium", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/ekipma.api.user.UserService/VerifyPurchase", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userServiceClient) UpgradePlan(ctx context.Context, in *UserPlan, opts ...grpc.CallOption) (*User, error) {
+	out := new(User)
+	err := c.cc.Invoke(ctx, "/ekipma.api.user.UserService/UpgradePlan", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userServiceClient) BuyAsset(ctx context.Context, in *Asset, opts ...grpc.CallOption) (*User, error) {
+	out := new(User)
+	err := c.cc.Invoke(ctx, "/ekipma.api.user.UserService/BuyAsset", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userServiceClient) SendToken(ctx context.Context, in *SendTokenInput, opts ...grpc.CallOption) (*User, error) {
+	out := new(User)
+	err := c.cc.Invoke(ctx, "/ekipma.api.user.UserService/SendToken", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -220,23 +215,43 @@ func (c *userServiceClient) CheckPremium(ctx context.Context, in *CheckPremiumIn
 // All implementations must embed UnimplementedUserServiceServer
 // for forward compatibility
 type UserServiceServer interface {
-	// otp
+	// only sends otp to the mobile number in separate go routine
+	// it has two types -> register and forget
+	// if register -> check duplicate
 	SendOtp(context.Context, *SendOtpInput) (*Empty, error)
+	// validate otp code of the mobile number
+	// generate a token for signing up
 	VerifyOtp(context.Context, *VerifyOtpInput) (*VerifyOtpOutput, error)
-	// auth
+	// with the otp-token given attempt a register
+	// generate access-token and send it
 	RegisterUser(context.Context, *RegisterInput) (*AuthOutput, error)
 	LoginUser(context.Context, *LoginInput) (*AuthOutput, error)
-	// direct update
+	// update only "name | email | public"
 	UpdateUser(context.Context, *User) (*User, error)
-	// friend
 	AddFriends(UserService_AddFriendsServer) error
-	GetFriends(*Empty, UserService_GetFriendsServer) error
-	RemoveFriend(context.Context, *IdInput) (*Empty, error)
-	// wallet
-	GetWallets(*Empty, UserService_GetWalletsServer) error
-	UpdateWallet(context.Context, *Wallet) (*UpdateWalletOutput, error)
-	// premium
-	CheckPremium(context.Context, *CheckPremiumInput) (*User, error)
+	RemoveFriend(context.Context, *IdInput) (*User, error)
+	// based on type + owner -> update/set addr (unique)
+	// based on type -> send my wallet of same type
+	// wallet public is `false` by default (for premium)
+	// but can be set as `public` or `primary` in account section
+	// `primary` address is what others can copy from copy btn
+	UpdateWallet(context.Context, *Wallet) (*User, error)
+	// if wType = custom
+	// creates a payment url for client
+	// saves authority in a column in users table
+	// client: opens link in browser
+	// else: return related wDist based on wType
+	RequestPurchase(context.Context, *RequestPurchaseInput) (*RequestPurchaseOutput, error)
+	// check purchase and convert it to equivalent amount of tokens
+	// update user tokens and return user
+	VerifyPurchase(context.Context, *VerifyPurchaseInput) (*User, error)
+	// reduce tokens based on play type and upgrade user's plan
+	UpgradePlan(context.Context, *UserPlan) (*User, error)
+	// reduce tokens based on asset type and add asset to user's assets
+	BuyAsset(context.Context, *Asset) (*User, error)
+	// reduce token from user and send to friend
+	// also notify friend
+	SendToken(context.Context, *SendTokenInput) (*User, error)
 	mustEmbedUnimplementedUserServiceServer()
 }
 
@@ -262,20 +277,26 @@ func (UnimplementedUserServiceServer) UpdateUser(context.Context, *User) (*User,
 func (UnimplementedUserServiceServer) AddFriends(UserService_AddFriendsServer) error {
 	return status.Errorf(codes.Unimplemented, "method AddFriends not implemented")
 }
-func (UnimplementedUserServiceServer) GetFriends(*Empty, UserService_GetFriendsServer) error {
-	return status.Errorf(codes.Unimplemented, "method GetFriends not implemented")
-}
-func (UnimplementedUserServiceServer) RemoveFriend(context.Context, *IdInput) (*Empty, error) {
+func (UnimplementedUserServiceServer) RemoveFriend(context.Context, *IdInput) (*User, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RemoveFriend not implemented")
 }
-func (UnimplementedUserServiceServer) GetWallets(*Empty, UserService_GetWalletsServer) error {
-	return status.Errorf(codes.Unimplemented, "method GetWallets not implemented")
-}
-func (UnimplementedUserServiceServer) UpdateWallet(context.Context, *Wallet) (*UpdateWalletOutput, error) {
+func (UnimplementedUserServiceServer) UpdateWallet(context.Context, *Wallet) (*User, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateWallet not implemented")
 }
-func (UnimplementedUserServiceServer) CheckPremium(context.Context, *CheckPremiumInput) (*User, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CheckPremium not implemented")
+func (UnimplementedUserServiceServer) RequestPurchase(context.Context, *RequestPurchaseInput) (*RequestPurchaseOutput, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RequestPurchase not implemented")
+}
+func (UnimplementedUserServiceServer) VerifyPurchase(context.Context, *VerifyPurchaseInput) (*User, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method VerifyPurchase not implemented")
+}
+func (UnimplementedUserServiceServer) UpgradePlan(context.Context, *UserPlan) (*User, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpgradePlan not implemented")
+}
+func (UnimplementedUserServiceServer) BuyAsset(context.Context, *Asset) (*User, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BuyAsset not implemented")
+}
+func (UnimplementedUserServiceServer) SendToken(context.Context, *SendTokenInput) (*User, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SendToken not implemented")
 }
 func (UnimplementedUserServiceServer) mustEmbedUnimplementedUserServiceServer() {}
 
@@ -385,7 +406,7 @@ func _UserService_AddFriends_Handler(srv interface{}, stream grpc.ServerStream) 
 }
 
 type UserService_AddFriendsServer interface {
-	Send(*FriendsChunk) error
+	SendAndClose(*User) error
 	Recv() (*MobilesChunk, error)
 	grpc.ServerStream
 }
@@ -394,7 +415,7 @@ type userServiceAddFriendsServer struct {
 	grpc.ServerStream
 }
 
-func (x *userServiceAddFriendsServer) Send(m *FriendsChunk) error {
+func (x *userServiceAddFriendsServer) SendAndClose(m *User) error {
 	return x.ServerStream.SendMsg(m)
 }
 
@@ -404,27 +425,6 @@ func (x *userServiceAddFriendsServer) Recv() (*MobilesChunk, error) {
 		return nil, err
 	}
 	return m, nil
-}
-
-func _UserService_GetFriends_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(Empty)
-	if err := stream.RecvMsg(m); err != nil {
-		return err
-	}
-	return srv.(UserServiceServer).GetFriends(m, &userServiceGetFriendsServer{stream})
-}
-
-type UserService_GetFriendsServer interface {
-	Send(*FriendsChunk) error
-	grpc.ServerStream
-}
-
-type userServiceGetFriendsServer struct {
-	grpc.ServerStream
-}
-
-func (x *userServiceGetFriendsServer) Send(m *FriendsChunk) error {
-	return x.ServerStream.SendMsg(m)
 }
 
 func _UserService_RemoveFriend_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -445,27 +445,6 @@ func _UserService_RemoveFriend_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UserService_GetWallets_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(Empty)
-	if err := stream.RecvMsg(m); err != nil {
-		return err
-	}
-	return srv.(UserServiceServer).GetWallets(m, &userServiceGetWalletsServer{stream})
-}
-
-type UserService_GetWalletsServer interface {
-	Send(*Wallet) error
-	grpc.ServerStream
-}
-
-type userServiceGetWalletsServer struct {
-	grpc.ServerStream
-}
-
-func (x *userServiceGetWalletsServer) Send(m *Wallet) error {
-	return x.ServerStream.SendMsg(m)
-}
-
 func _UserService_UpdateWallet_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(Wallet)
 	if err := dec(in); err != nil {
@@ -484,20 +463,92 @@ func _UserService_UpdateWallet_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UserService_CheckPremium_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CheckPremiumInput)
+func _UserService_RequestPurchase_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RequestPurchaseInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserServiceServer).CheckPremium(ctx, in)
+		return srv.(UserServiceServer).RequestPurchase(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/ekipma.api.user.UserService/CheckPremium",
+		FullMethod: "/ekipma.api.user.UserService/RequestPurchase",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServiceServer).CheckPremium(ctx, req.(*CheckPremiumInput))
+		return srv.(UserServiceServer).RequestPurchase(ctx, req.(*RequestPurchaseInput))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _UserService_VerifyPurchase_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(VerifyPurchaseInput)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).VerifyPurchase(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/ekipma.api.user.UserService/VerifyPurchase",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).VerifyPurchase(ctx, req.(*VerifyPurchaseInput))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _UserService_UpgradePlan_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserPlan)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).UpgradePlan(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/ekipma.api.user.UserService/UpgradePlan",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).UpgradePlan(ctx, req.(*UserPlan))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _UserService_BuyAsset_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Asset)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).BuyAsset(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/ekipma.api.user.UserService/BuyAsset",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).BuyAsset(ctx, req.(*Asset))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _UserService_SendToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SendTokenInput)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).SendToken(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/ekipma.api.user.UserService/SendToken",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).SendToken(ctx, req.(*SendTokenInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -538,26 +589,31 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _UserService_UpdateWallet_Handler,
 		},
 		{
-			MethodName: "CheckPremium",
-			Handler:    _UserService_CheckPremium_Handler,
+			MethodName: "RequestPurchase",
+			Handler:    _UserService_RequestPurchase_Handler,
+		},
+		{
+			MethodName: "VerifyPurchase",
+			Handler:    _UserService_VerifyPurchase_Handler,
+		},
+		{
+			MethodName: "UpgradePlan",
+			Handler:    _UserService_UpgradePlan_Handler,
+		},
+		{
+			MethodName: "BuyAsset",
+			Handler:    _UserService_BuyAsset_Handler,
+		},
+		{
+			MethodName: "SendToken",
+			Handler:    _UserService_SendToken_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
 		{
 			StreamName:    "AddFriends",
 			Handler:       _UserService_AddFriends_Handler,
-			ServerStreams: true,
 			ClientStreams: true,
-		},
-		{
-			StreamName:    "GetFriends",
-			Handler:       _UserService_GetFriends_Handler,
-			ServerStreams: true,
-		},
-		{
-			StreamName:    "GetWallets",
-			Handler:       _UserService_GetWallets_Handler,
-			ServerStreams: true,
 		},
 	},
 	Metadata: "proto/user.proto",
