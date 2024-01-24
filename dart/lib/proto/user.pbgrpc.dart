@@ -74,9 +74,9 @@ class UserServiceClient extends $grpc.Client {
       '/ekipma.api.user.UserService/UpgradePlan',
       ($3.UserPlan value) => value.writeToBuffer(),
       ($core.List<$core.int> value) => $3.User.fromBuffer(value));
-  static final _$buyAsset = $grpc.ClientMethod<$3.Asset, $3.User>(
+  static final _$buyAsset = $grpc.ClientMethod<$3.BuyAssetInput, $3.User>(
       '/ekipma.api.user.UserService/BuyAsset',
-      ($3.Asset value) => value.writeToBuffer(),
+      ($3.BuyAssetInput value) => value.writeToBuffer(),
       ($core.List<$core.int> value) => $3.User.fromBuffer(value));
   static final _$sendToken = $grpc.ClientMethod<$3.SendTokenInput, $3.User>(
       '/ekipma.api.user.UserService/SendToken',
@@ -141,7 +141,7 @@ class UserServiceClient extends $grpc.Client {
     return $createUnaryCall(_$upgradePlan, request, options: options);
   }
 
-  $grpc.ResponseFuture<$3.User> buyAsset($3.Asset request, {$grpc.CallOptions? options}) {
+  $grpc.ResponseFuture<$3.User> buyAsset($3.BuyAssetInput request, {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$buyAsset, request, options: options);
   }
 
@@ -246,12 +246,12 @@ abstract class UserServiceBase extends $grpc.Service {
         false,
         ($core.List<$core.int> value) => $3.UserPlan.fromBuffer(value),
         ($3.User value) => value.writeToBuffer()));
-    $addMethod($grpc.ServiceMethod<$3.Asset, $3.User>(
+    $addMethod($grpc.ServiceMethod<$3.BuyAssetInput, $3.User>(
         'BuyAsset',
         buyAsset_Pre,
         false,
         false,
-        ($core.List<$core.int> value) => $3.Asset.fromBuffer(value),
+        ($core.List<$core.int> value) => $3.BuyAssetInput.fromBuffer(value),
         ($3.User value) => value.writeToBuffer()));
     $addMethod($grpc.ServiceMethod<$3.SendTokenInput, $3.User>(
         'SendToken',
@@ -310,7 +310,7 @@ abstract class UserServiceBase extends $grpc.Service {
     return upgradePlan(call, await request);
   }
 
-  $async.Future<$3.User> buyAsset_Pre($grpc.ServiceCall call, $async.Future<$3.Asset> request) async {
+  $async.Future<$3.User> buyAsset_Pre($grpc.ServiceCall call, $async.Future<$3.BuyAssetInput> request) async {
     return buyAsset(call, await request);
   }
 
@@ -331,6 +331,6 @@ abstract class UserServiceBase extends $grpc.Service {
   $async.Future<$3.RequestPurchaseOutput> requestPurchase($grpc.ServiceCall call, $3.RequestPurchaseInput request);
   $async.Future<$3.User> verifyPurchase($grpc.ServiceCall call, $3.VerifyPurchaseInput request);
   $async.Future<$3.User> upgradePlan($grpc.ServiceCall call, $3.UserPlan request);
-  $async.Future<$3.User> buyAsset($grpc.ServiceCall call, $3.Asset request);
+  $async.Future<$3.User> buyAsset($grpc.ServiceCall call, $3.BuyAssetInput request);
   $async.Future<$3.User> sendToken($grpc.ServiceCall call, $3.SendTokenInput request);
 }

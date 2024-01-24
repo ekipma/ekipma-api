@@ -41,8 +41,10 @@ service UserService {
   rpc VerifyPurchase(VerifyPurchaseInput) returns (User);
   // reduce tokens based on play type and upgrade user's plan
   rpc UpgradePlan(UserPlan) returns (User);
-  // reduce tokens based on asset type and add asset to user's assets
-  rpc BuyAsset(Asset) returns (User);
+  // server calculates hash of (type+uuid+price)
+  // if correct: user price (>1ma) to buy asset
+  // reduce tokens and add asset's hash to user's assets
+  rpc BuyAsset(BuyAssetInput) returns (User);
   // reduce token from user and send to friend
   // also notify friend
   rpc SendToken(SendTokenInput) returns (User);
@@ -76,7 +78,7 @@ message User {
   repeated uint64 achs = 18;
   // list of all assets that the user is holding
   // parsed from user.assets string
-  repeated Asset assets = 19;
+  repeated string assets = 19; // hash of all assets holding
 }
 
 enum UserRole {
@@ -197,21 +199,10 @@ enum UserPlanType {
 
 // game
 
-message Asset {
-  AssetType type = 1; // input
-  string uuid = 2;    // unique id of the asset - convention
-  // tokens necessary to unlock
-  // least 1 token (prevent brute forcing)
-  uint64 price = 3;
-  string hash = 4; // input - checksum for type+uuid+price not to alter
-  bool active = 5; // input - only one asset of a type is active
-}
-
-enum AssetType {
-  AssetUnkown = 0;
-  AssetAvatarFrame = 1; // user avatar frame
-  AssetCardSkin = 2;    // record-card, friend-card, notif-card
-  AssetNotifSound = 3;  // sound of the notifs made by user
+message BuyAssetInput {
+  string uuid = 2;  // unique id of the asset - convention
+  uint64 price = 3; // least 1 token (prevent brute forcing)
+  string hash = 4;  // input - checksum for type+uuid+price not to alter
 }
 
 message SendTokenInput {

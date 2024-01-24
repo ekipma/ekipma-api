@@ -56,8 +56,10 @@ type UserServiceClient interface {
 	VerifyPurchase(ctx context.Context, in *VerifyPurchaseInput, opts ...grpc.CallOption) (*User, error)
 	// reduce tokens based on play type and upgrade user's plan
 	UpgradePlan(ctx context.Context, in *UserPlan, opts ...grpc.CallOption) (*User, error)
-	// reduce tokens based on asset type and add asset to user's assets
-	BuyAsset(ctx context.Context, in *Asset, opts ...grpc.CallOption) (*User, error)
+	// server calculates hash of (type+uuid+price)
+	// if correct: user price (>1ma) to buy asset
+	// reduce tokens and add asset's hash to user's assets
+	BuyAsset(ctx context.Context, in *BuyAssetInput, opts ...grpc.CallOption) (*User, error)
 	// reduce token from user and send to friend
 	// also notify friend
 	SendToken(ctx context.Context, in *SendTokenInput, opts ...grpc.CallOption) (*User, error)
@@ -213,7 +215,7 @@ func (c *userServiceClient) UpgradePlan(ctx context.Context, in *UserPlan, opts 
 	return out, nil
 }
 
-func (c *userServiceClient) BuyAsset(ctx context.Context, in *Asset, opts ...grpc.CallOption) (*User, error) {
+func (c *userServiceClient) BuyAsset(ctx context.Context, in *BuyAssetInput, opts ...grpc.CallOption) (*User, error) {
 	out := new(User)
 	err := c.cc.Invoke(ctx, "/ekipma.api.user.UserService/BuyAsset", in, out, opts...)
 	if err != nil {
@@ -269,8 +271,10 @@ type UserServiceServer interface {
 	VerifyPurchase(context.Context, *VerifyPurchaseInput) (*User, error)
 	// reduce tokens based on play type and upgrade user's plan
 	UpgradePlan(context.Context, *UserPlan) (*User, error)
-	// reduce tokens based on asset type and add asset to user's assets
-	BuyAsset(context.Context, *Asset) (*User, error)
+	// server calculates hash of (type+uuid+price)
+	// if correct: user price (>1ma) to buy asset
+	// reduce tokens and add asset's hash to user's assets
+	BuyAsset(context.Context, *BuyAssetInput) (*User, error)
 	// reduce token from user and send to friend
 	// also notify friend
 	SendToken(context.Context, *SendTokenInput) (*User, error)
@@ -320,7 +324,7 @@ func (UnimplementedUserServiceServer) VerifyPurchase(context.Context, *VerifyPur
 func (UnimplementedUserServiceServer) UpgradePlan(context.Context, *UserPlan) (*User, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpgradePlan not implemented")
 }
-func (UnimplementedUserServiceServer) BuyAsset(context.Context, *Asset) (*User, error) {
+func (UnimplementedUserServiceServer) BuyAsset(context.Context, *BuyAssetInput) (*User, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method BuyAsset not implemented")
 }
 func (UnimplementedUserServiceServer) SendToken(context.Context, *SendTokenInput) (*User, error) {
@@ -582,7 +586,7 @@ func _UserService_UpgradePlan_Handler(srv interface{}, ctx context.Context, dec 
 }
 
 func _UserService_BuyAsset_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Asset)
+	in := new(BuyAssetInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -594,7 +598,7 @@ func _UserService_BuyAsset_Handler(srv interface{}, ctx context.Context, dec fun
 		FullMethod: "/ekipma.api.user.UserService/BuyAsset",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServiceServer).BuyAsset(ctx, req.(*Asset))
+		return srv.(UserServiceServer).BuyAsset(ctx, req.(*BuyAssetInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }

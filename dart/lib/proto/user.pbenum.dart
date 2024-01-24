@@ -89,24 +89,5 @@ class UserPlanType extends $pb.ProtobufEnum {
   const UserPlanType._($core.int v, $core.String n) : super(v, n);
 }
 
-class AssetType extends $pb.ProtobufEnum {
-  static const AssetType AssetUnkown = AssetType._(0, _omitEnumNames ? '' : 'AssetUnkown');
-  static const AssetType AssetAvatarFrame = AssetType._(1, _omitEnumNames ? '' : 'AssetAvatarFrame');
-  static const AssetType AssetCardSkin = AssetType._(2, _omitEnumNames ? '' : 'AssetCardSkin');
-  static const AssetType AssetNotifSound = AssetType._(3, _omitEnumNames ? '' : 'AssetNotifSound');
-
-  static const $core.List<AssetType> values = <AssetType> [
-    AssetUnkown,
-    AssetAvatarFrame,
-    AssetCardSkin,
-    AssetNotifSound,
-  ];
-
-  static final $core.Map<$core.int, AssetType> _byValue = $pb.ProtobufEnum.initByValue(values);
-  static AssetType? valueOf($core.int value) => _byValue[value];
-
-  const AssetType._($core.int v, $core.String n) : super(v, n);
-}
-
 
 const _omitEnumNames = $core.bool.fromEnvironment('protobuf.omit_enum_names');

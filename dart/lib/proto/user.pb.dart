@@ -40,7 +40,7 @@ class User extends $pb.GeneratedMessage {
     $fixnum.Int64? tokens,
     $core.bool? acceptToken,
     $core.Iterable<$fixnum.Int64>? achs,
-    $core.Iterable<Asset>? assets,
+    $core.Iterable<$core.String>? assets,
   }) {
     final $result = create();
     if (id != null) {
@@ -125,7 +125,7 @@ class User extends $pb.GeneratedMessage {
     ..a<$fixnum.Int64>(16, _omitFieldNames ? '' : 'tokens', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
     ..aOB(17, _omitFieldNames ? '' : 'acceptToken', protoName: 'acceptToken')
     ..p<$fixnum.Int64>(18, _omitFieldNames ? '' : 'achs', $pb.PbFieldType.KU6)
-    ..pc<Asset>(19, _omitFieldNames ? '' : 'assets', $pb.PbFieldType.PM, subBuilder: Asset.create)
+    ..pPS(19, _omitFieldNames ? '' : 'assets')
     ..hasRequiredFields = false
   ;
 
@@ -308,7 +308,7 @@ class User extends $pb.GeneratedMessage {
   /// list of all assets that the user is holding
   /// parsed from user.assets string
   @$pb.TagNumber(19)
-  $core.List<Asset> get assets => $_getList(18);
+  $core.List<$core.String> get assets => $_getList(18);
 }
 
 class SendOtpInput extends $pb.GeneratedMessage {
@@ -1389,18 +1389,13 @@ class UserPlan extends $pb.GeneratedMessage {
   $4.Timestamp ensureExpiresAt() => $_ensure(1);
 }
 
-class Asset extends $pb.GeneratedMessage {
-  factory Asset({
-    AssetType? type,
+class BuyAssetInput extends $pb.GeneratedMessage {
+  factory BuyAssetInput({
     $core.String? uuid,
     $fixnum.Int64? price,
     $core.String? hash,
-    $core.bool? active,
   }) {
     final $result = create();
-    if (type != null) {
-      $result.type = type;
-    }
     if (uuid != null) {
       $result.uuid = uuid;
     }
@@ -1410,21 +1405,16 @@ class Asset extends $pb.GeneratedMessage {
     if (hash != null) {
       $result.hash = hash;
     }
-    if (active != null) {
-      $result.active = active;
-    }
     return $result;
   }
-  Asset._() : super();
-  factory Asset.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory Asset.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  BuyAssetInput._() : super();
+  factory BuyAssetInput.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory BuyAssetInput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Asset', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.user'), createEmptyInstance: create)
-    ..e<AssetType>(1, _omitFieldNames ? '' : 'type', $pb.PbFieldType.OE, defaultOrMaker: AssetType.AssetUnkown, valueOf: AssetType.valueOf, enumValues: AssetType.values)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'BuyAssetInput', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.user'), createEmptyInstance: create)
     ..aOS(2, _omitFieldNames ? '' : 'uuid')
     ..a<$fixnum.Int64>(3, _omitFieldNames ? '' : 'price', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
     ..aOS(4, _omitFieldNames ? '' : 'hash')
-    ..aOB(5, _omitFieldNames ? '' : 'active')
     ..hasRequiredFields = false
   ;
 
@@ -1432,69 +1422,49 @@ class Asset extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
   'Will be removed in next major version')
-  Asset clone() => Asset()..mergeFromMessage(this);
+  BuyAssetInput clone() => BuyAssetInput()..mergeFromMessage(this);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  Asset copyWith(void Function(Asset) updates) => super.copyWith((message) => updates(message as Asset)) as Asset;
+  BuyAssetInput copyWith(void Function(BuyAssetInput) updates) => super.copyWith((message) => updates(message as BuyAssetInput)) as BuyAssetInput;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
-  static Asset create() => Asset._();
-  Asset createEmptyInstance() => create();
-  static $pb.PbList<Asset> createRepeated() => $pb.PbList<Asset>();
+  static BuyAssetInput create() => BuyAssetInput._();
+  BuyAssetInput createEmptyInstance() => create();
+  static $pb.PbList<BuyAssetInput> createRepeated() => $pb.PbList<BuyAssetInput>();
   @$core.pragma('dart2js:noInline')
-  static Asset getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Asset>(create);
-  static Asset? _defaultInstance;
-
-  @$pb.TagNumber(1)
-  AssetType get type => $_getN(0);
-  @$pb.TagNumber(1)
-  set type(AssetType v) { setField(1, v); }
-  @$pb.TagNumber(1)
-  $core.bool hasType() => $_has(0);
-  @$pb.TagNumber(1)
-  void clearType() => clearField(1);
+  static BuyAssetInput getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<BuyAssetInput>(create);
+  static BuyAssetInput? _defaultInstance;
 
   @$pb.TagNumber(2)
-  $core.String get uuid => $_getSZ(1);
+  $core.String get uuid => $_getSZ(0);
   @$pb.TagNumber(2)
-  set uuid($core.String v) { $_setString(1, v); }
+  set uuid($core.String v) { $_setString(0, v); }
   @$pb.TagNumber(2)
-  $core.bool hasUuid() => $_has(1);
+  $core.bool hasUuid() => $_has(0);
   @$pb.TagNumber(2)
   void clearUuid() => clearField(2);
 
-  /// tokens necessary to unlock
-  /// least 1 token (prevent brute forcing)
   @$pb.TagNumber(3)
-  $fixnum.Int64 get price => $_getI64(2);
+  $fixnum.Int64 get price => $_getI64(1);
   @$pb.TagNumber(3)
-  set price($fixnum.Int64 v) { $_setInt64(2, v); }
+  set price($fixnum.Int64 v) { $_setInt64(1, v); }
   @$pb.TagNumber(3)
-  $core.bool hasPrice() => $_has(2);
+  $core.bool hasPrice() => $_has(1);
   @$pb.TagNumber(3)
   void clearPrice() => clearField(3);
 
   @$pb.TagNumber(4)
-  $core.String get hash => $_getSZ(3);
+  $core.String get hash => $_getSZ(2);
   @$pb.TagNumber(4)
-  set hash($core.String v) { $_setString(3, v); }
+  set hash($core.String v) { $_setString(2, v); }
   @$pb.TagNumber(4)
-  $core.bool hasHash() => $_has(3);
+  $core.bool hasHash() => $_has(2);
   @$pb.TagNumber(4)
   void clearHash() => clearField(4);
-
-  @$pb.TagNumber(5)
-  $core.bool get active => $_getBF(4);
-  @$pb.TagNumber(5)
-  set active($core.bool v) { $_setBool(4, v); }
-  @$pb.TagNumber(5)
-  $core.bool hasActive() => $_has(4);
-  @$pb.TagNumber(5)
-  void clearActive() => clearField(5);
 }
 
 class SendTokenInput extends $pb.GeneratedMessage {

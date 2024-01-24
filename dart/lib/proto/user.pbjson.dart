@@ -77,22 +77,6 @@ final $typed_data.Uint8List userPlanTypeDescriptor = $convert.base64Decode(
     'CgxVc2VyUGxhblR5cGUSEgoOVXNlclBsYW5Ob3JtYWwQABITCg9Vc2VyUGxhblByZW1pdW0QAR'
     'IPCgtVc2VyUGxhbkdvZBAC');
 
-@$core.Deprecated('Use assetTypeDescriptor instead')
-const AssetType$json = {
-  '1': 'AssetType',
-  '2': [
-    {'1': 'AssetUnkown', '2': 0},
-    {'1': 'AssetAvatarFrame', '2': 1},
-    {'1': 'AssetCardSkin', '2': 2},
-    {'1': 'AssetNotifSound', '2': 3},
-  ],
-};
-
-/// Descriptor for `AssetType`. Decode as a `google.protobuf.EnumDescriptorProto`.
-final $typed_data.Uint8List assetTypeDescriptor = $convert.base64Decode(
-    'CglBc3NldFR5cGUSDwoLQXNzZXRVbmtvd24QABIUChBBc3NldEF2YXRhckZyYW1lEAESEQoNQX'
-    'NzZXRDYXJkU2tpbhACEhMKD0Fzc2V0Tm90aWZTb3VuZBAD');
-
 @$core.Deprecated('Use userDescriptor instead')
 const User$json = {
   '1': 'User',
@@ -115,7 +99,7 @@ const User$json = {
     {'1': 'tokens', '3': 16, '4': 1, '5': 4, '10': 'tokens'},
     {'1': 'acceptToken', '3': 17, '4': 1, '5': 8, '10': 'acceptToken'},
     {'1': 'achs', '3': 18, '4': 3, '5': 4, '10': 'achs'},
-    {'1': 'assets', '3': 19, '4': 3, '5': 11, '6': '.ekipma.api.user.Asset', '10': 'assets'},
+    {'1': 'assets', '3': 19, '4': 3, '5': 9, '10': 'assets'},
   ],
 };
 
@@ -130,8 +114,8 @@ final $typed_data.Uint8List userDescriptor = $convert.base64Decode(
     'UghwaG90b1VSTBIYCgdpbnZpdGVyGAwgASgEUgdpbnZpdGVyEhgKB2ZyaWVuZHMYDSADKARSB2'
     'ZyaWVuZHMSGAoHd2FsbGV0cxgOIAMoBFIHd2FsbGV0cxItCgRwbGFuGA8gASgLMhkuZWtpcG1h'
     'LmFwaS51c2VyLlVzZXJQbGFuUgRwbGFuEhYKBnRva2VucxgQIAEoBFIGdG9rZW5zEiAKC2FjY2'
-    'VwdFRva2VuGBEgASgIUgthY2NlcHRUb2tlbhISCgRhY2hzGBIgAygEUgRhY2hzEi4KBmFzc2V0'
-    'cxgTIAMoCzIWLmVraXBtYS5hcGkudXNlci5Bc3NldFIGYXNzZXRz');
+    'VwdFRva2VuGBEgASgIUgthY2NlcHRUb2tlbhISCgRhY2hzGBIgAygEUgRhY2hzEhYKBmFzc2V0'
+    'cxgTIAMoCVIGYXNzZXRz');
 
 @$core.Deprecated('Use sendOtpInputDescriptor instead')
 const SendOtpInput$json = {
@@ -355,23 +339,20 @@ final $typed_data.Uint8List userPlanDescriptor = $convert.base64Decode(
     'IEdHlwZRI4CglleHBpcmVzQXQYAiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wUgll'
     'eHBpcmVzQXQ=');
 
-@$core.Deprecated('Use assetDescriptor instead')
-const Asset$json = {
-  '1': 'Asset',
+@$core.Deprecated('Use buyAssetInputDescriptor instead')
+const BuyAssetInput$json = {
+  '1': 'BuyAssetInput',
   '2': [
-    {'1': 'type', '3': 1, '4': 1, '5': 14, '6': '.ekipma.api.user.AssetType', '10': 'type'},
     {'1': 'uuid', '3': 2, '4': 1, '5': 9, '10': 'uuid'},
     {'1': 'price', '3': 3, '4': 1, '5': 4, '10': 'price'},
     {'1': 'hash', '3': 4, '4': 1, '5': 9, '10': 'hash'},
-    {'1': 'active', '3': 5, '4': 1, '5': 8, '10': 'active'},
   ],
 };
 
-/// Descriptor for `Asset`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List assetDescriptor = $convert.base64Decode(
-    'CgVBc3NldBIuCgR0eXBlGAEgASgOMhouZWtpcG1hLmFwaS51c2VyLkFzc2V0VHlwZVIEdHlwZR'
-    'ISCgR1dWlkGAIgASgJUgR1dWlkEhQKBXByaWNlGAMgASgEUgVwcmljZRISCgRoYXNoGAQgASgJ'
-    'UgRoYXNoEhYKBmFjdGl2ZRgFIAEoCFIGYWN0aXZl');
+/// Descriptor for `BuyAssetInput`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List buyAssetInputDescriptor = $convert.base64Decode(
+    'Cg1CdXlBc3NldElucHV0EhIKBHV1aWQYAiABKAlSBHV1aWQSFAoFcHJpY2UYAyABKARSBXByaW'
+    'NlEhIKBGhhc2gYBCABKAlSBGhhc2g=');
 
 @$core.Deprecated('Use sendTokenInputDescriptor instead')
 const SendTokenInput$json = {
