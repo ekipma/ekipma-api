@@ -60,11 +60,11 @@ message User {
   // user
   UserRole role = 4;
   string mobile = 5;
-  string name = 6;      // editable
-  string email = 7;     // editable
-  string ccNo = 8;      // editable - copiable credit-card no
-  bool public = 9;      // editable
-  string code = 10;     // renewable - referral code
+  string code = 6;      // renewable - referral code
+  string name = 7;      // editable
+  string email = 8;     // editable
+  string ccNo = 9;      // editable - copiable credit-card no
+  bool public = 10;     // editable
   string photoURL = 11; // from uuid
   uint64 inviter = 12;
   repeated uint64 friends = 13;
@@ -75,7 +75,7 @@ message User {
   // editable - user also likes to accept token as debt repay
   bool acceptToken = 17;
   // achievements achieved by the user
-  repeated uint64 achs = 18;
+  repeated string achs = 18;
   // list of all assets that the user is holding
   // parsed from user.assets string
   repeated string assets = 19; // hash of all assets holding
@@ -200,9 +200,9 @@ enum UserPlanType {
 // game
 
 message BuyAssetInput {
-  string uuid = 2;  // unique id of the asset - convention
-  uint64 price = 3; // least 1 token (prevent brute forcing)
-  string hash = 4;  // input - checksum for type+uuid+price not to alter
+  string uuid = 1;  // unique id of the asset - convention
+  uint64 price = 2; // least 1 token (prevent brute forcing)
+  string hash = 3;  // input - checksum for type+uuid+price not to alter
 }
 
 message SendTokenInput {
