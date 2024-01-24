@@ -110,7 +110,7 @@ const User$json = {
     {'1': 'inviter', '3': 11, '4': 1, '5': 4, '10': 'inviter'},
     {'1': 'friends', '3': 12, '4': 3, '5': 11, '6': '.ekipma.api.user.Friend', '10': 'friends'},
     {'1': 'wallets', '3': 13, '4': 3, '5': 11, '6': '.ekipma.api.user.Wallet', '10': 'wallets'},
-    {'1': 'mainWallet', '3': 14, '4': 1, '5': 4, '10': 'mainWallet'},
+    {'1': 'mainWallet', '3': 14, '4': 1, '5': 11, '6': '.ekipma.api.user.Wallet', '10': 'mainWallet'},
     {'1': 'plan', '3': 15, '4': 1, '5': 11, '6': '.ekipma.api.user.UserPlan', '10': 'plan'},
     {'1': 'tokens', '3': 16, '4': 1, '5': 4, '10': 'tokens'},
     {'1': 'acceptToken', '3': 17, '4': 1, '5': 8, '10': 'acceptToken'},
@@ -129,10 +129,11 @@ final $typed_data.Uint8List userDescriptor = $convert.base64Decode(
     'oEY29kZRgJIAEoCVIEY29kZRIaCghwaG90b1VSTBgKIAEoCVIIcGhvdG9VUkwSGAoHaW52aXRl'
     'chgLIAEoBFIHaW52aXRlchIxCgdmcmllbmRzGAwgAygLMhcuZWtpcG1hLmFwaS51c2VyLkZyaW'
     'VuZFIHZnJpZW5kcxIxCgd3YWxsZXRzGA0gAygLMhcuZWtpcG1hLmFwaS51c2VyLldhbGxldFIH'
-    'd2FsbGV0cxIeCgptYWluV2FsbGV0GA4gASgEUgptYWluV2FsbGV0Ei0KBHBsYW4YDyABKAsyGS'
-    '5la2lwbWEuYXBpLnVzZXIuVXNlclBsYW5SBHBsYW4SFgoGdG9rZW5zGBAgASgEUgZ0b2tlbnMS'
-    'IAoLYWNjZXB0VG9rZW4YESABKAhSC2FjY2VwdFRva2VuEhIKBGFjaHMYEiADKARSBGFjaHMSLg'
-    'oGYXNzZXRzGBMgAygLMhYuZWtpcG1hLmFwaS51c2VyLkFzc2V0UgZhc3NldHM=');
+    'd2FsbGV0cxI3CgptYWluV2FsbGV0GA4gASgLMhcuZWtpcG1hLmFwaS51c2VyLldhbGxldFIKbW'
+    'FpbldhbGxldBItCgRwbGFuGA8gASgLMhkuZWtpcG1hLmFwaS51c2VyLlVzZXJQbGFuUgRwbGFu'
+    'EhYKBnRva2VucxgQIAEoBFIGdG9rZW5zEiAKC2FjY2VwdFRva2VuGBEgASgIUgthY2NlcHRUb2'
+    'tlbhISCgRhY2hzGBIgAygEUgRhY2hzEi4KBmFzc2V0cxgTIAMoCzIWLmVraXBtYS5hcGkudXNl'
+    'ci5Bc3NldFIGYXNzZXRz');
 
 @$core.Deprecated('Use sendOtpInputDescriptor instead')
 const SendOtpInput$json = {

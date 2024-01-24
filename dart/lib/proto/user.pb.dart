@@ -35,7 +35,7 @@ class User extends $pb.GeneratedMessage {
     $fixnum.Int64? inviter,
     $core.Iterable<Friend>? friends,
     $core.Iterable<Wallet>? wallets,
-    $fixnum.Int64? mainWallet,
+    Wallet? mainWallet,
     UserPlan? plan,
     $fixnum.Int64? tokens,
     $core.bool? acceptToken,
@@ -120,7 +120,7 @@ class User extends $pb.GeneratedMessage {
     ..a<$fixnum.Int64>(11, _omitFieldNames ? '' : 'inviter', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
     ..pc<Friend>(12, _omitFieldNames ? '' : 'friends', $pb.PbFieldType.PM, subBuilder: Friend.create)
     ..pc<Wallet>(13, _omitFieldNames ? '' : 'wallets', $pb.PbFieldType.PM, subBuilder: Wallet.create)
-    ..a<$fixnum.Int64>(14, _omitFieldNames ? '' : 'mainWallet', $pb.PbFieldType.OU6, protoName: 'mainWallet', defaultOrMaker: $fixnum.Int64.ZERO)
+    ..aOM<Wallet>(14, _omitFieldNames ? '' : 'mainWallet', protoName: 'mainWallet', subBuilder: Wallet.create)
     ..aOM<UserPlan>(15, _omitFieldNames ? '' : 'plan', subBuilder: UserPlan.create)
     ..a<$fixnum.Int64>(16, _omitFieldNames ? '' : 'tokens', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
     ..aOB(17, _omitFieldNames ? '' : 'acceptToken', protoName: 'acceptToken')
@@ -262,13 +262,15 @@ class User extends $pb.GeneratedMessage {
   $core.List<Wallet> get wallets => $_getList(12);
 
   @$pb.TagNumber(14)
-  $fixnum.Int64 get mainWallet => $_getI64(13);
+  Wallet get mainWallet => $_getN(13);
   @$pb.TagNumber(14)
-  set mainWallet($fixnum.Int64 v) { $_setInt64(13, v); }
+  set mainWallet(Wallet v) { setField(14, v); }
   @$pb.TagNumber(14)
   $core.bool hasMainWallet() => $_has(13);
   @$pb.TagNumber(14)
   void clearMainWallet() => clearField(14);
+  @$pb.TagNumber(14)
+  Wallet ensureMainWallet() => $_ensure(13);
 
   @$pb.TagNumber(15)
   UserPlan get plan => $_getN(14);

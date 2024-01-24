@@ -64,7 +64,7 @@ message User {
   uint64 inviter = 11;
   repeated Friend friends = 12; // output - populate from friend ids
   repeated Wallet wallets = 13; // output - populate from wallet ids
-  uint64 mainWallet = 14;       // primary wallet id
+  Wallet mainWallet = 14;       // output - from primary wallet id
   UserPlan plan = 15;
   // amount of the tokens (ma) that user holds
   uint64 tokens = 16;
