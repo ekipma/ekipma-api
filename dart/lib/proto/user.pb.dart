@@ -29,13 +29,13 @@ class User extends $pb.GeneratedMessage {
     $core.String? mobile,
     $core.String? name,
     $core.String? email,
+    $core.String? ccNo,
     $core.bool? public,
     $core.String? code,
     $core.String? photoURL,
     $fixnum.Int64? inviter,
-    $core.Iterable<Friend>? friends,
-    $core.Iterable<Wallet>? wallets,
-    Wallet? mainWallet,
+    $core.Iterable<$fixnum.Int64>? friends,
+    $core.Iterable<$fixnum.Int64>? wallets,
     UserPlan? plan,
     $fixnum.Int64? tokens,
     $core.bool? acceptToken,
@@ -64,6 +64,9 @@ class User extends $pb.GeneratedMessage {
     if (email != null) {
       $result.email = email;
     }
+    if (ccNo != null) {
+      $result.ccNo = ccNo;
+    }
     if (public != null) {
       $result.public = public;
     }
@@ -81,9 +84,6 @@ class User extends $pb.GeneratedMessage {
     }
     if (wallets != null) {
       $result.wallets.addAll(wallets);
-    }
-    if (mainWallet != null) {
-      $result.mainWallet = mainWallet;
     }
     if (plan != null) {
       $result.plan = plan;
@@ -114,13 +114,13 @@ class User extends $pb.GeneratedMessage {
     ..aOS(5, _omitFieldNames ? '' : 'mobile')
     ..aOS(6, _omitFieldNames ? '' : 'name')
     ..aOS(7, _omitFieldNames ? '' : 'email')
-    ..aOB(8, _omitFieldNames ? '' : 'public')
-    ..aOS(9, _omitFieldNames ? '' : 'code')
-    ..aOS(10, _omitFieldNames ? '' : 'photoURL', protoName: 'photoURL')
-    ..a<$fixnum.Int64>(11, _omitFieldNames ? '' : 'inviter', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
-    ..pc<Friend>(12, _omitFieldNames ? '' : 'friends', $pb.PbFieldType.PM, subBuilder: Friend.create)
-    ..pc<Wallet>(13, _omitFieldNames ? '' : 'wallets', $pb.PbFieldType.PM, subBuilder: Wallet.create)
-    ..aOM<Wallet>(14, _omitFieldNames ? '' : 'mainWallet', protoName: 'mainWallet', subBuilder: Wallet.create)
+    ..aOS(8, _omitFieldNames ? '' : 'ccNo', protoName: 'ccNo')
+    ..aOB(9, _omitFieldNames ? '' : 'public')
+    ..aOS(10, _omitFieldNames ? '' : 'code')
+    ..aOS(11, _omitFieldNames ? '' : 'photoURL', protoName: 'photoURL')
+    ..a<$fixnum.Int64>(12, _omitFieldNames ? '' : 'inviter', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
+    ..p<$fixnum.Int64>(13, _omitFieldNames ? '' : 'friends', $pb.PbFieldType.KU6)
+    ..p<$fixnum.Int64>(14, _omitFieldNames ? '' : 'wallets', $pb.PbFieldType.KU6)
     ..aOM<UserPlan>(15, _omitFieldNames ? '' : 'plan', subBuilder: UserPlan.create)
     ..a<$fixnum.Int64>(16, _omitFieldNames ? '' : 'tokens', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
     ..aOB(17, _omitFieldNames ? '' : 'acceptToken', protoName: 'acceptToken')
@@ -220,57 +220,55 @@ class User extends $pb.GeneratedMessage {
   void clearEmail() => clearField(7);
 
   @$pb.TagNumber(8)
-  $core.bool get public => $_getBF(7);
+  $core.String get ccNo => $_getSZ(7);
   @$pb.TagNumber(8)
-  set public($core.bool v) { $_setBool(7, v); }
+  set ccNo($core.String v) { $_setString(7, v); }
   @$pb.TagNumber(8)
-  $core.bool hasPublic() => $_has(7);
+  $core.bool hasCcNo() => $_has(7);
   @$pb.TagNumber(8)
-  void clearPublic() => clearField(8);
+  void clearCcNo() => clearField(8);
 
   @$pb.TagNumber(9)
-  $core.String get code => $_getSZ(8);
+  $core.bool get public => $_getBF(8);
   @$pb.TagNumber(9)
-  set code($core.String v) { $_setString(8, v); }
+  set public($core.bool v) { $_setBool(8, v); }
   @$pb.TagNumber(9)
-  $core.bool hasCode() => $_has(8);
+  $core.bool hasPublic() => $_has(8);
   @$pb.TagNumber(9)
-  void clearCode() => clearField(9);
+  void clearPublic() => clearField(9);
 
   @$pb.TagNumber(10)
-  $core.String get photoURL => $_getSZ(9);
+  $core.String get code => $_getSZ(9);
   @$pb.TagNumber(10)
-  set photoURL($core.String v) { $_setString(9, v); }
+  set code($core.String v) { $_setString(9, v); }
   @$pb.TagNumber(10)
-  $core.bool hasPhotoURL() => $_has(9);
+  $core.bool hasCode() => $_has(9);
   @$pb.TagNumber(10)
-  void clearPhotoURL() => clearField(10);
+  void clearCode() => clearField(10);
 
   @$pb.TagNumber(11)
-  $fixnum.Int64 get inviter => $_getI64(10);
+  $core.String get photoURL => $_getSZ(10);
   @$pb.TagNumber(11)
-  set inviter($fixnum.Int64 v) { $_setInt64(10, v); }
+  set photoURL($core.String v) { $_setString(10, v); }
   @$pb.TagNumber(11)
-  $core.bool hasInviter() => $_has(10);
+  $core.bool hasPhotoURL() => $_has(10);
   @$pb.TagNumber(11)
-  void clearInviter() => clearField(11);
+  void clearPhotoURL() => clearField(11);
 
   @$pb.TagNumber(12)
-  $core.List<Friend> get friends => $_getList(11);
+  $fixnum.Int64 get inviter => $_getI64(11);
+  @$pb.TagNumber(12)
+  set inviter($fixnum.Int64 v) { $_setInt64(11, v); }
+  @$pb.TagNumber(12)
+  $core.bool hasInviter() => $_has(11);
+  @$pb.TagNumber(12)
+  void clearInviter() => clearField(12);
 
   @$pb.TagNumber(13)
-  $core.List<Wallet> get wallets => $_getList(12);
+  $core.List<$fixnum.Int64> get friends => $_getList(12);
 
   @$pb.TagNumber(14)
-  Wallet get mainWallet => $_getN(13);
-  @$pb.TagNumber(14)
-  set mainWallet(Wallet v) { setField(14, v); }
-  @$pb.TagNumber(14)
-  $core.bool hasMainWallet() => $_has(13);
-  @$pb.TagNumber(14)
-  void clearMainWallet() => clearField(14);
-  @$pb.TagNumber(14)
-  Wallet ensureMainWallet() => $_ensure(13);
+  $core.List<$fixnum.Int64> get wallets => $_getList(13);
 
   @$pb.TagNumber(15)
   UserPlan get plan => $_getN(14);
@@ -732,9 +730,9 @@ class Friend extends $pb.GeneratedMessage {
     $fixnum.Int64? id,
     $core.String? name,
     $core.String? email,
+    $core.String? ccNo,
     $core.String? photoURL,
     UserPlan? plan,
-    Wallet? mainWallet,
   }) {
     final $result = create();
     if (id != null) {
@@ -746,14 +744,14 @@ class Friend extends $pb.GeneratedMessage {
     if (email != null) {
       $result.email = email;
     }
+    if (ccNo != null) {
+      $result.ccNo = ccNo;
+    }
     if (photoURL != null) {
       $result.photoURL = photoURL;
     }
     if (plan != null) {
       $result.plan = plan;
-    }
-    if (mainWallet != null) {
-      $result.mainWallet = mainWallet;
     }
     return $result;
   }
@@ -765,9 +763,9 @@ class Friend extends $pb.GeneratedMessage {
     ..a<$fixnum.Int64>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
     ..aOS(2, _omitFieldNames ? '' : 'name')
     ..aOS(3, _omitFieldNames ? '' : 'email')
-    ..aOS(4, _omitFieldNames ? '' : 'photoURL', protoName: 'photoURL')
-    ..aOM<UserPlan>(5, _omitFieldNames ? '' : 'plan', subBuilder: UserPlan.create)
-    ..aOM<Wallet>(6, _omitFieldNames ? '' : 'mainWallet', protoName: 'mainWallet', subBuilder: Wallet.create)
+    ..aOS(4, _omitFieldNames ? '' : 'ccNo', protoName: 'ccNo')
+    ..aOS(5, _omitFieldNames ? '' : 'photoURL', protoName: 'photoURL')
+    ..aOM<UserPlan>(6, _omitFieldNames ? '' : 'plan', subBuilder: UserPlan.create)
     ..hasRequiredFields = false
   ;
 
@@ -820,35 +818,33 @@ class Friend extends $pb.GeneratedMessage {
   void clearEmail() => clearField(3);
 
   @$pb.TagNumber(4)
-  $core.String get photoURL => $_getSZ(3);
+  $core.String get ccNo => $_getSZ(3);
   @$pb.TagNumber(4)
-  set photoURL($core.String v) { $_setString(3, v); }
+  set ccNo($core.String v) { $_setString(3, v); }
   @$pb.TagNumber(4)
-  $core.bool hasPhotoURL() => $_has(3);
+  $core.bool hasCcNo() => $_has(3);
   @$pb.TagNumber(4)
-  void clearPhotoURL() => clearField(4);
+  void clearCcNo() => clearField(4);
 
   @$pb.TagNumber(5)
-  UserPlan get plan => $_getN(4);
+  $core.String get photoURL => $_getSZ(4);
   @$pb.TagNumber(5)
-  set plan(UserPlan v) { setField(5, v); }
+  set photoURL($core.String v) { $_setString(4, v); }
   @$pb.TagNumber(5)
-  $core.bool hasPlan() => $_has(4);
+  $core.bool hasPhotoURL() => $_has(4);
   @$pb.TagNumber(5)
-  void clearPlan() => clearField(5);
-  @$pb.TagNumber(5)
-  UserPlan ensurePlan() => $_ensure(4);
+  void clearPhotoURL() => clearField(5);
 
   @$pb.TagNumber(6)
-  Wallet get mainWallet => $_getN(5);
+  UserPlan get plan => $_getN(5);
   @$pb.TagNumber(6)
-  set mainWallet(Wallet v) { setField(6, v); }
+  set plan(UserPlan v) { setField(6, v); }
   @$pb.TagNumber(6)
-  $core.bool hasMainWallet() => $_has(5);
+  $core.bool hasPlan() => $_has(5);
   @$pb.TagNumber(6)
-  void clearMainWallet() => clearField(6);
+  void clearPlan() => clearField(6);
   @$pb.TagNumber(6)
-  Wallet ensureMainWallet() => $_ensure(5);
+  UserPlan ensurePlan() => $_ensure(5);
 }
 
 class MobilesChunk extends $pb.GeneratedMessage {
@@ -909,6 +905,50 @@ class MobilesChunk extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(2)
   $core.List<$core.String> get mobiles => $_getList(1);
+}
+
+class FriendsOutput extends $pb.GeneratedMessage {
+  factory FriendsOutput({
+    $core.Iterable<Friend>? friends,
+  }) {
+    final $result = create();
+    if (friends != null) {
+      $result.friends.addAll(friends);
+    }
+    return $result;
+  }
+  FriendsOutput._() : super();
+  factory FriendsOutput.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory FriendsOutput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'FriendsOutput', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.user'), createEmptyInstance: create)
+    ..pc<Friend>(1, _omitFieldNames ? '' : 'friends', $pb.PbFieldType.PM, subBuilder: Friend.create)
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  FriendsOutput clone() => FriendsOutput()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  FriendsOutput copyWith(void Function(FriendsOutput) updates) => super.copyWith((message) => updates(message as FriendsOutput)) as FriendsOutput;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static FriendsOutput create() => FriendsOutput._();
+  FriendsOutput createEmptyInstance() => create();
+  static $pb.PbList<FriendsOutput> createRepeated() => $pb.PbList<FriendsOutput>();
+  @$core.pragma('dart2js:noInline')
+  static FriendsOutput getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<FriendsOutput>(create);
+  static FriendsOutput? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.List<Friend> get friends => $_getList(0);
 }
 
 class Wallet extends $pb.GeneratedMessage {
@@ -1029,6 +1069,50 @@ class Wallet extends $pb.GeneratedMessage {
   $core.bool hasPrimary() => $_has(5);
   @$pb.TagNumber(6)
   void clearPrimary() => clearField(6);
+}
+
+class WalletsOutput extends $pb.GeneratedMessage {
+  factory WalletsOutput({
+    $core.Iterable<Wallet>? wallets,
+  }) {
+    final $result = create();
+    if (wallets != null) {
+      $result.wallets.addAll(wallets);
+    }
+    return $result;
+  }
+  WalletsOutput._() : super();
+  factory WalletsOutput.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory WalletsOutput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'WalletsOutput', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.user'), createEmptyInstance: create)
+    ..pc<Wallet>(1, _omitFieldNames ? '' : 'wallets', $pb.PbFieldType.PM, subBuilder: Wallet.create)
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  WalletsOutput clone() => WalletsOutput()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  WalletsOutput copyWith(void Function(WalletsOutput) updates) => super.copyWith((message) => updates(message as WalletsOutput)) as WalletsOutput;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static WalletsOutput create() => WalletsOutput._();
+  WalletsOutput createEmptyInstance() => create();
+  static $pb.PbList<WalletsOutput> createRepeated() => $pb.PbList<WalletsOutput>();
+  @$core.pragma('dart2js:noInline')
+  static WalletsOutput getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<WalletsOutput>(create);
+  static WalletsOutput? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.List<Wallet> get wallets => $_getList(0);
 }
 
 class RequestPurchaseInput extends $pb.GeneratedMessage {
@@ -1308,17 +1392,14 @@ class UserPlan extends $pb.GeneratedMessage {
 class Asset extends $pb.GeneratedMessage {
   factory Asset({
     AssetType? type,
-    $core.bool? active,
     $core.String? uuid,
     $fixnum.Int64? price,
     $core.String? hash,
+    $core.bool? active,
   }) {
     final $result = create();
     if (type != null) {
       $result.type = type;
-    }
-    if (active != null) {
-      $result.active = active;
     }
     if (uuid != null) {
       $result.uuid = uuid;
@@ -1329,6 +1410,9 @@ class Asset extends $pb.GeneratedMessage {
     if (hash != null) {
       $result.hash = hash;
     }
+    if (active != null) {
+      $result.active = active;
+    }
     return $result;
   }
   Asset._() : super();
@@ -1337,10 +1421,10 @@ class Asset extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Asset', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.user'), createEmptyInstance: create)
     ..e<AssetType>(1, _omitFieldNames ? '' : 'type', $pb.PbFieldType.OE, defaultOrMaker: AssetType.AssetUnkown, valueOf: AssetType.valueOf, enumValues: AssetType.values)
-    ..aOB(2, _omitFieldNames ? '' : 'active')
-    ..aOS(3, _omitFieldNames ? '' : 'uuid')
-    ..a<$fixnum.Int64>(4, _omitFieldNames ? '' : 'price', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
-    ..aOS(5, _omitFieldNames ? '' : 'hash')
+    ..aOS(2, _omitFieldNames ? '' : 'uuid')
+    ..a<$fixnum.Int64>(3, _omitFieldNames ? '' : 'price', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
+    ..aOS(4, _omitFieldNames ? '' : 'hash')
+    ..aOB(5, _omitFieldNames ? '' : 'active')
     ..hasRequiredFields = false
   ;
 
@@ -1375,42 +1459,42 @@ class Asset extends $pb.GeneratedMessage {
   void clearType() => clearField(1);
 
   @$pb.TagNumber(2)
-  $core.bool get active => $_getBF(1);
+  $core.String get uuid => $_getSZ(1);
   @$pb.TagNumber(2)
-  set active($core.bool v) { $_setBool(1, v); }
+  set uuid($core.String v) { $_setString(1, v); }
   @$pb.TagNumber(2)
-  $core.bool hasActive() => $_has(1);
+  $core.bool hasUuid() => $_has(1);
   @$pb.TagNumber(2)
-  void clearActive() => clearField(2);
-
-  @$pb.TagNumber(3)
-  $core.String get uuid => $_getSZ(2);
-  @$pb.TagNumber(3)
-  set uuid($core.String v) { $_setString(2, v); }
-  @$pb.TagNumber(3)
-  $core.bool hasUuid() => $_has(2);
-  @$pb.TagNumber(3)
-  void clearUuid() => clearField(3);
+  void clearUuid() => clearField(2);
 
   /// tokens necessary to unlock
   /// least 1 token (prevent brute forcing)
+  @$pb.TagNumber(3)
+  $fixnum.Int64 get price => $_getI64(2);
+  @$pb.TagNumber(3)
+  set price($fixnum.Int64 v) { $_setInt64(2, v); }
+  @$pb.TagNumber(3)
+  $core.bool hasPrice() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearPrice() => clearField(3);
+
   @$pb.TagNumber(4)
-  $fixnum.Int64 get price => $_getI64(3);
+  $core.String get hash => $_getSZ(3);
   @$pb.TagNumber(4)
-  set price($fixnum.Int64 v) { $_setInt64(3, v); }
+  set hash($core.String v) { $_setString(3, v); }
   @$pb.TagNumber(4)
-  $core.bool hasPrice() => $_has(3);
+  $core.bool hasHash() => $_has(3);
   @$pb.TagNumber(4)
-  void clearPrice() => clearField(4);
+  void clearHash() => clearField(4);
 
   @$pb.TagNumber(5)
-  $core.String get hash => $_getSZ(4);
+  $core.bool get active => $_getBF(4);
   @$pb.TagNumber(5)
-  set hash($core.String v) { $_setString(4, v); }
+  set active($core.bool v) { $_setBool(4, v); }
   @$pb.TagNumber(5)
-  $core.bool hasHash() => $_has(4);
+  $core.bool hasActive() => $_has(4);
   @$pb.TagNumber(5)
-  void clearHash() => clearField(5);
+  void clearActive() => clearField(5);
 }
 
 class SendTokenInput extends $pb.GeneratedMessage {

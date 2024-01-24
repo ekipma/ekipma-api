@@ -21,12 +21,14 @@ service UserService {
   // update only "name | email | public"
   rpc UpdateUser(User) returns (User);
   rpc AddFriends(stream MobilesChunk) returns (User);
+  rpc GetFriends(ekipma.api.common.Empty) returns (FriendsOutput);
   rpc RemoveFriend(ekipma.api.common.IdInput) returns (User);
   // based on type + owner -> update/set addr (unique)
   // based on type -> send my wallet of same type
   // wallet public is `false` by default (for premium)
   // but can be set as `public` or `primary` in account section
   // `primary` address is what others can copy from copy btn
+  rpc GetWallets(ekipma.api.common.Empty) returns (WalletsOutput);
   rpc UpdateWallet(Wallet) returns (User);
   // if wType = custom
   // creates a payment url for client
@@ -58,13 +60,13 @@ message User {
   string mobile = 5;
   string name = 6;      // editable
   string email = 7;     // editable
-  bool public = 8;      // editable
-  string code = 9;      // renewable - referral code
-  string photoURL = 10; // from uuid
-  uint64 inviter = 11;
-  repeated Friend friends = 12; // output - populate from friend ids
-  repeated Wallet wallets = 13; // output - populate from wallet ids
-  Wallet mainWallet = 14;       // output - from primary wallet id
+  string ccNo = 8;      // editable - copiable credit-card no
+  bool public = 9;      // editable
+  string code = 10;     // renewable - referral code
+  string photoURL = 11; // from uuid
+  uint64 inviter = 12;
+  repeated uint64 friends = 13;
+  repeated uint64 wallets = 14;
   UserPlan plan = 15;
   // amount of the tokens (ma) that user holds
   uint64 tokens = 16;
@@ -133,15 +135,17 @@ message Friend {
   uint64 id = 1;
   string name = 2;
   string email = 3;
-  string photoURL = 4;
-  UserPlan plan = 5;
-  Wallet mainWallet = 6; // from primary wallet id
+  string ccNo = 4;
+  string photoURL = 5;
+  UserPlan plan = 6;
 }
 
 message MobilesChunk {
   ekipma.api.common.Chunk info = 1;
   repeated string mobiles = 2; // 100 mobiles per chunk
 }
+
+message FriendsOutput { repeated Friend friends = 1; }
 
 // wallets
 
@@ -161,6 +165,8 @@ message Wallet {
   bool public = 5;  // visible to other users
   bool primary = 6; // input - sets as primary
 }
+
+message WalletsOutput { repeated Wallet wallets = 1; }
 
 message RequestPurchaseInput { uint64 walledID = 1; }
 
@@ -193,12 +199,12 @@ enum UserPlanType {
 
 message Asset {
   AssetType type = 1; // input
-  string uuid = 3;    // unique id of the asset - convention
+  string uuid = 2;    // unique id of the asset - convention
   // tokens necessary to unlock
   // least 1 token (prevent brute forcing)
-  uint64 price = 4;
-  string hash = 5; // input - checksum for type+uuid+price not to alter
-  bool active = 2; // input - only one asset of a type is active
+  uint64 price = 3;
+  string hash = 4; // input - checksum for type+uuid+price not to alter
+  bool active = 5; // input - only one asset of a type is active
 }
 
 enum AssetType {

@@ -36,12 +36,14 @@ type UserServiceClient interface {
 	// update only "name | email | public"
 	UpdateUser(ctx context.Context, in *User, opts ...grpc.CallOption) (*User, error)
 	AddFriends(ctx context.Context, opts ...grpc.CallOption) (UserService_AddFriendsClient, error)
+	GetFriends(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*FriendsOutput, error)
 	RemoveFriend(ctx context.Context, in *IdInput, opts ...grpc.CallOption) (*User, error)
 	// based on type + owner -> update/set addr (unique)
 	// based on type -> send my wallet of same type
 	// wallet public is `false` by default (for premium)
 	// but can be set as `public` or `primary` in account section
 	// `primary` address is what others can copy from copy btn
+	GetWallets(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*WalletsOutput, error)
 	UpdateWallet(ctx context.Context, in *Wallet, opts ...grpc.CallOption) (*User, error)
 	// if wType = custom
 	// creates a payment url for client
@@ -148,9 +150,27 @@ func (x *userServiceAddFriendsClient) CloseAndRecv() (*User, error) {
 	return m, nil
 }
 
+func (c *userServiceClient) GetFriends(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*FriendsOutput, error) {
+	out := new(FriendsOutput)
+	err := c.cc.Invoke(ctx, "/ekipma.api.user.UserService/GetFriends", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *userServiceClient) RemoveFriend(ctx context.Context, in *IdInput, opts ...grpc.CallOption) (*User, error) {
 	out := new(User)
 	err := c.cc.Invoke(ctx, "/ekipma.api.user.UserService/RemoveFriend", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userServiceClient) GetWallets(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*WalletsOutput, error) {
+	out := new(WalletsOutput)
+	err := c.cc.Invoke(ctx, "/ekipma.api.user.UserService/GetWallets", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -229,12 +249,14 @@ type UserServiceServer interface {
 	// update only "name | email | public"
 	UpdateUser(context.Context, *User) (*User, error)
 	AddFriends(UserService_AddFriendsServer) error
+	GetFriends(context.Context, *Empty) (*FriendsOutput, error)
 	RemoveFriend(context.Context, *IdInput) (*User, error)
 	// based on type + owner -> update/set addr (unique)
 	// based on type -> send my wallet of same type
 	// wallet public is `false` by default (for premium)
 	// but can be set as `public` or `primary` in account section
 	// `primary` address is what others can copy from copy btn
+	GetWallets(context.Context, *Empty) (*WalletsOutput, error)
 	UpdateWallet(context.Context, *Wallet) (*User, error)
 	// if wType = custom
 	// creates a payment url for client
@@ -277,8 +299,14 @@ func (UnimplementedUserServiceServer) UpdateUser(context.Context, *User) (*User,
 func (UnimplementedUserServiceServer) AddFriends(UserService_AddFriendsServer) error {
 	return status.Errorf(codes.Unimplemented, "method AddFriends not implemented")
 }
+func (UnimplementedUserServiceServer) GetFriends(context.Context, *Empty) (*FriendsOutput, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetFriends not implemented")
+}
 func (UnimplementedUserServiceServer) RemoveFriend(context.Context, *IdInput) (*User, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RemoveFriend not implemented")
+}
+func (UnimplementedUserServiceServer) GetWallets(context.Context, *Empty) (*WalletsOutput, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetWallets not implemented")
 }
 func (UnimplementedUserServiceServer) UpdateWallet(context.Context, *Wallet) (*User, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateWallet not implemented")
@@ -427,6 +455,24 @@ func (x *userServiceAddFriendsServer) Recv() (*MobilesChunk, error) {
 	return m, nil
 }
 
+func _UserService_GetFriends_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).GetFriends(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/ekipma.api.user.UserService/GetFriends",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).GetFriends(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _UserService_RemoveFriend_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(IdInput)
 	if err := dec(in); err != nil {
@@ -441,6 +487,24 @@ func _UserService_RemoveFriend_Handler(srv interface{}, ctx context.Context, dec
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UserServiceServer).RemoveFriend(ctx, req.(*IdInput))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _UserService_GetWallets_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).GetWallets(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/ekipma.api.user.UserService/GetWallets",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).GetWallets(ctx, req.(*Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -581,8 +645,16 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _UserService_UpdateUser_Handler,
 		},
 		{
+			MethodName: "GetFriends",
+			Handler:    _UserService_GetFriends_Handler,
+		},
+		{
 			MethodName: "RemoveFriend",
 			Handler:    _UserService_RemoveFriend_Handler,
+		},
+		{
+			MethodName: "GetWallets",
+			Handler:    _UserService_GetWallets_Handler,
 		},
 		{
 			MethodName: "UpdateWallet",
