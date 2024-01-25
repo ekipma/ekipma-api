@@ -68,16 +68,15 @@ message User {
   string photoURL = 11; // from uuid
   uint64 inviter = 12;
   repeated uint64 friends = 13;
-  repeated uint64 wallets = 14;
-  UserPlan plan = 15;
+  UserPlan plan = 14;
   // amount of the tokens (ma) that user holds
-  uint64 tokens = 16;
+  uint64 tokens = 15;
   // editable - user also likes to accept token as debt repay
-  bool acceptToken = 17;
+  bool acceptToken = 16;
   // achievements achieved by the user
-  repeated string achs = 18;
+  repeated string achs = 17;
   // hash of all assets holding
-  repeated string assets = 19;
+  repeated string assets = 18;
 }
 
 enum UserRole {
@@ -85,6 +84,12 @@ enum UserRole {
   UserRoleNormal = 1;
   UserRoleOpr = 2;
   UserRoleAdmin = 3;
+}
+
+enum UserPlanType {
+  UserPlanNormal = 0;
+  UserPlanPremium = 1;
+  UserPlanGod = 2;
 }
 
 // otp
@@ -169,6 +174,8 @@ message Wallet {
 
 message WalletsOutput { repeated Wallet wallets = 1; }
 
+// purchase
+
 message RequestPurchaseInput { uint64 walledID = 1; }
 
 message RequestPurchaseOutput {
@@ -187,13 +194,7 @@ message VerifyPurchaseInput {
 
 message UserPlan {
   UserPlanType type = 1;
-  google.protobuf.Timestamp expiresAt = 2; // outpu
-}
-
-enum UserPlanType {
-  UserPlanNormal = 0;
-  UserPlanPremium = 1;
-  UserPlanGod = 2;
+  google.protobuf.Timestamp expiresAt = 2; // output
 }
 
 // game

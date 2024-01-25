@@ -32,6 +32,23 @@ class UserRole extends $pb.ProtobufEnum {
   const UserRole._($core.int v, $core.String n) : super(v, n);
 }
 
+class UserPlanType extends $pb.ProtobufEnum {
+  static const UserPlanType UserPlanNormal = UserPlanType._(0, _omitEnumNames ? '' : 'UserPlanNormal');
+  static const UserPlanType UserPlanPremium = UserPlanType._(1, _omitEnumNames ? '' : 'UserPlanPremium');
+  static const UserPlanType UserPlanGod = UserPlanType._(2, _omitEnumNames ? '' : 'UserPlanGod');
+
+  static const $core.List<UserPlanType> values = <UserPlanType> [
+    UserPlanNormal,
+    UserPlanPremium,
+    UserPlanGod,
+  ];
+
+  static final $core.Map<$core.int, UserPlanType> _byValue = $pb.ProtobufEnum.initByValue(values);
+  static UserPlanType? valueOf($core.int value) => _byValue[value];
+
+  const UserPlanType._($core.int v, $core.String n) : super(v, n);
+}
+
 class OtpOpr extends $pb.ProtobufEnum {
   static const OtpOpr OtpNone = OtpOpr._(0, _omitEnumNames ? '' : 'OtpNone');
   static const OtpOpr OtpRegister = OtpOpr._(1, _omitEnumNames ? '' : 'OtpRegister');
@@ -70,23 +87,6 @@ class WalletType extends $pb.ProtobufEnum {
   static WalletType? valueOf($core.int value) => _byValue[value];
 
   const WalletType._($core.int v, $core.String n) : super(v, n);
-}
-
-class UserPlanType extends $pb.ProtobufEnum {
-  static const UserPlanType UserPlanNormal = UserPlanType._(0, _omitEnumNames ? '' : 'UserPlanNormal');
-  static const UserPlanType UserPlanPremium = UserPlanType._(1, _omitEnumNames ? '' : 'UserPlanPremium');
-  static const UserPlanType UserPlanGod = UserPlanType._(2, _omitEnumNames ? '' : 'UserPlanGod');
-
-  static const $core.List<UserPlanType> values = <UserPlanType> [
-    UserPlanNormal,
-    UserPlanPremium,
-    UserPlanGod,
-  ];
-
-  static final $core.Map<$core.int, UserPlanType> _byValue = $pb.ProtobufEnum.initByValue(values);
-  static UserPlanType? valueOf($core.int value) => _byValue[value];
-
-  const UserPlanType._($core.int v, $core.String n) : super(v, n);
 }
 
 

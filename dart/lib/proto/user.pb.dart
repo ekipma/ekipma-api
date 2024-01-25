@@ -35,7 +35,6 @@ class User extends $pb.GeneratedMessage {
     $core.String? photoURL,
     $fixnum.Int64? inviter,
     $core.Iterable<$fixnum.Int64>? friends,
-    $core.Iterable<$fixnum.Int64>? wallets,
     UserPlan? plan,
     $fixnum.Int64? tokens,
     $core.bool? acceptToken,
@@ -82,9 +81,6 @@ class User extends $pb.GeneratedMessage {
     if (friends != null) {
       $result.friends.addAll(friends);
     }
-    if (wallets != null) {
-      $result.wallets.addAll(wallets);
-    }
     if (plan != null) {
       $result.plan = plan;
     }
@@ -120,12 +116,11 @@ class User extends $pb.GeneratedMessage {
     ..aOS(11, _omitFieldNames ? '' : 'photoURL', protoName: 'photoURL')
     ..a<$fixnum.Int64>(12, _omitFieldNames ? '' : 'inviter', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
     ..p<$fixnum.Int64>(13, _omitFieldNames ? '' : 'friends', $pb.PbFieldType.KU6)
-    ..p<$fixnum.Int64>(14, _omitFieldNames ? '' : 'wallets', $pb.PbFieldType.KU6)
-    ..aOM<UserPlan>(15, _omitFieldNames ? '' : 'plan', subBuilder: UserPlan.create)
-    ..a<$fixnum.Int64>(16, _omitFieldNames ? '' : 'tokens', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
-    ..aOB(17, _omitFieldNames ? '' : 'acceptToken', protoName: 'acceptToken')
-    ..pPS(18, _omitFieldNames ? '' : 'achs')
-    ..pPS(19, _omitFieldNames ? '' : 'assets')
+    ..aOM<UserPlan>(14, _omitFieldNames ? '' : 'plan', subBuilder: UserPlan.create)
+    ..a<$fixnum.Int64>(15, _omitFieldNames ? '' : 'tokens', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
+    ..aOB(16, _omitFieldNames ? '' : 'acceptToken', protoName: 'acceptToken')
+    ..pPS(17, _omitFieldNames ? '' : 'achs')
+    ..pPS(18, _omitFieldNames ? '' : 'assets')
     ..hasRequiredFields = false
   ;
 
@@ -268,46 +263,43 @@ class User extends $pb.GeneratedMessage {
   $core.List<$fixnum.Int64> get friends => $_getList(12);
 
   @$pb.TagNumber(14)
-  $core.List<$fixnum.Int64> get wallets => $_getList(13);
-
-  @$pb.TagNumber(15)
-  UserPlan get plan => $_getN(14);
-  @$pb.TagNumber(15)
-  set plan(UserPlan v) { setField(15, v); }
-  @$pb.TagNumber(15)
-  $core.bool hasPlan() => $_has(14);
-  @$pb.TagNumber(15)
-  void clearPlan() => clearField(15);
-  @$pb.TagNumber(15)
-  UserPlan ensurePlan() => $_ensure(14);
+  UserPlan get plan => $_getN(13);
+  @$pb.TagNumber(14)
+  set plan(UserPlan v) { setField(14, v); }
+  @$pb.TagNumber(14)
+  $core.bool hasPlan() => $_has(13);
+  @$pb.TagNumber(14)
+  void clearPlan() => clearField(14);
+  @$pb.TagNumber(14)
+  UserPlan ensurePlan() => $_ensure(13);
 
   /// amount of the tokens (ma) that user holds
-  @$pb.TagNumber(16)
-  $fixnum.Int64 get tokens => $_getI64(15);
-  @$pb.TagNumber(16)
-  set tokens($fixnum.Int64 v) { $_setInt64(15, v); }
-  @$pb.TagNumber(16)
-  $core.bool hasTokens() => $_has(15);
-  @$pb.TagNumber(16)
-  void clearTokens() => clearField(16);
+  @$pb.TagNumber(15)
+  $fixnum.Int64 get tokens => $_getI64(14);
+  @$pb.TagNumber(15)
+  set tokens($fixnum.Int64 v) { $_setInt64(14, v); }
+  @$pb.TagNumber(15)
+  $core.bool hasTokens() => $_has(14);
+  @$pb.TagNumber(15)
+  void clearTokens() => clearField(15);
 
   /// editable - user also likes to accept token as debt repay
-  @$pb.TagNumber(17)
-  $core.bool get acceptToken => $_getBF(16);
-  @$pb.TagNumber(17)
-  set acceptToken($core.bool v) { $_setBool(16, v); }
-  @$pb.TagNumber(17)
-  $core.bool hasAcceptToken() => $_has(16);
-  @$pb.TagNumber(17)
-  void clearAcceptToken() => clearField(17);
+  @$pb.TagNumber(16)
+  $core.bool get acceptToken => $_getBF(15);
+  @$pb.TagNumber(16)
+  set acceptToken($core.bool v) { $_setBool(15, v); }
+  @$pb.TagNumber(16)
+  $core.bool hasAcceptToken() => $_has(15);
+  @$pb.TagNumber(16)
+  void clearAcceptToken() => clearField(16);
 
   /// achievements achieved by the user
-  @$pb.TagNumber(18)
-  $core.List<$core.String> get achs => $_getList(17);
+  @$pb.TagNumber(17)
+  $core.List<$core.String> get achs => $_getList(16);
 
   /// hash of all assets holding
-  @$pb.TagNumber(19)
-  $core.List<$core.String> get assets => $_getList(18);
+  @$pb.TagNumber(18)
+  $core.List<$core.String> get assets => $_getList(17);
 }
 
 class SendOtpInput extends $pb.GeneratedMessage {
