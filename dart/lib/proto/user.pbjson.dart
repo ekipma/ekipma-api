@@ -298,7 +298,7 @@ const RequestPurchaseOutput$json = {
   '1': 'RequestPurchaseOutput',
   '2': [
     {'1': 'wDist', '3': 1, '4': 1, '5': 11, '6': '.ekipma.api.user.Wallet', '10': 'wDist'},
-    {'1': 'price', '3': 2, '4': 1, '5': 2, '10': 'price'},
+    {'1': 'PriceVsMA', '3': 2, '4': 1, '5': 2, '10': 'PriceVsMA'},
     {'1': 'needHash', '3': 3, '4': 1, '5': 8, '10': 'needHash'},
     {'1': 'redirectURL', '3': 4, '4': 1, '5': 9, '10': 'redirectURL'},
   ],
@@ -307,8 +307,8 @@ const RequestPurchaseOutput$json = {
 /// Descriptor for `RequestPurchaseOutput`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List requestPurchaseOutputDescriptor = $convert.base64Decode(
     'ChVSZXF1ZXN0UHVyY2hhc2VPdXRwdXQSLQoFd0Rpc3QYASABKAsyFy5la2lwbWEuYXBpLnVzZX'
-    'IuV2FsbGV0UgV3RGlzdBIUCgVwcmljZRgCIAEoAlIFcHJpY2USGgoIbmVlZEhhc2gYAyABKAhS'
-    'CG5lZWRIYXNoEiAKC3JlZGlyZWN0VVJMGAQgASgJUgtyZWRpcmVjdFVSTA==');
+    'IuV2FsbGV0UgV3RGlzdBIcCglQcmljZVZzTUEYAiABKAJSCVByaWNlVnNNQRIaCghuZWVkSGFz'
+    'aBgDIAEoCFIIbmVlZEhhc2gSIAoLcmVkaXJlY3RVUkwYBCABKAlSC3JlZGlyZWN0VVJM');
 
 @$core.Deprecated('Use verifyPurchaseInputDescriptor instead')
 const VerifyPurchaseInput$json = {

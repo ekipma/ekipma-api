@@ -39,9 +39,9 @@ service UserService {
   // check purchase and convert it to equivalent amount of tokens
   // update user tokens and return user
   rpc VerifyPurchase(VerifyPurchaseInput) returns (User);
-  // reduce tokens based on play type and upgrade user's plan
+  // reduce tokens based on plan type and upgrade user's plan
   rpc UpgradePlan(UserPlan) returns (User);
-  // server calculates hash of (type+uuid+price)
+  // server calculates hash of (uuid:price)
   // if correct: user price (>1ma) to buy asset
   // reduce tokens and add asset's hash to user's assets
   rpc BuyAsset(BuyAssetInput) returns (User);
@@ -76,9 +76,8 @@ message User {
   bool acceptToken = 17;
   // achievements achieved by the user
   repeated string achs = 18;
-  // list of all assets that the user is holding
-  // parsed from user.assets string
-  repeated string assets = 19; // hash of all assets holding
+  // hash of all assets holding
+  repeated string assets = 19;
 }
 
 enum UserRole {
@@ -174,7 +173,7 @@ message RequestPurchaseInput { uint64 walledID = 1; }
 
 message RequestPurchaseOutput {
   Wallet wDist = 1;       // send my related wallet address
-  float price = 2;        // actual price based on wType
+  float PriceVsMA = 2;    // price of wType vs MA token
   bool needHash = 3;      // whether the method needs tx hash
   string redirectURL = 4; // ignore other fields - open link in web
 }

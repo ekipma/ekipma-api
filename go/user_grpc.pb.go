@@ -54,9 +54,9 @@ type UserServiceClient interface {
 	// check purchase and convert it to equivalent amount of tokens
 	// update user tokens and return user
 	VerifyPurchase(ctx context.Context, in *VerifyPurchaseInput, opts ...grpc.CallOption) (*User, error)
-	// reduce tokens based on play type and upgrade user's plan
+	// reduce tokens based on plan type and upgrade user's plan
 	UpgradePlan(ctx context.Context, in *UserPlan, opts ...grpc.CallOption) (*User, error)
-	// server calculates hash of (type+uuid+price)
+	// server calculates hash of (uuid:price)
 	// if correct: user price (>1ma) to buy asset
 	// reduce tokens and add asset's hash to user's assets
 	BuyAsset(ctx context.Context, in *BuyAssetInput, opts ...grpc.CallOption) (*User, error)
@@ -269,9 +269,9 @@ type UserServiceServer interface {
 	// check purchase and convert it to equivalent amount of tokens
 	// update user tokens and return user
 	VerifyPurchase(context.Context, *VerifyPurchaseInput) (*User, error)
-	// reduce tokens based on play type and upgrade user's plan
+	// reduce tokens based on plan type and upgrade user's plan
 	UpgradePlan(context.Context, *UserPlan) (*User, error)
-	// server calculates hash of (type+uuid+price)
+	// server calculates hash of (uuid:price)
 	// if correct: user price (>1ma) to buy asset
 	// reduce tokens and add asset's hash to user's assets
 	BuyAsset(context.Context, *BuyAssetInput) (*User, error)

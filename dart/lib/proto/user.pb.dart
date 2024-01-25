@@ -305,8 +305,7 @@ class User extends $pb.GeneratedMessage {
   @$pb.TagNumber(18)
   $core.List<$core.String> get achs => $_getList(17);
 
-  /// list of all assets that the user is holding
-  /// parsed from user.assets string
+  /// hash of all assets holding
   @$pb.TagNumber(19)
   $core.List<$core.String> get assets => $_getList(18);
 }
@@ -1168,7 +1167,7 @@ class RequestPurchaseInput extends $pb.GeneratedMessage {
 class RequestPurchaseOutput extends $pb.GeneratedMessage {
   factory RequestPurchaseOutput({
     Wallet? wDist,
-    $core.double? price,
+    $core.double? priceVsMA,
     $core.bool? needHash,
     $core.String? redirectURL,
   }) {
@@ -1176,8 +1175,8 @@ class RequestPurchaseOutput extends $pb.GeneratedMessage {
     if (wDist != null) {
       $result.wDist = wDist;
     }
-    if (price != null) {
-      $result.price = price;
+    if (priceVsMA != null) {
+      $result.priceVsMA = priceVsMA;
     }
     if (needHash != null) {
       $result.needHash = needHash;
@@ -1193,7 +1192,7 @@ class RequestPurchaseOutput extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'RequestPurchaseOutput', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.user'), createEmptyInstance: create)
     ..aOM<Wallet>(1, _omitFieldNames ? '' : 'wDist', protoName: 'wDist', subBuilder: Wallet.create)
-    ..a<$core.double>(2, _omitFieldNames ? '' : 'price', $pb.PbFieldType.OF)
+    ..a<$core.double>(2, _omitFieldNames ? '' : 'PriceVsMA', $pb.PbFieldType.OF, protoName: 'PriceVsMA')
     ..aOB(3, _omitFieldNames ? '' : 'needHash', protoName: 'needHash')
     ..aOS(4, _omitFieldNames ? '' : 'redirectURL', protoName: 'redirectURL')
     ..hasRequiredFields = false
@@ -1232,13 +1231,13 @@ class RequestPurchaseOutput extends $pb.GeneratedMessage {
   Wallet ensureWDist() => $_ensure(0);
 
   @$pb.TagNumber(2)
-  $core.double get price => $_getN(1);
+  $core.double get priceVsMA => $_getN(1);
   @$pb.TagNumber(2)
-  set price($core.double v) { $_setFloat(1, v); }
+  set priceVsMA($core.double v) { $_setFloat(1, v); }
   @$pb.TagNumber(2)
-  $core.bool hasPrice() => $_has(1);
+  $core.bool hasPriceVsMA() => $_has(1);
   @$pb.TagNumber(2)
-  void clearPrice() => clearField(2);
+  void clearPriceVsMA() => clearField(2);
 
   @$pb.TagNumber(3)
   $core.bool get needHash => $_getBF(2);
