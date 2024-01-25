@@ -37,7 +37,7 @@ type UserServiceClient interface {
 	UpdateUser(ctx context.Context, in *User, opts ...grpc.CallOption) (*User, error)
 	AddFriends(ctx context.Context, opts ...grpc.CallOption) (UserService_AddFriendsClient, error)
 	GetFriends(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*FriendsOutput, error)
-	RemoveFriend(ctx context.Context, in *IdInput, opts ...grpc.CallOption) (*User, error)
+	RemoveFriend(ctx context.Context, in *IdInput, opts ...grpc.CallOption) (*FriendsOutput, error)
 	// based on type + owner -> update/set addr (unique)
 	// based on type -> send my wallet of same type
 	// wallet public is `false` by default (for premium)
@@ -129,7 +129,7 @@ func (c *userServiceClient) AddFriends(ctx context.Context, opts ...grpc.CallOpt
 
 type UserService_AddFriendsClient interface {
 	Send(*MobilesChunk) error
-	CloseAndRecv() (*User, error)
+	CloseAndRecv() (*FriendsOutput, error)
 	grpc.ClientStream
 }
 
@@ -141,11 +141,11 @@ func (x *userServiceAddFriendsClient) Send(m *MobilesChunk) error {
 	return x.ClientStream.SendMsg(m)
 }
 
-func (x *userServiceAddFriendsClient) CloseAndRecv() (*User, error) {
+func (x *userServiceAddFriendsClient) CloseAndRecv() (*FriendsOutput, error) {
 	if err := x.ClientStream.CloseSend(); err != nil {
 		return nil, err
 	}
-	m := new(User)
+	m := new(FriendsOutput)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
@@ -161,8 +161,8 @@ func (c *userServiceClient) GetFriends(ctx context.Context, in *Empty, opts ...g
 	return out, nil
 }
 
-func (c *userServiceClient) RemoveFriend(ctx context.Context, in *IdInput, opts ...grpc.CallOption) (*User, error) {
-	out := new(User)
+func (c *userServiceClient) RemoveFriend(ctx context.Context, in *IdInput, opts ...grpc.CallOption) (*FriendsOutput, error) {
+	out := new(FriendsOutput)
 	err := c.cc.Invoke(ctx, "/ekipma.api.user.UserService/RemoveFriend", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -252,7 +252,7 @@ type UserServiceServer interface {
 	UpdateUser(context.Context, *User) (*User, error)
 	AddFriends(UserService_AddFriendsServer) error
 	GetFriends(context.Context, *Empty) (*FriendsOutput, error)
-	RemoveFriend(context.Context, *IdInput) (*User, error)
+	RemoveFriend(context.Context, *IdInput) (*FriendsOutput, error)
 	// based on type + owner -> update/set addr (unique)
 	// based on type -> send my wallet of same type
 	// wallet public is `false` by default (for premium)
@@ -306,7 +306,7 @@ func (UnimplementedUserServiceServer) AddFriends(UserService_AddFriendsServer) e
 func (UnimplementedUserServiceServer) GetFriends(context.Context, *Empty) (*FriendsOutput, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetFriends not implemented")
 }
-func (UnimplementedUserServiceServer) RemoveFriend(context.Context, *IdInput) (*User, error) {
+func (UnimplementedUserServiceServer) RemoveFriend(context.Context, *IdInput) (*FriendsOutput, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RemoveFriend not implemented")
 }
 func (UnimplementedUserServiceServer) GetWallets(context.Context, *Empty) (*WalletsOutput, error) {
@@ -438,7 +438,7 @@ func _UserService_AddFriends_Handler(srv interface{}, stream grpc.ServerStream) 
 }
 
 type UserService_AddFriendsServer interface {
-	SendAndClose(*User) error
+	SendAndClose(*FriendsOutput) error
 	Recv() (*MobilesChunk, error)
 	grpc.ServerStream
 }
@@ -447,7 +447,7 @@ type userServiceAddFriendsServer struct {
 	grpc.ServerStream
 }
 
-func (x *userServiceAddFriendsServer) SendAndClose(m *User) error {
+func (x *userServiceAddFriendsServer) SendAndClose(m *FriendsOutput) error {
 	return x.ServerStream.SendMsg(m)
 }
 

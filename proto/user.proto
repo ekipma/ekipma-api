@@ -20,9 +20,9 @@ service UserService {
   rpc LoginUser(LoginInput) returns (AuthOutput);
   // update only "name | email | public"
   rpc UpdateUser(User) returns (User);
-  rpc AddFriends(stream MobilesChunk) returns (User);
+  rpc AddFriends(stream MobilesChunk) returns (FriendsOutput);
   rpc GetFriends(ekipma.api.common.Empty) returns (FriendsOutput);
-  rpc RemoveFriend(ekipma.api.common.IdInput) returns (User);
+  rpc RemoveFriend(ekipma.api.common.IdInput) returns (FriendsOutput);
   // based on type + owner -> update/set addr (unique)
   // based on type -> send my wallet of same type
   // wallet public is `false` by default (for premium)

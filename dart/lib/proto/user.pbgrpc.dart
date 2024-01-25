@@ -42,18 +42,18 @@ class UserServiceClient extends $grpc.Client {
       '/ekipma.api.user.UserService/UpdateUser',
       ($3.User value) => value.writeToBuffer(),
       ($core.List<$core.int> value) => $3.User.fromBuffer(value));
-  static final _$addFriends = $grpc.ClientMethod<$3.MobilesChunk, $3.User>(
+  static final _$addFriends = $grpc.ClientMethod<$3.MobilesChunk, $3.FriendsOutput>(
       '/ekipma.api.user.UserService/AddFriends',
       ($3.MobilesChunk value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) => $3.User.fromBuffer(value));
+      ($core.List<$core.int> value) => $3.FriendsOutput.fromBuffer(value));
   static final _$getFriends = $grpc.ClientMethod<$2.Empty, $3.FriendsOutput>(
       '/ekipma.api.user.UserService/GetFriends',
       ($2.Empty value) => value.writeToBuffer(),
       ($core.List<$core.int> value) => $3.FriendsOutput.fromBuffer(value));
-  static final _$removeFriend = $grpc.ClientMethod<$2.IdInput, $3.User>(
+  static final _$removeFriend = $grpc.ClientMethod<$2.IdInput, $3.FriendsOutput>(
       '/ekipma.api.user.UserService/RemoveFriend',
       ($2.IdInput value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) => $3.User.fromBuffer(value));
+      ($core.List<$core.int> value) => $3.FriendsOutput.fromBuffer(value));
   static final _$getWallets = $grpc.ClientMethod<$2.Empty, $3.WalletsOutput>(
       '/ekipma.api.user.UserService/GetWallets',
       ($2.Empty value) => value.writeToBuffer(),
@@ -109,7 +109,7 @@ class UserServiceClient extends $grpc.Client {
     return $createUnaryCall(_$updateUser, request, options: options);
   }
 
-  $grpc.ResponseFuture<$3.User> addFriends($async.Stream<$3.MobilesChunk> request, {$grpc.CallOptions? options}) {
+  $grpc.ResponseFuture<$3.FriendsOutput> addFriends($async.Stream<$3.MobilesChunk> request, {$grpc.CallOptions? options}) {
     return $createStreamingCall(_$addFriends, request, options: options).single;
   }
 
@@ -117,7 +117,7 @@ class UserServiceClient extends $grpc.Client {
     return $createUnaryCall(_$getFriends, request, options: options);
   }
 
-  $grpc.ResponseFuture<$3.User> removeFriend($2.IdInput request, {$grpc.CallOptions? options}) {
+  $grpc.ResponseFuture<$3.FriendsOutput> removeFriend($2.IdInput request, {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$removeFriend, request, options: options);
   }
 
@@ -190,13 +190,13 @@ abstract class UserServiceBase extends $grpc.Service {
         false,
         ($core.List<$core.int> value) => $3.User.fromBuffer(value),
         ($3.User value) => value.writeToBuffer()));
-    $addMethod($grpc.ServiceMethod<$3.MobilesChunk, $3.User>(
+    $addMethod($grpc.ServiceMethod<$3.MobilesChunk, $3.FriendsOutput>(
         'AddFriends',
         addFriends,
         true,
         false,
         ($core.List<$core.int> value) => $3.MobilesChunk.fromBuffer(value),
-        ($3.User value) => value.writeToBuffer()));
+        ($3.FriendsOutput value) => value.writeToBuffer()));
     $addMethod($grpc.ServiceMethod<$2.Empty, $3.FriendsOutput>(
         'GetFriends',
         getFriends_Pre,
@@ -204,13 +204,13 @@ abstract class UserServiceBase extends $grpc.Service {
         false,
         ($core.List<$core.int> value) => $2.Empty.fromBuffer(value),
         ($3.FriendsOutput value) => value.writeToBuffer()));
-    $addMethod($grpc.ServiceMethod<$2.IdInput, $3.User>(
+    $addMethod($grpc.ServiceMethod<$2.IdInput, $3.FriendsOutput>(
         'RemoveFriend',
         removeFriend_Pre,
         false,
         false,
         ($core.List<$core.int> value) => $2.IdInput.fromBuffer(value),
-        ($3.User value) => value.writeToBuffer()));
+        ($3.FriendsOutput value) => value.writeToBuffer()));
     $addMethod($grpc.ServiceMethod<$2.Empty, $3.WalletsOutput>(
         'GetWallets',
         getWallets_Pre,
@@ -286,7 +286,7 @@ abstract class UserServiceBase extends $grpc.Service {
     return getFriends(call, await request);
   }
 
-  $async.Future<$3.User> removeFriend_Pre($grpc.ServiceCall call, $async.Future<$2.IdInput> request) async {
+  $async.Future<$3.FriendsOutput> removeFriend_Pre($grpc.ServiceCall call, $async.Future<$2.IdInput> request) async {
     return removeFriend(call, await request);
   }
 
@@ -323,9 +323,9 @@ abstract class UserServiceBase extends $grpc.Service {
   $async.Future<$3.AuthOutput> registerUser($grpc.ServiceCall call, $3.RegisterInput request);
   $async.Future<$3.AuthOutput> loginUser($grpc.ServiceCall call, $3.LoginInput request);
   $async.Future<$3.User> updateUser($grpc.ServiceCall call, $3.User request);
-  $async.Future<$3.User> addFriends($grpc.ServiceCall call, $async.Stream<$3.MobilesChunk> request);
+  $async.Future<$3.FriendsOutput> addFriends($grpc.ServiceCall call, $async.Stream<$3.MobilesChunk> request);
   $async.Future<$3.FriendsOutput> getFriends($grpc.ServiceCall call, $2.Empty request);
-  $async.Future<$3.User> removeFriend($grpc.ServiceCall call, $2.IdInput request);
+  $async.Future<$3.FriendsOutput> removeFriend($grpc.ServiceCall call, $2.IdInput request);
   $async.Future<$3.WalletsOutput> getWallets($grpc.ServiceCall call, $2.Empty request);
   $async.Future<$3.User> updateWallet($grpc.ServiceCall call, $3.Wallet request);
   $async.Future<$3.RequestPurchaseOutput> requestPurchase($grpc.ServiceCall call, $3.RequestPurchaseInput request);
