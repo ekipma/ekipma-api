@@ -144,6 +144,8 @@ message Friend {
   string ccNo = 4;
   string photoURL = 5;
   UserPlan plan = 6;
+  bool acceptToken = 7;
+  repeated string assets = 8;
 }
 
 message MobilesChunk {

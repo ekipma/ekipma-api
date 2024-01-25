@@ -724,6 +724,8 @@ class Friend extends $pb.GeneratedMessage {
     $core.String? ccNo,
     $core.String? photoURL,
     UserPlan? plan,
+    $core.bool? acceptToken,
+    $core.Iterable<$core.String>? assets,
   }) {
     final $result = create();
     if (id != null) {
@@ -744,6 +746,12 @@ class Friend extends $pb.GeneratedMessage {
     if (plan != null) {
       $result.plan = plan;
     }
+    if (acceptToken != null) {
+      $result.acceptToken = acceptToken;
+    }
+    if (assets != null) {
+      $result.assets.addAll(assets);
+    }
     return $result;
   }
   Friend._() : super();
@@ -757,6 +765,8 @@ class Friend extends $pb.GeneratedMessage {
     ..aOS(4, _omitFieldNames ? '' : 'ccNo', protoName: 'ccNo')
     ..aOS(5, _omitFieldNames ? '' : 'photoURL', protoName: 'photoURL')
     ..aOM<UserPlan>(6, _omitFieldNames ? '' : 'plan', subBuilder: UserPlan.create)
+    ..aOB(7, _omitFieldNames ? '' : 'acceptToken', protoName: 'acceptToken')
+    ..pPS(8, _omitFieldNames ? '' : 'assets')
     ..hasRequiredFields = false
   ;
 
@@ -836,6 +846,18 @@ class Friend extends $pb.GeneratedMessage {
   void clearPlan() => clearField(6);
   @$pb.TagNumber(6)
   UserPlan ensurePlan() => $_ensure(5);
+
+  @$pb.TagNumber(7)
+  $core.bool get acceptToken => $_getBF(6);
+  @$pb.TagNumber(7)
+  set acceptToken($core.bool v) { $_setBool(6, v); }
+  @$pb.TagNumber(7)
+  $core.bool hasAcceptToken() => $_has(6);
+  @$pb.TagNumber(7)
+  void clearAcceptToken() => clearField(7);
+
+  @$pb.TagNumber(8)
+  $core.List<$core.String> get assets => $_getList(7);
 }
 
 class MobilesChunk extends $pb.GeneratedMessage {

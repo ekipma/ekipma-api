@@ -211,6 +211,8 @@ const Friend$json = {
     {'1': 'ccNo', '3': 4, '4': 1, '5': 9, '10': 'ccNo'},
     {'1': 'photoURL', '3': 5, '4': 1, '5': 9, '10': 'photoURL'},
     {'1': 'plan', '3': 6, '4': 1, '5': 11, '6': '.ekipma.api.user.UserPlan', '10': 'plan'},
+    {'1': 'acceptToken', '3': 7, '4': 1, '5': 8, '10': 'acceptToken'},
+    {'1': 'assets', '3': 8, '4': 3, '5': 9, '10': 'assets'},
   ],
 };
 
@@ -218,7 +220,8 @@ const Friend$json = {
 final $typed_data.Uint8List friendDescriptor = $convert.base64Decode(
     'CgZGcmllbmQSDgoCaWQYASABKARSAmlkEhIKBG5hbWUYAiABKAlSBG5hbWUSFAoFZW1haWwYAy'
     'ABKAlSBWVtYWlsEhIKBGNjTm8YBCABKAlSBGNjTm8SGgoIcGhvdG9VUkwYBSABKAlSCHBob3Rv'
-    'VVJMEi0KBHBsYW4YBiABKAsyGS5la2lwbWEuYXBpLnVzZXIuVXNlclBsYW5SBHBsYW4=');
+    'VVJMEi0KBHBsYW4YBiABKAsyGS5la2lwbWEuYXBpLnVzZXIuVXNlclBsYW5SBHBsYW4SIAoLYW'
+    'NjZXB0VG9rZW4YByABKAhSC2FjY2VwdFRva2VuEhYKBmFzc2V0cxgIIAMoCVIGYXNzZXRz');
 
 @$core.Deprecated('Use mobilesChunkDescriptor instead')
 const MobilesChunk$json = {
