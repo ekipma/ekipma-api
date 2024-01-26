@@ -44,7 +44,7 @@ type UserServiceClient interface {
 	// but can be set as `public` or `primary` in account section
 	// `primary` address is what others can copy from copy btn
 	GetWallets(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*WalletsOutput, error)
-	UpdateWallet(ctx context.Context, in *Wallet, opts ...grpc.CallOption) (*User, error)
+	UpdateWallet(ctx context.Context, in *Wallet, opts ...grpc.CallOption) (*WalletsOutput, error)
 	// if wType = custom
 	// creates a payment url for client
 	// saves authority in a column in users table
@@ -179,8 +179,8 @@ func (c *userServiceClient) GetWallets(ctx context.Context, in *Empty, opts ...g
 	return out, nil
 }
 
-func (c *userServiceClient) UpdateWallet(ctx context.Context, in *Wallet, opts ...grpc.CallOption) (*User, error) {
-	out := new(User)
+func (c *userServiceClient) UpdateWallet(ctx context.Context, in *Wallet, opts ...grpc.CallOption) (*WalletsOutput, error) {
+	out := new(WalletsOutput)
 	err := c.cc.Invoke(ctx, "/ekipma.api.user.UserService/UpdateWallet", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -259,7 +259,7 @@ type UserServiceServer interface {
 	// but can be set as `public` or `primary` in account section
 	// `primary` address is what others can copy from copy btn
 	GetWallets(context.Context, *Empty) (*WalletsOutput, error)
-	UpdateWallet(context.Context, *Wallet) (*User, error)
+	UpdateWallet(context.Context, *Wallet) (*WalletsOutput, error)
 	// if wType = custom
 	// creates a payment url for client
 	// saves authority in a column in users table
@@ -312,7 +312,7 @@ func (UnimplementedUserServiceServer) RemoveFriend(context.Context, *IdInput) (*
 func (UnimplementedUserServiceServer) GetWallets(context.Context, *Empty) (*WalletsOutput, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetWallets not implemented")
 }
-func (UnimplementedUserServiceServer) UpdateWallet(context.Context, *Wallet) (*User, error) {
+func (UnimplementedUserServiceServer) UpdateWallet(context.Context, *Wallet) (*WalletsOutput, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateWallet not implemented")
 }
 func (UnimplementedUserServiceServer) RequestPurchase(context.Context, *RequestPurchaseInput) (*RequestPurchaseOutput, error) {

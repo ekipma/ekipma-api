@@ -29,7 +29,7 @@ service UserService {
   // but can be set as `public` or `primary` in account section
   // `primary` address is what others can copy from copy btn
   rpc GetWallets(ekipma.api.common.Empty) returns (WalletsOutput);
-  rpc UpdateWallet(Wallet) returns (User);
+  rpc UpdateWallet(Wallet) returns (WalletsOutput);
   // if wType = custom
   // creates a payment url for client
   // saves authority in a column in users table

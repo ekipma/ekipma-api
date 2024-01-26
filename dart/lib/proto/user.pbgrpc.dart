@@ -58,10 +58,10 @@ class UserServiceClient extends $grpc.Client {
       '/ekipma.api.user.UserService/GetWallets',
       ($2.Empty value) => value.writeToBuffer(),
       ($core.List<$core.int> value) => $3.WalletsOutput.fromBuffer(value));
-  static final _$updateWallet = $grpc.ClientMethod<$3.Wallet, $3.User>(
+  static final _$updateWallet = $grpc.ClientMethod<$3.Wallet, $3.WalletsOutput>(
       '/ekipma.api.user.UserService/UpdateWallet',
       ($3.Wallet value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) => $3.User.fromBuffer(value));
+      ($core.List<$core.int> value) => $3.WalletsOutput.fromBuffer(value));
   static final _$requestPurchase = $grpc.ClientMethod<$3.RequestPurchaseInput, $3.RequestPurchaseOutput>(
       '/ekipma.api.user.UserService/RequestPurchase',
       ($3.RequestPurchaseInput value) => value.writeToBuffer(),
@@ -125,7 +125,7 @@ class UserServiceClient extends $grpc.Client {
     return $createUnaryCall(_$getWallets, request, options: options);
   }
 
-  $grpc.ResponseFuture<$3.User> updateWallet($3.Wallet request, {$grpc.CallOptions? options}) {
+  $grpc.ResponseFuture<$3.WalletsOutput> updateWallet($3.Wallet request, {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$updateWallet, request, options: options);
   }
 
@@ -218,13 +218,13 @@ abstract class UserServiceBase extends $grpc.Service {
         false,
         ($core.List<$core.int> value) => $2.Empty.fromBuffer(value),
         ($3.WalletsOutput value) => value.writeToBuffer()));
-    $addMethod($grpc.ServiceMethod<$3.Wallet, $3.User>(
+    $addMethod($grpc.ServiceMethod<$3.Wallet, $3.WalletsOutput>(
         'UpdateWallet',
         updateWallet_Pre,
         false,
         false,
         ($core.List<$core.int> value) => $3.Wallet.fromBuffer(value),
-        ($3.User value) => value.writeToBuffer()));
+        ($3.WalletsOutput value) => value.writeToBuffer()));
     $addMethod($grpc.ServiceMethod<$3.RequestPurchaseInput, $3.RequestPurchaseOutput>(
         'RequestPurchase',
         requestPurchase_Pre,
@@ -294,7 +294,7 @@ abstract class UserServiceBase extends $grpc.Service {
     return getWallets(call, await request);
   }
 
-  $async.Future<$3.User> updateWallet_Pre($grpc.ServiceCall call, $async.Future<$3.Wallet> request) async {
+  $async.Future<$3.WalletsOutput> updateWallet_Pre($grpc.ServiceCall call, $async.Future<$3.Wallet> request) async {
     return updateWallet(call, await request);
   }
 
@@ -327,7 +327,7 @@ abstract class UserServiceBase extends $grpc.Service {
   $async.Future<$3.FriendsOutput> getFriends($grpc.ServiceCall call, $2.Empty request);
   $async.Future<$3.FriendsOutput> removeFriend($grpc.ServiceCall call, $2.IdInput request);
   $async.Future<$3.WalletsOutput> getWallets($grpc.ServiceCall call, $2.Empty request);
-  $async.Future<$3.User> updateWallet($grpc.ServiceCall call, $3.Wallet request);
+  $async.Future<$3.WalletsOutput> updateWallet($grpc.ServiceCall call, $3.Wallet request);
   $async.Future<$3.RequestPurchaseOutput> requestPurchase($grpc.ServiceCall call, $3.RequestPurchaseInput request);
   $async.Future<$3.User> verifyPurchase($grpc.ServiceCall call, $3.VerifyPurchaseInput request);
   $async.Future<$3.User> upgradePlan($grpc.ServiceCall call, $3.UserPlan request);
