@@ -18,6 +18,7 @@ service UserService {
   // generate access-token and send it
   rpc RegisterUser(RegisterInput) returns (AuthOutput);
   rpc LoginUser(LoginInput) returns (AuthOutput);
+  rpc FetchUser(ekipma.api.common.Empty) returns (User);
   // update only "name | email | public"
   rpc UpdateUser(User) returns (User);
   rpc AddFriends(stream MobilesChunk) returns (FriendsOutput);

@@ -38,6 +38,10 @@ class UserServiceClient extends $grpc.Client {
       '/ekipma.api.user.UserService/LoginUser',
       ($3.LoginInput value) => value.writeToBuffer(),
       ($core.List<$core.int> value) => $3.AuthOutput.fromBuffer(value));
+  static final _$fetchUser = $grpc.ClientMethod<$2.Empty, $3.User>(
+      '/ekipma.api.user.UserService/FetchUser',
+      ($2.Empty value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $3.User.fromBuffer(value));
   static final _$updateUser = $grpc.ClientMethod<$3.User, $3.User>(
       '/ekipma.api.user.UserService/UpdateUser',
       ($3.User value) => value.writeToBuffer(),
@@ -103,6 +107,10 @@ class UserServiceClient extends $grpc.Client {
 
   $grpc.ResponseFuture<$3.AuthOutput> loginUser($3.LoginInput request, {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$loginUser, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$3.User> fetchUser($2.Empty request, {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$fetchUser, request, options: options);
   }
 
   $grpc.ResponseFuture<$3.User> updateUser($3.User request, {$grpc.CallOptions? options}) {
@@ -183,6 +191,13 @@ abstract class UserServiceBase extends $grpc.Service {
         false,
         ($core.List<$core.int> value) => $3.LoginInput.fromBuffer(value),
         ($3.AuthOutput value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$2.Empty, $3.User>(
+        'FetchUser',
+        fetchUser_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) => $2.Empty.fromBuffer(value),
+        ($3.User value) => value.writeToBuffer()));
     $addMethod($grpc.ServiceMethod<$3.User, $3.User>(
         'UpdateUser',
         updateUser_Pre,
@@ -278,6 +293,10 @@ abstract class UserServiceBase extends $grpc.Service {
     return loginUser(call, await request);
   }
 
+  $async.Future<$3.User> fetchUser_Pre($grpc.ServiceCall call, $async.Future<$2.Empty> request) async {
+    return fetchUser(call, await request);
+  }
+
   $async.Future<$3.User> updateUser_Pre($grpc.ServiceCall call, $async.Future<$3.User> request) async {
     return updateUser(call, await request);
   }
@@ -322,6 +341,7 @@ abstract class UserServiceBase extends $grpc.Service {
   $async.Future<$3.VerifyOtpOutput> verifyOtp($grpc.ServiceCall call, $3.VerifyOtpInput request);
   $async.Future<$3.AuthOutput> registerUser($grpc.ServiceCall call, $3.RegisterInput request);
   $async.Future<$3.AuthOutput> loginUser($grpc.ServiceCall call, $3.LoginInput request);
+  $async.Future<$3.User> fetchUser($grpc.ServiceCall call, $2.Empty request);
   $async.Future<$3.User> updateUser($grpc.ServiceCall call, $3.User request);
   $async.Future<$3.FriendsOutput> addFriends($grpc.ServiceCall call, $async.Stream<$3.MobilesChunk> request);
   $async.Future<$3.FriendsOutput> getFriends($grpc.ServiceCall call, $2.Empty request);
