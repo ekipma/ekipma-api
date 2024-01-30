@@ -33,6 +33,7 @@ type UserServiceClient interface {
 	// generate access-token and send it
 	RegisterUser(ctx context.Context, in *RegisterInput, opts ...grpc.CallOption) (*AuthOutput, error)
 	LoginUser(ctx context.Context, in *LoginInput, opts ...grpc.CallOption) (*AuthOutput, error)
+	RefreshToken(ctx context.Context, in *Auth, opts ...grpc.CallOption) (*AuthOutput, error)
 	FetchUser(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*User, error)
 	// update only "name | email | public"
 	UpdateUser(ctx context.Context, in *User, opts ...grpc.CallOption) (*User, error)
@@ -104,6 +105,15 @@ func (c *userServiceClient) RegisterUser(ctx context.Context, in *RegisterInput,
 func (c *userServiceClient) LoginUser(ctx context.Context, in *LoginInput, opts ...grpc.CallOption) (*AuthOutput, error) {
 	out := new(AuthOutput)
 	err := c.cc.Invoke(ctx, "/ekipma.api.user.UserService/LoginUser", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userServiceClient) RefreshToken(ctx context.Context, in *Auth, opts ...grpc.CallOption) (*AuthOutput, error) {
+	out := new(AuthOutput)
+	err := c.cc.Invoke(ctx, "/ekipma.api.user.UserService/RefreshToken", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -258,6 +268,7 @@ type UserServiceServer interface {
 	// generate access-token and send it
 	RegisterUser(context.Context, *RegisterInput) (*AuthOutput, error)
 	LoginUser(context.Context, *LoginInput) (*AuthOutput, error)
+	RefreshToken(context.Context, *Auth) (*AuthOutput, error)
 	FetchUser(context.Context, *Empty) (*User, error)
 	// update only "name | email | public"
 	UpdateUser(context.Context, *User) (*User, error)
@@ -307,6 +318,9 @@ func (UnimplementedUserServiceServer) RegisterUser(context.Context, *RegisterInp
 }
 func (UnimplementedUserServiceServer) LoginUser(context.Context, *LoginInput) (*AuthOutput, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method LoginUser not implemented")
+}
+func (UnimplementedUserServiceServer) RefreshToken(context.Context, *Auth) (*AuthOutput, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RefreshToken not implemented")
 }
 func (UnimplementedUserServiceServer) FetchUser(context.Context, *Empty) (*User, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FetchUser not implemented")
@@ -425,6 +439,24 @@ func _UserService_LoginUser_Handler(srv interface{}, ctx context.Context, dec fu
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UserServiceServer).LoginUser(ctx, req.(*LoginInput))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _UserService_RefreshToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Auth)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).RefreshToken(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/ekipma.api.user.UserService/RefreshToken",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).RefreshToken(ctx, req.(*Auth))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -675,6 +707,10 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "LoginUser",
 			Handler:    _UserService_LoginUser_Handler,
+		},
+		{
+			MethodName: "RefreshToken",
+			Handler:    _UserService_RefreshToken_Handler,
 		},
 		{
 			MethodName: "FetchUser",

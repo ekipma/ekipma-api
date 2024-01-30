@@ -650,14 +650,80 @@ class LoginInput extends $pb.GeneratedMessage {
   void clearPassword() => clearField(2);
 }
 
+class Auth extends $pb.GeneratedMessage {
+  factory Auth({
+    $core.String? accessToken,
+    $core.String? refreshToken,
+  }) {
+    final $result = create();
+    if (accessToken != null) {
+      $result.accessToken = accessToken;
+    }
+    if (refreshToken != null) {
+      $result.refreshToken = refreshToken;
+    }
+    return $result;
+  }
+  Auth._() : super();
+  factory Auth.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory Auth.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Auth', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.user'), createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'accessToken', protoName: 'accessToken')
+    ..aOS(2, _omitFieldNames ? '' : 'refreshToken', protoName: 'refreshToken')
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  Auth clone() => Auth()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  Auth copyWith(void Function(Auth) updates) => super.copyWith((message) => updates(message as Auth)) as Auth;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static Auth create() => Auth._();
+  Auth createEmptyInstance() => create();
+  static $pb.PbList<Auth> createRepeated() => $pb.PbList<Auth>();
+  @$core.pragma('dart2js:noInline')
+  static Auth getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Auth>(create);
+  static Auth? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get accessToken => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set accessToken($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasAccessToken() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearAccessToken() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get refreshToken => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set refreshToken($core.String v) { $_setString(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasRefreshToken() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearRefreshToken() => clearField(2);
+}
+
+/// usually after auth - user needs to fetch or refetch
+/// this method will combine them for ease of access
 class AuthOutput extends $pb.GeneratedMessage {
   factory AuthOutput({
-    $core.String? token,
+    Auth? auth,
     User? user,
   }) {
     final $result = create();
-    if (token != null) {
-      $result.token = token;
+    if (auth != null) {
+      $result.auth = auth;
     }
     if (user != null) {
       $result.user = user;
@@ -669,7 +735,7 @@ class AuthOutput extends $pb.GeneratedMessage {
   factory AuthOutput.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'AuthOutput', package: const $pb.PackageName(_omitMessageNames ? '' : 'ekipma.api.user'), createEmptyInstance: create)
-    ..aOS(1, _omitFieldNames ? '' : 'token')
+    ..aOM<Auth>(1, _omitFieldNames ? '' : 'auth', subBuilder: Auth.create)
     ..aOM<User>(2, _omitFieldNames ? '' : 'user', subBuilder: User.create)
     ..hasRequiredFields = false
   ;
@@ -696,13 +762,15 @@ class AuthOutput extends $pb.GeneratedMessage {
   static AuthOutput? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.String get token => $_getSZ(0);
+  Auth get auth => $_getN(0);
   @$pb.TagNumber(1)
-  set token($core.String v) { $_setString(0, v); }
+  set auth(Auth v) { setField(1, v); }
   @$pb.TagNumber(1)
-  $core.bool hasToken() => $_has(0);
+  $core.bool hasAuth() => $_has(0);
   @$pb.TagNumber(1)
-  void clearToken() => clearField(1);
+  void clearAuth() => clearField(1);
+  @$pb.TagNumber(1)
+  Auth ensureAuth() => $_ensure(0);
 
   @$pb.TagNumber(2)
   User get user => $_getN(1);

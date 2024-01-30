@@ -18,6 +18,7 @@ service UserService {
   // generate access-token and send it
   rpc RegisterUser(RegisterInput) returns (AuthOutput);
   rpc LoginUser(LoginInput) returns (AuthOutput);
+  rpc RefreshToken(Auth) returns (AuthOutput);
   rpc FetchUser(ekipma.api.common.Empty) returns (User);
   // update only "name | email | public"
   rpc UpdateUser(User) returns (User);
@@ -131,8 +132,15 @@ message LoginInput {
   string password = 2;
 }
 
+message Auth {
+  string accessToken = 1;  // out
+  string refreshToken = 2; // in-out
+}
+
+// usually after auth - user needs to fetch or refetch
+// this method will combine them for ease of access
 message AuthOutput {
-  string token = 1;
+  Auth auth = 1;
   User user = 2;
 }
 

@@ -187,19 +187,33 @@ final $typed_data.Uint8List loginInputDescriptor = $convert.base64Decode(
     'CgpMb2dpbklucHV0EhYKBm1vYmlsZRgBIAEoCVIGbW9iaWxlEhoKCHBhc3N3b3JkGAIgASgJUg'
     'hwYXNzd29yZA==');
 
+@$core.Deprecated('Use authDescriptor instead')
+const Auth$json = {
+  '1': 'Auth',
+  '2': [
+    {'1': 'accessToken', '3': 1, '4': 1, '5': 9, '10': 'accessToken'},
+    {'1': 'refreshToken', '3': 2, '4': 1, '5': 9, '10': 'refreshToken'},
+  ],
+};
+
+/// Descriptor for `Auth`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List authDescriptor = $convert.base64Decode(
+    'CgRBdXRoEiAKC2FjY2Vzc1Rva2VuGAEgASgJUgthY2Nlc3NUb2tlbhIiCgxyZWZyZXNoVG9rZW'
+    '4YAiABKAlSDHJlZnJlc2hUb2tlbg==');
+
 @$core.Deprecated('Use authOutputDescriptor instead')
 const AuthOutput$json = {
   '1': 'AuthOutput',
   '2': [
-    {'1': 'token', '3': 1, '4': 1, '5': 9, '10': 'token'},
+    {'1': 'auth', '3': 1, '4': 1, '5': 11, '6': '.ekipma.api.user.Auth', '10': 'auth'},
     {'1': 'user', '3': 2, '4': 1, '5': 11, '6': '.ekipma.api.user.User', '10': 'user'},
   ],
 };
 
 /// Descriptor for `AuthOutput`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List authOutputDescriptor = $convert.base64Decode(
-    'CgpBdXRoT3V0cHV0EhQKBXRva2VuGAEgASgJUgV0b2tlbhIpCgR1c2VyGAIgASgLMhUuZWtpcG'
-    '1hLmFwaS51c2VyLlVzZXJSBHVzZXI=');
+    'CgpBdXRoT3V0cHV0EikKBGF1dGgYASABKAsyFS5la2lwbWEuYXBpLnVzZXIuQXV0aFIEYXV0aB'
+    'IpCgR1c2VyGAIgASgLMhUuZWtpcG1hLmFwaS51c2VyLlVzZXJSBHVzZXI=');
 
 @$core.Deprecated('Use friendDescriptor instead')
 const Friend$json = {
