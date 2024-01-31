@@ -33,7 +33,7 @@ type UserServiceClient interface {
 	// generate access-token and send it
 	RegisterUser(ctx context.Context, in *RegisterInput, opts ...grpc.CallOption) (*AuthOutput, error)
 	LoginUser(ctx context.Context, in *LoginInput, opts ...grpc.CallOption) (*AuthOutput, error)
-	RefreshToken(ctx context.Context, in *Auth, opts ...grpc.CallOption) (*AuthOutput, error)
+	RefreshToken(ctx context.Context, in *Auth, opts ...grpc.CallOption) (*Auth, error)
 	FetchUser(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*User, error)
 	// update only "name | email | public"
 	UpdateUser(ctx context.Context, in *User, opts ...grpc.CallOption) (*User, error)
@@ -111,8 +111,8 @@ func (c *userServiceClient) LoginUser(ctx context.Context, in *LoginInput, opts 
 	return out, nil
 }
 
-func (c *userServiceClient) RefreshToken(ctx context.Context, in *Auth, opts ...grpc.CallOption) (*AuthOutput, error) {
-	out := new(AuthOutput)
+func (c *userServiceClient) RefreshToken(ctx context.Context, in *Auth, opts ...grpc.CallOption) (*Auth, error) {
+	out := new(Auth)
 	err := c.cc.Invoke(ctx, "/ekipma.api.user.UserService/RefreshToken", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -268,7 +268,7 @@ type UserServiceServer interface {
 	// generate access-token and send it
 	RegisterUser(context.Context, *RegisterInput) (*AuthOutput, error)
 	LoginUser(context.Context, *LoginInput) (*AuthOutput, error)
-	RefreshToken(context.Context, *Auth) (*AuthOutput, error)
+	RefreshToken(context.Context, *Auth) (*Auth, error)
 	FetchUser(context.Context, *Empty) (*User, error)
 	// update only "name | email | public"
 	UpdateUser(context.Context, *User) (*User, error)
@@ -319,7 +319,7 @@ func (UnimplementedUserServiceServer) RegisterUser(context.Context, *RegisterInp
 func (UnimplementedUserServiceServer) LoginUser(context.Context, *LoginInput) (*AuthOutput, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method LoginUser not implemented")
 }
-func (UnimplementedUserServiceServer) RefreshToken(context.Context, *Auth) (*AuthOutput, error) {
+func (UnimplementedUserServiceServer) RefreshToken(context.Context, *Auth) (*Auth, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RefreshToken not implemented")
 }
 func (UnimplementedUserServiceServer) FetchUser(context.Context, *Empty) (*User, error) {

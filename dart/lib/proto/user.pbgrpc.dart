@@ -38,10 +38,10 @@ class UserServiceClient extends $grpc.Client {
       '/ekipma.api.user.UserService/LoginUser',
       ($3.LoginInput value) => value.writeToBuffer(),
       ($core.List<$core.int> value) => $3.AuthOutput.fromBuffer(value));
-  static final _$refreshToken = $grpc.ClientMethod<$3.Auth, $3.AuthOutput>(
+  static final _$refreshToken = $grpc.ClientMethod<$3.Auth, $3.Auth>(
       '/ekipma.api.user.UserService/RefreshToken',
       ($3.Auth value) => value.writeToBuffer(),
-      ($core.List<$core.int> value) => $3.AuthOutput.fromBuffer(value));
+      ($core.List<$core.int> value) => $3.Auth.fromBuffer(value));
   static final _$fetchUser = $grpc.ClientMethod<$2.Empty, $3.User>(
       '/ekipma.api.user.UserService/FetchUser',
       ($2.Empty value) => value.writeToBuffer(),
@@ -113,7 +113,7 @@ class UserServiceClient extends $grpc.Client {
     return $createUnaryCall(_$loginUser, request, options: options);
   }
 
-  $grpc.ResponseFuture<$3.AuthOutput> refreshToken($3.Auth request, {$grpc.CallOptions? options}) {
+  $grpc.ResponseFuture<$3.Auth> refreshToken($3.Auth request, {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$refreshToken, request, options: options);
   }
 
@@ -199,13 +199,13 @@ abstract class UserServiceBase extends $grpc.Service {
         false,
         ($core.List<$core.int> value) => $3.LoginInput.fromBuffer(value),
         ($3.AuthOutput value) => value.writeToBuffer()));
-    $addMethod($grpc.ServiceMethod<$3.Auth, $3.AuthOutput>(
+    $addMethod($grpc.ServiceMethod<$3.Auth, $3.Auth>(
         'RefreshToken',
         refreshToken_Pre,
         false,
         false,
         ($core.List<$core.int> value) => $3.Auth.fromBuffer(value),
-        ($3.AuthOutput value) => value.writeToBuffer()));
+        ($3.Auth value) => value.writeToBuffer()));
     $addMethod($grpc.ServiceMethod<$2.Empty, $3.User>(
         'FetchUser',
         fetchUser_Pre,
@@ -308,7 +308,7 @@ abstract class UserServiceBase extends $grpc.Service {
     return loginUser(call, await request);
   }
 
-  $async.Future<$3.AuthOutput> refreshToken_Pre($grpc.ServiceCall call, $async.Future<$3.Auth> request) async {
+  $async.Future<$3.Auth> refreshToken_Pre($grpc.ServiceCall call, $async.Future<$3.Auth> request) async {
     return refreshToken(call, await request);
   }
 
@@ -360,7 +360,7 @@ abstract class UserServiceBase extends $grpc.Service {
   $async.Future<$3.VerifyOtpOutput> verifyOtp($grpc.ServiceCall call, $3.VerifyOtpInput request);
   $async.Future<$3.AuthOutput> registerUser($grpc.ServiceCall call, $3.RegisterInput request);
   $async.Future<$3.AuthOutput> loginUser($grpc.ServiceCall call, $3.LoginInput request);
-  $async.Future<$3.AuthOutput> refreshToken($grpc.ServiceCall call, $3.Auth request);
+  $async.Future<$3.Auth> refreshToken($grpc.ServiceCall call, $3.Auth request);
   $async.Future<$3.User> fetchUser($grpc.ServiceCall call, $2.Empty request);
   $async.Future<$3.User> updateUser($grpc.ServiceCall call, $3.User request);
   $async.Future<$3.FriendsOutput> addFriends($grpc.ServiceCall call, $async.Stream<$3.MobilesChunk> request);
