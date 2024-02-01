@@ -33,7 +33,7 @@ ekipma-api is licensed under the GPL 3.0 License. See the [LICENSE](https://gith
 
 ## Contributors
 
-ekipma-api is developed and maintained by [ekipma](https://github.com/ekipma). If you have any questions, suggestions, or feedback, please feel free to contact us at support@ekipma.com.
+ekipma-api is developed and maintained by [ekipma](https://github.com/ekipma). If you have any questions, suggestions, or feedback, please feel free to contact us at support@ekipma.ir.
 
 ## Disclaimer
 
