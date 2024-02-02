@@ -3,8 +3,11 @@ package ekipma.api.user;
 
 import "proto/common.proto";
 import "google/protobuf/timestamp.proto";
+import "google/protobuf/descriptor.proto";
 
 option go_package = "./go;pb";
+
+extend google.protobuf.FieldOptions { bool dataSensitive = 50010; }
 
 service UserService {
   // only sends otp to the mobile number in separate go routine
@@ -121,7 +124,7 @@ message VerifyOtpOutput {
 
 message RegisterInput {
   string otpToken = 1; // has mobile
-  string password = 2;
+  string password = 2 [ (dataSensitive) = true ];
   string name = 3;
   uint64 inviter = 4;
   string email = 5;
@@ -129,7 +132,7 @@ message RegisterInput {
 
 message LoginInput {
   string mobile = 1;
-  string password = 2;
+  string password = 2 [ (dataSensitive) = true ];
 }
 
 message Auth {

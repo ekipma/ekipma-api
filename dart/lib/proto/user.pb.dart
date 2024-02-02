@@ -1612,6 +1612,13 @@ class SendTokenInput extends $pb.GeneratedMessage {
   void clearTo() => clearField(2);
 }
 
+class UserExt {
+  static final dataSensitive = $pb.Extension<$core.bool>(_omitMessageNames ? '' : 'google.protobuf.FieldOptions', _omitFieldNames ? '' : 'dataSensitive', 50010, $pb.PbFieldType.OB, protoName: 'dataSensitive');
+  static void registerAllExtensions($pb.ExtensionRegistry registry) {
+    registry.add(dataSensitive);
+  }
+}
+
 
 const _omitFieldNames = $core.bool.fromEnvironment('protobuf.omit_field_names');
 const _omitMessageNames = $core.bool.fromEnvironment('protobuf.omit_message_names');

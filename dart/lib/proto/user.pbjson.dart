@@ -160,7 +160,7 @@ const RegisterInput$json = {
   '1': 'RegisterInput',
   '2': [
     {'1': 'otpToken', '3': 1, '4': 1, '5': 9, '10': 'otpToken'},
-    {'1': 'password', '3': 2, '4': 1, '5': 9, '10': 'password'},
+    {'1': 'password', '3': 2, '4': 1, '5': 9, '8': {}, '10': 'password'},
     {'1': 'name', '3': 3, '4': 1, '5': 9, '10': 'name'},
     {'1': 'inviter', '3': 4, '4': 1, '5': 4, '10': 'inviter'},
     {'1': 'email', '3': 5, '4': 1, '5': 9, '10': 'email'},
@@ -169,23 +169,23 @@ const RegisterInput$json = {
 
 /// Descriptor for `RegisterInput`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List registerInputDescriptor = $convert.base64Decode(
-    'Cg1SZWdpc3RlcklucHV0EhoKCG90cFRva2VuGAEgASgJUghvdHBUb2tlbhIaCghwYXNzd29yZB'
-    'gCIAEoCVIIcGFzc3dvcmQSEgoEbmFtZRgDIAEoCVIEbmFtZRIYCgdpbnZpdGVyGAQgASgEUgdp'
-    'bnZpdGVyEhQKBWVtYWlsGAUgASgJUgVlbWFpbA==');
+    'Cg1SZWdpc3RlcklucHV0EhoKCG90cFRva2VuGAEgASgJUghvdHBUb2tlbhIgCghwYXNzd29yZB'
+    'gCIAEoCUIE0LUYAVIIcGFzc3dvcmQSEgoEbmFtZRgDIAEoCVIEbmFtZRIYCgdpbnZpdGVyGAQg'
+    'ASgEUgdpbnZpdGVyEhQKBWVtYWlsGAUgASgJUgVlbWFpbA==');
 
 @$core.Deprecated('Use loginInputDescriptor instead')
 const LoginInput$json = {
   '1': 'LoginInput',
   '2': [
     {'1': 'mobile', '3': 1, '4': 1, '5': 9, '10': 'mobile'},
-    {'1': 'password', '3': 2, '4': 1, '5': 9, '10': 'password'},
+    {'1': 'password', '3': 2, '4': 1, '5': 9, '8': {}, '10': 'password'},
   ],
 };
 
 /// Descriptor for `LoginInput`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List loginInputDescriptor = $convert.base64Decode(
-    'CgpMb2dpbklucHV0EhYKBm1vYmlsZRgBIAEoCVIGbW9iaWxlEhoKCHBhc3N3b3JkGAIgASgJUg'
-    'hwYXNzd29yZA==');
+    'CgpMb2dpbklucHV0EhYKBm1vYmlsZRgBIAEoCVIGbW9iaWxlEiAKCHBhc3N3b3JkGAIgASgJQg'
+    'TQtRgBUghwYXNzd29yZA==');
 
 @$core.Deprecated('Use authDescriptor instead')
 const Auth$json = {
